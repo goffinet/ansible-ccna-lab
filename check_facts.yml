@@ -7,4 +7,4 @@
       ios_facts:
       register: print_output
     - debug:
-        var: ansible_net_interfaces
+        var: ansible_net_interfaces['GigabitEthernet0/0'].operstatus
