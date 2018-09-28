@@ -6,4 +6,5 @@
     - name: GATHER ROUTER FACTS
       ios_facts:
       register: print_output
-    - debug: var=print_output
+    - debug:
+        var: ansible_net_interface
