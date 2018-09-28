@@ -1,0 +1,9 @@
+---
+- name: CHECK FACTS
+  hosts: core
+  gather_facts: no
+  tasks:
+    - name: GATHER ROUTER FACTS
+      ios_facts:
+      register: print_output
+    - debug: var=print_output
