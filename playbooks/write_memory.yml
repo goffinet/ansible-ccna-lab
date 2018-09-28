@@ -1,5 +1,5 @@
 ---
-- name: write memory
+- name: WRITE MEMORY
   hosts: core
   gather_facts: false
   tasks:
