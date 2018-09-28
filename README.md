@@ -1,5 +1,4 @@
-# Ansible CCNA Tripode
-
+# Ansible CCNA Tripod
 
 ## 1. Mise en place minimale
 
