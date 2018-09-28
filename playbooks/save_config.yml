@@ -1,0 +1,13 @@
+---
+- name: SAVE RUNNING-CONFIG
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: show running-config
+      ios_command:
+        commands:
+          - show running-config
+      register: print_output
+    - debug: var=print_output.stdout_lines
+    - name: save output to a file
+      copy: content="{{ print_output.stdout[0] }}" dest="config/{{ inventory_hostname }}.cfg"

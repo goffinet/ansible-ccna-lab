@@ -1,0 +1,14 @@
+---
+- name: interfaces configuration
+  hosts: core
+  gather_facts: no
+
+  tasks:
+    - name: run show version on remote devices
+      ios_command:
+        commands: show version
+
+    - name: run show version and check to see if output contains IOS
+      ios_command:
+        commands: show version
+        wait_for: result[0] contains IOS

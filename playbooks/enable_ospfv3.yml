@@ -1,0 +1,35 @@
+---
+- name: ENABLE OSPFv3 
+  hosts: core
+  gather_facts: false
+  tasks:
+    - name: enable ipv6 unicast-routing
+      ios_config:
+        lines: ipv6 unicast-routing
+      register: print_output
+    - debug: var=print_output
+    - name: disable ospfv3
+      ios_config:
+        lines: no ipv6 router ospf {{ item.pid }}
+      with_items: "{{ ipv6routing }}"
+      register: print_output
+    - debug: var=print_output
+    - name: enable ospfv3
+      ios_config:
+        parents: ipv6 router ospf {{ item.pid }}
+        lines:
+          - router-id {{ item.rid }}
+          - passive-interface {{ item.passive }}
+      with_items: "{{ ipv6routing }}"
+      register: print_output
+    -  debug: var=print_output
+    - name: enable ospfv3 on interfaces
+      ios_config:
+        parents: interface {{ item[1].id }}
+        lines:
+          - ipv6 ospf {{ item[0].pid }} area {{ item[0].area }}
+      with_nested: 
+          - "{{ ipv6routing }}"
+          - "{{ ospfv3  }}"
+      register: print_output
+    -  debug: var=print_output

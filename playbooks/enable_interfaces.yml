@@ -1,0 +1,15 @@
+---
+- name: ENABLE INTERFACES
+  hosts: core
+  gather_facts: false
+  tasks:
+    - name: enable interface
+      ios_config:
+        parents: interface {{ item.id }}
+        lines:
+          - no shutdown
+      with_items: "{{ interface }}"
+      register: print_output
+
+    - debug: var=print_output
+

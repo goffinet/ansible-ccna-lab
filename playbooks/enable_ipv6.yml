@@ -1,0 +1,15 @@
+---
+- name: ENABLE IPv6
+  hosts: core
+  gather_facts: false
+  tasks:
+    - name: enable ipv6
+      ios_config:
+        parents: interface {{ item.id }}
+        lines:
+          - ipv6 enable
+          - ipv6 address {{ item.net6 }} link-local
+      with_items: "{{ interface6 }}"
+      register: print_output
+    - debug: var=print_output
+

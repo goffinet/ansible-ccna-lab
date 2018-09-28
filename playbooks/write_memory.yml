@@ -1,0 +1,11 @@
+---
+- name: write memory
+  hosts: core
+  gather_facts: false
+  tasks:
+    - name: write memory
+      ios_command:
+        commands: write memory
+      register: print_output
+    - debug: var=print_output
+

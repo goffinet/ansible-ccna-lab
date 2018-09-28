@@ -1,0 +1,24 @@
+---
+- name: ENABLE OSPFv2 
+  hosts: core
+  gather_facts: false
+  tasks:
+    - name: disable ospfv2
+      ios_config:
+        lines: no router ospf {{ item.pid }}
+      with_items: "{{ ipv4routing }}"
+      register: print_output
+    - debug: var=print_output
+
+    - name: enable ospfv2
+      ios_config:
+        parents: router ospf {{ item[1].pid }}
+        lines:
+          - router-id {{ item[1].rid }}
+          - network {{ item[0].ipv4 }} 0.0.0.0 area {{ item[1].area }}
+          - passive-interface {{ item[1].passive }}
+      with_nested:
+          - "{{ ospfv2 }}"
+          - "{{ ipv4routing }}"
+      register: print_output
+    - debug: var=print_output
