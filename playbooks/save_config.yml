@@ -1,6 +1,6 @@
 ---
 - name: SAVE RUNNING-CONFIG
-  hosts: all
+  hosts: core
   gather_facts: false
   tasks:
     - name: show running-config
@@ -13,6 +13,10 @@
       copy:
         content: "{{ print_output.stdout[0] }}"
         dest: "config/{{ inventory_hostname }}.cfg"
+- name: TRUNCATE THE HEADER FILE
+  hosts: core
+  gather_facts: false
+  tasks:
     - name: remove non config line
       lineinfile:
         path: "./config/{{inventory_hostname}}.cfg"
