@@ -1,0 +1,9 @@
+---
+
+- import_playbook: playbooks/disable_ospfv2.yml
+- import_playbook: playbooks/remove_ipv4_adresses.yml
+- import_playbook: playbooks/disable_interfaces.yml
+- import_playbook: playbooks/disable_ospfv3.yml
+- import_playbook: playbooks/remove_ipv6_addresses.yml
+- import_playbook: playbooks/disable_ipv6.yml
+- import_playbook: playbooks/write_memory.yml

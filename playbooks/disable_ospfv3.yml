@@ -1,0 +1,15 @@
+---
+- name: DISABLE OSPFv3
+  hosts: core
+  gather_facts: false
+  tasks:
+    - name: disable ospfv3
+      ios_config:
+        lines: no ipv6 router ospf {{ item.pid }}
+      with_items: "{{ ipv6routing }}"
+      register: print_output
+    - name: disable ipv6 unicast-routing
+      ios_config:
+        lines: no ipv6 unicast-routing
+      register: print_output
+    - debug: var=print_output

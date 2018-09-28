@@ -1,0 +1,11 @@
+---
+- name: DISABLE OSPFv2 
+  hosts: core
+  gather_facts: false
+  tasks:
+    - name: disable ospfv2
+      ios_config:
+        lines: no router ospf {{ item.pid }}
+      with_items: "{{ ipv4routing }}"
+      register: print_output
+    - debug: var=print_output

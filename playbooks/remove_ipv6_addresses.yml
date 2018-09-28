@@ -1,0 +1,13 @@
+---
+- name: REMOVE IPv6 ADDRESSES
+  hosts: core
+  gather_facts: false
+  tasks:
+    - name: remove ipv6 addresses
+      ios_config:
+        parents: interface {{ item.id }}
+        lines:
+          - no ipv6 address {{ item.net6 }}
+      with_items: "{{ lan6 }}"
+      register: print_output
+    - debug: var=print_output

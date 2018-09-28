@@ -1,0 +1,13 @@
+---
+- name: SHUTDOWN INTERFACES
+  hosts: core
+  gather_facts: false
+  tasks:
+    - name: disable interface
+      ios_config:
+        parents: interface {{ item.id }}
+        lines:
+          - shutdown
+      with_items: "{{ interface }}"
+      register: print_output
+    - debug: var=print_output

@@ -1,0 +1,13 @@
+---
+- name: DISABLE IPv6
+  hosts: core
+  gather_facts: false
+  tasks:
+    - name: disable ipv6
+      ios_config:
+        parents: interface {{ item.id }}
+        lines:
+          - no ipv6 enable
+      with_items: "{{ interface6 }}"
+      register: print_output
+    - debug: var=print_output

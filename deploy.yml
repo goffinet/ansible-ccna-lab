@@ -5,6 +5,6 @@
 - import_playbook: playbooks/configure_ipv4_adresses.yml
 - import_playbook: playbooks/enable_ospfv2.yml
 - import_playbook: playbooks/enable_ipv6.yml
-- import_playbook: playbooks/configure_ipv6_address.yml
+- import_playbook: playbooks/configure_ipv6_addresses.yml
 - import_playbook: playbooks/enable_ospfv3.yml
 - import_playbook: playbooks/write_memory.yml
