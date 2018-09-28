@@ -45,7 +45,7 @@ ip scp server enable
 crypto key generate rsa modulus 2048
 line vty 0 4
  login local
- transport input all
+ transport input ssh
 end
 wr
 

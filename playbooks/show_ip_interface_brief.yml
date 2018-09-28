@@ -1,9 +1,7 @@
 ---
 - name: show interfaces configuration
   hosts: core
-  connection: local
   gather_facts: no
-
   tasks:
     - name: show interfaces
       ios_command:
