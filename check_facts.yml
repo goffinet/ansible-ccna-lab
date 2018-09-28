@@ -7,4 +7,4 @@
       ios_facts:
       register: print_output
     - debug:
-        var: ansible_net_interface
+        var: ansible_net_interfaces
