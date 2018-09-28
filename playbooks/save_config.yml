@@ -10,4 +10,22 @@
       register: print_output
     - debug: var=print_output.stdout_lines
     - name: save output to a file
-      copy: content="{{ print_output.stdout[0] }}" dest="config/{{ inventory_hostname }}.cfg"
+      copy:
+        content: "{{ print_output.stdout[0] }}"
+        dest: "config/{{ inventory_hostname }}.cfg"
+      register: print_output
+    - debug: var=print_output.stdout_lines
+    - name: remove non config line
+      lineinfile:
+        path: "./backup/{{inventory_hostname}}.config"
+        line: "Building configuration..."
+        state: absent
+      register: print_output
+    - debug: var=print_output.stdout_lines
+    - name: remove non config line - regexp
+      lineinfile:
+        path: "./backup/{{inventory_hostname}}.config"
+        regexp: 'Current configuration.*'
+        state: absent
+      register: print_output
+    - debug: var=print_output.stdout_lines
