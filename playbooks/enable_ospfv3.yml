@@ -1,5 +1,5 @@
 ---
-- name: ENABLE OSPFv3 
+- name: ENABLE OSPFv3
   hosts: core
   gather_facts: false
   tasks:
@@ -27,8 +27,8 @@
       ios_config:
         parents: interface {{ item[1].id }}
         lines:
-          - ipv6 ospf {{ item[0].pid }} area {{ item[0].area }}
-      with_nested: 
+          - ipv6 ospf {{ item[0].pid }} area {{ item[1].area }}
+      with_nested:
           - "{{ ipv6routing }}"
           - "{{ ospfv3  }}"
       register: print_output
