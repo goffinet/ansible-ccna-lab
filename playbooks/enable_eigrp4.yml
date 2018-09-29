@@ -10,9 +10,9 @@
       register: print_output
     - debug: var=print_output
 
-    - name: enable ospfv2
+    - name: enable eigrp4
       ios_config:
-        parents: router ospf {{ item[1].as }}
+        parents: router eigrp {{ item[1].as }}
         lines:
           - router-id {{ item[1].rid }}
           - network {{ item[0].ipv4 }} 0.0.0.0
