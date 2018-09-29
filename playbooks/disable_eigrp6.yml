@@ -1,21 +1,22 @@
 ---
-- name: DISABLE OSPFv3
+- name: DISABLE EIGRP IPv6
   hosts: core
   gather_facts: false
   tasks:
-    - name: disable ospfv3
+    - name: disable eigrp ipv6
       ios_config:
-        lines: no ipv6 router ospf {{ item.pid }}
+        lines: no ipv6 router eigrp {{ item.as }}
       with_items: "{{ ipv6routing }}"
       register: print_output
-    - name: disable ospfv3 on interfaces
+    - debug: var=print_output
+    - name: disable eigrp ipv6 on interfaces
       ios_config:
         parents: interface {{ item[1].id }}
         lines:
-          - no ipv6 ospf {{ item[0].pid }} area {{ item[1].area }}
+          - no ipv6 eigrp {{ item[0].as }}
       with_nested:
           - "{{ ipv6routing }}"
-          - "{{ ospfv3  }}"
+          - "{{ eigrp6 }}"
       register: print_output
     -  debug: var=print_output
     - name: disable ipv6 unicast-routing

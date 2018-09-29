@@ -56,7 +56,18 @@ ospfv3:
     pri: 255
     cost: 1
     area: 0
-  - id: G0/2
+  - id: GigabitEthernet0/2
     pri: 255
     cost: 1
     area: 0
+eigrp4:
+  - id: GigabitEthernet0/0
+    ipv4: 192.168.65.1
+  - id: GigabitEthernet0/1
+    ipv4: 192.168.226.2
+  - id: GigabitEthernet0/2
+    ipv4: 192.168.227.2
+eigrp6:
+  - id: GigabitEthernet0/0
+  - id: GigabitEthernet0/1
+  - id: GigabitEthernet0/2
