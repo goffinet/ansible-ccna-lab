@@ -70,7 +70,6 @@ eigrp6:
   - id: GigabitEthernet0/0
   - id: GigabitEthernet0/2
   - id: GigabitEthernet0/3
-dhcp: true
 dhcp_pool:
   - id: "LANR1"
     network: 192.168.1.0
