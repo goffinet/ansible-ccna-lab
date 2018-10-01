@@ -3,6 +3,11 @@ hostname: DS1
 root:
   primary: ['1','10','30','99']
   secondary: ['20','40']
+noswitchport:
+  - GigabitEthernet2/0
+  - GigabitEthernet3/0
+  - GigabitEthernet2/1
+  - GigabitEthernet3/1
 group_channels:
   - id: 1
     mode: active
@@ -27,9 +32,9 @@ trunks:
     - GigabitEthernet1/1
     - GigabitEthernet0/2
     - GigabitEthernet1/2
-    - PortChannel1
-    - PortChannel3
-    - PortChannel5
+    - Port-channel1
+    - Port-channel3
+    - Port-channel5
   native: 99
 interfaces:
   - id: Vlan99
@@ -54,10 +59,10 @@ interfaces:
     ipv4: 192.168.225.2
     netmask: 255.255.255.0
   - id: GigabitEthernet2/1
-    ipv4: 192.168.240.2
+    ipv4: 192.168.226.2
     netmask: 255.255.255.0
   - id: GigabitEthernet3/1
-    ipv4: 192.168.241.2
+    ipv4: 192.168.227.2
     netmask: 255.255.255.0
 interface6:
   - id: Vlan10
@@ -153,8 +158,3 @@ standby6:
       address: 'fe80::d:1'
       priority: 100
       preempt: false
-noswitchport:
-  - GigabitEthernet2/0
-  - GigabitEthernet3/0
-  - GigabitEthernet2/1
-  - GigabitEthernet3/1

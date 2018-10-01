@@ -35,6 +35,6 @@ trunks:
     - GigabitEthernet1/0
     - GigabitEthernet0/1
     - GigabitEthernet1/1
-    - PortChannel4
-    - PortChannel5
+    - Port-channel4
+    - Port-channel5
   native: 99
