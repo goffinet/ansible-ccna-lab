@@ -1,0 +1,21 @@
+---
+- name: remove the login banner
+  ios_banner:
+    banner: login
+    state: absent
+- name: remove the motd banner
+  ios_banner:
+    banner: motd
+    state: absent
+- name: remove the exec banner
+  ios_banner:
+    banner: exec
+    state: absent
+- name: remove the incoming banner
+  ios_banner:
+    banner: incoming
+    state: absent
+- name: remove the slip-ppp banner
+  ios_banner:
+    banner: slip-ppp
+    state: absent

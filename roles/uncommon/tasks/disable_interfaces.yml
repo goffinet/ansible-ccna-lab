@@ -1,7 +1,8 @@
 ---
-- name: disable interface
-  ios_config:
-    parents: interface {{ item.id }}
-    lines:
-      - shutdown
+- name: enable interface
+  ios_interface:
+    name: "{{ item.id }}"
+    enabled: true
+    state: present
+    description: Disabled interface
   with_items: "{{ interface }}"
