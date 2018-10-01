@@ -11,7 +11,7 @@ DS2
 AS1
 AS2
 
-[lan:children]
+[blocks:children]
 distribution
 access
 

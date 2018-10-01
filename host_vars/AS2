@@ -1,0 +1,40 @@
+---
+hostname: AS2
+access:
+  - id: 10
+    interfaces:
+      - GigabitEthernet2/0
+  - id: 20
+    interfaces:
+      - GigabitEthernet2/1
+  - id: 30
+    interfaces:
+      - GigabitEthernet2/2
+  - id: 40
+    interfaces:
+      - GigabitEthernet2/3
+interfaces:
+  - id: Vlan99
+    ipv4: 172.16.0.2
+    netmask: 255.255.255.0
+    gateway: 172.16.0.254
+group_channels:
+  - id: 4
+    mode: active
+    interfaces:
+      - GigabitEthernet0/0
+      - GigabitEthernet1/0
+  - id: 5
+    mode: active
+    interfaces:
+      - GigabitEthernet0/1
+      - GigabitEthernet1/1
+trunks:
+  interfaces:
+    - GigabitEthernet0/0
+    - GigabitEthernet1/0
+    - GigabitEthernet0/1
+    - GigabitEthernet1/1
+    - PortChannel4
+    - PortChannel5
+  native: 99
