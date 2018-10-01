@@ -70,7 +70,7 @@ eigrp6:
   - id: GigabitEthernet0/0
   - id: GigabitEthernet0/2
   - id: GigabitEthernet0/3
-dhcp-server:
+dhcp_server:
   - id: "LANR1"
     network: 192.168.1.0
     netmask: 255.255.255.0

@@ -1,0 +1,5 @@
+---
+- hosts: core
+  gather_facts: False
+  roles:
+    - dhcp_server
