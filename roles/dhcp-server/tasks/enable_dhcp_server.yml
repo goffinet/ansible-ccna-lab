@@ -6,4 +6,4 @@
       - network {{ item.network }} {{ item.netmask }}
       - default-router {{ item.default-router }}
       - dns-server {{ item.dns-server }}
-  with_items: "{{ dhcp }}"
+  with_items: "{{ dhcp-server }}"
