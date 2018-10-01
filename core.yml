@@ -4,3 +4,4 @@
   roles:
     - eigrp4
     - ospfv3
+    - dhcp-server
