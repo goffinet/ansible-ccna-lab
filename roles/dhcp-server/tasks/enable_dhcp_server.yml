@@ -1,0 +1,9 @@
+---
+- name: enable ipv4 dhcp server
+  ios_config:
+    parents: ip dhcp pool {{ item.id }}
+    lines:
+      - network {{ item.network }} {{ item.netmask }}
+      - default-router {{ item.default-router }}
+      - dns-server {{ item.dns-server }}
+  with_items: "{{ dhcp }}"
