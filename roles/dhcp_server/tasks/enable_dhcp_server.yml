@@ -4,6 +4,6 @@
     parents: ip dhcp pool {{ item.id }}
     lines:
       - network {{ item.network }} {{ item.netmask }}
-      - default-router {{ item.default-router }}
-      - dns-server {{ item.dns-server }}
-  with_items: "{{ dhcp_server }}"
+      - default-router {{ item.router }}
+      - dns-server {{ item.dns }}
+  with_items: "{{ dhcp_pool }}"
