@@ -11,4 +11,5 @@
   ios_config:
     lines:
       - ip dhcp excluded-address {{ item.start }} {{ item.end }}
-  with_items: "{{ dhcp_pool.excluded }}"
+  with_items: "{{ dhcp_excluded }}"
+  when: dhcp_excluded is defined
