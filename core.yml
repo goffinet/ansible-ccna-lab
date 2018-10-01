@@ -1,0 +1,6 @@
+---
+- hosts: core
+  gather_facts: False
+  roles:
+    - eigrp4
+    - ospfv3

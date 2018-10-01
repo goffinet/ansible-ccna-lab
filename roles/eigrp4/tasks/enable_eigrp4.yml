@@ -1,0 +1,11 @@
+---
+- name: enable eigrp4
+  ios_config:
+    parents: router eigrp {{ item[1].as }}
+    lines:
+      - router-id {{ item[1].rid }}
+      - network {{ item[0].ipv4 }} 0.0.0.0
+      - passive-interface {{ item[1].passive }}
+  with_nested:
+      - "{{ eigrp4 }}"
+      - "{{ ipv4routing }}"

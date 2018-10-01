@@ -1,0 +1,6 @@
+---
+dependencies:
+  - role: common
+  - role: ipv6
+  - role: no-ospfv3
+  - role: ipv6-routing

@@ -1,0 +1,8 @@
+---
+- name: configure ipv4 adresses
+  ios_config:
+    parents: interface {{ item.id }}
+    lines:
+      - ip address {{ item.ipv4 }} {{ item.netmask }} 
+  with_items: "{{ interface }}"
+

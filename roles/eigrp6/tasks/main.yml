@@ -1,0 +1,3 @@
+---
+- import_tasks: enable_eigrp6.yml
+  when: ansible_network_os == 'ios'

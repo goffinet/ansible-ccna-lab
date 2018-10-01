@@ -1,0 +1,16 @@
+---
+- name: enable ospfv3
+  ios_config:
+    parents: ipv6 router ospf {{ item.pid }}
+    lines:
+      - router-id {{ item.rid }}
+      - passive-interface {{ item.passive }}
+  with_items: "{{ ipv6routing }}"
+- name: enable ospfv3 on interfaces
+  ios_config:
+    parents: interface {{ item[1].id }}
+    lines:
+      - ipv6 ospf {{ item[0].pid }} area {{ item[1].area }}
+  with_nested:
+      - "{{ ipv6routing }}"
+      - "{{ ospfv3  }}"

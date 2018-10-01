@@ -1,0 +1,7 @@
+---
+- name: remove ipv4 adresses
+  ios_config:
+    parents: interface {{ item.id }}
+    lines:
+      - no ip address 
+  with_items: "{{ interface }}"

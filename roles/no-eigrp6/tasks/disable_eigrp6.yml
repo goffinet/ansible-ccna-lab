@@ -1,0 +1,16 @@
+---
+- name: disable eigrp ipv6
+  ios_config:
+    lines: no ipv6 router eigrp {{ item.as }}
+  with_items: "{{ ipv6routing }}"
+- name: disable eigrp ipv6 on interfaces
+  ios_config:
+    parents: interface {{ item[1].id }}
+    lines:
+      - no ipv6 eigrp {{ item[0].as }}
+  with_nested:
+      - "{{ ipv6routing }}"
+      - "{{ eigrp6 }}"
+- name: disable ipv6 unicast-routing
+  ios_config:
+    lines: no ipv6 unicast-routing

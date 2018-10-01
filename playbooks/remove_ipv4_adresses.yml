@@ -3,7 +3,7 @@
   hosts: core
   gather_facts: false
   tasks:
-    - name: configure ipv4 adresses
+    - name: remove ipv4 adresses
       ios_config:
         parents: interface {{ item.id }}
         lines:

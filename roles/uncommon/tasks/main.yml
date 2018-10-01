@@ -1,0 +1,2 @@
+- import_tasks: disable_interfaces.yml
+  when: ansible_network_os == 'ios'

@@ -1,0 +1,11 @@
+---
+- name: enable ospfv2
+  ios_config:
+    parents: router ospf {{ item[1].pid }}
+    lines:
+      - router-id {{ item[1].rid }}
+      - network {{ item[0].ipv4 }} 0.0.0.0 area {{ item[0].area }}
+      - passive-interface {{ item[1].passive }}
+  with_nested:
+      - "{{ ospfv2 }}"
+      - "{{ ipv4routing }}"

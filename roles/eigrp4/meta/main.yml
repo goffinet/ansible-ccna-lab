@@ -1,0 +1,5 @@
+---
+dependencies:
+  - role: common
+  - role: ipv4
+  - role: no-eigrp4

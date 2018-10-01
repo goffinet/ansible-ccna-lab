@@ -1,0 +1,3 @@
+- name: enable ipv6 unicast-routing
+  ios_config:
+    lines: ipv6 unicast-routing

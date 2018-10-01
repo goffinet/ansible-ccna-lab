@@ -1,0 +1,5 @@
+---
+- name: disable eigrp ipv4
+  ios_config:
+   lines: no router eigrp {{ item.as }}
+  with_items: "{{ ipv4routing }}"

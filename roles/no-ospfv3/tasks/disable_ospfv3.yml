@@ -1,0 +1,16 @@
+---
+- name: disable ospfv3
+  ios_config:
+    lines: no ipv6 router ospf {{ item.pid }}
+  with_items: "{{ ipv6routing }}"
+- name: disable ospfv3 on interfaces
+  ios_config:
+    parents: interface {{ item[1].id }}
+    lines:
+      - no ipv6 ospf {{ item[0].pid }} area {{ item[1].area }}
+  with_nested:
+      - "{{ ipv6routing }}"
+      - "{{ ospfv3  }}"
+- name: disable ipv6 unicast-routing
+  ios_config:
+    lines: no ipv6 unicast-routing
