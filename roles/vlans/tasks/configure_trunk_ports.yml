@@ -6,5 +6,5 @@
       - switchport trunk encapsulation dot1q
       - switchport trunk native vlan {{ item.native }}
       - switchport mode trunk
-  with_items: "{{ access }}"
+  with_items: "{{ trunks }}"
   when: trunks is defined
