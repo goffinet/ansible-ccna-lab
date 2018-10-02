@@ -1,0 +1,4 @@
+#- import_tasks: create_vlans.yml
+#  when: ansible_network_os == 'ios'
+- import_tasks: configure_access_ports.yml
+  when: ansible_network_os == 'ios'

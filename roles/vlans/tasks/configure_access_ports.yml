@@ -1,0 +1,9 @@
+---
+- name: configure access ports
+  ios_config:
+    parents: interface {{ item.id }}
+    lines:
+      - switchport mode access
+      - switchport access vlan {{ item.vlan }} 
+  with_items: "{{ access }}"
+  when: access is defined
