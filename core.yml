@@ -3,6 +3,7 @@
   gather_facts: False
   roles:
     - common
+    - interface
     - ipv4
     - eigrp4
     - ipv6-routing
@@ -10,6 +11,10 @@
     - eigrp6
     - dhcp-server
     - write
+- hosts: R1
+  gather_facts: False
+  roles:
+    - nat
 - hosts: core
   gather_facts: False
   roles:

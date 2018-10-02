@@ -1,0 +1,29 @@
+---
+- name: enable nat outside interface
+  ios_interface:
+    name: "{{ nat.outside }}"
+    enabled: true
+    state: present
+    description: TODO
+- name: configure ipv4 adresses nat ouside interface
+  ios_config:
+    parents: interface {{ nat.outside }}
+    lines:
+      - ip address dhcp
+      - ip nat outside
+- name: configure ip nat inside interfaces
+  ios_config:
+    parents: interface {{ item }}
+    lines:
+      - ip nat inside
+  with_items: "{{ nat.inside }}"
+- name: configure source nat acl
+  ios_config:
+    parents: ip access-list standard {{ nat.name }}
+    lines:
+      - permit {{ item }}
+  with_items: "{{ nat.source }}"
+- name: configure the nat rule
+  ios_config:
+    lines:
+      - ip nat source list {{ nat.name }} interface {{ nat.outside }} overload

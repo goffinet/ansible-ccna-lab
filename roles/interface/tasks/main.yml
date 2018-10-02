@@ -1,3 +1,3 @@
 ---
-- import_tasks: remove_banners.yml
+- import_tasks: enable_interfaces.yml
   when: ansible_network_os == 'ios'

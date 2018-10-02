@@ -3,6 +3,7 @@
   gather_facts: False
   roles:
     - common
+    - interface
     - etherchannel
     - vlans
     - spanning-tree
