@@ -1,5 +1,5 @@
 ---
-- hosts: AS1
+- hosts: DS1
   gather_facts: False
   roles:
-    - vlans 
+    - spanning-tree 

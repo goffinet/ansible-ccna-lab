@@ -4,9 +4,8 @@
   roles:
     - common
     - etherchannel
-#    - vlans
-#    - access
-#    - trunks
+    - vlans
+    - spanning-tree
 #    - ipv4
 #    - ipv6
 #    - spanning-tree

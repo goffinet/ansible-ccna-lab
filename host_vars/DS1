@@ -1,6 +1,6 @@
 ---
 hostname: DS1
-root:
+stp:
   primary: ['1','10','30','99']
   secondary: ['20','40']
 group_channels:

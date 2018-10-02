@@ -27,3 +27,5 @@ switchports:
   - id: GigabitEthernet3/1
   - id: GigabitEthernet3/2
 #  - id: GigabitEthernet3/3 # reserved for ansible console management
+stp:
+  mode: rapid-pvst # rapid-pvst, pvst, mst

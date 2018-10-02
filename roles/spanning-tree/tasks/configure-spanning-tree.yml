@@ -1,0 +1,18 @@
+---
+- name: define the version of stp
+  ios_config:
+    lines: spanning-tree mode {{ item.mode }}
+  with_items: "{{ stp }}"
+  when: stp.mode is defined
+- name: define the stp root primary
+  ios_config:
+    lines: spanning-tree vlan {{ item }} root primary
+      - switchport mode trunk
+  with_items: "{{ stp.primary }}"
+  when: stp.primary is defined
+- name: define the stp root secondary
+  ios_config:
+    lines: spanning-tree vlan {{ item }} root secondary
+      - switchport mode trunk
+  with_items: "{{ stp.secondary }}"
+  when: stp.secondary is defined
