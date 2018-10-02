@@ -9,7 +9,8 @@
     parents: ipv6 router eigrp {{ ipv6routing.as }}
     lines:
       - passive-interface {{ item }}
-  with_items: "{{ ipv6routing.passive }}"
+  with_items:
+    - "{{ ipv6routing.passive }}"
 - name: enable eigrp ipv6 on interfaces
   ios_config:
     parents: interface {{ item.id }}

@@ -17,6 +17,6 @@
   ios_config:
     parents: router ospf {{ ipv4routing.pid }}
     lines:
-      - network {{ item.ipv4 }} 0.0.0.0 area {{ item.area }}
+      - "network {{ item.ipv4 }} 0.0.0.0 area {{ item.area }}"
   with_items:
       - "{{ ospfv2 }}"
