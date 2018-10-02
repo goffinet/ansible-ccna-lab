@@ -2,13 +2,4 @@
 - hosts: DS1
   gather_facts: False
   roles:
-    - common
-    - etherchannel
-    - vlans
-    - spanning-tree
-    - ipv4
-    - ipv6
-    - ipv4-routing
-    - ipv6-routing
     - fhrp
-
