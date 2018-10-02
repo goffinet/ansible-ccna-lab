@@ -3,27 +3,27 @@
   ios_config:
     parents: interface {{ item.id }}
     lines:
-      - "{{ item.mode }}" "{{ item.group }}" ip "{{ item.address }}"
+      - "{{ item.mode }} {{ item.group }} ip {{ item.address }}"
   with_items: "{{ fhrp }}"
   when: item.protocol == 'ipv4'
 - name: configure fhrp - ipv6 address
   ios_config:
     parents: interface {{ item.id }}
     lines:
-      - "{{ item.mode }}" "{{ item.group }}" ipv6 "{{ item.address }}"
+      - "{{ item.mode }} {{ item.group }} ipv6 {{ item.address }}"
   with_items: "{{ fhrp }}"
   when: item.protocol == 'ipv6'
 - name: configure fhrp - priority
   ios_config:
     parents: interface {{ item.id }}
     lines:
-      - "{{ item.mode }}" "{{ item.group }}" priority "{{ item.priority }}"
+      - "{{ item.mode }} {{ item.group }} priority {{ item.priority }}"
   with_items: "{{ fhrp }}"
   when: item.priority is defined
 - name: configure fhrp - preemption
   ios_config:
     parents: interface {{ item.id }}
     lines:
-      - "{{ item.mode }}" "{{ item.group }}" preempt
+      - "{{ item.mode }} {{ item.group }} preempt"
   with_items: "{{ fhrp }}"
   when: item.preempt == 'True'

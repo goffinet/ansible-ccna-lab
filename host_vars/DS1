@@ -203,53 +203,53 @@ fhrp:
     address: 172.16.10.254
     priority: 150
     preempt: true
-    mode: standy
+    mode: standby
   - id: Vlan20
     group: 20
     protocol: ipv4
     address: 172.16.20.254
     priority: 100
     preempt: false
-    mode: standy
+    mode: standby
   - id: Vlan30
     group: 30
     protocol: ipv4
     address: 172.16.30.254
     priority: 150
     preempt: true
-    mode: standy
+    mode: standby
   - id: Vlan40
     group: 40
     protocol: ipv4
     address: 172.16.40.254
     priority: 100
     preempt: false
-    mode: standy
+    mode: standby
   - id: Vlan10
     group: 16
     protocol: ipv6
     address: 'fe80::d:1'
     priority: 150
     preempt: true
-    mode: standy
+    mode: standby
   - id: Vlan20
     group: 26
     protocol: ipv6
     address: 'fe80::d:1'
     priority: 100
     preempt: false
-    mode: standy
+    mode: standby
   - id: Vlan30
     group: 36
     protocol: ipv6
     address: 'fe80::d:1'
     priority: 150
     preempt: true
-    mode: standy
+    mode: standby
   - id: Vlan40
     group: 46
     protocol: ipv6
     address: 'fe80::d:1'
     priority: 100
     preempt: false
-    mode: standy
+    mode: standby

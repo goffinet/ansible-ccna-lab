@@ -8,3 +8,7 @@
     - spanning-tree
     - ipv4
     - ipv6
+    - ipv4-routing
+    - ipv6-routing
+    - fhrp
+
