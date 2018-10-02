@@ -1,5 +1,5 @@
 ---
-- name: configure access ports
+- name: configure trunk ports
   ios_config:
     parents: interface {{ item.id }}
     lines:
