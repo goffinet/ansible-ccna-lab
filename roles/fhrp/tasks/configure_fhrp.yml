@@ -1,9 +1,29 @@
 ---
-  - name: configure router redondancy
-    ios_config:
-      parents: interface {{ item.id }}
-      lines:
-        - {{ item.mode }} {{ item.group }} ip 172.16.20.254
-        - {{ item.mode }} {{ item.group }} priority 150
-        - {{ item.mode }} {{ item.group }} preempt
-    with_items: "{{ fhrp }}"
+- name: configure fhrp - ipv4 address
+  ios_config:
+    parents: interface {{ item.id }}
+    lines:
+      - {{ item.mode }} {{ item.group }} ip {{ item.address }}
+  with_items: "{{ fhrp }}"
+  when: item.protocol == 'ipv4'
+- name: configure fhrp - ipv6 address
+  ios_config:
+    parents: interface {{ item.id }}
+    lines:
+      - {{ item.mode }} {{ item.group }} ipv6 {{ item.address }}
+  with_items: "{{ fhrp }}"
+  when: item.protocol == 'ipv6'
+- name: configure fhrp - priority
+  ios_config:
+    parents: interface {{ item.id }}
+    lines:
+      - {{ item.mode }} {{ item.group }} priority {{ item.priority }}
+  with_items: "{{ fhrp }}"
+  when: item.priority is defined
+- name: configure fhrp - preemption
+  ios_config:
+    parents: interface {{ item.id }}
+    lines:
+      - {{ item.mode }} {{ item.group }} preempt
+  with_items: "{{ fhrp }}"
+  when: item.preempt == 'True'
