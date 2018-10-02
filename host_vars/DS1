@@ -108,11 +108,6 @@ ipv4routing:
   as: 1
 ipv6routing:
   rid: 4.4.4.4
-  passive:
-    - Vlan10
-    - Vlan20
-    - Vlan30
-    - Vlan40
   pid: 1
   as: 1
 ospfv2:

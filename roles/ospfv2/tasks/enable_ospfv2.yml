@@ -13,6 +13,7 @@
       - passive-interface {{ item }}
   with_items:
       - "{{ ipv4routing.passive }}"
+  when: ipv4routing.passive is defined
 - name: enable ospfv2 interfaces
   ios_config:
     parents: router ospf {{ ipv4routing.pid }}

@@ -11,6 +11,7 @@
       - passive-interface {{ item }}
   with_items:
     - "{{ ipv6routing.passive }}"
+  when: ipv6routing.passive is defined
 - name: enable ospfv3 on interfaces
   ios_config:
     parents: interface {{ item.id }}
