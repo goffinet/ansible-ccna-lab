@@ -1,0 +1,23 @@
+---
+- hosts: blocks
+  gather_facts: False
+  roles:
+    - common
+    - etherchannel
+    - vlans
+    - spanning-tree
+    - ipv4
+    - ipv6
+- hosts: access
+  gather_facts: False
+  roles:
+    - no-ipv4-routing
+- hosts: distribution
+  gather_facts: False
+  roles:
+    - ipv4-routing
+    - ipv6-routing
+    - fhrp
+    - eigrp4
+    - eigrp6
+    - dhcp-server

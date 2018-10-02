@@ -1,0 +1,3 @@
+- name: disable ipv4 routing
+  ios_config:
+    lines: no ip routing

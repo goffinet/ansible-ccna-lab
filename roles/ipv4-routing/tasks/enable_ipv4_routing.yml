@@ -1,0 +1,3 @@
+- name: enable ipv4 routing
+  ios_config:
+    lines: ip routing
