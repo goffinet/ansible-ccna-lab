@@ -1,0 +1,8 @@
+- name: create vlans 
+  ios_vlan:
+    vlan_id: "{{ item.id }}"
+    state: present
+    name: "{{ item.name }}"
+  with_items: "{{ vlans }}" 
+  register: print_output
+- debug: var=print_output

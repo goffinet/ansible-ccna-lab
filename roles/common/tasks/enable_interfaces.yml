@@ -1,4 +1,11 @@
 ---
+- name: disable switchport on switch interface
+  ios_config:
+    parents: interface {{ item.id }}
+    lines:
+      - no switchport
+  with_items: "{{ interface }}"
+  when: item.noswitchport is defined
 - name: enable interface
   ios_interface:
     name: "{{ item.id }}"

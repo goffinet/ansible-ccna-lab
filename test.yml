@@ -1,5 +1,5 @@
 ---
-- hosts: core
+- hosts: DS1
   gather_facts: False
   roles:
-    - dhcp-server
+    - vlans 

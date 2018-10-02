@@ -3,11 +3,6 @@ hostname: DS1
 root:
   primary: ['1','10','30','99']
   secondary: ['20','40']
-noswitchport:
-  - GigabitEthernet2/0
-  - GigabitEthernet3/0
-  - GigabitEthernet2/1
-  - GigabitEthernet3/1
 group_channels:
   - id: 1
     mode: active
@@ -55,15 +50,19 @@ interface:
   - id: GigabitEthernet2/0
     ipv4: 192.168.224.2
     netmask: 255.255.255.0
+    noswitchport: true
   - id: GigabitEthernet3/0
     ipv4: 192.168.225.2
     netmask: 255.255.255.0
+    noswitchport: true
   - id: GigabitEthernet2/1
     ipv4: 192.168.226.2
     netmask: 255.255.255.0
+    noswitchport: true
   - id: GigabitEthernet3/1
     ipv4: 192.168.227.2
     netmask: 255.255.255.0
+    noswitchport: true
 interface6:
   - id: Vlan10
     net6: 'fe80::d:2'
