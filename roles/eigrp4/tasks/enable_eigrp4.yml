@@ -9,3 +9,11 @@
   with_nested:
       - "{{ eigrp4 }}"
       - "{{ ipv4routing }}"
+- name: enable eigrp4
+  ios_config:
+    parents: router eigrp {{ item[0].as }}
+    lines:
+      - passive-interface {{ item[1] }}
+  with_nested:
+      - "{{ ipv4routing }}"
+      - "{{ ipv4routing.passive }}"

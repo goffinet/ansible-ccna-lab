@@ -2,5 +2,4 @@
 - hosts: DS1
   gather_facts: False
   roles:
-    - spanning-tree
-    - write
+    - eigrp4
