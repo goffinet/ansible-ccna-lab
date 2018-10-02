@@ -1,24 +1,20 @@
 ---
 - name: enable eigrp4 rid
   ios_config:
-    parents: router eigrp {{ item.as }}
+    parents: router eigrp {{ ipv4routing.as }}
     lines:
-      - router-id {{ item.rid }}
-  with_items:
-      - "{{ ipv4routing }}"
+      - router-id {{ ipv4routing.rid }}
 - name: enable eigrp4
   ios_config:
-    parents: router eigrp {{ item[0].as }}
+    parents: router eigrp {{ ipv4routing.as }}
     lines:
-      - network {{ item[1].ipv4 }} 0.0.0.0
-  with_nested:
-      - "{{ ipv4routing }}"
+      - network {{ item.ipv4 }} 0.0.0.0
+  with_items:
       - "{{ eigrp4 }}"
 - name: enable eigrp4
   ios_config:
-    parents: router eigrp {{ item[0].as }}
+    parents: router eigrp {{ ipv4routing.as }}
     lines:
-      - passive-interface {{ item[1] }}
-  with_nested:
-      - "{{ ipv4routing }}"
+      - passive-interface {{ item }}
+  with_items:
       - "{{ ipv4routing.passive }}"
