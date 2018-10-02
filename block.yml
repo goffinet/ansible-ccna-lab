@@ -1,14 +1,13 @@
 ---
-- hosts: DS1
+- hosts: blocks
   gather_facts: False
   roles:
     - common
     - etherchannel
     - vlans
     - spanning-tree
-#    - ipv4
-#    - ipv6
-#    - spanning-tree
+    - ipv4
+    - ipv6
 #- hosts: distribution
 #  gather_facts: False
 #  roles:
