@@ -9,7 +9,7 @@ access:
     vlan: 30
   - id: GigabitEthernet2/3
     vlan: 40
-interfaces:
+interface:
   - id: Vlan99
     ipv4: 172.16.0.2
     netmask: 255.255.255.0
