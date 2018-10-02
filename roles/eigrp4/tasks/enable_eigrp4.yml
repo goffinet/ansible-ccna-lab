@@ -1,9 +1,15 @@
 ---
+- name: enable eigrp4 rid
+  ios_config:
+    parents: router eigrp {{ item.as }}
+    lines:
+      - router-id {{ item.rid }}
+  with_items:
+      - "{{ ipv4routing }}"
 - name: enable eigrp4
   ios_config:
     parents: router eigrp {{ item[0].as }}
     lines:
-      - router-id {{ item[0].rid }}
       - network {{ item[1].ipv4 }} 0.0.0.0
   with_nested:
       - "{{ ipv4routing }}"
