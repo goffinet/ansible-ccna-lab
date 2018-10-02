@@ -5,6 +5,7 @@
     - common
     - ipv4
     - eigrp4
+    - ipv6-routing
     - ipv6
     - eigrp6
     - dhcp-server

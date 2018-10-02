@@ -12,7 +12,7 @@ interface:
     netmask: 255.255.255.0
   - id: GigabitEthernet0/2
     ipv4: 172.16.224.1
-    netmask: 255.255.255.4
+    netmask: 255.255.255.0
   - id: GigabitEthernet0/4
     ipv4: 172.16.225.1
     netmask: 255.255.255.0
