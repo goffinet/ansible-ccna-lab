@@ -52,7 +52,7 @@ interface:
   - id: Vlan30
     ipv4: 172.16.30.253
     netmask: 255.255.255.0
-  - id: Vlan10
+  - id: Vlan40
     ipv4: 172.16.40.253
     netmask: 255.255.255.0
   - id: GigabitEthernet2/0
