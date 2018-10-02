@@ -5,7 +5,6 @@
     lines:
       - router-id {{ item[1].rid }}
       - network {{ item[0].ipv4 }} 0.0.0.0
-      - passive-interface {{ item[1].passive }}
   with_nested:
       - "{{ eigrp4 }}"
       - "{{ ipv4routing }}"
