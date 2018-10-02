@@ -26,11 +26,15 @@ group_channels:
       - GigabitEthernet0/1
       - GigabitEthernet1/1
 trunks:
-  id:
-    - GigabitEthernet0/0
-    - GigabitEthernet1/0
-    - GigabitEthernet0/1
-    - GigabitEthernet1/1
-    - Port-channel4
-    - Port-channel5
-  native: 99
+  - id: GigabitEthernet0/0
+    native: 99
+  - id: GigabitEthernet1/0
+    native: 99
+  - id: GigabitEthernet0/1
+    native: 99
+  - id: GigabitEthernet1/1
+    native: 99
+  - id: Port-channel4
+    native: 99
+  - id: Port-channel5
+    native: 99

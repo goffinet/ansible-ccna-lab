@@ -20,17 +20,24 @@ group_channels:
       - GigabitEthernet0/1
       - GigabitEthernet1/1
 trunks:
-  id:
-    - GigabitEthernet0/0
-    - GigabitEthernet1/0
-    - GigabitEthernet0/1
-    - GigabitEthernet1/1
-    - GigabitEthernet0/2
-    - GigabitEthernet1/2
-    - Port-channel1
-    - Port-channel3
-    - Port-channel5
-  native: 99
+  - id: GigabitEthernet0/0
+    native: 99
+  - id: GigabitEthernet1/0
+    native: 99
+  - id: GigabitEthernet0/1
+    native: 99
+  - id: GigabitEthernet1/1
+    native: 99
+  - id: GigabitEthernet0/2
+    native: 99
+  - id: GigabitEthernet1/2
+    native: 99
+  - id: Port-channel1
+    native: 99
+  - id: Port-channel3
+    native: 99
+  - id: Port-channel5
+    native: 99
 interface:
   - id: Vlan99
     ipv4: 172.16.0.252
