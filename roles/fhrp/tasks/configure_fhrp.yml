@@ -9,7 +9,7 @@
   ios_config:
     parents: interface {{ item.id }}
     lines:
-      - "{{ item.mode }} {{ item.group }} version 2
+      - "{{ item.mode }} version 2
       - "{{ item.mode }} {{ item.group }} ipv6 {{ item.address }}"
   with_items: "{{ fhrp }}"
   when: item.protocol == 'ipv6'
