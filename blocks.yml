@@ -21,3 +21,7 @@
     - eigrp4
     - eigrp6
     - dhcp-server
+- hosts: blocks
+  gather_facts: False
+  roles:
+    - write
