@@ -36,7 +36,7 @@ trunks:
     - Port-channel3
     - Port-channel5
   native: 99
-interfaces:
+interface:
   - id: Vlan99
     ipv4: 172.16.0.252
     netmask: 255.255.255.0
