@@ -1,5 +1,0 @@
----
-- name: disable ospfv2
-  ios_config:
-    lines: no router ospf {{ item.pid }}
-  with_items: "{{ ipv4routing }}"

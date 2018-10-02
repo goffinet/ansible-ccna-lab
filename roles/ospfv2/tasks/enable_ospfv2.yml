@@ -1,11 +1,22 @@
 ---
-- name: enable ospfv2
+- name: enable ospfv2 rid
   ios_config:
-    parents: router ospf {{ item[1].pid }}
+    parents: router ospf {{ ipv4routing.pid }}
     lines:
-      - router-id {{ item[1].rid }}
-      - network {{ item[0].ipv4 }} 0.0.0.0 area {{ item[0].area }}
-      - passive-interface {{ item[1].passive }}
-  with_nested:
+      - router-id {{ ipv4routing.rid }}
+  with_items:
       - "{{ ospfv2 }}"
-      - "{{ ipv4routing }}"
+- name: enable ospfv2 passive-interface
+  ios_config:
+    parents: router ospf {{ ipv4routing.pid }}
+    lines:
+      - passive-interface {{ item }}
+  with_items:
+      - "{{ ipv4routing.passive }}"
+- name: enable ospfv2 interfaces
+  ios_config:
+    parents: router ospf {{ ipv4routing.pid }}
+    lines:
+      - network {{ item.ipv4 }} 0.0.0.0 area {{ item.area }}
+  with_items:
+      - "{{ ospfv2 }}"

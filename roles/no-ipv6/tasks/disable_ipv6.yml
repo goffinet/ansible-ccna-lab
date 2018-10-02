@@ -1,7 +1,0 @@
----
-- name: disable ipv6
-  ios_config:
-    parents: interface {{ item.id }}
-    lines:
-      - no ipv6 enable
-  with_items: "{{ interface6 }}"

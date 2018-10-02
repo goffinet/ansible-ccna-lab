@@ -107,14 +107,14 @@ ipv4routing:
   pid: 1
   as: 1
 ipv6routing:
-  - rid: 4.4.4.4
-    passive:
-      - Vlan10
-      - Vlan20
-      - Vlan30
-      - Vlan40
-    pid: 1
-    as: 1
+  rid: 4.4.4.4
+  passive:
+    - Vlan10
+    - Vlan20
+    - Vlan30
+    - Vlan40
+  pid: 1
+  as: 1
 ospfv2:
   - id: Vlan10
     ipv4: 172.16.10.252

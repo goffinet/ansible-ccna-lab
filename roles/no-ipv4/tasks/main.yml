@@ -1,3 +1,0 @@
----
-- import_tasks: remove_ipv4_adresses.yml
-  when: ansible_network_os == 'ios'

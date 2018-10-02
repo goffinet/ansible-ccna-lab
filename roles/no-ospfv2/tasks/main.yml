@@ -1,3 +1,0 @@
----
-- import_tasks: disable_ospfv2.yml
-  when: ansible_network_os == 'ios'

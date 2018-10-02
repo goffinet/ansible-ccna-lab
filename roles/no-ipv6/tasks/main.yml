@@ -1,5 +1,0 @@
----
-- import_tasks: remove_ipv6_addresses.yml
-  when: ansible_network_os == 'ios'
-- import_tasks: disable_ipv6.yml
-  when: ansible_network_os == 'ios'

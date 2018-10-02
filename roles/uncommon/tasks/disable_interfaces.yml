@@ -1,8 +1,0 @@
----
-- name: enable interface
-  ios_interface:
-    name: "{{ item.id }}"
-    enabled: true
-    state: present
-    description: Disabled interface
-  with_items: "{{ interface }}"
