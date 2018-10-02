@@ -51,3 +51,6 @@ wr
 
 ```
 
+## Toplogie CCNA R&S
+
+![](https://www.lucidchart.com/publicSegments/view/aacc6247-aa9a-44b2-a1ba-43ccb81deab7/image.png)

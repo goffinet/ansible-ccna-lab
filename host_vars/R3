@@ -10,6 +10,18 @@ interface:
   - id: GigabitEthernet0/2
     ipv4: 192.168.227.2
     netmask: 255.255.255.0
+  - id: GigabitEthernet0/3
+    ipv4: 172.16.240.1
+    netmask: 255.255.255.0
+  - id: GigabitEthernet0/4
+    ipv4: 172.16.241.1
+    netmask: 255.255.255.0
+  - id: GigabitEthernet0/5
+    ipv4: 172.16.226.1
+    netmask: 255.255.255.0
+  - id: GigabitEthernet0/6
+    ipv4: 172.16.227.1
+    netmask: 255.255.255.0
 ipv4routing:
   rid: 3.3.3.3
   passive: GigabitEthernet0/0
@@ -47,6 +59,26 @@ ospfv2:
     pri: 255
     cost: 1
     area: 0
+  - id: GigabitEthernet0/3
+    ipv4: 172.16.240.1
+    pri: 255
+    cost: 1
+    area: 0
+  - id: GigabitEthernet0/4
+    ipv4: 172.16.241.1
+    pri: 255
+    cost: 1
+    area: 0
+  - id: GigabitEthernet0/5
+    ipv4: 172.16.226.1
+    pri: 255
+    cost: 1
+    area: 0
+  - id: GigabitEthernet0/5
+    ipv4: 172.16.227.1
+    pri: 255
+    cost: 1
+    area: 0
 ospfv3:
   - id: GigabitEthernet0/0
     pri: 255
@@ -60,6 +92,22 @@ ospfv3:
     pri: 255
     cost: 1
     area: 0
+  - id: GigabitEthernet0/3
+    pri: 255
+    cost: 1
+    area: 0
+  - id: GigabitEthernet0/4
+    pri: 255
+    cost: 1
+    area: 0
+  - id: GigabitEthernet0/5
+    pri: 255
+    cost: 1
+    area: 0
+  - id: GigabitEthernet0/5
+    pri: 255
+    cost: 1
+    area: 0
 eigrp4:
   - id: GigabitEthernet0/0
     ipv4: 192.168.65.1
@@ -67,10 +115,22 @@ eigrp4:
     ipv4: 192.168.226.2
   - id: GigabitEthernet0/2
     ipv4: 192.168.227.2
+  - id: GigabitEthernet0/3
+    ipv4: 172.16.240.1
+  - id: GigabitEthernet0/4
+    ipv4: 172.16.241.1
+  - id: GigabitEthernet0/5
+    ipv4: 172.16.226.1
+  - id: GigabitEthernet0/5
+    ipv4: 172.16.227.1
 eigrp6:
   - id: GigabitEthernet0/0
   - id: GigabitEthernet0/1
   - id: GigabitEthernet0/2
+  - id: GigabitEthernet0/3
+  - id: GigabitEthernet0/4
+  - id: GigabitEthernet0/5
+  - id: GigabitEthernet0/5
 dhcp_pool:
   - id: "LANR3"
     network: 192.168.1.0
