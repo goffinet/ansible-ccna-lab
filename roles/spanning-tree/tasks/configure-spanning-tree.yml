@@ -1,8 +1,7 @@
 ---
 - name: define the version of stp
   ios_config:
-    lines: spanning-tree mode {{ item.mode }}
-  with_items: "{{ stp }}"
+    lines: spanning-tree mode {{ stp.mode }}
   when: stp.mode is defined
 - name: define the stp root primary
   ios_config:

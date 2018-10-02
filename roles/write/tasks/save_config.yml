@@ -1,0 +1,20 @@
+---
+- name: show running-config
+  ios_command:
+    commands:
+      - show running-config
+  register: print_output
+- name: save output to a file
+  copy:
+    content: "{{ print_output.stdout[0] }}"
+    dest: "config/{{ inventory_hostname }}.cfg"
+- name: remove non config line
+  lineinfile:
+    path: "./config/{{inventory_hostname}}.cfg"
+    line: "Building configuration..."
+    state: absent
+- name: remove non config line -regex
+  lineinfile:
+    path: "./config/{{inventory_hostname}}.cfg"
+    regexp: 'Current configuration.*'
+    state: absent
