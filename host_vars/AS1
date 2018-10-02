@@ -26,7 +26,7 @@ group_channels:
       - GigabitEthernet0/1
       - GigabitEthernet1/1
 trunks:
-  interfaces:
+  id:
     - GigabitEthernet0/0
     - GigabitEthernet1/0
     - GigabitEthernet0/1

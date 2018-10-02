@@ -1,0 +1,10 @@
+---
+- name: configure access ports
+  ios_config:
+    parents: interface {{ item.id }}
+    lines:
+      - switchport trunk encapsulation dot1q
+      - switchport trunk native vlan {{ item.native }}
+      - switchport mode trunk
+  with_items: "{{ access }}"
+  when: trunks is defined
