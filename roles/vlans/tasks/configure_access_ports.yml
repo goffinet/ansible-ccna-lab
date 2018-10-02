@@ -11,7 +11,7 @@
   ios_config:
     parents: interface {{ item.id }}
     lines:
-      - spanning-tree portsfast
+      - spanning-tree portfast
       - spanning-tree bpduguard enable
   with_items: "{{ access }}"
   when: access is defined
