@@ -26,4 +26,4 @@ switchports:
   - id: GigabitEthernet3/0
   - id: GigabitEthernet3/1
   - id: GigabitEthernet3/2
-  - id: GigabitEthernet3/3
+#  - id: GigabitEthernet3/3 # reserved for ansible console management
