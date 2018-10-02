@@ -10,7 +10,6 @@
     - ipv6
     - eigrp6
     - dhcp-server
-    - write
 - hosts: R1
   gather_facts: False
   roles:
