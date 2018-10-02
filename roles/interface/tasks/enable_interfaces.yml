@@ -13,4 +13,9 @@
     state: present
     description: TODO
   with_items: "{{ interface }}"
-
+- name: no shutdown (on vlan) interfaces
+  ios_config:
+    parents: interface {{ item.id }}
+    lines:
+      - no shutdown
+  with_items: "{{ interface }}"

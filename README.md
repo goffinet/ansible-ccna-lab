@@ -51,6 +51,19 @@ wr
 
 ```
 
+```
+ansible all -m ping
+```
+
+## Topologie redondance LAN
+
 ## Toplogie CCNA R&S
 
 ![](https://www.lucidchart.com/publicSegments/view/aacc6247-aa9a-44b2-a1ba-43ccb81deab7/image.png)
+
+
+Note : Diagnostic du routage sur R1
+
+```
+ansible R1 -m ios_command -a "commands='show ip route'"
+```
