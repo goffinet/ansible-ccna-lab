@@ -1,0 +1,21 @@
+---
+- hosts: DS1
+  gather_facts: False
+  roles:
+    - common
+    - etherchannel
+#    - vlans
+#    - access
+#    - trunks
+#    - ipv4
+#    - ipv6
+#    - spanning-tree
+#- hosts: distribution
+#  gather_facts: False
+#  roles:
+#    - ipv4-routing
+#    - ipv6-routing
+#    - fhrp
+#    - eigrp4
+#    - ospfv3
+#    - dhcp-server

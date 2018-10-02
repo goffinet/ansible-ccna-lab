@@ -90,6 +90,76 @@ lan6:
     net6: 'fd00:1ab:30::1/64'
   - id: Vlan40
     net6: 'fd00:1ab:40::1/64'
+ipv4routing:
+  - rid: 4.4.4.4
+    passive:
+      - Vlan10
+      - Vlan20
+      - Vlan30
+      - Vlan40
+    pid: 1
+    as: 1
+ipv6routing:
+  - rid: 4.4.4.4
+    passive:
+      - Vlan10
+      - Vlan20
+      - Vlan30
+      - Vlan40
+    pid: 1
+    as: 1
+ospfv2:
+  - id: Vlan10
+    ipv4: 172.16.10.252
+    pri: 255
+    cost: 1
+    area: 0
+  - id: Vlan20
+    ipv4: 172.16.20.252
+    pri: 255
+    cost: 1
+    area: 0
+  - id: Vlan30
+    ipv4: 172.16.30.252
+    pri: 255
+    cost: 1
+    area: 0
+  - id: Vlan40
+    ipv4: 172.16.40.252
+    pri: 255
+    cost: 1
+    area: 0
+ospfv3:
+  - id: Vlan10
+    pri: 255
+    cost: 1
+    area: 0
+  - id: Vlan20
+    pri: 255
+    cost: 1
+    area: 0
+  - id: Vlan30
+    pri: 255
+    cost: 1
+    area: 0
+  - id: Vlan40
+    pri: 255
+    cost: 1
+    area: 0
+eigrp4:
+  - id: Vlan10
+    ipv4: 172.16.10.252
+  - id: Vlan20
+    ipv4: 172.16.20.252
+  - id: Vlan30
+    ipv4: 172.16.30.252
+  - id: Vlan40
+    ipv4: 172.16.40.252
+eigrp6:
+  - id: Vlan10
+  - id: Vlan20
+  - id: Vlan30
+  - id: Vlan40
 dhcp_pool:
   - id: "VLAN10"
     network: 172.16.10.0
