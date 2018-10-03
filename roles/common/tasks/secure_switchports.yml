@@ -31,7 +31,7 @@
   ios_config:
     parents: interface {{ item.id }}
     lines:
-      - switchport port-security
+      - switchport port-security maximum 1
       - switchport port-security mac-address sticky
   with_items: "{{ switchports }}"
   when:
