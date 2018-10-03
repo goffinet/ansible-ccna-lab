@@ -26,4 +26,4 @@
 - name: configure the nat rule
   ios_config:
     lines:
-      - ip nat source list {{ nat.name }} interface {{ nat.outside }} overload
+      - ip nat inside source list {{ nat.name }} interface {{ nat.outside }} overload
