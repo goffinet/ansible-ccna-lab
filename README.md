@@ -24,9 +24,9 @@ int GigabitEthernet0/7
  no cdp enable
 ip domain-name lan
 username root privilege 15 password testtest
+crypto key generate rsa modulus 2048
 ip ssh version 2
 ip scp server enable
-crypto key generate rsa modulus 2048
 line vty 0 4
  login local
  transport input ssh
@@ -51,9 +51,9 @@ int GigabitEthernet3/3
  no cdp enable
 ip domain-name lan
 username root privilege 15 password testtest
+crypto key generate rsa modulus 2048
 ip ssh version 2
 ip scp server enable
-crypto key generate rsa modulus 2048
 line vty 0 4
  login local
  transport input ssh
