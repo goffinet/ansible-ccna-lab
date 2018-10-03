@@ -12,14 +12,14 @@ interface:
     netmask: 255.255.255.0
 interface6:
   - id: GigabitEthernet0/0
-    net6: 'fe80::1'
+    net6: 'FE80::1'
   - id: GigabitEthernet0/2
-    net6: 'fe80::1'
+    net6: 'FE80::1'
   - id: GigabitEthernet0/3
-    net6: 'fe80::1'
+    net6: 'FE80::1'
 lan6:
   - id: GigabitEthernet0/0
-    net6: 'fd00:00:00:1::1/64'
+    net6: 'FD00:00:00:1::1/64'
 ipv4routing:
   rid: 1.1.1.1
   passive: GigabitEthernet0/0

@@ -73,30 +73,30 @@ interface:
     noswitchport: true
 interface6:
   - id: Vlan10
-    net6: 'fe80::d:3'
+    net6: 'FE80::D:3'
   - id: Vlan20
-    net6: 'fe80::d:3'
+    net6: 'FE80::D:3'
   - id: Vlan30
-    net6: 'fe80::d:3'
+    net6: 'FE80::D:3'
   - id: Vlan40
-    net6: 'fe80::d:3'
+    net6: 'FE80::D:3'
   - id: GigabitEthernet2/0
-    net6: 'fe80::d:3'
+    net6: 'FE80::D:3'
   - id: GigabitEthernet3/0
-    net6: 'fe80::d:3'
+    net6: 'FE80::D:3'
   - id: GigabitEthernet2/1
-    net6: 'fe80::d:3'
+    net6: 'FE80::D:3'
   - id: GigabitEthernet3/1
-    net6: 'fe80::d:3'
+    net6: 'FE80::D:3'
 lan6:
   - id: Vlan10
-    net6: 'fd00:1ab:10::2/64'
+    net6: 'FD00:1AB:10::2/64'
   - id: Vlan20
-    net6: 'fd00:1ab:20::2/64'
+    net6: 'FD00:1AB:20::2/64'
   - id: Vlan30
-    net6: 'fd00:1ab:30::2/64'
+    net6: 'FD00:1AB:30::2/64'
   - id: Vlan40
-    net6: 'fd00:1ab:40::2/64'
+    net6: 'FD00:1AB:40::2/64'
 ipv4routing:
   rid: 5.5.5.5
   passive:
@@ -285,28 +285,28 @@ fhrp:
   - id: Vlan10
     group: 16
     protocol: ipv6
-    address: 'fe80::d:1'
+    address: 'FE80::D:1'
     priority: 100
     preempt: false
     mode: standby
   - id: Vlan20
     group: 26
     protocol: ipv6
-    address: 'fe80::d:1'
+    address: 'FE80::D:1'
     priority: 150
     preempt: true
     mode: standby
   - id: Vlan30
     group: 36
     protocol: ipv6
-    address: 'fe80::d:1'
+    address: 'FE80::D:1'
     priority: 100
     preempt: false
     mode: standby
   - id: Vlan40
     group: 46
     protocol: ipv6
-    address: 'fe80::d:1'
+    address: 'FE80::D:1'
     priority: 150
     preempt: true
     mode: standby
