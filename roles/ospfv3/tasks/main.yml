@@ -1,6 +1,3 @@
 ---
 - import_tasks: enable_ospfv3.yml
   when: ansible_network_os == 'ios'
-  tags:
-    - ospfv3
-    - full-ipv6

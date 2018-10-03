@@ -3,6 +3,3 @@
   when:
     - ansible_network_os == 'ios'
     - nat is defined
-  tags:
-    - nat
-    - full-ipv4

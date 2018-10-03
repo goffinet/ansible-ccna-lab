@@ -1,6 +1,3 @@
 ---
 - import_tasks: configure_fhrp.yml
   when: ansible_network_os == 'ios'
-  tags:
-    - fhrp4
-    - full-ipv4

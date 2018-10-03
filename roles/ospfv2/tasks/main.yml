@@ -1,6 +1,3 @@
 ---
 - import_tasks: enable_ospfv2.yml
   when: ansible_network_os == 'ios'
-  tags:
-    - ospfv2
-    - full-ipv4
