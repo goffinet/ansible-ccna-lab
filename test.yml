@@ -1,5 +1,5 @@
 ---
-- hosts: DS1
+- hosts: blocks
   gather_facts: False
   roles:
-    - eigrp4
+    - common
