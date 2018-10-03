@@ -15,6 +15,7 @@
     state: present
     description: TODO
   with_items: "{{ access }}"
+  when: access is defined
   tags:
     - interface
 - name: enable trunk switchports
@@ -23,7 +24,8 @@
     enabled: true
     state: present
     description: TODO
-  with_items: "{{ trunk }}"
+  with_items: "{{ trunks }}"
+  when: trunks is defined
   tags:
     - interface
 - name: enable ip interface
@@ -33,5 +35,6 @@
     state: present
     description: TODO
   with_items: "{{ interface }}"
+  when: interface is defined
   tags:
     - interface
