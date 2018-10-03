@@ -4,4 +4,4 @@
     parents: router eigrp {{ ipv4routing.as }}
     lines:
       - redistribute static
-   when: nat is defined
+  when: nat is defined
