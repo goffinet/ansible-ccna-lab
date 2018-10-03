@@ -8,20 +8,30 @@
   when: item.noswitchport is defined
   tags:
     - interface
-- name: enable interface
+- name: enable access switchports
   ios_interface:
     name: "{{ item.id }}"
     enabled: true
     state: present
     description: TODO
-  with_items: "{{ interface }}"
+  with_items: "{{ access }}"
   tags:
     - interface
-- name: no shutdown (on vlan) interfaces
-  ios_config:
-    parents: interface {{ item.id }}
-    lines:
-      - no shutdown
+- name: enable trunk switchports
+  ios_interface:
+    name: "{{ item.id }}"
+    enabled: true
+    state: present
+    description: TODO
+  with_items: "{{ trunk }}"
+  tags:
+    - interface
+- name: enable ip interface
+  ios_interface:
+    name: "{{ item.id }}"
+    enabled: true
+    state: present
+    description: TODO
   with_items: "{{ interface }}"
   tags:
     - interface
