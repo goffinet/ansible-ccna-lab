@@ -13,7 +13,7 @@
     lines:
       - shutdown
       - switchport mode access
-      - switchport access vlan {{ stubvlan }}
+      - switchport access vlan {{ stubvlan.id }}
       - switchport port-security
       - switchport port-security mac-address sticky
       - spanning-tree portfast
