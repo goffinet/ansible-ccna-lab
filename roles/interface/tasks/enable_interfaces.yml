@@ -6,6 +6,8 @@
       - no switchport
   with_items: "{{ interface }}"
   when: item.noswitchport is defined
+  tags:
+    - interface
 - name: enable interface
   ios_interface:
     name: "{{ item.id }}"
@@ -13,9 +15,13 @@
     state: present
     description: TODO
   with_items: "{{ interface }}"
+  tags:
+    - interface
 - name: no shutdown (on vlan) interfaces
   ios_config:
-    parents: interface {{ item.id }}
+    parents: interface {{ item.id['Vlan'] }}
     lines:
       - no shutdown
   with_items: "{{ interface }}"
+  tags:
+    - interface
