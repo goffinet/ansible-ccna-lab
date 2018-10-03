@@ -74,7 +74,7 @@ ospfv2:
     pri: 255
     cost: 1
     area: 0
-  - id: GigabitEthernet0/5
+  - id: GigabitEthernet0/6
     ipv4: 172.16.227.1
     pri: 255
     cost: 1
@@ -104,7 +104,7 @@ ospfv3:
     pri: 255
     cost: 1
     area: 0
-  - id: GigabitEthernet0/5
+  - id: GigabitEthernet0/6
     pri: 255
     cost: 1
     area: 0
@@ -121,7 +121,7 @@ eigrp4:
     ipv4: 172.16.241.0 255.255.255.0
   - id: GigabitEthernet0/5
     ipv4: 172.16.226.0 255.255.255.0
-  - id: GigabitEthernet0/5
+  - id: GigabitEthernet0/6
     ipv4: 172.16.227.0 255.255.255.0
 eigrp6:
   - id: GigabitEthernet0/0
@@ -130,7 +130,7 @@ eigrp6:
   - id: GigabitEthernet0/3
   - id: GigabitEthernet0/4
   - id: GigabitEthernet0/5
-  - id: GigabitEthernet0/5
+  - id: GigabitEthernet0/6
 dhcp_pool:
   - id: "LANR3"
     network: 192.168.1.0
