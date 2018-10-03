@@ -1,7 +1,7 @@
 ---
 # https://docs.ansible.com/ansible/2.5/network/user_guide/network_best_practices_2.5.html
 - name: "Demonstrate connecting to switches"
-  hosts: core
+  hosts: cisco
   gather_facts: no
 
   tasks:

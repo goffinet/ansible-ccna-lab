@@ -1,0 +1,13 @@
+---
+# https://docs.ansible.com/ansible/2.5/network/user_guide/network_best_practices_2.5.html
+- name: "Demonstrate connecting to switches"
+  hosts: cisco
+  gather_facts: no
+  tasks:
+    - name: Gather facts (ios)
+      ios_facts:
+      when: ansible_network_os == 'ios'
+      register: output
+    - name: Facts from a specific host
+      debug:
+        var: output

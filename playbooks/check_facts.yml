@@ -1,6 +1,6 @@
 ---
 - name: CHECK FACTS
-  hosts: core
+  hosts: cisco
   gather_facts: no
   tasks:
     - name: GATHER ROUTER FACTS
