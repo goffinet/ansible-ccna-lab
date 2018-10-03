@@ -11,13 +11,13 @@
   ios_config:
     parents: interface {{ item.id }}
     lines:
-      - shutdown
       - switchport mode access
       - switchport access vlan {{ stubvlan.id }}
       - switchport port-security
       - switchport port-security mac-address sticky
       - spanning-tree portfast
       - spanning-tree bpduguard enable
+      - shutdown
   with_items: "{{ switchports }}"
   when:
     - switchports is defined
