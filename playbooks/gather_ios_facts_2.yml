@@ -1,6 +1,6 @@
 ---
 # https://docs.ansible.com/ansible/2.5/network/user_guide/network_best_practices_2.5.html
-- name: "Demonstrate connecting to switches"
+- name: "Gather ansible_net_* facts"
   hosts: cisco
   gather_facts: no
   tasks:
@@ -11,3 +11,6 @@
     - name: Facts from a specific host
       debug:
         var: output
+    - name: Display some facts
+      debug:
+        msg: "{{ ansible_net_hostname }}: {{ ansible_net_version }}"
