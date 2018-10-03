@@ -1,5 +1,10 @@
 ---
 - import_tasks: write_memory.yml
   when: ansible_network_os == 'ios'
+  tags:
+    - save
 - import_tasks: save_config.yml
   when: ansible_network_os == 'ios'
+  tags:
+    - write
+    - backup

@@ -1,6 +1,5 @@
 ---
 dependencies:
-#  - role: common
-#  - role: ipv6
-#  - role: no-eigrp6
-#  - role: ipv6-routing
+  - role: interface
+  - role: ipv6
+  - role: ipv6-routing

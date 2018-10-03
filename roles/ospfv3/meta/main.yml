@@ -1,6 +1,5 @@
 ---
 dependencies:
-  - role: common
+  - role: interface
   - role: ipv6
-  - role: no-ospfv3
   - role: ipv6-routing

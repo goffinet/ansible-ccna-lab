@@ -172,6 +172,9 @@ ansible R1 -m ios_command -a "commands='show ip route'"
 
 ## Rôles
 
+* l2
+* full-ipv4
+* full-ipv6
 * ipv4
 * ipv6
 * etherchannel
@@ -193,10 +196,13 @@ ansible R1 -m ios_command -a "commands='show ip route'"
 * ra-config
 * dhcpv6 stateless
 * dhcpv6 stateful
+* save
+* write
 
 ## Todo
 
-* **dependencies**
+* ~~dependencies~~
+* ~~tags**~~
 * tasks by jinja2 templating
 * **fhrp4**
 * **fhrp6**

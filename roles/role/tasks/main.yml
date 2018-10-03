@@ -1,0 +1,10 @@
+---
+#- import_tasks: playbook1.yml
+#  when: ansible_network_os == 'ios'
+#  tags:
+#    - tag1
+#- import_tasks: playbook2.yml
+#  when: ansible_network_os == 'ios'
+#  tags:
+#    - tag1
+#    - tag2
