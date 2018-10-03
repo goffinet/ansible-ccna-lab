@@ -27,15 +27,6 @@
   when:
     - switchports is defined
     - stubvlan is defined
-- name: port-security mac-address sticky
-  ios_config:
-    parents: interface {{ item.id }}
-    lines:
-      - switchport port-security mac-address sticky
-  with_items: "{{ switchports }}"
-  when:
-    - switchports is defined
-    - stubvlan is defined
 - name: shutdown all switchports
   ios_config:
     parents: interface {{ item.id }}
