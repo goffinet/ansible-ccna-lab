@@ -2,6 +2,3 @@
 dependencies:
   - role: interface
   - role: ipv4
-  tags:
-    - ipv4-routing
-    - full-ipv4
