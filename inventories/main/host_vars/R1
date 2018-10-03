@@ -75,7 +75,7 @@ dhcp_pool:
     network: 192.168.1.0
     netmask: 255.255.255.0
     router: 192.168.1.1
-    dns: 192.168.1.1
+    dns: 8.8.8.8
 dhcp_excluded:
   - start: 192.168.1.1
     end: 192.168.1.100
