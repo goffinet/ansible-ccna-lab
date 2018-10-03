@@ -10,6 +10,9 @@ vlans:
     name: VLAN40
   - id: 99
     name: MANAGEMENT
+stubvlan:
+  id: 4000
+  name: STUB
 switchports:
   - id: GigabitEthernet0/0
   - id: GigabitEthernet0/1

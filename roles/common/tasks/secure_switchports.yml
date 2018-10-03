@@ -1,0 +1,24 @@
+---
+- name: create stub vlan
+  ios_vlan:
+    vlan_id: "{{ stubvlan.id }}"
+    state: present
+    name: "{{ stubvlan.name }}"
+  when:
+    - switchports is defined
+    - stubvlan is defined
+- name: secure access switchports ports
+  ios_config:
+    parents: interface {{ item.id }}
+    lines:
+      - shutdown
+      - switchport mode access
+      - switchport access vlan {{ stubvlan }}
+      - switchport port-security
+      - switchport port-security mac-address sticky
+      - spanning-tree portfast
+      - spanning-tree bpduguard enable
+  with_items: "{{ switchports }}"
+  when:
+    - switchports is defined
+    - stubvlan is defined
