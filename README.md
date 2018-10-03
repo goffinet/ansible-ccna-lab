@@ -169,6 +169,14 @@ Note : Diagnostic du routage sur R1
 ansible R1 -m ios_command -a "commands='show ip route'"
 ```
 
+Notes :
+
+```
+ansible core -m ios_command -a "commands='traceroute 192.168.1.1 source GigabitEthernet0/0 probe 1 numeric'"
+```
+```
+ansible core -m ios_command -a "commands='traceroute 172.16.10.1 source GigabitEthernet0/0 probe 1 numeric'"
+```
 
 ## Rôles
 
