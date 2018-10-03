@@ -1,3 +1,6 @@
+[all:vars]
+method=modules # modules or templating
+
 [core]
 R1
 R2
