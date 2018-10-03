@@ -12,10 +12,10 @@
   with_items:
       - "{{ ipv4routing.passive }}"
   when: ipv4routing.passive is defined
-- name: enable eigrp4 interfaces
+- name: enable eigrp ipv4 on interfaces
   ios_config:
-    parents: router eigrp {{ ipv4routing.as }}
+    parents: interface {{ item.id }}
     lines:
-      - network {{ item.ipv4 }}
+      - ip eigrp {{ ipv4routing.as }}
   with_items:
       - "{{ eigrp4 }}"
