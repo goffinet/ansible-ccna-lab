@@ -1,5 +1,5 @@
 ---
-features:
-  common: True
-  ipv4: True
-  etherchannel: True
+protocol_ipv6: True
+routing:
+  ipv4: eigrp4 # rip, eigrp4, ospfv2
+  ipv6: eigrp6 # ripng, eigrp6, ospfv3
