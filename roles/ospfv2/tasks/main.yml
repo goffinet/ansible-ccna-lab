@@ -1,3 +1,7 @@
 ---
 - import_tasks: enable_ospfv2.yml
   when: ansible_network_os == 'ios'
+- import_tasks: static_to_ospfv2.yml
+  when:
+    - ansible_network_os == 'ios'
+    - nat is defined

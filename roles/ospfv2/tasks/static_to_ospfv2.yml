@@ -1,0 +1,9 @@
+---
+- name: redistribute static nat route to rip
+  ios_config:
+    parents: router rip
+    lines:
+      - default-information originate
+  when: nat is defined
+  tags:
+    - rip

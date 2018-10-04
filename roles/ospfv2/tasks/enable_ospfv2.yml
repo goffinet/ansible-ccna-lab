@@ -6,6 +6,8 @@
       - router-id {{ ipv4routing.rid }}
   with_items:
       - "{{ ospfv2 }}"
+  tags:
+    - ospfv2
 - name: enable ospfv2 passive-interface
   ios_config:
     parents: router ospf {{ ipv4routing.pid }}
@@ -14,6 +16,8 @@
   with_items:
       - "{{ ipv4routing.passive }}"
   when: ipv4routing.passive is defined
+  tags:
+    - ospfv2
 - name: enable ospfv2 interfaces
   ios_config:
     parents: router ospf {{ ipv4routing.pid }}
@@ -21,3 +25,5 @@
       - "network {{ item.ipv4 }} 0.0.0.0 area {{ item.area }}"
   with_items:
       - "{{ ospfv2 }}"
+  tags:
+    - ospfv2
