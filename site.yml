@@ -1,5 +1,7 @@
 ---
-vars:
-  dynamic_ipv4_routing: rip
 - import_playbook: blocks.yml
+  vars:
+    dynamic_ipv4_routing: rip
 - import_playbook: core.yml
+  vars:
+    dynamic_ipv4_routing: rip  
