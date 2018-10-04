@@ -180,7 +180,9 @@ ansible core -m ios_command -a "commands='traceroute 192.168.1.1 source GigabitE
 ansible core -m ios_command -a "commands='traceroute 172.16.10.1 source GigabitEthernet0/0 probe 1 numeric'"
 ```
 
-## Rôles
+
+
+## Rôles / Tags
 
 * l2
 * full-ipv4

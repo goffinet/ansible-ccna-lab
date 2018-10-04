@@ -2,19 +2,21 @@
 - hosts: core
   gather_facts: False
   roles:
-    - common
-    - interface
-    - ipv4
-    - eigrp4 #rip,eigrp4,ospfv2
-    - ipv6
-    - ipv6-routing
-    - eigrp6
-    - dhcp-server
+    - role: common
+    - role: interface
+    - role: ipv4
+    - role: rip
+      when: routing.ipv4 == 'rip'
+    - role: eigrp4
+      when: routing.ipv4 == 'eigrp4'
+    - role: eigrp6
+      when: routing.ipv6 == 'eigrp6'
+    - role: dhcp-server
 - hosts: R1
   gather_facts: False
   roles:
-    - nat
+    - role: nat
 - hosts: core
   gather_facts: False
   roles:
-    - write
+    - role: write

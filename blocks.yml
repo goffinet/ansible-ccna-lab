@@ -2,27 +2,31 @@
 - hosts: blocks
   gather_facts: False
   roles:
-    - common
-    - interface
-    - etherchannel
-    - vlans
-    - spanning-tree
-    - ipv4
-    - ipv6
+    - role: common
+    - role: interface
+    - role: etherchannel
+    - role: vlans
+    - role: spanning-tree
+    - role: ipv4
+    - role: ipv6
 - hosts: access
   gather_facts: False
   roles:
-    - no-ipv4-routing
+    - role: no-ipv4-routing
 - hosts: distribution
   gather_facts: False
   roles:
-    - ipv4-routing
-    - ipv6-routing
-    - fhrp
-    - eigrp4 # rip, eigrp4, ospfv2
-    - eigrp6
-    - dhcp-server
+    - role: ipv4-routing
+    - role: ipv6-routing
+    - role: fhrp
+    - role: rip
+      when: routing.ipv4 == 'rip'
+    - role: eigrp4
+      when: routing.ipv4 == 'eigrp4'
+    - role: eigrp6
+      when: routing.ipv6 == 'eigrp6'
+    - role: dhcp-server
 - hosts: blocks
   gather_facts: False
   roles:
-    - write
+    - role: write
