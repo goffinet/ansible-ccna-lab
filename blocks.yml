@@ -9,7 +9,7 @@
     - role: spanning-tree
     - role: ipv4
     - role: ipv6
-      when: protocol_ipv6 == 'True'
+      when: protocol_ipv6 == 'enabled'
 - hosts: access
   gather_facts: False
   roles:
@@ -19,7 +19,7 @@
   roles:
     - role: ipv4-routing
     - role: ipv6-routing
-      when: protocol_ipv6 == 'True'
+      when: protocol_ipv6 == 'enabled'
     - role: fhrp
     - role: rip
       when: routing.ipv4 == 'rip'
@@ -30,11 +30,11 @@
     - role: eigrp6
       when:
         - routing.ipv6 == 'eigrp6'
-        - protocol_ipv6 == 'True'
+        - protocol_ipv6 == 'enabled'
     - role: ospfv3
       when:
         - routing.ipv6 == 'ospfv3'
-        - protocol_ipv6 == 'True'
+        - protocol_ipv6 == 'enabled'
     - role: dhcp-server
 - hosts: blocks
   gather_facts: False
