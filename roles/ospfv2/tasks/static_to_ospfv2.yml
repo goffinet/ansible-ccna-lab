@@ -1,9 +1,9 @@
 ---
-- name: redistribute static nat route to rip
+- name: redistribute static nat route to ospfv2
   ios_config:
-    parents: router rip
+    parents: router ospf {{ ipv4routing.pid }}
     lines:
       - default-information originate
   when: nat is defined
   tags:
-    - rip
+    - ospfv2

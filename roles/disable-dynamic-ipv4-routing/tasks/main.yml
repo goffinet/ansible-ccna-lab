@@ -10,4 +10,4 @@
 - import_tasks: disable_ospfv2.yml
   when:
     - ansible_network_os == 'ios'
-    - eigrp4 is defined
+    - ospfv2 is defined
