@@ -19,7 +19,7 @@
     - ipv4-routing
     - ipv6-routing
     - fhrp
-    - "{{ dynamic-ipv4-routing }}"
+    - "{{ dynamic_ipv4_routing }}"
     - eigrp6
     - dhcp-server
 - hosts: blocks
