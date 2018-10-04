@@ -90,6 +90,8 @@ IPV4_FAILURE_FATAL=no
 DNS1=127.0.0.1
 EOF
 systemctl enable dnsmasq
+hostnamectl set-hostname controller
+shutdown -r now
 
 ```
 

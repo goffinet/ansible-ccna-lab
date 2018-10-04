@@ -1,0 +1,7 @@
+---
+- import_tasks: enable_rip.yml
+  when: ansible_network_os == 'ios'
+- import_tasks: static_to_rip.yml
+  when:
+    - ansible_network_os == 'ios'
+    - nat is defined

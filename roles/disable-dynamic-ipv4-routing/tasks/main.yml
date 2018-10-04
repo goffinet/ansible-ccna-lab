@@ -1,0 +1,13 @@
+---
+- import_tasks: disable_rip.yml
+  when:
+    - ansible_network_os == 'ios'
+    - rip is defined
+- import_tasks: disable_eigrp4.yml
+  when:
+    - ansible_network_os == 'ios'
+    - eigrp4 is defined
+- import_tasks: disable_ospfv2.yml
+  when:
+    - ansible_network_os == 'ios'
+    - eigrp4 is defined

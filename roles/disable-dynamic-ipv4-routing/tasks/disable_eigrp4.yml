@@ -1,0 +1,10 @@
+---
+- name: disable rip
+  ios_config:
+    lines: no router rip
+
+
+
+
+no router eigrp {{ ipv4routing.as }}
+no router ospf {{ ipv4routing.pid }}
