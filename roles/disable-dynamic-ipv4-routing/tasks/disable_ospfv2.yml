@@ -3,4 +3,4 @@
   ios_config:
     lines: no router ospf {{ ipv4routing.pid }}
   tags:
-    - ospfv2
+    - disable-ospfv2
