@@ -16,4 +16,4 @@
     - ansible_network_os == 'ios'
     - ospfv2 is defined
   tags:
-    - ospfv2
+    - disable-ospfv2
