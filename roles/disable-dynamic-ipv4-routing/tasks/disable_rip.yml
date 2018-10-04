@@ -3,4 +3,4 @@
   ios_config:
     lines: no router rip
   tags:
-    - disable-rip
+    - rip
