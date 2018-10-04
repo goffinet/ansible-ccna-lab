@@ -2,6 +2,5 @@
 - import_tasks: enable_ospfv3.yml
   when:
     - ansible_network_os == 'ios'
-    - ansible_net_version != '15.2(20170321:233949)'
   tags:
     - ospfv3
