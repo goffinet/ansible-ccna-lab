@@ -5,3 +5,5 @@
   when:
     - ansible_network_os == 'ios'
     - nat is defined
+  tags:
+    - ospfv2

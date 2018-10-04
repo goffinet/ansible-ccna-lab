@@ -5,5 +5,3 @@
     lines:
       - default-information originate
   when: nat is defined
-  tags:
-    - ospfv2

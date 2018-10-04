@@ -4,8 +4,6 @@
     parents: router rip
     lines:
       - version 2
-  tags:
-    - rip
 - name: enable rip passive-interface
   ios_config:
     parents: router rip
@@ -14,8 +12,6 @@
   with_items:
       - "{{ ipv4routing.passive }}"
   when: ipv4routing.passive is defined
-  tags:
-    - rip
 - name: enable rip interfaces
   ios_config:
     parents: router rip
@@ -23,5 +19,3 @@
       - network {{ item }}
   with_items:
       - "{{ rip }}"
-  tags:
-    - rip

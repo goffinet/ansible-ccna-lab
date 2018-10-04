@@ -5,5 +5,3 @@
     lines:
       - redistribute static
   when: nat is defined
-  tags:
-    - eigrp4

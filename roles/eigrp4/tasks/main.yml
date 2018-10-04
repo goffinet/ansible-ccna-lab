@@ -1,7 +1,11 @@
 ---
 - import_tasks: enable_eigrp4.yml
   when: ansible_network_os == 'ios'
+  tags:
+    - eigrp4
 - import_tasks: static_to_eigrp4.yml
   when:
     - ansible_network_os == 'ios'
     - nat is defined
+  tags:
+    - eigrp4
