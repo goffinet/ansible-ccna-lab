@@ -19,7 +19,7 @@
     - ipv4-routing
     - ipv6-routing
     - fhrp
-    - rip # rip, eigrp4, ospfv2
+    - eigrp4 # rip, eigrp4, ospfv2
     - eigrp6
     - dhcp-server
 - hosts: blocks
