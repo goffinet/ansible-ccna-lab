@@ -1,6 +1,10 @@
-[all:vars]
+[site:vars]
 #method=modules # modules or templating
 dynamic_ipv4_routing=rip # rip, eigrp4, ospfv2
+
+[site:children]
+core
+blocks
 
 [core]
 R1
