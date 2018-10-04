@@ -1,2 +1,5 @@
 - import_tasks: configure-spanning-tree.yml
   when: ansible_network_os == 'ios'
+  tags:
+    - stp
+    - l2

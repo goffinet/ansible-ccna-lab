@@ -3,8 +3,12 @@
   when: ansible_network_os == 'ios'
   tags:
     - banners
+    - common
 - import_tasks: secure_switchports.yml
   when:
     - ansible_network_os == 'ios'
     - switchports is defined
     - stubvlan is defined
+  tags:
+    - shut_switch
+    - common

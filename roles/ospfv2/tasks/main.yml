@@ -9,3 +9,4 @@
     - nat is defined
   tags:
     - ospfv2
+    - static_to_ospfv2

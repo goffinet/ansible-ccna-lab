@@ -1,3 +1,6 @@
 ---
 - import_tasks: create_group_channels.yml
   when: ansible_network_os == 'ios'
+  tags:
+    - etherchannel
+    - l2

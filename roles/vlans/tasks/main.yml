@@ -1,6 +1,18 @@
 - import_tasks: create_vlans.yml
   when: ansible_network_os == 'ios'
+  tags:
+    - create_vlans
+    - vlans
+    - l2
 - import_tasks: configure_access_ports.yml
   when: ansible_network_os == 'ios'
+  tags:
+    - access
+    - vlans
+    - l2
 - import_tasks: configure_trunk_ports.yml
   when: ansible_network_os == 'ios'
+  tags:
+    - trunk
+    - vlans
+    - l2
