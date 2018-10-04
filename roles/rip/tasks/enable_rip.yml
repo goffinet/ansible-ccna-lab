@@ -4,10 +4,9 @@
     parents: router rip
     lines:
       - version 2
-  when: rip.version is defined
   tags:
     - rip
-- name: enable ripv2 passive-interface
+- name: enable rip passive-interface
   ios_config:
     parents: router rip
     lines:
@@ -17,11 +16,11 @@
   when: ipv4routing.passive is defined
   tags:
     - rip
-- name: enable eigrp4 interfaces
+- name: enable rip interfaces
   ios_config:
-    parents: router eigrp {{ ipv4routing.as }}
+    parents: router rip
     lines:
-      - network {{ item.ipv4 }}
+      - network {{ item }}
   with_items:
       - "{{ rip }}"
   tags:
