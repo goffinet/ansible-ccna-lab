@@ -1,6 +1,8 @@
 ---
 - import_tasks: enable_rip.yml
   when: ansible_network_os == 'ios'
+  tags:
+    - rip
 - import_tasks: static_to_rip.yml
   when:
     - ansible_network_os == 'ios'
