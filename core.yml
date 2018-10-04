@@ -5,7 +5,7 @@
     - common
     - interface
     - ipv4
-    - eigrp4
+    - {{ dynamic-ipv4-routing }}
     - ipv6-routing
     - ipv6
     - eigrp6
