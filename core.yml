@@ -5,7 +5,7 @@
     - common
     - interface
     - ipv4
-    - "{{ dynamic_ipv4_routing }}"
+    - rip # rip, eigrp4, ospfv2
     - ipv6-routing
     - ipv6
     - eigrp6
