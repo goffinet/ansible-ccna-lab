@@ -1,6 +1,8 @@
 ---
 - import_tasks: remove_banners.yml
   when: ansible_network_os == 'ios'
+  tags:
+    - banner
 - import_tasks: secure_switchports.yml
   when:
     - ansible_network_os == 'ios'
