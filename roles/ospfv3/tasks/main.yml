@@ -2,5 +2,6 @@
 - import_tasks: enable_ospfv3.yml
   when:
     - ansible_network_os == 'ios'
+    - ospfv3 is defined
   tags:
     - ospfv3
