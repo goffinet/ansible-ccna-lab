@@ -1,0 +1,273 @@
+---
+hostname: DS1
+stp:
+  primary: ['1','10','30','99']
+  secondary: ['20','40']
+  mode: rapid-pvst
+group_channels:
+  - id: 1
+    mode: active
+    interfaces:
+      - GigabitEthernet0/0
+      - GigabitEthernet1/0
+  - id: 3
+    mode: active
+    interfaces:
+      - GigabitEthernet0/2
+      - GigabitEthernet1/2
+  - id: 5
+    mode: active
+    interfaces:
+      - GigabitEthernet0/1
+      - GigabitEthernet1/1
+trunks:
+  - id: GigabitEthernet0/0
+    native: 99
+  - id: GigabitEthernet1/0
+    native: 99
+  - id: GigabitEthernet0/1
+    native: 99
+  - id: GigabitEthernet1/1
+    native: 99
+  - id: GigabitEthernet0/2
+    native: 99
+  - id: GigabitEthernet1/2
+    native: 99
+  - id: Port-channel1
+    native: 99
+  - id: Port-channel3
+    native: 99
+  - id: Port-channel5
+    native: 99
+interface:
+  - id: Vlan99
+    ipv4: 172.16.0.252
+    netmask: 255.255.255.0
+  - id: Vlan10
+    ipv4: 172.16.10.252
+    netmask: 255.255.255.0
+  - id: Vlan20
+    ipv4: 172.16.20.252
+    netmask: 255.255.255.0
+  - id: Vlan30
+    ipv4: 172.16.30.252
+    netmask: 255.255.255.0
+  - id: Vlan40
+    ipv4: 172.16.40.252
+    netmask: 255.255.255.0
+  - id: GigabitEthernet2/0
+    ipv4: 172.16.224.2
+    netmask: 255.255.255.0
+    noswitchport: true
+  - id: GigabitEthernet3/0
+    ipv4: 172.16.225.2
+    netmask: 255.255.255.0
+    noswitchport: true
+  - id: GigabitEthernet2/1
+    ipv4: 172.16.226.2
+    netmask: 255.255.255.0
+    noswitchport: true
+  - id: GigabitEthernet3/1
+    ipv4: 172.16.227.2
+    netmask: 255.255.255.0
+    noswitchport: true
+interface6:
+  - id: Vlan10
+    net6: 'FE80::D:2'
+  - id: Vlan20
+    net6: 'FE80::D:2'
+  - id: Vlan30
+    net6: 'FE80::D:2'
+  - id: Vlan40
+    net6: 'FE80::D:2'
+  - id: GigabitEthernet2/0
+    net6: 'FE80::D:2'
+  - id: GigabitEthernet3/0
+    net6: 'FE80::D:2'
+  - id: GigabitEthernet2/1
+    net6: 'FE80::D:2'
+  - id: GigabitEthernet3/1
+    net6: 'FE80::D:2'
+lan6:
+  - id: Vlan10
+    net6: 'FD00:1AB:10::1/64'
+  - id: Vlan20
+    net6: 'FD00:1AB:20::1/64'
+  - id: Vlan30
+    net6: 'FD00:1AB:30::1/64'
+  - id: Vlan40
+    net6: 'FD00:1AB:40::1/64'
+ipv4routing:
+  rid: 4.4.4.4
+  passive:
+    - Vlan10
+    - Vlan20
+    - Vlan30
+    - Vlan40
+  pid: 1
+  as: 1
+ipv6routing:
+  rid: 4.4.4.4
+  passive:
+    - Vlan10
+    - Vlan20
+    - Vlan30
+    - Vlan40
+  pid: 1
+  as: 1
+rip:
+  - 172.16.0.0
+ospfv2:
+  - id: Vlan10
+    ipv4: 172.16.10.252
+    pri: 255
+    cost: 1
+    area: 0
+  - id: Vlan20
+    ipv4: 172.16.20.252
+    pri: 255
+    cost: 1
+    area: 0
+  - id: Vlan30
+    ipv4: 172.16.30.252
+    pri: 255
+    cost: 1
+    area: 0
+  - id: Vlan40
+    ipv4: 172.16.40.252
+    pri: 255
+    cost: 1
+    area: 0
+  - id: GigabitEthernet2/0
+    ipv4: 172.16.224.2
+    pri: 255
+    cost: 1
+    area: 0
+  - id: GigabitEthernet3/0
+    ipv4: 172.16.225.2
+    pri: 255
+    cost: 1
+    area: 0
+  - id: GigabitEthernet2/1
+    ipv4: 172.16.226.2
+    pri: 255
+    cost: 1
+    area: 0
+  - id: GigabitEthernet3/1
+    ipv4: 172.16.227.2
+    pri: 255
+    cost: 1
+    area: 0
+eigrp4:
+  - id: Vlan10
+    ipv4: 172.16.10.0 255.255.255.0
+  - id: Vlan20
+    ipv4: 172.16.20.0 255.255.255.0
+  - id: Vlan30
+    ipv4: 172.16.30.0 255.255.255.0
+  - id: Vlan40
+    ipv4: 172.16.40.0 255.255.255.0
+  - id: GigabitEthernet2/0
+    ipv4: 172.16.224.0 255.255.255.0
+  - id: GigabitEthernet3/0
+    ipv4: 172.16.225.0 255.255.255.0
+  - id: GigabitEthernet2/1
+    ipv4: 172.16.226.0 255.255.255.0
+  - id: GigabitEthernet3/1
+    ipv4: 172.16.227.0 255.255.255.0
+eigrp6:
+  - id: Vlan10
+  - id: Vlan20
+  - id: Vlan30
+  - id: Vlan40
+  - id: GigabitEthernet2/0
+  - id: GigabitEthernet3/0
+  - id: GigabitEthernet2/1
+  - id: GigabitEthernet3/1
+dhcp_pool:
+  - id: "VLAN10"
+    network: 172.16.10.0
+    netmask: 255.255.255.0
+    router: 172.16.10.254
+    dns: 8.8.8.8
+  - id: "VLAN20"
+    network: 172.16.20.0
+    netmask: 255.255.255.0
+    router: 172.16.20.254
+    dns: 8.8.8.8
+  - id: "VLAN30"
+    network: 172.16.30.0
+    netmask: 255.255.255.0
+    router: 172.16.30.254
+    dns: 8.8.8.8
+  - id: "VLAN40"
+    network: 172.16.40.0
+    netmask: 255.255.255.0
+    router: 172.16.40.254
+    dns: 8.8.8.8
+dhcp_excluded:
+  - start: 172.16.10.50
+    end: 172.16.10.254
+  - start: 172.16.20.50
+    end: 172.16.20.254
+  - start: 172.16.30.50
+    end: 172.16.30.254
+  - start: 172.16.40.50
+    end: 172.16.40.254
+fhrp:
+  - id: Vlan10
+    group: 10
+    protocol: ipv4
+    address: 172.16.10.254
+    priority: 150
+    preempt: true
+    mode: standby
+  - id: Vlan20
+    group: 20
+    protocol: ipv4
+    address: 172.16.20.254
+    priority: 100
+    preempt: false
+    mode: standby
+  - id: Vlan30
+    group: 30
+    protocol: ipv4
+    address: 172.16.30.254
+    priority: 150
+    preempt: true
+    mode: standby
+  - id: Vlan40
+    group: 40
+    protocol: ipv4
+    address: 172.16.40.254
+    priority: 100
+    preempt: false
+    mode: standby
+  - id: Vlan10
+    group: 16
+    protocol: ipv6
+    address: 'FE80::D:1'
+    priority: 150
+    preempt: true
+    mode: standby
+  - id: Vlan20
+    group: 26
+    protocol: ipv6
+    address: 'FE80::D:1'
+    priority: 100
+    preempt: false
+    mode: standby
+  - id: Vlan30
+    group: 36
+    protocol: ipv6
+    address: 'FE80::D:1'
+    priority: 150
+    preempt: true
+    mode: standby
+  - id: Vlan40
+    group: 46
+    protocol: ipv6
+    address: 'FE80::D:1'
+    priority: 100
+    preempt: false
+    mode: standby

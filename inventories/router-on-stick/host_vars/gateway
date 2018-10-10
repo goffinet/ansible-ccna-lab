@@ -1,0 +1,95 @@
+---
+hostname: R1
+interface:
+  - id: GigabitEthernet0/0
+    ipv4: 192.168.1.1
+    netmask: 255.255.255.0
+  - id: GigabitEthernet0/2
+    ipv4: 192.168.225.1
+    netmask: 255.255.255.0
+  - id: GigabitEthernet0/3
+    ipv4: 192.168.226.1
+    netmask: 255.255.255.0
+interface6:
+  - id: GigabitEthernet0/0
+    net6: 'FE80::1'
+  - id: GigabitEthernet0/2
+    net6: 'FE80::1'
+  - id: GigabitEthernet0/3
+    net6: 'FE80::1'
+lan6:
+  - id: GigabitEthernet0/0
+    net6: 'FD00:00:00:1::1/64'
+ipv4routing:
+  rid: 1.1.1.1
+  passive: GigabitEthernet0/0
+  pid: 1
+  as: 1
+ipv6routing:
+  rid: 1.1.1.1
+  passive: GigabitEthernet0/0
+  pid: 1
+  as: 1
+rip:
+  - 192.168.1.0
+  - 192.168.225.0
+  - 192.168.226.0
+ospfv2:
+  - id: GigabitEthernet0/0
+    ipv4: 192.168.1.1
+    pri: 255
+    cost: 1
+    area: 0
+  - id: GigabitEthernet0/2
+    ipv4: 192.168.225.1
+    pri: 255
+    cost: 1
+    area: 0
+  - id: GigabitEthernet0/3
+    ipv4: 192.168.226.1
+    pri: 255
+    cost: 1
+    area: 0
+ospfv3:
+  - id: GigabitEthernet0/0
+    pri: 255
+    cost: 1
+    area: 0
+  - id: GigabitEthernet0/2
+    pri: 255
+    cost: 1
+    area: 0
+  - id: GigabitEthernet0/3
+    pri: 255
+    cost: 1
+    area: 0
+eigrp4:
+  - id: GigabitEthernet0/0
+    ipv4: 192.168.1.0 255.255.255.0
+  - id: GigabitEthernet0/2
+    ipv4: 192.168.225.0 255.255.255.0
+  - id: GigabitEthernet0/3
+    ipv4: 192.168.226.0 255.255.255.0
+eigrp6:
+  - id: GigabitEthernet0/0
+  - id: GigabitEthernet0/2
+  - id: GigabitEthernet0/3
+dhcp_pool:
+  - id: "LANR1"
+    network: 192.168.1.0
+    netmask: 255.255.255.0
+    router: 192.168.1.1
+    dns: 8.8.8.8
+dhcp_excluded:
+  - start: 192.168.1.1
+    end: 192.168.1.100
+nat:
+  name: "LANS"
+  inside:
+    - GigabitEthernet0/0
+    - GigabitEthernet0/2
+    - GigabitEthernet0/3
+  outside: GigabitEthernet0/1
+  sources:
+    - "192.168.0.0 0.0.255.255"
+    - "172.16.0.0 0.0.255.255"

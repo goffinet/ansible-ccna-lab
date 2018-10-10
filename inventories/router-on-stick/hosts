@@ -1,0 +1,25 @@
+[all:vars]
+#method=modules # modules or templating
+#dynamic_ipv4_routing=rip # rip, eigrp4, ospfv2
+
+[distribution]
+gateway
+
+[access]
+SW0
+SW1
+
+[blocks:children]
+distribution
+access
+
+[cisco:children]
+distribution
+access
+
+[cisco:vars]
+ansible_user=root
+ansible_ssh_pass=testtest
+ansible_port=22
+ansible_connection=network_cli
+ansible_network_os=ios
