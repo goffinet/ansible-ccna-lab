@@ -211,8 +211,17 @@ ansible core -m ios_command -a "commands='traceroute 172.16.10.1 source GigabitE
 * save
 * write
 
-## Todo
+## Historical Todo
 
+### Phase 0 : Écriture de playbooks avec les modules ios_*
+
+Archivé.
+
+### Phase I
+
+Portage en rôles.
+
+* Revoir la structure des données
 * ~~dependencies~~
 * ~~tags**~~
 * tasks by jinja2 templating
@@ -226,3 +235,14 @@ ansible core -m ios_command -a "commands='traceroute 172.16.10.1 source GigabitE
 * **snmpv2c** / snmpv3
 * **zbf**
 * ra-config / dhcpv6 stateless / dhcpv6 stateful + (dns)
+
+### Phase II
+
+Infrastructure immutable
+
+Immutable roles by templating one config file  based on infrastructure choices (variables) and pushed by `config replace flash:XXX force` procedure to the devices.
+
+### Phase III
+
+* Reporting
+* PPPoE, BGP, GRE IPv4, GRE IPv6, Firewall
