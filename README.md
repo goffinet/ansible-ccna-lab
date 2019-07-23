@@ -2,13 +2,23 @@
 
 ## 1. Mise en place minimale
 
-### Images GNS3
+Note pour les utilisateur de la topologie GNS3 fournie en classe, sur tous les périphériques :
+
+```
+configure terminal
+crypto key generate rsa modulus 2048
+exit
+wr
+
+```
+
+### 1.1. Images GNS3
 
 * image IOSv (kvm)
 * image IOSv-L2 (kvm)
 * image Centos (kvm)
 
-### Routeurs
+### 1.2. Routeurs
 
 On utilise des IOSv pour les routeurs L3 avec 8 interfaces GigabitEthernet.
 
@@ -35,7 +45,7 @@ wr
 
 ```
 
-### Commutateurs
+### 1.3. Commutateurs
 
 On utilise des IOSv-L2 pour les commutateurs multicouches.
 
@@ -62,7 +72,7 @@ wr
 
 ```
 
-### Station de contrôle
+### 1.4. Station de contrôle
 
 La station de contrôle connecte tous les périphériques en SSH.
 
@@ -104,15 +114,11 @@ git clone https://github.com/goffinet/ansible-ccna-lab
 
 ## 2. Topologie tripod
 
-### Topologie logique
+### 2.1. Topologie logique
 
 ![Topologie Tripod](https://www.lucidchart.com/publicSegments/view/3328e715-30bf-48a8-a48d-1ff276420520/image.png)
 
-### Topologie GNS3
-
-[Topologie GNS3](/#todo).
-
-### Brève description
+### 2.2. Brève description
 
 Trois périphériques IOSv interconnectés entre eux :
 
@@ -122,67 +128,148 @@ Trois périphériques IOSv interconnectés entre eux :
 
 Routeur | Interface | Adresse IPv4 | Adresses IPv6 | Description
 --- | --- | --- | --- | ---
-R1 | G0/0 | 192.168.X.1/24 | fe80::1, fd00:fd00:fd00:1::1/64 | LAN de R1
-R1 | G0/2 | 192.168.225.1/24 | fe80::1 | Connexion vers R2
-R1 | G0/3 | 192.168.227.1/24 | fe80::1 | Connexion vers R3
-R2 | G0/0 | 192.168.33.1/24 | fe80::2, fd00:fd00:fd00:2::1/64 | LAN de R2
-R2 | G0/1 | 192.168.225.2/24 | fe80::2 | Connexion vers R1
-R2 | G0/3 | 192.168.226.1/24 | fe80::2 | Connexion vers R3
-R3 | G0/0 | 192.168.65.1/24 | fe80::3, fd00:fd00:fd00:3::1/64 | LAN de R3
-R3 | G0/1 | 192.168.227.2/24 | fe80::3 | Connexion vers R1
-R3 | G0/2 | 192.168.226.2/24 | fe80::3 | Connexion vers R2
+R1 | G0/0 | `192.168.1.1/24` | `fe80::1`, `fd00:fd00:fd00:1::1/64` | LAN de R1
+R1 | G0/2 | `192.168.225.1/24` | `fe80::1` | Connexion vers R2
+R1 | G0/3 | `192.168.227.1/24` | `fe80::1` | Connexion vers R3
+R2 | G0/0 | `192.168.33.1/24` | `fe80::2`, `fd00:fd00:fd00:2::1/64` | LAN de R2
+R2 | G0/1 | `192.168.225.2/24` | `fe80::2` | Connexion vers R1
+R2 | G0/3 | `192.168.226.1/24` | `fe80::2` | Connexion vers R3
+R3 | G0/0 | `192.168.65.1/24` | `fe80::3`, `fd00:fd00:fd00:3::1/64` | LAN de R3
+R3 | G0/1 | `192.168.227.2/24` | `fe80::3` | Connexion vers R1
+R3 | G0/2 | `192.168.226.2/24` | `fe80::3` | Connexion vers R2
 
 * On activera un service DHCP sur chaque réseau local (`GigabitEthernet0/0`).
 * Le routeur R1 connecte l'Internet. Le service NAT est activé.
 
+## 3. Topologie Switchblock
+
+### 3.1. Topologie avec redondance de passerelle HSRP
+
+![Topologie avec redondance de passerelle HSRP](https://www.lucidchart.com/publicSegments/view/84f170f5-af2b-44c1-8f6d-d169399dbba2/image.png)
 
 
+### 3.2. VLANs
 
+VLAN | Ports Access (AS1 et AS2) | plage d'adresse | Passerelle par défaut
+--- | --- | --- | ---
+VLAN 10 | `g2/0` | `172.16.10.0/24` | **`172.16.10.254`**
+VLAN 20 | `g2/1` | `172.16.20.0/24` | **`172.16.10.254`**
+VLAN 30 | `g2/2` | `172.16.30.0/24` | **`172.16.10.254`**
+VLAN 40 | `g2/3` | `172.16.40.0/24` | **`172.16.10.254`**
+VLAN 99 | VLAN natif | Management
 
-## Topologie Switchblock
+### 3.3. Ports Etherchannel et Trunk VLANs
 
-## Toplogie CCNA R&S
+PortChannel | ports physiques | Commutateurs
+--- | --- | ---
+po1 | `g0/0`,`g1/0` | AS1 - DS1
+po2 | `g0/1`,`g1/1` | AS1 - DS2
+po3 | `g0/2`,`g1/2` | DS1 - DS2
+po4 | `g0/0`,`g1/0` | AS2 - DS2
+po5 | `g0/1`,`g1/1` | AS2 - DS1
+
+### 3.4. Spanning-Tree
+
+VLANs | DS1 | DS2
+--- | --- | ---
+VLANs 1,10,30,99 | `root primary` | `root secondary`
+VLANs 20,40 | `root secondary` | `root primary`
+
+### 3.5.Plan d'adressage
+
+Commutateur | Interface | Adresse IPv4 | Adresse(s) IPv6
+--- | --- | --- | ---
+DS1 | VLAN10 | `172.16.10.252/24` | `fd00:1ab:10::1/64`
+DS1 | VLAN20 | `172.16.20.252/24` | `fd00:1ab:20::1/64`
+DS1 | VLAN30 | `172.16.30.252/24` | `fd00:1ab:30::1/64`
+DS1 | VLAN40 | `172.16.40.252/24` | `fd00:1ab:40::1/64`
+DS2 | VLAN10 | `172.16.10.253/24` | `fd00:1ab:10::2/64`
+DS2 | VLAN20 | `172.16.20.253/24` | `fd00:1ab:20::2/64`
+DS2 | VLAN30 | `172.16.30.253/24` | `fd00:1ab:30::2/64`
+DS2 | VLAN40 | `172.16.40.253/24` | `fd00:1ab:40::2/64`
+
+### 3.6. HSRP
+
+Commutateur | Interface | Adresse IPv4 virtuelle | Adresse IPv6 virtuelle | Group | Priorité
+--- | --- | --- | --- | --- | ---
+DS1 | VLAN10 | `172.16.10.254/24` | `fe80::d:1/64` | 10/16 | 150, prempt
+DS1 | VLAN20 | `172.16.20.254/24` | `fe80::d:1/64` | 20/26 | default
+DS1 | VLAN30 | `172.16.30.254/24` | `fe80::d:1/64` | 30/36 | 150, prempt
+DS1 | VLAN40 | `172.16.40.254/24` | `fe80::d:1/64` | 40/46 | default
+DS2 | VLAN10 | `172.16.10.254/24` | `fe80::d:2/64` | 10/16 | default
+DS2 | VLAN20 | `172.16.20.254/24` | `fe80::d:2/64` | 20/26 | 150, prempt
+DS2 | VLAN30 | `172.16.30.254/24` | `fe80::d:2/64` | 30/36 | default
+DS2 | VLAN40 | `172.16.40.254/24` | `fe80::d:2/64` | 40/46 | 150, prempt
+
+### 3.7. Ressources requises
+
+*	4 commutateurs (vios_l2 Software (vios_l2-ADVENTERPRISEK9-M), Experimental Version 15.2(20170321:233949))
+*	8 PCs (Centos 7 KVM ou Ubuntu Docker)
+*	(Câbles de console pour configurer les périphériques Cisco IOS via les ports de console)
+*	Câbles Ethernet conformément à la topologie
+
+### 3.8. Explication
+
+Dans l'exercice de laboratoire "Lab répartition de charge avec Rapid Spanning-Tree", nous avons appris à déployer Rapid Spanning-Tree entre la couche Distribution et la couche Access. Il manque manifestement une sûreté au niveau de la passerelle par défaut que constitue le commutateur de Distribution. Afin d'éviter ce point unique de rupture, on apprendra à configurer et vérifier HSRP. Dans cette topologie une passerelle devient routeur "Active" pour certains VLANs et reste en HSRP "Standby" pour d'autres VLANs et inversément.
+
+On trouvera plus bas les fichiers de configuration qui déploient la solution  VLANs, Trunking, Etherchannel, Rapid Spanning-Tree, SVI IPv4 et IPv6 et DHCP. Par rapport à l'exercice de laboratoire "Lab répartition de charge avec Rapid Spanning-Tree", tout reste identique sauf le paramètre de passerelle.
+
+## 4. Toplogie CCNA R&S
 
 ![](https://www.lucidchart.com/publicSegments/view/aacc6247-aa9a-44b2-a1ba-43ccb81deab7/image.png)
 
 
-## Utilisation
+## 5. Utilisation
+
+Se rendre dans le dossier des livres de jeux :
 
 ```
 cd ansible-ccna-lab
 ```
 
-Note :
+Tester la connectivité vers les périphériques :
 
 ```
 ansible all -m ping
 ```
 
-Pour déployer la topologie tripod soit le playbook `core.yml`.
+Le playbook `core.yml` configure la topologie tripod :
 
-Pour déployer la topologie switchblock soit le playbook `blocks.yml`
-
-Pour déployer le couche core et le switchblock soit le playbook `site.yml`
-
-
-Note : Diagnostic du routage sur R1
-
+```bash
+ansible-playbook core.yml -v
 ```
+
+Le playbook `blocks.yml` configure la topologie switchblock :
+
+```bash
+ansible-playbook blocks.yml -v
+```
+
+Le playbook `site.yml` configure l'ensemble :
+
+```bash
+ansible-playbook site.yml -v
+```
+
+
+
+Diagnostic du routage sur R1 :
+
+```bash
 ansible R1 -m ios_command -a "commands='show ip route'"
 ```
 
-Notes :
+Diagnostic à partir des routeurs Core :
 
-```
+```bash
 ansible core -m ios_command -a "commands='traceroute 192.168.1.1 source GigabitEthernet0/0 probe 1 numeric'"
 ```
-```
+
+```bash
 ansible core -m ios_command -a "commands='traceroute 172.16.10.1 source GigabitEthernet0/0 probe 1 numeric'"
 ```
 
-
-
-## Rôles / Tags
+## 6. Rôles / Tags
 
 * l2
 * full-ipv4
@@ -211,7 +298,7 @@ ansible core -m ios_command -a "commands='traceroute 172.16.10.1 source GigabitE
 * save
 * write
 
-## Historical Todo
+## 7. Historical Todo
 
 ### Phase 0 : Écriture de playbooks avec les modules ios_*
 
