@@ -5,6 +5,7 @@
 Note pour les utilisateur de la topologie GNS3 fournie en classe, sur tous les périphériques :
 
 ```
+enable
 configure terminal
 crypto key generate rsa modulus 2048
 exit
