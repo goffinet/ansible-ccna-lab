@@ -1,8 +1,10 @@
 # Ansible CCNA lab
 
+On trouvera ici un livre de jeux inspiré des topologies et des sujets du Cisco CCNA et plus.
+
 ## 1. Mise en place minimale
 
-Note pour les utilisateur de la topologie GNS3 fournie en classe, sur tous les périphériques :
+Note pour les utilisateur de la topologie GNS3 fournie en classe, sur tous les périphériques, il sera peut-être nécessaire de re-générer les clés RSA des périphériques Cisco :
 
 ```
 enable
@@ -225,14 +227,78 @@ On trouvera plus bas les fichiers de configuration qui déploient la solution  V
 Se rendre dans le dossier des livres de jeux :
 
 ```
+git clone https://github.com/goffinet/ansible-ccna-lab
 cd ansible-ccna-lab
 ```
 
 Tester la connectivité vers les périphériques :
 
-```
+```bash
 ansible all -m ping
 ```
+
+
+### Inventaire et variables d'inventaire
+
+L'inventaire est défini comme suit (fichier `inventories/main/hosts`) :
+
+```toml
+[all:vars]
+#method=modules # modules or templating
+#dynamic_ipv4_routing=rip # rip, eigrp4, ospfv2
+
+[core]
+R1
+R2
+R3
+
+[distribution]
+DS1
+DS2
+
+[access]
+AS1
+AS2
+
+[blocks:children]
+distribution
+access
+
+[cisco:children]
+core
+distribution
+access
+
+[cisco:vars]
+ansible_user=root
+ansible_ssh_pass=testtest
+ansible_port=22
+ansible_connection=network_cli
+ansible_network_os=ios
+```
+
+Les configurations sont définies en YAML dans les fichiers de variables d'inventaire (dossiers `inventories/main/group_vars` et `inventories/main/host_vars`).
+
+```
+inventories/main
+├── group_vars
+│   ├── all       --> ipv6 activé, protocoles de routage ipv4/ipv6
+│   └── blocks    --> variables vlans, switchports et stp mode
+├── hosts         --> fichier d'inventaire
+└── host_vars     --> variables propres à chaque périphérique
+    ├── AS1
+    ├── AS2
+    ├── DS1
+    ├── DS2
+    ├── R1
+    ├── R2
+    └── R3
+```
+
+### 5.1. Livres de jeu
+
+Les livres de jeu font appel à des rôles qui trouvent la valeur des variables dans l'inventaire
+
 
 Le playbook `core.yml` configure la topologie tripod :
 
@@ -252,7 +318,7 @@ Le playbook `site.yml` configure l'ensemble :
 ansible-playbook site.yml -v
 ```
 
-
+### 5.2. Diagnostic de base
 
 Diagnostic du routage sur R1 :
 
@@ -283,8 +349,7 @@ ansible core -m ios_command -a "commands='traceroute 172.16.10.1 source GigabitE
 * eigrp6
 * ospfv2
 * ospfv3
-* fhrp4
-* fhrp6
+* fhrp
 * dhcp-server
 * rdnss
 * syslog
@@ -313,24 +378,26 @@ Portage en rôles.
 * ~~dependencies~~
 * ~~tags**~~
 * tasks by jinja2 templating
-* **fhrp4**
-* **fhrp6**
+* ~~**fhrp4**~~
+* ~~**fhrp6**~~
 * **rdnss**
 * **syslog**
 * dhcp-relay
-* **ntp** (authentification)
+* **ntp** (auth)
 * auth eigrp4/6 ospfv2/v3
-* **snmpv2c** / snmpv3
+* **snmpv2c** / **snmpv3**
 * **zbf**
 * ra-config / dhcpv6 stateless / dhcpv6 stateful + (dns)
+* ppp / chap / pap
+* gre ipv6
+* gre ipv4
 
 ### Phase II
 
-Infrastructure immutable
+Infrastructure "immutable"
 
-Immutable roles by templating one config file  based on infrastructure choices (variables) and pushed by `config replace flash:XXX force` procedure to the devices.
+"Immutable" roles by templating one config file based on infrastructure choices (variables) and pushed by `config replace flash:XXX force` procedure to the devices.
 
 ### Phase III
 
 * Reporting
-* PPPoE, BGP, GRE IPv4, GRE IPv6, Firewall
