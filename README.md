@@ -374,6 +374,8 @@ Archivé.
 
 Portage en rôles.
 
+* **cdp / lldp**
+* **security hardening**
 * Revoir la structure des données
 * ~~dependencies~~
 * ~~tags**~~
@@ -383,18 +385,18 @@ Portage en rôles.
 * **rdnss**
 * **syslog**
 * dhcp-relay
-* **ntp** (auth)
-* auth eigrp4/6 ospfv2/v3
+* **ntp** (+ auth)
+* auth eigrp4/6 et ospfv2/v3
 * **snmpv2c** / **snmpv3**
 * **zbf**
 * ra-config / dhcpv6 stateless / dhcpv6 stateful + (dns)
-* ppp / chap / pap
+* ppp / chap / pap / pppoe
 * gre ipv6
 * gre ipv4
 
 ### Phase II
 
-Infrastructure "immutable"
+Infrastructure "immutable" : rôles immutables qui agissent sur un modèle de fichier de configuration basé sur des choix d'infrastructure (des variables) et qui sera poussé sur les périphériques par la procédure `config replace flash:XXX force`.
 
 "Immutable" roles by templating one config file based on infrastructure choices (variables) and pushed by `config replace flash:XXX force` procedure to the devices.
 
