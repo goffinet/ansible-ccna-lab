@@ -380,8 +380,8 @@ Portage en rôles.
 * ~~dependencies~~
 * ~~tags**~~
 * tasks by jinja2 templating
-* ~~**fhrp4**~~
-* ~~**fhrp6**~~
+* ~~**fhrp4**~~ + delay
+* ~~**fhrp6**~~ + delay
 * **rdnss**
 * **syslog**
 * dhcp-relay
