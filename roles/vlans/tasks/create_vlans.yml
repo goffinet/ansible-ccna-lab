@@ -3,4 +3,4 @@
     vlan_id: "{{ item.id }}"
     state: present
     name: "{{ item.name }}"
-  with_items: "{{ vlans }}"
+  loop: "{{ vlans }}"

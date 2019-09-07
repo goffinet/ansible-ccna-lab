@@ -5,5 +5,5 @@
     lines:
       - ipv6 enable
       - ipv6 address {{ item.net6 }}
-  with_items: "{{ lan6 }}"
+  loop: "{{ lan6 }}"
   when: lan6 is defined

@@ -5,7 +5,7 @@
     lines:
       - switchport mode access
       - switchport access vlan {{ item.vlan }}
-  with_items: "{{ access }}"
+  loop: "{{ access }}"
   when: access is defined
 - name: stp protection on access ports
   ios_config:
@@ -13,5 +13,5 @@
     lines:
       - spanning-tree portfast
       - spanning-tree bpduguard enable
-  with_items: "{{ access }}"
+  loop: "{{ access }}"
   when: access is defined

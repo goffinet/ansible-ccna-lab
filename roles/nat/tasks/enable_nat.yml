@@ -16,13 +16,13 @@
     parents: interface {{ item }}
     lines:
       - ip nat inside
-  with_items: "{{ nat.inside }}"
+  loop: "{{ nat.inside }}"
 - name: configure source nat acl
   ios_config:
     parents: ip access-list standard {{ nat.name }}
     lines:
       - permit {{ item }}
-  with_items: "{{ nat.sources }}"
+  loop: "{{ nat.sources }}"
 - name: configure the nat rule
   ios_config:
     lines:

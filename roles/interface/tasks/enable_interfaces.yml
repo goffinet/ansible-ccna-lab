@@ -4,7 +4,7 @@
     parents: interface {{ item.id }}
     lines:
       - no switchport
-  with_items: "{{ interface }}"
+  loop: "{{ interface }}"
   when: item.noswitchport is defined
   tags:
     - interface
@@ -14,7 +14,7 @@
     enabled: true
     state: present
     description: TODO
-  with_items: "{{ access }}"
+  loop: "{{ access }}"
   when: access is defined
   tags:
     - interface
@@ -24,7 +24,7 @@
     enabled: true
     state: present
     description: TODO
-  with_items: "{{ trunks }}"
+  loop: "{{ trunks }}"
   when: trunks is defined
   tags:
     - interface
@@ -34,7 +34,7 @@
     enabled: true
     state: present
     description: TODO
-  with_items: "{{ interface }}"
+  loop: "{{ interface }}"
   when: interface is defined
   tags:
     - interface

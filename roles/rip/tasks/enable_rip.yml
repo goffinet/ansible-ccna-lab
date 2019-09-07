@@ -9,7 +9,7 @@
     parents: router rip
     lines:
       - passive-interface {{ item }}
-  with_items:
+  loop:
       - "{{ ipv4routing.passive }}"
   when: ipv4routing.passive is defined
 - name: enable rip interfaces
@@ -17,5 +17,5 @@
     parents: router rip
     lines:
       - network {{ item }}
-  with_items:
+  loop:
       - "{{ rip }}"

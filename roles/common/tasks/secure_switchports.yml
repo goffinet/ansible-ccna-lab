@@ -13,7 +13,7 @@
     lines:
       - switchport mode access
       - switchport access vlan {{ stubvlan.id }}
-  with_items: "{{ switchports }}"
+  loop: "{{ switchports }}"
   when:
     - switchports is defined
     - stubvlan is defined
@@ -23,7 +23,7 @@
     lines:
       - spanning-tree portfast
       - spanning-tree bpduguard enable
-  with_items: "{{ switchports }}"
+  loop: "{{ switchports }}"
   when:
     - switchports is defined
     - stubvlan is defined
@@ -32,7 +32,7 @@
     parents: interface {{ item.id }}
     lines:
       - shutdown
-  with_items: "{{ switchports }}"
+  loop: "{{ switchports }}"
   when:
     - switchports is defined
     - stubvlan is defined

@@ -5,4 +5,4 @@
     parents: interface {{ item.id }}
     lines:
       - ip address {{ item.ipv4 }} {{ item.netmask }}
-  with_items: "{{ interface }}"
+  loop: "{{ interface }}"

@@ -6,10 +6,10 @@
       - network {{ item.network }} {{ item.netmask }}
       - default-router {{ item.router }}
       - dns-server {{ item.dns }}
-  with_items: "{{ dhcp_pool }}"
+  loop: "{{ dhcp_pool }}"
 - name: exclude range from pool
   ios_config:
     lines:
       - ip dhcp excluded-address {{ item.start }} {{ item.end }}
-  with_items: "{{ dhcp_excluded }}"
+  loop: "{{ dhcp_excluded }}"
   when: dhcp_excluded is defined

@@ -9,7 +9,7 @@
     parents: ipv6 router ospf {{ ipv6routing.pid }}
     lines:
       - passive-interface {{ item }}
-  with_items:
+  loop:
     - "{{ ipv6routing.passive }}"
   when: ipv6routing.passive is defined
 - name: enable ospfv3 on interfaces
@@ -17,5 +17,5 @@
     parents: interface {{ item.id }}
     lines:
       - "ipv6 ospf {{ ipv6routing.pid }} area {{ item.area }}"
-  with_items:
+  loop:
       - "{{ ospfv3 }}"
