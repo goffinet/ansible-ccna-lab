@@ -1,6 +1,8 @@
 - name: create vlans
-  ios_vlan:
-    vlan_id: "{{ item.id }}"
-    state: present
-    name: "{{ item.name }}"
+  ios_vlans:
+    config:
+      - name: "{{ item.name }}"
+        vlan_id: "{{ item.id }}"
+        state: active
+        shutdown: disabled
   loop: "{{ vlans }}"

@@ -1,9 +1,11 @@
 ---
 - name: create stub vlan
-  ios_vlan:
-    vlan_id: "{{ stubvlan.id }}"
-    state: present
-    name: "{{ stubvlan.name }}"
+  ios_vlans:
+    config:
+      - name: "{{ stubvlan.name }}"
+        vlan_id: "{{ stubvlan.id }}"
+        state: active
+        shutdown: disabled
   when:
     - switchports is defined
     - stubvlan is defined
