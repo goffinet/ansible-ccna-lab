@@ -6,7 +6,7 @@ On trouvera ici un livre de jeux inspiré des topologies et des sujets du Cisco 
 
 Note pour les utilisateur de la topologie GNS3 fournie en classe, sur tous les périphériques, il sera peut-être nécessaire de re-générer les clés RSA des périphériques Cisco :
 
-```
+```raw
 enable
 configure terminal
 crypto key generate rsa modulus 2048
@@ -29,7 +29,7 @@ L'interface `GigabitEthernet0/7` sert de console de contrôle TCP/IP et ne parti
 
 SSH est activé de la manière suivante, sur R1 par exemple :
 
-```
+```raw
 hostname R1
 int GigabitEthernet0/7
  ip address dhcp
@@ -56,7 +56,7 @@ L'interface `GigabitEthernet3/3` sert de console de contrôle TCP/IP et ne parti
 
 SSH est activé de la manière suivante, sur AS1 par exemple :
 
-```
+```raw
 hostname AS1
 int GigabitEthernet3/3
  ip address dhcp
@@ -83,7 +83,7 @@ Elle offre un service DHCP avec enregistrement dynamique des noms d'hôte dans u
 
 Le logiciel Ansible est fraîchement installé.
 
-```
+```bash
 yum -y install dnsmasq
 yum -y install ansible git dnsmasq
 cat << EOF > /etc/dnsmasq.conf
@@ -108,9 +108,9 @@ shutdown -r now
 
 ```
 
-Il est nécessaire de cloner sur la machine de contrôle de dépot.
+Il est nécessaire de cloner le dépot sur la machine de contrôle.
 
-```
+```bash
 git clone https://github.com/goffinet/ansible-ccna-lab
 ```
 
@@ -226,7 +226,7 @@ On trouvera plus bas les fichiers de configuration qui déploient la solution  V
 
 Se rendre dans le dossier des livres de jeux :
 
-```
+```bash
 git clone https://github.com/goffinet/ansible-ccna-lab
 cd ansible-ccna-lab
 ```
@@ -242,7 +242,7 @@ ansible all -m ping
 
 L'inventaire est défini comme suit (fichier `inventories/main/hosts`) :
 
-```toml
+```ini
 [all:vars]
 #method=modules # modules or templating
 #dynamic_ipv4_routing=rip # rip, eigrp4, ospfv2
@@ -279,7 +279,7 @@ ansible_network_os=ios
 
 Les configurations sont définies en YAML dans les fichiers de variables d'inventaire (dossiers `inventories/main/group_vars` et `inventories/main/host_vars`).
 
-```
+```raw
 inventories/main
 ├── group_vars
 │   ├── all       --> ipv6 activé, protocoles de routage ipv4/ipv6
