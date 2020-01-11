@@ -1,5 +1,10 @@
 ---
 protocol_ipv6: enabled
 routing:
-  ipv4: eigrp4 # rip, eigrp4, ospfv2
-  ipv6: eigrp6 # ripng, eigrp6, ospfv3
+  ipv4:
+    - eigrp4
+    - rip
+    - ospfv2
+  ipv6:
+    - eigrp6
+    - ospfv3
