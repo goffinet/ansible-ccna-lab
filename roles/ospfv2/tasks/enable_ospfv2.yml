@@ -4,20 +4,17 @@
     parents: router ospf {{ ipv4routing.pid }}
     lines:
       - router-id {{ ipv4routing.rid }}
-  loop:
-      - "{{ ospfv2 }}"
+  loop: "{{ ospfv2 }}"
 - name: enable ospfv2 passive-interface
   ios_config:
     parents: router ospf {{ ipv4routing.pid }}
     lines:
       - passive-interface {{ item }}
-  loop:
-      - "{{ ipv4routing.passive }}"
+  loop: "{{ ipv4routing.passive }}"
   when: ipv4routing.passive is defined
 - name: enable ospfv2 interfaces
   ios_config:
     parents: router ospf {{ ipv4routing.pid }}
     lines:
       - "network {{ item.ipv4 }} 0.0.0.0 area {{ item.area }}"
-  loop:
-      - "{{ ospfv2 }}"
+  loop: "{{ ospfv2 }}"
