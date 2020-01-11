@@ -16,5 +16,4 @@
     parents: router rip
     lines:
       - network {{ item }}
-  loop:
-    - "{{ rip }}"
+  loop: "{{ rip }}"
