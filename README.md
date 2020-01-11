@@ -335,33 +335,46 @@ ansible core -m ios_command -a "commands='traceroute 192.168.1.1 source GigabitE
 ansible core -m ios_command -a "commands='traceroute 172.16.10.1 source GigabitEthernet0/0 probe 1 numeric'"
 ```
 
-## 6. Rôles / Tags
+## 6. Tags
 
-* l2
-* full-ipv4
-* full-ipv6
-* ipv4
-* ipv6
-* etherchannel
-* vlan
-* eigrp4
-* eigrp6
-* ospfv2
-* ospfv3
-* fhrp
-* dhcp-server
-* rdnss
-* syslog
-* ntp
-* snmpv2c
-* snmpv3
-* zbf
-* dhcp-relay
-* ra-config
-* dhcpv6 stateless
-* dhcpv6 stateful
-* save
-* write
+- access
+- banners
+- common
+- create_vlans
+- enable_ipv6
+- etherchannel
+- interface
+- ipv4
+- ipv6
+- l2
+- shut_switch
+- stp
+- trunk
+- vlans
+- no_ipv4_routing
+- dhcp-server
+- disable-eigrp4
+- disable-ospfv2
+- disable-rip
+- eigrp4
+- eigrp6
+- enable_ipv6
+- fhrp
+- interface
+- ipv4
+- ipv4_routing
+- nat
+- ipv6
+- ipv6_routing
+- ospfv2
+- ospfv3
+- rip
+- static_to_eigrp4
+- static_to_ospfv2
+- static_to_rip
+- get
+- save
+- write
 
 ## 7. Historical Todo
 
@@ -374,28 +387,26 @@ Archivé.
 Portage en rôles.
 
 * **cdp / lldp**
+* dhcp-relay
+* ~~**fhrp4**~~ + delay
+* ~~**fhrp6**~~ + delay
+* **syslog**
+* **ntp** (+ auth)
+* auth eigrp4/6 et ospfv2/v3
+* **snmpv2c** / **snmpv3**
+* **zbf**
+* ra-config / dhcpv6 stateless / dhcpv6 stateful / (rdnss)
+* ppp / chap / pap / pppoe
+* gre ipv4 / gre ipv6
 * **security hardening**
 * Revoir la structure des données
 * ~~dependencies~~
 * ~~tags**~~
 * tasks by jinja2 templating
-* ~~**fhrp4**~~ + delay
-* ~~**fhrp6**~~ + delay
-* **rdnss**
-* **syslog**
-* dhcp-relay
-* **ntp** (+ auth)
-* auth eigrp4/6 et ospfv2/v3
-* **snmpv2c** / **snmpv3**
-* **zbf**
-* ra-config / dhcpv6 stateless / dhcpv6 stateful + (dns)
-* ppp / chap / pap / pppoe
-* gre ipv6
-* gre ipv4
 
 ### Phase II
 
-Infrastructure "immutable" : rôles immutables qui agissent sur un modèle de fichier de configuration basé sur des choix d'infrastructure (des variables) et qui sera poussé sur les périphériques par la procédure `config replace flash:XXX force`.
+Rôles idempotents qui agissent sur un modèle de fichier de configuration basé sur des choix d'infrastructure (des variables) et qui sera poussé sur les périphériques par la procédure `config replace flash:XXX force`.
 
 "Immutable" roles by templating one config file based on infrastructure choices (variables) and pushed by `config replace flash:XXX force` procedure to the devices.
 
