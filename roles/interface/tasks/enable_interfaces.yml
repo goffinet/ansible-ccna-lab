@@ -9,31 +9,31 @@
   tags:
     - interface
 - name: enable access switchports
-  ios_interface:
-    name: "{{ item.id }}"
-    enabled: true
-    state: present
-    description: TODO
+  ios_interfaces:
+    config:
+      - name: "{{ item.id }}"
+        enabled: True
+        description: TODO
   loop: "{{ access }}"
   when: access is defined
   tags:
     - interface
 - name: enable trunk switchports
-  ios_interface:
-    name: "{{ item.id }}"
-    enabled: true
-    state: present
-    description: TODO
+  ios_interfaces:
+    config:
+      - name: "{{ item.id }}"
+        enabled: True
+        description: TODO
   loop: "{{ trunks }}"
   when: trunks is defined
   tags:
     - interface
 - name: enable ip interface
-  ios_interface:
-    name: "{{ item.id }}"
-    enabled: true
-    state: present
-    description: TODO
+  ios_interfaces:
+    config:
+      - name: "{{ item.id }}"
+        enabled: True
+        description: TODO
   loop: "{{ interface }}"
   when: interface is defined
   tags:
