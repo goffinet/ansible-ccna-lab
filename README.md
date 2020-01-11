@@ -386,10 +386,10 @@ Archivé.
 
 Portage en rôles.
 
-* **cdp / lldp**
 * dhcp-relay
 * ~~**fhrp4**~~ + delay
 * ~~**fhrp6**~~ + delay
+* **cdp / lldp**
 * **syslog**
 * **ntp** (+ auth)
 * auth eigrp4/6 et ospfv2/v3
