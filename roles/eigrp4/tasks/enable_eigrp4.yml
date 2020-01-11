@@ -16,6 +16,6 @@
   ios_config:
     parents: router eigrp {{ ipv4routing.as }}
     lines:
-      - network {{ item.ipv4 }}
+      - network {{ item }}
   loop:
-      - "{{ eigrp4 }}"
+      - "{{ eigrp4.ipv4 }}"
