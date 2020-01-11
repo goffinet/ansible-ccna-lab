@@ -245,7 +245,6 @@ L'inventaire est défini comme suit (fichier `inventories/main/hosts`) :
 ```ini
 [all:vars]
 #method=modules # modules or templating
-#dynamic_ipv4_routing=rip # rip, eigrp4, ospfv2
 
 [core]
 R1
