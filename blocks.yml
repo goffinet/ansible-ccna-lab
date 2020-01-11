@@ -22,18 +22,18 @@
       when: protocol_ipv6 == 'enabled'
     - role: fhrp
     - role: rip
-      when: '"rip" in routing.ipv4'
+      when: '"rip" in routing_ipv4'
     - role: eigrp4
-      when: '"eigrp4" in routing.ipv4'
+      when: '"eigrp4" in routing_ipv4'
     - role: ospfv2
-      when: '"ospfv2" in routing.ipv4'
+      when: '"ospfv2" in routing_ipv4'
     - role: eigrp6
       when:
-        - '"eigrp6" in routing.ipv6'
+        - '"eigrp6" in routing_ipv6'
         - protocol_ipv6 == 'enabled'
     - role: ospfv3
       when:
-        - '"ospfv3" in routing.ipv6'
+        - '"ospfv3" in routing_ipv6'
         - protocol_ipv6 == 'enabled'
     - role: dhcp-server
 - hosts: blocks
