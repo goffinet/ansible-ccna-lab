@@ -22,12 +22,14 @@ lan6:
     net6: 'FD00:00:00:1::1/64'
 ipv4routing:
   rid: 1.1.1.1
-  passive: GigabitEthernet0/0
+  passive:
+    - GigabitEthernet0/0
   pid: 1
   as: 1
 ipv6routing:
   rid: 1.1.1.1
-  passive: GigabitEthernet0/0
+  passive:
+    - GigabitEthernet0/0
   pid: 1
   as: 1
 rip:
