@@ -17,5 +17,5 @@
     parents: router eigrp {{ ipv4routing.as }}
     lines:
       - "network {{ item.ipv4 }}"
-  loop:
+  with_items:
       - "{{ eigrp4 }}"
