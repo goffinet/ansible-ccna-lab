@@ -1,9 +1,4 @@
 ---
-- import_tasks: enable_ipv6.yml
-  when: ansible_network_os == 'ios'
-  tags:
-    - ipv6
-    - enable_ipv6
 - import_tasks: configure_ipv6_addresses.yml
   when: ansible_network_os == 'ios'
   tags:

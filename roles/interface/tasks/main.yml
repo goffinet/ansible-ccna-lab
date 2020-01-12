@@ -4,13 +4,3 @@
   tags:
     - interface
     - test
-- import_tasks: configure_ipv4_addresses.yml
-  when: ansible_network_os == 'ios'
-  tags:
-    - ipv4
-    - test
-- import_tasks: configure_ipv6_addresses.yml
-  when: ansible_network_os == 'ios'
-  tags:
-    - ipv6
-    - test
