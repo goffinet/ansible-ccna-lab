@@ -6,3 +6,4 @@
     - ospfv3 is defined
   tags:
     - ospfv3
+    - ipv6_dynamic_routing
