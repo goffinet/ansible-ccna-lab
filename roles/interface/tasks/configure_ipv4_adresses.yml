@@ -7,7 +7,7 @@
 #        ipv4:
 #        - address: "{{ item[1] }}"
   debug:
-    msg: "{{ item.ipv4 }}"
+    msg: "{{ item.ipv4.address }}"
   loop: "{{ interface }}"
   tags:
     - test
