@@ -1,2 +1,0 @@
-[routers]
-CSR1000v1 ansible_host=192.168.122.137
