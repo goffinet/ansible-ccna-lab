@@ -7,7 +7,7 @@ interface:
       - address: 192.168.1.1/24
     ipv6:
       - address: 'FE80::1 link-local'
-      - address: ''FD00:00:00:1::1/64''
+      - address: 'FD00:00:00:1::1/64'
   - id: GigabitEthernet0/2
     description: "Link to R2"
     ipv4:
