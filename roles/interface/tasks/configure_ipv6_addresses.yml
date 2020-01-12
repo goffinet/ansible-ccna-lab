@@ -1,0 +1,10 @@
+---
+# https://docs.ansible.com/ansible/devel/modules/ios_l3_interface_module.html#ios-l3-interface-module
+- name: configure ipv6 addresses
+  ios_l3_interfaces:
+    config:
+      - name: "{{ item.0.id }}"
+        ipv6:
+        - address: "{{ item.1.address }}"
+  loop: "{{ interface|subelements('ipv6') }}"
+  when: interface.ipv4 is defined

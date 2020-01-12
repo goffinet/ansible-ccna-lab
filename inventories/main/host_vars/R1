@@ -5,25 +5,21 @@ interface:
     description: "LAN R1"
     ipv4:
       - address: 192.168.1.1/24
+    ipv6:
+      - address: 'FE80::1 link-local'
+      - address: ''FD00:00:00:1::1/64''
   - id: GigabitEthernet0/2
     description: "Link to R2"
     ipv4:
       - address: 192.168.225.1/24
+    ipv6:
+      - address: 'FE80::1 link-local'
   - id: GigabitEthernet0/3
     description: "Link to R3"
     ipv4:
       - address: 192.168.226.1/24
-      - address: 192.168.192.168/32
-interface6:
-  - id: GigabitEthernet0/0
-    net6: 'FE80::1'
-  - id: GigabitEthernet0/2
-    net6: 'FE80::1'
-  - id: GigabitEthernet0/3
-    net6: 'FE80::1'
-lan6:
-  - id: GigabitEthernet0/0
-    net6: 'FD00:00:00:1::1/64'
+    ipv6:
+      - address: 'FE80::1 link-local'
 ipv4routing:
   rid: 1.1.1.1
   passive:
