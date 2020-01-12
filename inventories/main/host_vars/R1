@@ -18,7 +18,7 @@ interface:
   - id: GigabitEthernet0/3
     description: "Link to R3"
     ipv4_addresses:
-      - 192.168.225.1/24
+      - 192.168.226.1/24
     ipv6_link_local_addresses:
       - 'FE80::1'
 ipv4routing:
