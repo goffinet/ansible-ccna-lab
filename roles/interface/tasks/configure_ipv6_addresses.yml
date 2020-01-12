@@ -14,5 +14,5 @@
       - name: "{{ item.0.id }}"
         ipv6:
         - address: "{{ item.1 }}"
-  loop: "{{ interface|subelements('ipv6_ula_uga_addresses, skip_missing=True') }}"
+  loop: "{{ interface|subelements('ipv6_ula_uga_addresses', skip_missing=True) }}"
   when: interface.ipv6_ula_uga_addresses is defined
