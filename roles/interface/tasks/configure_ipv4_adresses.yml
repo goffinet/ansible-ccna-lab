@@ -7,7 +7,7 @@
         ipv4:
         - address: "{{ item[1] }}"
   with_nested:
-    - interface
-    - ipv4.address
+    - "{{ interface }}"
+    - "{{ ipv4.address }}"
   tags:
     - test
