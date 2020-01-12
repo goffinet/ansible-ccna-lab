@@ -3,4 +3,7 @@
   when: ansible_network_os == 'ios'
   tags:
     - interface
+- import_tasks: configure_ipv4_adresses.yml
+  when: ansible_network_os == 'ios'
+  tags:
     - test
