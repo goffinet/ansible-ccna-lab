@@ -5,7 +5,7 @@
     lines:
       - ipv6 enable
       - "ipv6 address {{ item.1 }} link-local"
-  loop: "{{ interface|subelements('ipv6_link_local_addresses') }}"
+  loop: "{{ interface|subelements('ipv6_link_local_addresses', skip_missing=True) }}"
 
 # https://docs.ansible.com/ansible/devel/modules/ios_l3_interface_module.html#ios-l3-interface-module
 - name: configure ipv6 addresses
