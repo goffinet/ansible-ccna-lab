@@ -4,24 +4,31 @@ interface:
   - id: GigabitEthernet0/0
     ipv4: 192.168.33.1
     netmask: 255.255.255.0
+    description: "TODO"
   - id: GigabitEthernet0/1
     ipv4: 192.168.225.2
     netmask: 255.255.255.0
+    description: "TODO"
   - id: GigabitEthernet0/3
     ipv4: 192.168.227.1
     netmask: 255.255.255.0
+    description: "TODO"
   - id: GigabitEthernet0/2
     ipv4: 172.16.224.1
     netmask: 255.255.255.0
+    description: "TODO"
   - id: GigabitEthernet0/4
     ipv4: 172.16.225.1
     netmask: 255.255.255.0
+    description: "TODO"
   - id: GigabitEthernet0/5
     ipv4: 172.16.242.1
     netmask: 255.255.255.0
+    description: "TODO"
   - id: GigabitEthernet0/6
     ipv4: 172.16.243.1
     netmask: 255.255.255.0
+    description: "TODO"
 ipv4routing:
   rid: 2.2.2.2
   passive:
