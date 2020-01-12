@@ -8,6 +8,6 @@
         - address: "{{ item[1] }}"
   with_subelements:
     - "{{ interface }}"
-    - "{{ ipv4.address }}"
+    - "{{ interface.ipv4.address }}"
   tags:
     - test
