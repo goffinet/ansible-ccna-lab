@@ -4,7 +4,6 @@
     config:
       - name: "{{ nat.outside }}"
         enabled: True
-        description: TODO
 - name: configure ipv4 adresses nat ouside interface
   ios_config:
     parents: interface {{ nat.outside }}

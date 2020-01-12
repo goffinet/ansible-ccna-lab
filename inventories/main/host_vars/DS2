@@ -23,53 +23,71 @@ group_channels:
 trunks:
   - id: GigabitEthernet0/0
     native: 99
+    description: "TODO"
   - id: GigabitEthernet1/0
     native: 99
+    description: "TODO"
   - id: GigabitEthernet0/1
     native: 99
+    description: "TODO"
   - id: GigabitEthernet1/1
     native: 99
+    description: "TODO"
   - id: GigabitEthernet0/2
     native: 99
+    description: "TODO"
   - id: GigabitEthernet1/2
     native: 99
+    description: "TODO"
   - id: Port-channel2
     native: 99
+    description: "TODO"
   - id: Port-channel3
     native: 99
+    description: "TODO"
   - id: Port-channel4
     native: 99
+    description: "TODO"
 interface:
   - id: Vlan99
     ipv4: 172.16.0.253
     netmask: 255.255.255.0
+    description: "TODO"
   - id: Vlan10
     ipv4: 172.16.10.253
     netmask: 255.255.255.0
+    description: "TODO"
   - id: Vlan20
     ipv4: 172.16.20.253
     netmask: 255.255.255.0
+    description: "TODO"
   - id: Vlan30
     ipv4: 172.16.30.253
     netmask: 255.255.255.0
+    description: "TODO"
   - id: Vlan40
     ipv4: 172.16.40.253
     netmask: 255.255.255.0
+    description: "TODO"
   - id: GigabitEthernet2/0
     ipv4: 172.16.240.2
     netmask: 255.255.255.0
+    description: "TODO"
     noswitchport: true
   - id: GigabitEthernet3/0
     ipv4: 172.16.241.2
     netmask: 255.255.255.0
+    description: "TODO"
     noswitchport: true
   - id: GigabitEthernet2/1
     ipv4: 172.16.242.2
     netmask: 255.255.255.0
+    description: "TODO"
     noswitchport: true
   - id: GigabitEthernet3/1
     ipv4: 172.16.243.2
     netmask: 255.255.255.0
+    description: "TODO"
     noswitchport: true
 interface6:
   - id: Vlan10

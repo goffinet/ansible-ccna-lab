@@ -13,7 +13,7 @@
     config:
       - name: "{{ item.id }}"
         enabled: True
-        description: TODO
+        description: "{{ item.description }}"
   loop: "{{ access }}"
   when: access is defined
   tags:
@@ -23,7 +23,7 @@
     config:
       - name: "{{ item.id }}"
         enabled: True
-        description: TODO
+        description: "{{ item.description }}"
   loop: "{{ trunks }}"
   when: trunks is defined
   tags:
@@ -33,7 +33,7 @@
     config:
       - name: "{{ item.id }}"
         enabled: True
-        description: TODO
+        description: "{{ item.description }}"
   loop: "{{ interface }}"
   when: interface is defined
   tags:
