@@ -3,22 +3,22 @@ hostname: AS1
 access:
   - id: GigabitEthernet2/0
     vlan: 10
-    description: "TODO"
+    description: "PC1 vlan 10 access port"
   - id: GigabitEthernet2/1
     vlan: 20
-    description: "TODO"
+    description: "PC2 vlan 20 access port"
   - id: GigabitEthernet2/2
     vlan: 30
-    description: "TODO"
+    description: "PC3 vlan 30 access port"
   - id: GigabitEthernet2/3
     vlan: 40
-    description: "TODO"
+    description: "PC4 vlan 40 access port"
 interface:
   - id: Vlan99
     ipv4: 172.16.0.1
     netmask: 255.255.255.0
     gateway: 172.16.0.254
-    description: "TODO"
+    description: "Management interface"
 group_channels:
   - id: 1
     mode: active
@@ -33,19 +33,19 @@ group_channels:
 trunks:
   - id: GigabitEthernet0/0
     native: 99
-    description: "TODO"
+    description: "Trunk Group Channel1 to DS1"
   - id: GigabitEthernet1/0
     native: 99
-    description: "TODO"
+    description: "Trunk Group Channel1 to DS1"
   - id: GigabitEthernet0/1
     native: 99
-    description: "TODO"
+    description: "Trunk Group Channel2 to DS2"
   - id: GigabitEthernet1/1
     native: 99
-    description: "TODO"
+    description: "Trunk Group Channel2 to DS2"
   - id: Port-channel1
     native: 99
-    description: "TODO"
+    description: "Trunk Group Channel1 to DS1"
   - id: Port-channel2
     native: 99
-    description: "TODO"
+    description: "Trunk Group Channel2 to DS2"

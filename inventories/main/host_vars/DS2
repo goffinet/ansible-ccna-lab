@@ -23,71 +23,71 @@ group_channels:
 trunks:
   - id: GigabitEthernet0/0
     native: 99
-    description: "TODO"
+    description: "Trunk Group Channel4 to AS2"
   - id: GigabitEthernet1/0
     native: 99
-    description: "TODO"
+    description: "Trunk Group Channel4 to AS2"
   - id: GigabitEthernet0/1
     native: 99
-    description: "TODO"
+    description: "Trunk Group Channel2 to AS1"
   - id: GigabitEthernet1/1
     native: 99
-    description: "TODO"
+    description: "Trunk Group Channel2 to AS1"
   - id: GigabitEthernet0/2
     native: 99
-    description: "TODO"
+    description: "Trunk Group Channel3 to DS1"
   - id: GigabitEthernet1/2
     native: 99
-    description: "TODO"
+    description: "Trunk Group Channel3 to DS1"
   - id: Port-channel2
     native: 99
-    description: "TODO"
+    description: "Trunk Group Channel2 to AS1"
   - id: Port-channel3
     native: 99
-    description: "TODO"
+    description: "Trunk Group Channel3 to DS1"
   - id: Port-channel4
     native: 99
-    description: "TODO"
+    description: "Trunk Group Channel4 to AS2"
 interface:
   - id: Vlan99
     ipv4: 172.16.0.253
     netmask: 255.255.255.0
-    description: "TODO"
+    description: "Management real gateway"
   - id: Vlan10
     ipv4: 172.16.10.253
     netmask: 255.255.255.0
-    description: "TODO"
+    description: "Vlan10 real gateway"
   - id: Vlan20
     ipv4: 172.16.20.253
     netmask: 255.255.255.0
-    description: "TODO"
+    description: "Vlan20 real gateway"
   - id: Vlan30
     ipv4: 172.16.30.253
     netmask: 255.255.255.0
-    description: "TODO"
+    description: "Vlan30 real gateway"
   - id: Vlan40
     ipv4: 172.16.40.253
     netmask: 255.255.255.0
-    description: "TODO"
+    description: "Vlan40 real gateway"
   - id: GigabitEthernet2/0
     ipv4: 172.16.240.2
     netmask: 255.255.255.0
-    description: "TODO"
+    description: "Link to R3 Core"
     noswitchport: true
   - id: GigabitEthernet3/0
     ipv4: 172.16.241.2
     netmask: 255.255.255.0
-    description: "TODO"
+    description: "Link to R3 Core"
     noswitchport: true
   - id: GigabitEthernet2/1
     ipv4: 172.16.242.2
     netmask: 255.255.255.0
-    description: "TODO"
+    description: "Link to R2 Core"
     noswitchport: true
   - id: GigabitEthernet3/1
     ipv4: 172.16.243.2
     netmask: 255.255.255.0
-    description: "TODO"
+    description: "Link to R2 Core"
     noswitchport: true
 interface6:
   - id: Vlan10
