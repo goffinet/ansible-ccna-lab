@@ -3,3 +3,4 @@
   when: ansible_network_os == 'ios'
   tags:
     - interface
+    - test
