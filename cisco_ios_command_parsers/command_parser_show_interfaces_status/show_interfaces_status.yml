@@ -2,7 +2,7 @@
 
 # This is a playbook for Ansible using network-engine with "show interfaces status" parser.
 
-- hosts: cisco
+- hosts: blocks
 
   roles:
   - ansible-network.network-engine
