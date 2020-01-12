@@ -8,6 +8,6 @@
 #        - address: "{{ item[1].address }}"
   debug:
     msg: "{{ item[0].id }} et {{ item[1] }}"
-  loop: "{{ interface|subelements(item.ipv4.address) }}"
+  loop: "{{ interface|subelements(ipv4.address) }}"
   tags:
     - test
