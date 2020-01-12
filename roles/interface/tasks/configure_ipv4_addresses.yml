@@ -5,6 +5,6 @@
     config:
       - name: "{{ item.0.id }}"
         ipv4:
-        - address: "{{ item.1.address }}"
+        - address: "{{ item.1.addresses }}"
   loop: "{{ interface|subelements('ipv4') }}"
 #  when: interface.ipv4 is defined
