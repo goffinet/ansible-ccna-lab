@@ -1,0 +1,324 @@
+---
+- name: parser meta data
+  parser_metadata:
+    version: 1.0
+    command: show running-config
+    network_os: ios
+
+- name: match hostname
+  pattern_match:
+    regex: "^hostname ([^\\n]+)"
+  register: ios_hostname
+  export: yes
+
+- name: match version
+  pattern_match:
+    regex: "^version (\\S+)"
+  register: ios_major_version
+  export: yes
+
+#### SNMP ####
+- name: match snmp community
+  pattern_match:
+    regex: "^snmp-server community (\\S+) (RO|RW)"
+    match_all: yes
+  register: ios_snmp_community
+  export: yes
+
+- name: capture snmp-server subsection fully
+  pattern_match:
+    regex: "\\\n(snmp-server [^!]+)"
+    match_all: yes
+  register: ios_net_snmp_config
+  export: yes
+
+### line ####
+- name: capture line 0 subsection
+  pattern_match:
+    regex: "(^line [^!]+?)(?=line|!)" #    regex: "\\\ninterface ([^\\\n]+)([^!]+)"
+    match_all: yes
+  register: ios_line_subset
+  export: no
+
+- name: match line
+  pattern_group:
+    - name: match type
+      pattern_match:
+        regex: "line (\\w+)"
+        content: "{{ item.matches  }}"
+      register: type
+
+    - name: match id
+      pattern_match:
+        regex: "line \\w+ ([^\n]+)"
+        content: "{{ item.matches  }}"
+      register: id
+
+    - name: match config
+      pattern_match:
+        regex: "^ ([^\n]+)"
+        content: "{{ item.matches  }}"
+        match_all: yes
+      register: config
+
+  loop: "{{ ios_line_subset }}"
+  register: ios_line
+  export: yes
+
+#### AAA ####
+- name: capture aaa global config
+  pattern_match:
+    regex: "^aaa (?!group)[^\\n]+" #    regex: "\\\ninterface ([^\\\n]+)([^!]+)"
+    match_all: yes
+  register: ios_aaa_global
+  export: no
+
+- name: capture radius-server global config
+  pattern_match:
+    regex: "^(radius-server [^\\n]+)" #    regex: "\\\ninterface ([^\\\n]+)([^!]+)"
+    match_all: yes
+  register: ios_radiusserver_global
+  export: no
+
+- name: capture ip radius global config
+  pattern_match:
+    regex: "^(ip radius [^\\n]+)" #    regex: "\\\ninterface ([^\\\n]+)([^!]+)"
+    match_all: yes
+  register: ios_ipradius
+  export: yes
+
+- name: capture ip tacacs global config
+  pattern_match:
+    regex: "^(ip tacacs [^\\n]+)" #    regex: "\\\ninterface ([^\\\n]+)([^!]+)"
+    match_all: yes
+  register: ios_iptacacs
+  export: no
+
+- name: capture aaa group server subsection
+  pattern_match:
+    regex: "(^aaa group server [^!]+\n!)" #    regex: "\\\ninterface ([^\\\n]+)([^!]+)"
+    match_all: yes
+  register: ios_aaa_group_subset
+  export: no
+
+- name: match aaa group
+  pattern_group:
+    - name: match name
+      pattern_match:
+        regex: "(?:aaa group server tacacs\\+ |aaa group server radius )([^\\\n]+)"
+        content: "{{ item.matches  }}"
+      register: name
+
+    - name: match config
+      pattern_match:
+        regex: "(?:aaa group server tacacs\\+ |aaa group server radius )(?:\\S+)([^!]+)"
+        content: "{{ item.matches  }}"
+      register: config
+
+    - name: match servers
+      pattern_match:
+        regex: "server-private ([^\n]+)"
+        content: "{{ item.matches  }}"
+        match_all: yes
+      register: servers
+
+  loop: "{{ ios_aaa_group_subset }}"
+  register: ios_aaa_groups
+  export: yes
+
+#### named ACL ####
+- name: match numbered standard ACL
+  pattern_match:
+    regex: "^access-list (\\d+) ([^\\n]+)"
+    match_all: yes
+  register: ios_numbered_acl
+  export: yes
+
+- name: match named standard ACL
+  pattern_match:
+    regex: "(^ip access-list [^!]+?)(?=ip access-list|!)"
+    match_all: yes
+  register: ios_named_acl_section
+  export: no
+
+- name: match named acl
+  pattern_group:
+    - name: match type
+      pattern_match:
+        regex: "ip access-list (standard|extended)"
+        content: "{{ item.matches  }}"
+      register: type
+
+    - name: match name
+      pattern_match:
+        regex: "ip access-list (?:standard|extended) ([^\n]+)"
+        content: "{{ item.matches  }}"
+      register: name
+
+    - name: match rules
+      pattern_match:
+        regex: "(permit [^\n]+|deny [^\n]+)"
+        content: "{{ item.matches  }}"
+        match_all: yes
+      register: rules
+
+  loop: "{{ ios_named_acl_section }}"
+  register: ios_named_acl
+  export: yes
+
+#### vlan ####
+- name: capture VLAN list (switch only)
+  pattern_match:
+    regex: "\\\nvlan (\\d+)\\\n name ([^\\\n]+)"
+    match_all: yes
+  register: ios_net_vlan
+  export: yes
+
+#### vrf ####
+- name: capture vrf subsection per vrf
+  pattern_match:
+    regex: "!\nip vrf|vrf definition (.*)" #regex: "\\\nip vrf|\\nvrf definition ([^!]+)"
+    match_all: yes
+    match_greedy: yes
+    match_until: "\\n!"
+  register: ios_net_vrf_subset
+  export: no
+
+- name: match vrf values
+  pattern_group:
+    - name: match name
+      pattern_match:
+        regex: "(?:ip vrf |vrf definition )([^\\\n]+)"
+        content: "{{ item  }}"
+      register: name
+
+    - name: match rd
+      pattern_match:
+        regex: "rd ([^\\\n]+)"
+        content: "{{ item  }}"
+      register: rd
+
+    - name: match family
+      pattern_match:
+        regex: "address-family ([^\\\n]+)"
+        content: "{{ item }}"
+        match_all: yes
+      register: families
+
+  loop: "{{ ios_net_vrf_subset }}"
+  register: ios_net_vrf
+  export: yes
+
+### interfaces ####
+- name: capture interface subsection per interface
+  pattern_match:
+    regex: "!\\\n(interface [^!]+)\\\n" #    regex: "\\\ninterface ([^\\\n]+)([^!]+)"
+    match_all: yes
+  register: ios_net_interfaces_subset
+  export: no
+
+- name: match interface values
+  pattern_group:
+    - name: match name
+      pattern_match:
+        regex: "interface ([^\\\n]+)"
+        content: "{{ item.matches }}"
+      register: name
+
+    - name: match description
+      pattern_match:
+        regex: "description ([^\\\n]+)"
+        content: "{{ item.matches }}"
+      register: description
+
+    - name: match vrf
+      pattern_match:
+        regex: "vrf forwarding ([^\\\n]+)"
+        content: "{{ item.matches  }}"
+      register: vrf
+
+    - name: match mtu
+      pattern_match:
+        regex: "ip mtu ([^\\\n]+)"
+        content: "{{ item.matches  }}"
+      register: mtu
+
+    - name: match ip address
+      pattern_match:
+        regex: "ip address ([^\\\n]+)"
+        content: "{{ item.matches  }}"
+      register: addresses
+
+    - name: match ip access-group
+      pattern_match:
+        regex: "ip access-group ([^\\\n]+)"
+        content: "{{ item.matches  }}"
+      register: accessgroup
+
+    - name: match ip nat
+      pattern_match:
+        regex: "ip nat ([^\\\n]+)"
+        content: "{{ item.matches  }}"
+      register: nat
+
+    - name: match shutdown
+      pattern_match:
+        regex: "\\n (shutdown)\\n"
+        content: "{{ item.matches  }}"
+      register: shutdown
+
+    - name: match encapsulation
+      pattern_match:
+        regex: "encapsulation dot1Q ([^\\\n]+)"
+        content: "{{ item.matches }}"
+      register: vlan
+
+    - name: match channel-group
+      pattern_match:
+        regex: "channel-group (\\d+) mode (\\w+)" #regex: "channel-group (\\d+) mode \\w+\\n"
+        content: "{{ item.matches }}"
+      register: channelgroup
+
+  loop: "{{ ios_net_interfaces_subset }}"
+  register: ios_net_interfaces
+  export: yes
+
+#### routing ####
+- name: capture router subsection
+  pattern_match:
+    regex: "(^router [^!]+?)(?=router\n|!)"
+    match_all: yes
+  register: ios_net_router_subset
+  export: no
+
+- name: match routeur values
+  pattern_group:
+    - name: match type
+      pattern_match:
+        regex: "router (\\S+)"
+        content: "{{ item.matches }}"
+      register: type
+
+    - name: match description
+      pattern_match:
+        regex: "router \\S+ (\\S+)"
+        content: "{{ item.matches }}"
+      register: id
+
+    - name: match config
+      pattern_match:
+        regex: "^ ([^\n]+)"
+        content: "{{ item.matches  }}"
+        match_all: yes
+      register: config
+
+  loop: "{{ ios_net_router_subset }}"
+  register: ios_net_router
+  export: yes
+
+- name: capture static route subsection
+  pattern_match:
+    regex: "\\\nip route ([^\\\n]+)"
+    match_all: yes
+  register: ios_net_static_route
+  export: yes

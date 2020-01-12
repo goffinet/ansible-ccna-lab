@@ -1,0 +1,34 @@
+---
+# tasks file for cisco_config_parser
+- block:
+  - name: run show running-config on device
+    ios_command:
+      authorize: yes
+      commands:
+        - show run
+    register: print_output
+
+  - name: save output to a file
+    copy: content="{{ print_output.stdout[0] }}" dest="{{role_path}}/files/{{ inventory_hostname }}.ios"
+
+  rescue:
+  - name: check if old version is available and use it
+    stat: path="{{role_path}}/files/{{ inventory_hostname }}.ios"
+    register: file_exists
+    delegate_to: localhost
+
+# - debug:
+#     msg: "{{lookup('file','{{role_path}}/files/{{ inventory_hostname }}.ios')}}"
+#   delegate_to: localhost
+
+- name: Generate vars with parser
+  command_parser:
+    file: "templates/parser/parse_running_config.yml"
+    content: "{{lookup('file','{{role_path}}/files/{{ inventory_hostname }}.ios')}}"
+  delegate_to: localhost
+
+- name: Generate host_vars from templates
+  template:
+    src: templates/ios_host_vars_template.j2
+    dest: "host_vars/{{ inventory_hostname }}"
+  delegate_to: localhost

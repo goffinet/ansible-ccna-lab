@@ -1,0 +1,37 @@
+---
+
+# This is a playbook for Ansible using network-engine with "show interfaces status" parser.
+
+- hosts: cisco
+
+  roles:
+  - ansible-network.network-engine
+
+  tasks:
+  - name: Run 'show interfaces status'
+    ios_command:
+      commands:
+        - show interfaces status
+    register: output
+
+#  - name: Display the output
+#    debug: var=output.stdout
+
+  - name: Parse the output
+    command_parser:
+      file: "parsers/ios/show_interfaces_status_parser.yml"
+      content: "{{ output.stdout[0] }}"
+
+#  - name: Display the data
+#    debug: var=interfaces_status_facts
+
+
+  - name: Delete '/tmp/interfaces_status_facts-[inventory_hostname].json'
+    file:
+      path: "/tmp/interfaces_status_facts-{{ inventory_hostname }}.json"
+      state: absent
+
+  - name: Write interfaces_status_facts to '/tmp/interfaces_status_facts-[inventory_hostname].json'
+    copy:
+      content: "{{ interfaces_status_facts | to_nice_json }}"
+      dest: "/tmp/interfaces_status_facts-{{ inventory_hostname }}.json"

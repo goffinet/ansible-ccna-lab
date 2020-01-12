@@ -1,0 +1,111 @@
+---
+hostname: {{ios_hostname.matches.0}}
+version: {{ios_major_version.matches.0}}
+{%if ios_snmp_community is defined%}
+snmp_community:
+{%for community in ios_snmp_community%}
+  - name: {{community.matches.0}}
+    access: {{community.matches.1}}
+{%endfor%}
+{%endif%}
+{%if ios_numbered_acl is defined or ios_named_acl%}
+ACL:
+{% for number in ios_numbered_acl|map(attribute='matches.0')|unique|list|sort%}
+  - name: {{number}}
+    rules:
+{%for acl in ios_numbered_acl%}
+{%if acl.matches.0 == number%}
+      - {{acl.matches.1}}
+{%endif%}
+{%endfor%}
+{%endfor%}
+{% for acl in ios_named_acl%}
+  - name: {{acl.name.matches.0}}
+    type: {{acl.type.matches.0}}
+    rules:
+{%for rule in acl.rules%}
+      - {{rule.matches}}
+{%endfor%}
+{%endfor%}
+{%endif%}
+{%if ios_line is defined%}
+line:
+{%for line in ios_line%}
+  - id: {{line.id.matches.0}}
+    type: {{line.type.matches.0}}
+{%if line.config is defined and line.config.0 is defined and line.config.0.matches is defined%}
+    config:
+{% for configline in line.config%}
+      - {{configline.matches}}
+{%endfor%}
+{%endif%}
+{%endfor%}
+{%endif%}
+
+##### to fix ####
+
+{%if ios_net_vlan is defined and ios_net_vlan != None %}
+### vlan ###
+vlans:
+{% for vlan in ios_net_vlan%}
+  - id: {{vlan.matches.0}}
+    name:  {{vlan.matches.1}}
+{% endfor %}
+{% endif %}
+
+{%if ios_net_vrf is defined and ios_net_vrf != None %}
+### vrf ###
+vrf:
+{% for vrf in ios_net_vrf%}
+{% if vrf.name.matches.0 is defined and vrf.name.matches.0 != None %}
+  - name: {{vrf.name.matches.0}}
+{% endif %}
+{% if vrf.rd.matches.0 is defined and vrf.rd.matches.0 != None %}
+    rd: {{vrf.rd.matches.0}}
+{% endif %}
+{% if vrf.families is defined and vrf.families != None %}
+    families: [{%for family in vrf.families %}'{{family.matches}}'{% if not loop.last %},{% endif %}{%endfor%}]
+{% endif %}
+{%endfor%}
+{% endif %}
+
+
+{% if ios_net_interfaces is defined and ios_net_interfaces != None %}
+### interfaces ###
+interfaces:
+{% for interfaces in ios_net_interfaces%}
+{% if interfaces.name.matches[0] is defined and interfaces.name.matches[0] != None %}
+  - interface: {{interfaces.name.matches.0}}
+{% endif %}
+{% if interfaces.description.matches[0] is defined and interfaces.description.matches[0] != None %}
+    description: {{interfaces.description.matches[0] |regex_escape() }}
+{% endif %}
+{% if interfaces.vrf.matches[0] is defined and interfaces.vrf.matches[0] != None %}
+    vrf: {{interfaces.vrf.matches[0]}}
+{% endif %}
+{% if interfaces.mtu.matches[0] is defined and interfaces.mtu.matches[0] != None %}
+    mtu: {{interfaces.mtu.matches[0]}}
+{% endif %}
+{% if interfaces.addresses.matches[0] is defined and interfaces.addresses.matches[0] != None %}
+    addresses:
+{%for address in interfaces.addresses.matches %}
+      - ip: {{address}}
+{%endfor%}
+{% endif %}
+{% if interfaces.accessgroup.matches[0] is defined and interfaces.accessgroup.matches[0] != None %}
+    access-group: {{interfaces.accessgroup.matches[0]}}
+{% endif %}
+{% if interfaces.nat.matches[0] is defined and interfaces.nat.matches[0] != None %}
+    nat: {{interfaces.nat.matches[0]}}
+{% endif %}
+{% if interfaces.shutdown.matches[0] is defined and interfaces.shutdown.matches[0] != None %}
+    shutdown: yes
+{% endif %}
+{% if interfaces.vlan.matches[0] is defined and interfaces.vlan.matches[0] != None %}
+    encapsulation: {{interfaces.vlan.matches[0]}}
+{% endif %}
+{% if interfaces.channelgroup.matches[0] is defined and interfaces.channelgroup.matches[0] != None %}
+    channel-group: {{interfaces.channelgroup.matches[0]}}
+{% endif %}
+{% endfor %}
+{% endif %}

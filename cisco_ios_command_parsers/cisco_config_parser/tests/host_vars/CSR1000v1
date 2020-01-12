@@ -1,0 +1,138 @@
+---
+hostname: CSR1000v1
+version: 15.5
+snmp_community:
+  - name: public
+    access: RO
+  - name: private
+    access: RW
+  - name: cisco
+    access: RO
+ACL:
+  - name: 1
+    rules:
+      - deny   any
+  - name: 102
+    rules:
+      - permit tcp any host 192.168.1.100 eq ftp
+      - permit tcp any host 192.168.1.100 eq ftp-data established
+      - permit tcp any any eq www
+      - permit tcp any any eq telnet
+      - permit tcp any any eq smtp
+      - permit tcp any any eq pop3
+      - permit tcp any any eq ftp
+      - permit tcp any any eq ftp-data
+  - name: 2
+    rules:
+      - permit any
+  - name: 2000
+    rules:
+      - permit tcp any host 2.2.2.1 eq www
+      - permit tcp any host 2.2.2.2 eq 443
+      - permit tcp any host 2.2.2.3 eq domain
+      - permit tcp any host 2.2.2.4 eq domain
+      - permit tcp any host 2.2.2.5 eq ftp-data
+      - permit tcp any host 2.2.2.6 eq ftp
+      - permit tcp any 3.3.3.0 0.0.0.255 eq smtp
+      - permit tcp any 3.3.3.0 0.0.0.255 eq pop3
+  - name: standard1
+    type: standard
+    rules:
+      - permit 192.168.1.104
+      - permit 192.168.1.100
+      - permit 192.168.1.10
+      - permit 192.168.1.13
+      - permit 192.168.1.12
+      - permit 192.168.1.1
+  - name: standard2
+    type: standard
+    rules:
+      - permit 88.8.8.23
+      - permit 88.8.8.13
+      - permit 88.8.8.33
+      - permit 88.8.8.34
+      - permit 88.8.8.36
+      - permit 88.8.8.37
+  - name: extended1
+    type: extended
+    rules:
+      - permit tcp host 88.8.8.8 any eq www
+      - permit tcp host 88.8.8.8 any eq telnet
+      - permit tcp host 88.8.8.8 any eq smtp
+      - permit tcp host 88.8.8.8 any eq pop3
+      - permit tcp host 88.8.8.8 any eq ftp
+      - permit tcp host 88.8.8.8 any eq ftp-data
+  - name: extended2
+    type: extended
+    rules:
+      - permit tcp any host 192.168.1.100 eq ftp
+      - permit tcp any host 192.168.1.100 eq ftp-data established
+      - permit tcp any any eq www
+      - permit tcp any any eq telnet
+      - permit tcp any any eq smtp
+      - permit tcp any any eq pop3
+      - permit tcp any any eq ftp
+      - permit tcp any any eq ftp-data
+line:
+  - id: 0
+    type: con
+  - id: 0
+    type: vty
+    config:
+      - login local
+  - id: 1
+    type: vty
+    config:
+      - login local
+      - length 0
+  - id: 2 4
+    type: vty
+    config:
+      - login local
+
+##### to fix ####
+
+
+### vrf ###
+vrf:
+  - name: CLIENT1
+    rd: 1:1
+    families: ['ipv4']
+  - name: CLIENT2
+    rd: 2:2
+    families: ['ipv4']
+  - name: Mgmt-intf
+    families: ['ipv4','ipv6']
+
+
+### interfaces ###
+interfaces:
+  - interface: Loopback0
+    addresses:
+      - ip: 2.2.2.2 255.255.255.255
+  - interface: GigabitEthernet1
+    addresses:
+      - ip: dhcp
+  - interface: GigabitEthernet2
+    shutdown: yes
+  - interface: GigabitEthernet2.12
+    description: CLIENT1
+    vrf: CLIENT1
+    addresses:
+      - ip: 192.168.12.2 255.255.255.0
+    encapsulation: 12
+  - interface: GigabitEthernet2.21
+    vrf: CLIENT2
+    addresses:
+      - ip: 192.168.21.2 255.255.255.0
+    encapsulation: 21
+  - interface: GigabitEthernet3
+    description: cers\ PE1
+    addresses:
+      - ip: 192.168.14.4 255.255.255.0
+    shutdown: yes
+  - interface: GigabitEthernet4
+    description: vers\ PE2
+    addresses:
+      - ip: 192.168.24.4 255.255.255.0
+    shutdown: yes

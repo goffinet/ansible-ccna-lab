@@ -1,0 +1,37 @@
+---
+
+# This is a playbook for Ansible using network-engine with "show ip interface" parser.
+
+- hosts: cisco
+
+  roles:
+  - ansible-network.network-engine
+
+  tasks:
+  - name: Run 'show ip interface'
+    ios_command:
+      commands:
+        - show ip interface
+    register: output
+
+    #  - name: Display the output
+    #    debug: var=output.stdout
+
+  - name: Parse the output
+    command_parser:
+      file: "parsers/ios/show_ip_interface_parser.yml"
+      content: "{{ output.stdout[0] }}"
+
+    #  - name: Display the data
+    #    debug: var=ip_interface_facts
+
+
+  - name: Delete '/tmp/ip_interface_facts-[inventory_hostname].json'
+    file:
+      path: "/tmp/ip_interface_facts-{{ inventory_hostname }}.json"
+      state: absent
+
+  - name: Write ip_interface_facts to '/tmp/ip_interface_facts-[inventory_hostname].json'
+    copy:
+      content: "{{ ip_interface_facts | to_nice_json }}"
+      dest: "/tmp/ip_interface_facts-{{ inventory_hostname }}.json"

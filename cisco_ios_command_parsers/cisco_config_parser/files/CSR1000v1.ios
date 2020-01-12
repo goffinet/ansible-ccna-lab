@@ -1,0 +1,316 @@
+Building configuration...
+
+Current configuration : 5848 bytes
+!
+! Last configuration change at 10:55:02 UTC Mon Mar 25 2019
+!
+version 15.5
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no platform punt-keepalive disable-kernel-core
+platform console serial
+!
+hostname CSR1000v1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+vrf definition CLIENT1
+ rd 1:1
+ !
+ address-family ipv4
+  route-target export 1:1
+  route-target import 1:1
+ exit-address-family
+!
+vrf definition CLIENT2
+ rd 2:2
+ !
+ address-family ipv4
+  route-target export 2:2
+  route-target import 2:2
+ exit-address-family
+!
+vrf definition Mgmt-intf
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family ipv6
+ exit-address-family
+!
+!
+no aaa new-model
+!
+!
+!
+!
+!
+!
+!
+!
+!
+
+
+no ip domain lookup
+ip domain name lab
+
+ip dhcp-client default-router distance 1
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+template pep
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+license udi pid CSR1000V sn 93IOCA0503J
+spanning-tree extend system-id
+!
+username cisco privilege 15 password 0 cisco
+!
+redundancy
+!
+!
+!
+!
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! 
+! 
+!
+!
+interface Loopback0
+ ip address 2.2.2.2 255.255.255.255
+ ip ospf 1 area 0
+!
+interface GigabitEthernet1
+ ip address dhcp
+ negotiation auto
+!
+interface GigabitEthernet2
+ no ip address
+ shutdown
+ negotiation auto
+!
+interface GigabitEthernet2.12
+ description CLIENT1
+ encapsulation dot1Q 12
+ vrf forwarding CLIENT1
+ ip address 192.168.12.2 255.255.255.0
+!
+interface GigabitEthernet2.21
+ encapsulation dot1Q 21
+ vrf forwarding CLIENT2
+ ip address 192.168.21.2 255.255.255.0
+!
+interface GigabitEthernet3
+ description cers PE1
+ ip address 192.168.14.4 255.255.255.0
+ ip ospf 1 area 0
+ shutdown
+ negotiation auto
+ mpls ip
+!
+interface GigabitEthernet4
+ description vers PE2
+ ip address 192.168.24.4 255.255.255.0
+ ip ospf 1 area 0
+ shutdown
+ negotiation auto
+ mpls ip
+!
+router ospf 1
+ router-id 2.2.2.2
+!
+router bgp 64512
+ template peer-policy RR
+  route-reflector-client
+  send-community both
+ exit-peer-policy
+ !
+ template peer-session RR
+  remote-as 64512
+  update-source Loopback0
+ exit-peer-session
+ !
+ bgp router-id 4.4.4.4
+ bgp log-neighbor-changes
+ no bgp default ipv4-unicast
+ neighbor 1.1.1.1 inherit peer-session RR
+ neighbor 3.3.3.3 inherit peer-session RR
+ neighbor 4.4.4.4 remote-as 64512
+ neighbor 4.4.4.4 update-source Loopback0
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family vpnv4
+  neighbor 1.1.1.1 activate
+  neighbor 1.1.1.1 send-community extended
+  neighbor 1.1.1.1 inherit peer-policy RR
+  neighbor 3.3.3.3 activate
+  neighbor 3.3.3.3 send-community extended
+  neighbor 3.3.3.3 inherit peer-policy RR
+  neighbor 4.4.4.4 activate
+  neighbor 4.4.4.4 send-community both
+ exit-address-family
+ !
+ address-family ipv4 vrf CLIENT1
+  redistribute connected
+  neighbor 192.168.12.3 remote-as 65000
+  neighbor 192.168.12.3 activate
+  neighbor 192.168.12.3 send-community both
+  neighbor 192.168.12.3 allowas-in
+  neighbor 192.168.12.3 route-map CLIENT1-FW-IN in
+  neighbor 192.168.12.3 route-map CLIENT1-FW-OUT out
+ exit-address-family
+ !
+ address-family ipv4 vrf CLIENT2
+  redistribute connected
+  neighbor 192.168.21.3 remote-as 65000
+  neighbor 192.168.21.3 activate
+  neighbor 192.168.21.3 send-community both
+  neighbor 192.168.21.3 allowas-in
+  neighbor 192.168.21.3 route-map FW-OUT out
+ exit-address-family
+!
+!
+virtual-service csr_mgmt
+!
+ip forward-protocol nd
+!
+no ip http server
+no ip http secure-server
+ip route vrf Mgmt-intf 0.0.0.0 0.0.0.0 10.248.16.1
+!
+ip access-list standard standard1
+ permit 192.168.1.104
+ permit 192.168.1.100
+ permit 192.168.1.10
+ permit 192.168.1.13
+ permit 192.168.1.12
+ permit 192.168.1.1
+ip access-list standard standard2
+ permit 88.8.8.23
+ permit 88.8.8.13
+ permit 88.8.8.33
+ permit 88.8.8.34
+ permit 88.8.8.36
+ permit 88.8.8.37
+!
+ip access-list extended extended1
+ permit tcp host 88.8.8.8 any eq www
+ permit tcp host 88.8.8.8 any eq telnet
+ permit tcp host 88.8.8.8 any eq smtp
+ permit tcp host 88.8.8.8 any eq pop3
+ permit tcp host 88.8.8.8 any eq ftp
+ permit tcp host 88.8.8.8 any eq ftp-data
+ip access-list extended extended2
+ permit tcp any host 192.168.1.100 eq ftp
+ permit tcp any host 192.168.1.100 eq ftp-data established
+ permit tcp any any eq www
+ permit tcp any any eq telnet
+ permit tcp any any eq smtp
+ permit tcp any any eq pop3
+ permit tcp any any eq ftp
+ permit tcp any any eq ftp-data
+!
+access-list 1 deny   any
+access-list 2 permit any
+access-list 102 permit tcp any host 192.168.1.100 eq ftp
+access-list 102 permit tcp any host 192.168.1.100 eq ftp-data established
+access-list 102 permit tcp any any eq www
+access-list 102 permit tcp any any eq telnet
+access-list 102 permit tcp any any eq smtp
+access-list 102 permit tcp any any eq pop3
+access-list 102 permit tcp any any eq ftp
+access-list 102 permit tcp any any eq ftp-data
+access-list 2000 permit tcp any host 2.2.2.1 eq www
+access-list 2000 permit tcp any host 2.2.2.2 eq 443
+access-list 2000 permit tcp any host 2.2.2.3 eq domain
+access-list 2000 permit tcp any host 2.2.2.4 eq domain
+access-list 2000 permit tcp any host 2.2.2.5 eq ftp-data
+access-list 2000 permit tcp any host 2.2.2.6 eq ftp
+access-list 2000 permit tcp any 3.3.3.0 0.0.0.255 eq smtp
+access-list 2000 permit tcp any 3.3.3.0 0.0.0.255 eq pop3
+!
+route-map IN permit 10
+ set local-preference 10
+!
+route-map CLIENT1-FW-IN deny 10
+ match extcommunity CLIENT1-FILTER
+!
+route-map CLIENT1-FW-IN permit 100
+ set local-preference 20
+!
+route-map FW-OUT permit 10
+ set metric 100
+!
+route-map CLIENT1-FW-OUT permit 10
+ set metric 200
+ set extcommunity rt 64512:101 additive
+!
+snmp-server community public RO 1
+snmp-server community private RW 2
+snmp-server community cisco RO standard1
+snmp-server chassis-id 98K0IZXANAR
+!
+!
+control-plane
+!
+ !
+ !
+ !
+ !
+!
+!
+!
+!
+!
+line con 0
+line vty 0
+ login local
+line vty 1
+ login local
+ length 0
+line vty 2 4
+ login local
+!
+!
+end
