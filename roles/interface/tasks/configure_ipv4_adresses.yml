@@ -5,7 +5,7 @@
     config:
       - name: "{{ item.id }}"
         ipv4:
-        - address: "{{ item.ipv4.address }}"
+        - address: "{{ item.ipv4.address|list }}"
   loop: "{{ interface }}"
   tags:
     - test
