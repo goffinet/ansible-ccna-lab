@@ -4,16 +4,16 @@ interface:
   - id: GigabitEthernet0/0
     description: "LAN R1"
     ipv4:
-      - 192.168.1.1/24
+      - address: 192.168.1.1/24
   - id: GigabitEthernet0/2
     description: "Link to R2"
     ipv4:
-      - 192.168.225.1/24
+      - address: 192.168.225.1/24
   - id: GigabitEthernet0/3
     description: "Link to R3"
     ipv4:
-      - 192.168.226.1/24
-      - 192.168.192.168/32
+      - address: 192.168.226.1/24
+      - address: 192.168.192.168/32
 interface6:
   - id: GigabitEthernet0/0
     net6: 'FE80::1'
