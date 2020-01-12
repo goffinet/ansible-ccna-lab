@@ -6,7 +6,7 @@
       - name: "{{ item[0].id }}"
         ipv4:
         - address: "{{ item[1] }}"
-  with_subelements:
+  loop:
     - "{{ interface }}"
     - "{{ interface[].ipv4.address }}"
   tags:
