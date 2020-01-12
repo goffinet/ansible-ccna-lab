@@ -1,11 +1,13 @@
 ---
 # https://docs.ansible.com/ansible/devel/modules/ios_l3_interface_module.html#ios-l3-interface-module
 - name: configure ipv4 adresses
-  ios_l3_interfaces:
-    config:
-      - name: "{{ item[0].id }}"
-        ipv4:
-        - address: "{{ item[1].address }}"
+#  ios_l3_interfaces:
+#    config:
+#      - name: "{{ item[0].id }}"
+#        ipv4:
+#        - address: "{{ item[1].address }}"
+  debug:
+    msg: "{{ item[0].id }} et {{ item[1].address }}"
   loop: "{{ interface|subelements(item.ipv4) }}"
   tags:
     - test
