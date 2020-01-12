@@ -6,7 +6,7 @@
       - name: "{{ item[0].id }}"
         ipv4:
         - address: "{{ item[1] }}"
-  with_subelements:
+  with_nested:
     - interface
     - ipv4.address
   tags:
