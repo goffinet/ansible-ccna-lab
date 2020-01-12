@@ -7,7 +7,7 @@
 - hosts: cisco
 
   vars:
-    vrf: ""
+#    vrf: ""
 
   roles:
   - ansible-network.network-engine
