@@ -7,4 +7,4 @@
         ipv4:
         - address: "{{ item.1.address }}"
   loop: "{{ interface|subelements('ipv4') }}"
-  when: interface.ipv4 is defined
+#  when: interface.ipv4 is defined
