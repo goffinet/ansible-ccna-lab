@@ -1,0 +1,19 @@
+---
+# ansible-galaxy install ansible-network.cisco_ios
+- hosts: cisco
+  gather_facts: True
+  tasks:
+    - name: collect facts from cisco ios devices
+      import_role:
+        name: goffinet.cisco_ios
+        tasks_from: get_facts
+      vars:
+        subset:
+          - system
+          - interfaces
+          - routing
+          - cdp
+          - lldp
+    - name: print results
+      debug:
+        msg: "{{ cisco_ios  }}"
