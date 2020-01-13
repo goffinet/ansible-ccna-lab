@@ -2,5 +2,6 @@
 - import_tasks: configure_fhrp.yml
   when:
     - ansible_network_os == 'ios'
+    - routing.fhrp is defined
   tags:
     - fhrp
