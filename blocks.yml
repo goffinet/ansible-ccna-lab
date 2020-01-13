@@ -3,9 +3,9 @@
   gather_facts: False
   roles:
     - role: common
+    - role: vlans
     - role: interface
     - role: etherchannel
-    - role: vlans
     - role: spanning-tree
     - role: ipv4
     - role: ipv6
