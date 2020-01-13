@@ -45,111 +45,105 @@ interface:
       - 172.16.227.1/24
     ipv6_link_local_addresses:
       - 'FE80::3'
-ipv4routing:
+routing:
   rid: 3.3.3.3
   passive:
     - GigabitEthernet0/0
   pid: 1
   as: 1
-ipv6routing:
-  rid: 3.3.3.3
-  passive:
-    - GigabitEthernet0/0
-  pid: 1
-  as: 1
-  area: 0
-rip:
-  - 192.168.65.0
-  - 192.168.226.0
-  - 192.168.227.0
-ospfv2:
-  - id: GigabitEthernet0/0
-    ipv4: 192.168.65.1
-    pri: 255
-    cost: 1
-    area: 0
-  - id: GigabitEthernet0/1
-    ipv4: 192.168.226.2
-    pri: 255
-    cost: 1
-    area: 0
-  - id: GigabitEthernet0/2
-    ipv4: 192.168.227.2
-    pri: 255
-    cost: 1
-    area: 0
-  - id: GigabitEthernet0/3
-    ipv4: 172.16.240.1
-    pri: 255
-    cost: 1
-    area: 0
-  - id: GigabitEthernet0/4
-    ipv4: 172.16.241.1
-    pri: 255
-    cost: 1
-    area: 0
-  - id: GigabitEthernet0/5
-    ipv4: 172.16.226.1
-    pri: 255
-    cost: 1
-    area: 0
-  - id: GigabitEthernet0/6
-    ipv4: 172.16.227.1
-    pri: 255
-    cost: 1
-    area: 0
-ospfv3:
-  - id: GigabitEthernet0/0
-    pri: 255
-    cost: 1
-    area: 0
-  - id: GigabitEthernet0/1
-    pri: 255
-    cost: 1
-    area: 0
-  - id: GigabitEthernet0/2
-    pri: 255
-    cost: 1
-    area: 0
-  - id: GigabitEthernet0/3
-    pri: 255
-    cost: 1
-    area: 0
-  - id: GigabitEthernet0/4
-    pri: 255
-    cost: 1
-    area: 0
-  - id: GigabitEthernet0/5
-    pri: 255
-    cost: 1
-    area: 0
-  - id: GigabitEthernet0/6
-    pri: 255
-    cost: 1
-    area: 0
-eigrp4:
-  - id: GigabitEthernet0/0
-    ipv4: 192.168.65.0 255.255.255.0
-  - id: GigabitEthernet0/1
-    ipv4: 192.168.226.0 255.255.255.0
-  - id: GigabitEthernet0/2
-    ipv4: 192.168.227.0 255.255.255.0
-  - id: GigabitEthernet0/3
-    ipv4: 172.16.240.0 255.255.255.0
-  - id: GigabitEthernet0/4
-    ipv4: 172.16.241.0 255.255.255.0
-  - id: GigabitEthernet0/5
-    ipv4: 172.16.226.0 255.255.255.0
-  - id: GigabitEthernet0/6
-    ipv4: 172.16.227.0 255.255.255.0
-eigrp6:
-  - id: GigabitEthernet0/0
-  - id: GigabitEthernet0/1
-  - id: GigabitEthernet0/2
-  - id: GigabitEthernet0/3
-  - id: GigabitEthernet0/4
-  - id: GigabitEthernet0/5
-  - id: GigabitEthernet0/6
+  rip:
+    - 192.168.65.0
+    - 192.168.226.0
+    - 192.168.227.0
+  ospfv2:
+    - id: GigabitEthernet0/0
+      ipv4: 192.168.65.1
+      pri: 255
+      cost: 1
+      area: 0
+    - id: GigabitEthernet0/1
+      ipv4: 192.168.226.2
+      pri: 255
+      cost: 1
+      area: 0
+    - id: GigabitEthernet0/2
+      ipv4: 192.168.227.2
+      pri: 255
+      cost: 1
+      area: 0
+    - id: GigabitEthernet0/3
+      ipv4: 172.16.240.1
+      pri: 255
+      cost: 1
+      area: 0
+    - id: GigabitEthernet0/4
+      ipv4: 172.16.241.1
+      pri: 255
+      cost: 1
+      area: 0
+    - id: GigabitEthernet0/5
+      ipv4: 172.16.226.1
+      pri: 255
+      cost: 1
+      area: 0
+    - id: GigabitEthernet0/6
+      ipv4: 172.16.227.1
+      pri: 255
+      cost: 1
+      area: 0
+  ospfv3:
+    - id: GigabitEthernet0/0
+      pri: 255
+      cost: 1
+      area: 0
+    - id: GigabitEthernet0/1
+      pri: 255
+      cost: 1
+      area: 0
+    - id: GigabitEthernet0/2
+      pri: 255
+      cost: 1
+      area: 0
+    - id: GigabitEthernet0/3
+      pri: 255
+      cost: 1
+      area: 0
+    - id: GigabitEthernet0/4
+      pri: 255
+      cost: 1
+      area: 0
+    - id: GigabitEthernet0/5
+      pri: 255
+      cost: 1
+      area: 0
+    - id: GigabitEthernet0/6
+      pri: 255
+      cost: 1
+      area: 0
+  eigrp4:
+    - id: GigabitEthernet0/0
+      ipv4: 192.168.65.0 255.255.255.0
+    - id: GigabitEthernet0/1
+      ipv4: 192.168.226.0 255.255.255.0
+    - id: GigabitEthernet0/2
+      ipv4: 192.168.227.0 255.255.255.0
+    - id: GigabitEthernet0/3
+      ipv4: 172.16.240.0 255.255.255.0
+    - id: GigabitEthernet0/4
+      ipv4: 172.16.241.0 255.255.255.0
+    - id: GigabitEthernet0/5
+      ipv4: 172.16.226.0 255.255.255.0
+    - id: GigabitEthernet0/6
+      ipv4: 172.16.227.0 255.255.255.0
+  eigrp6:
+    - id: GigabitEthernet0/0
+    - id: GigabitEthernet0/1
+    - id: GigabitEthernet0/2
+    - id: GigabitEthernet0/3
+    - id: GigabitEthernet0/4
+    - id: GigabitEthernet0/5
+    - id: GigabitEthernet0/6
+
 dhcp_pool:
   - id: "LANR3"
     network: 192.168.65.0
