@@ -2,6 +2,7 @@
 - import_tasks: enable_ospfv3.yml
   when:
     - ansible_network_os == 'ios'
+    - routing.ospfv3 is defined
   tags:
     - ospfv3
     - ipv6_dynamic_routing

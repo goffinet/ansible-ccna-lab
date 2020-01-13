@@ -1,5 +1,7 @@
 ---
 - import_tasks: configure_ipv6_addresses.yml
-  when: ansible_network_os == 'ios'
+  when:
+    - ansible_network_os == 'ios'
+    - routing is defined
   tags:
     - ipv6

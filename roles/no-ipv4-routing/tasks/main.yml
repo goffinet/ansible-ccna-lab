@@ -1,5 +1,7 @@
 ---
 - import_tasks: disable_ipv4_routing.yml
-  when: ansible_network_os == 'ios'
+  when:
+    - ansible_network_os == 'ios'
+    - routing is not defined
   tags:
     - no_ipv4_routing

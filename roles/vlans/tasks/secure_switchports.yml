@@ -1,12 +1,13 @@
 ---
-- name: shutdown all switchports
-  ios_config:
-    parents: interface {{ item.0.id }}
-    lines:
-      - shutdown
+- name: disable switchports
+  ios_interfaces:
+    config:
+      - name: "{{ item.0.id }}"
+        enabled: True
   loop: "{{ interfaces|subelements('stub', skip_missing=True) }}"
   when:
     - stubvlan is defined
+
 - name: create stub vlan
   ios_vlans:
     config:
