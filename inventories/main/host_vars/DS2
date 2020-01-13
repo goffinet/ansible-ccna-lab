@@ -219,6 +219,63 @@ routing:
     - id: GigabitEthernet3/0
     - id: GigabitEthernet2/1
     - id: GigabitEthernet3/1
+  fhrp:
+    - id: Vlan10
+      group: 10
+      protocol: ipv4
+      address: 172.16.10.254
+      priority: 100
+      preempt: false
+      mode: standby
+    - id: Vlan20
+      group: 20
+      protocol: ipv4
+      address: 172.16.20.254
+      priority: 150
+      preempt: true
+      mode: standby
+    - id: Vlan30
+      group: 30
+      protocol: ipv4
+      address: 172.16.30.254
+      priority: 100
+      preempt: false
+      mode: standby
+    - id: Vlan40
+      group: 40
+      protocol: ipv4
+      address: 172.16.40.254
+      priority: 150
+      preempt: true
+      mode: standby
+    - id: Vlan10
+      group: 16
+      protocol: ipv6
+      address: 'FE80::D:1'
+      priority: 100
+      preempt: false
+      mode: standby
+    - id: Vlan20
+      group: 26
+      protocol: ipv6
+      address: 'FE80::D:1'
+      priority: 150
+      preempt: true
+      mode: standby
+    - id: Vlan30
+      group: 36
+      protocol: ipv6
+      address: 'FE80::D:1'
+      priority: 100
+      preempt: false
+      mode: standby
+    - id: Vlan40
+      group: 46
+      protocol: ipv6
+      address: 'FE80::D:1'
+      priority: 150
+      preempt: true
+      mode: standby
 dhcp:
   dhcp_pool:
     - id: "VLAN10"
@@ -258,60 +315,3 @@ dhcp:
       end: 172.16.40.50
     - start: 172.16.40.100
       end: 172.16.40.254
-fhrp:
-  - id: Vlan10
-    group: 10
-    protocol: ipv4
-    address: 172.16.10.254
-    priority: 100
-    preempt: false
-    mode: standby
-  - id: Vlan20
-    group: 20
-    protocol: ipv4
-    address: 172.16.20.254
-    priority: 150
-    preempt: true
-    mode: standby
-  - id: Vlan30
-    group: 30
-    protocol: ipv4
-    address: 172.16.30.254
-    priority: 100
-    preempt: false
-    mode: standby
-  - id: Vlan40
-    group: 40
-    protocol: ipv4
-    address: 172.16.40.254
-    priority: 150
-    preempt: true
-    mode: standby
-  - id: Vlan10
-    group: 16
-    protocol: ipv6
-    address: 'FE80::D:1'
-    priority: 100
-    preempt: false
-    mode: standby
-  - id: Vlan20
-    group: 26
-    protocol: ipv6
-    address: 'FE80::D:1'
-    priority: 150
-    preempt: true
-    mode: standby
-  - id: Vlan30
-    group: 36
-    protocol: ipv6
-    address: 'FE80::D:1'
-    priority: 100
-    preempt: false
-    mode: standby
-  - id: Vlan40
-    group: 46
-    protocol: ipv6
-    address: 'FE80::D:1'
-    priority: 150
-    preempt: true
-    mode: standby
