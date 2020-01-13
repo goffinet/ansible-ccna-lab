@@ -1,10 +1,10 @@
 ---
 - name: configure access ports
-  ios_config:
-    parents: interface {{ item.0.id }}
-    lines:
-      - switchport mode access
-      - switchport access vlan {{ item.1.vlan }}
+  ios_l2_interfaces:
+    config:
+      - name: "{{ item.0.id }}"
+        access:
+          vlan: "{{ item.1.vlan }}"
   loop: "{{ interfaces|subelements('access', skip_missing=True) }}"
 - name: stp protection on access ports
   ios_config:

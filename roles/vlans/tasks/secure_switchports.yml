@@ -17,12 +17,12 @@
   when:
     - stubvlan is defined
 - name: configure stub access ports
-  ios_config:
-    parents: interface {{ item.0.id }}
-    lines:
-      - switchport mode access
-      - switchport access vlan {{ stubvlan.id }}
-  loop: "{{ interfaces|subelements('stub', skip_missing=True)|list }}"
+  ios_l2_interfaces:
+    config:
+      - name: "{{ item.0.id }}"
+        access:
+          vlan: "{{ item.1.vlan }}"
+  loop: "{{ interfaces|subelements('stub', skip_missing=True) }}"
   when:
     - stubvlan is defined
 - name: stp protection on stub access ports
