@@ -3,7 +3,7 @@
   ios_interfaces:
     config:
       - name: "{{ item.0.id }}"
-        enabled: True
+        enabled: False
   loop: "{{ interfaces|subelements('stub', skip_missing=True)|list }}"
   when:
     - stubvlan is defined
