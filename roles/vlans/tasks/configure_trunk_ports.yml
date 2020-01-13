@@ -1,11 +1,9 @@
 ---
 - name: configure trunk ports
-  ios_l2_interfaces:
-    config:
-      - name: "{{ item.0.id }}"
-        trunk:
-          native_vlan: "{{ item.1.native }}"
-          encapsulation: dot1q
-#          allowed_vlan: 10-20, 40
-#          pruning_vlan: 10,20
+  ios_config:
+    parents: interface {{ item.0.id }}
+    lines:
+      - switchport trunk encapsulation dot1q
+      - switchport trunk native vlan {{ item.1.native }}
+      - switchport mode trunk
   loop: "{{ interfaces|subelements('trunk', skip_missing=True) }}"
