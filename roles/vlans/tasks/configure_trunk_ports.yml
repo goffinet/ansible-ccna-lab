@@ -1,5 +1,5 @@
 ---
-- name: Merge provided configuration with device configuration
+- name: configure trunk ports
   ios_l2_interfaces:
     config:
       - name: "{{ item.0.id }}"
