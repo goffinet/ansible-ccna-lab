@@ -1,5 +1,5 @@
 ---
-- name: disable switchports
+- name: disable stub switchports
   ios_interfaces:
     config:
       - name: "{{ item.0.id }}"
@@ -7,7 +7,6 @@
   loop: "{{ interfaces|subelements('stub', skip_missing=True)|list }}"
   when:
     - stubvlan is defined
-
 - name: create stub vlan
   ios_vlans:
     config:
@@ -17,7 +16,7 @@
         shutdown: disabled
   when:
     - stubvlan is defined
-- name: configure access ports
+- name: configure stub access ports
   ios_config:
     parents: interface {{ item.0.id }}
     lines:
@@ -26,7 +25,7 @@
   loop: "{{ interfaces|subelements('stub', skip_missing=True)|list }}"
   when:
     - stubvlan is defined
-- name: stp protection on access ports
+- name: stp protection on stub access ports
   ios_config:
     parents: interface {{ item.0.id }}
     lines:

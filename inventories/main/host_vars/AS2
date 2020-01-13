@@ -15,19 +15,19 @@ interfaces:
   - id: GigabitEthernet2/0
     description: "PC5 vlan 10 access port"
     access:
-      vlan: 10
+      - vlan: 10
   - id: GigabitEthernet2/1
     description: "PC6 vlan 20 access port"
     access:
-      vlan: 20
+      - vlan: 20
   - id: GigabitEthernet2/2
     description: "PC7 vlan 30 access port"
     access:
-      vlan: 30
+      - vlan: 30
   - id: GigabitEthernet2/3
     description: "PC8 vlan 40 access port"
     access:
-      vlan: 40
+      - vlan: 40
   - id: Vlan99
     description: "Management interface"
     ipv4_addresses:

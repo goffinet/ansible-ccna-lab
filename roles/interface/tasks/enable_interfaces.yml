@@ -15,6 +15,6 @@
         enabled: True
         description: "{{ item.description }}"
   loop: "{{ interfaces }}"
-  when: interfaces is defined
+  when: item.stub is not defined
   tags:
     - interface
