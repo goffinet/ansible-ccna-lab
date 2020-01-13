@@ -21,7 +21,7 @@
     config:
       - name: "{{ item.0.id }}"
         access:
-          vlan: "{{ item.1.vlan }}"
+          vlan: "{{ stubvlan.id }}"
   loop: "{{ interfaces|subelements('stub', skip_missing=True) }}"
   when:
     - stubvlan is defined
