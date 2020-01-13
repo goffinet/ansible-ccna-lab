@@ -1,5 +1,9 @@
 ---
 - hosts: blocks
   gather_facts: False
-  roles:
-    - common
+  tasks:
+    - debug:
+        msg: |
+            "router ospf {{ item.0.pid }}
+            "
+      loop: "{{ routing | subelements('ipv4.ospfv2', skip_missing=True) }}"
