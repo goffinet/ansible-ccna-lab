@@ -335,48 +335,7 @@ ansible core -m ios_command -a "commands='traceroute 192.168.1.1 source GigabitE
 ansible core -m ios_command -a "commands='traceroute 172.16.10.1 source GigabitEthernet0/0 probe 1 numeric'"
 ```
 
-## 6. Tags
-
-- access
-- banners
-- common
-- create_vlans
-- enable_ipv6
-- etherchannel
-- interface
-- ipv4
-- ipv6
-- l2
-- shut_switch
-- stp
-- trunk
-- vlans
-- no_ipv4_routing
-- dhcp-server
-- disable-eigrp4
-- disable-ospfv2
-- disable-rip
-- eigrp4
-- eigrp6
-- enable_ipv6
-- fhrp
-- interface
-- ipv4
-- ipv4_routing
-- nat
-- ipv6
-- ipv6_routing
-- ospfv2
-- ospfv3
-- rip
-- static_to_eigrp4
-- static_to_ospfv2
-- static_to_rip
-- get
-- save
-- write
-
-## 7. Historical Todo
+## Historical Todo
 
 ### Phase 0 : Écriture de playbooks avec les modules ios_*
 
@@ -384,7 +343,7 @@ Archivé.
 
 ### Phase I
 
-Portage en rôles.
+Portage en rôles idempotents.
 
 * dhcp-relay
 * ~~**fhrp4**~~ + delay
@@ -392,23 +351,22 @@ Portage en rôles.
 * **cdp / lldp**
 * **syslog**
 * **ntp** (+ auth)
-* auth eigrp4/6 et ospfv2/v3
+* eigrp4/6 / ospfv2/v3 authentication
 * **snmpv2c** / **snmpv3**
 * **zbf**
-* ra-config / dhcpv6 stateless / dhcpv6 stateful / (rdnss)
+* ra-config fine tuning / dhcpv6 stateless / dhcpv6 stateful / (rdnss)
 * ppp / chap / pap / pppoe
 * gre ipv4 / gre ipv6
 * **security hardening**
-* Revoir la structure des données
 * ~~dependencies~~
 * ~~tags**~~
-* tasks by jinja2 templating
+* tasks by jinja2 templating --> Phase II
 
 ### Phase II
 
-Rôles idempotents qui agissent sur un modèle de fichier de configuration basé sur des choix d'infrastructure (des variables) et qui sera poussé sur les périphériques par la procédure `config replace flash:XXX force`.
+Rôles "immutables" qui agissent sur un modèle de fichier de configuration basé sur des choix d'infrastructure (des variables) et qui sera poussé sur les périphériques par la procédure `config replace flash:XXX force`.
 
-"Idempotent" roles by templating one config file based on infrastructure choices (variables) and pushed by `config replace flash:XXX force` procedure to the devices.
+"Immutable" roles by templating one config file based on infrastructure choices (variables) and pushed by `config replace flash:XXX force` procedure to the devices.
 
 ### Phase III
 
