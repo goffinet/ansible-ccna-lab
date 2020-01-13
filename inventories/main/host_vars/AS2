@@ -36,27 +36,27 @@ interfaces:
   - id: GigabitEthernet0/0
     description: "Trunk Group Channel4 to DS2"
     trunk:
-      native: 99
+      - native: 99
   - id: GigabitEthernet1/0
     description: "Trunk Group Channel4 to DS2"
     trunk:
-      native: 99
+      - native: 99
   - id: GigabitEthernet0/1
     description: "Trunk Group Channel5 to DS1"
     trunk:
-      native: 99
+      - native: 99
   - id: GigabitEthernet1/1
     description: "Trunk Group Channel5 to DS1"
     trunk:
-      native: 99
+      - native: 99
   - id: Port-channel4
     description: "Trunk Group Channel4 to DS2"
     trunk:
-      native: 99
+      - native: 99
   - id: Port-channel5
     description: "Trunk Group Channel5 to DS1"
     trunk:
-      native: 99
+      - native: 99
   - id: GigabitEthernet0/2
     description: "Stub interface"
     stub:
