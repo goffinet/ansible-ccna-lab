@@ -108,12 +108,34 @@ shutdown -r now
 
 ```
 
+### 1.5. Cloner le dépôt
+
 Il est nécessaire de cloner le dépot sur la machine de contrôle.
 
 ```bash
 git clone https://github.com/goffinet/ansible-ccna-lab
+cd ansible-ccna-lab
 ```
 
+### 1.6. Examiner les paramètres de configuration de Ansible
+
+Le fichier de configuration `ansible.cfg`dans le dossier du dépôt configure Ansible :
+
+```toml
+[defaults]
+inventory=./inventories/main/hosts
+host_key_checking=False
+retry_files_enabled = False
+log_path = ./ansible.log
+callback_whitelist = profile_tasks
+#forks = 20
+strategy = linear
+#gathering = explicit
+#display_ok_hosts=no
+#display_skipped_hosts=no
+[callback_profile_tasks ]
+task_output_limit = 100
+```
 
 ## 2. Topologie tripod
 
@@ -227,6 +249,7 @@ On trouvera plus bas les fichiers de configuration qui déploient la solution  V
 Se rendre dans le dossier des livres de jeux :
 
 ```bash
+cd
 git clone https://github.com/goffinet/ansible-ccna-lab
 cd ansible-ccna-lab
 ```
@@ -244,7 +267,11 @@ L'inventaire est défini comme suit (fichier `inventories/main/hosts`) :
 
 ```ini
 [all:vars]
-#method=modules # modules or templating
+#method=modules # modules or templating not yet implemented
+routing_ipv4='["eigrp4"]'
+routing_ipv6='["eigrp6"]'
+#routing_ipv4='["rip", "eigrp4", "ospfv2"]'
+#routing_ipv6='["eigrp6", "ospfv3"]'
 
 [core]
 R1
@@ -274,6 +301,7 @@ ansible_ssh_pass=testtest
 ansible_port=22
 ansible_connection=network_cli
 ansible_network_os=ios
+
 ```
 
 Les configurations sont définies en YAML dans les fichiers de variables d'inventaire (dossiers `inventories/main/group_vars` et `inventories/main/host_vars`).
@@ -281,9 +309,9 @@ Les configurations sont définies en YAML dans les fichiers de variables d'inven
 ```raw
 inventories/main
 ├── group_vars
-│   ├── all       --> ipv6 activé, protocoles de routage ipv4/ipv6
+│   ├── all       --> protocoles de routage ipv4/ipv6
 │   └── blocks    --> variables vlans, switchports et stp mode
-├── hosts         --> fichier d'inventaire
+├── hosts         --> fichier d'inventaire, avec des variables génériques
 └── host_vars     --> variables propres à chaque périphérique
     ├── AS1
     ├── AS2
@@ -296,7 +324,7 @@ inventories/main
 
 ### 5.1. Livres de jeu
 
-Les livres de jeu font appel à des rôles qui trouvent la valeur des variables dans l'inventaire
+Les livres de jeu font appel à des rôles qui trouvent la valeur des variables dans l'inventaire.
 
 
 Le playbook `core.yml` configure la topologie tripod :
