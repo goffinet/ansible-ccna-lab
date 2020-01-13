@@ -4,7 +4,7 @@
   tasks:
     - debug:
         msg: |
-            "router ospf {{ item.0.pid }}
-            network {{ item.1.ipv4 }}
+            "router ospf {{ routing.pid }}
+            network {{ item.ipv4 }}
             "
-      loop: "{{ routing | subelements('ospfv2', skip_missing=True) }}"
+      loop: "{{ routing.ospfv2 }}"
