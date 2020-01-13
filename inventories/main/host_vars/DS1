@@ -1,5 +1,6 @@
 ---
 hostname: DS1
+domain_name: lan
 stp:
   primary: ['1','10','30','99']
   secondary: ['20','40']

@@ -1,5 +1,6 @@
 ---
 hostname: R2
+domain_name: lan
 interfaces:
   - id: GigabitEthernet0/0
     description: "LAN R2"

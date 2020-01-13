@@ -1,0 +1,3 @@
+---
+hostname: "{{ inventory_hostname }}"
+domain_name: "{{ group_names|first }}"

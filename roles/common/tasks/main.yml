@@ -4,3 +4,7 @@
   tags:
     - banners
     - common
+- import_tasks: configure_system.yml
+  when: ansible_network_os == 'ios'
+  tags:
+    - common
