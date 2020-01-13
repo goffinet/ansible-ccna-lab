@@ -1,6 +1,6 @@
 ---
-#hostname: AS1
-#domain_name: lan
+hostname: AS1
+domain_name: lan
 group_channels:
   - id: 1
     mode: active
