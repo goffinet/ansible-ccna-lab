@@ -1,5 +1,5 @@
 ---
-- hosts: blocks
+- hosts: R1
   gather_facts: False
   tasks:
     - debug:
