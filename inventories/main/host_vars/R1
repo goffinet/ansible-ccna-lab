@@ -71,15 +71,16 @@ routing:
     - id: GigabitEthernet0/0
     - id: GigabitEthernet0/2
     - id: GigabitEthernet0/3
-dhcp_pool:
-  - id: "LANR1"
-    network: 192.168.1.0
-    netmask: 255.255.255.0
-    router: 192.168.1.1
-    dns: 8.8.8.8
-dhcp_excluded:
-  - start: 192.168.1.1
-    end: 192.168.1.100
+dhcp:
+  dhcp_pool:
+    - id: "LANR1"
+      network: 192.168.1.0
+      netmask: 255.255.255.0
+      router: 192.168.1.1
+      dns: 8.8.8.8
+  dhcp_excluded:
+    - start: 192.168.1.1
+      end: 192.168.1.100
 nat:
   name: "LANS"
   inside:
