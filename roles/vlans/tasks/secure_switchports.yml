@@ -4,7 +4,7 @@
     config:
       - name: "{{ item.0.id }}"
         enabled: True
-  loop: "{{ interfaces|subelements('stub', skip_missing=True) }}"
+  loop: "{{ interfaces|subelements('stub', skip_missing=True)|list }}"
   when:
     - stubvlan is defined
 
@@ -23,7 +23,7 @@
     lines:
       - switchport mode access
       - switchport access vlan {{ stubvlan.id }}
-  loop: "{{ interfaces|subelements('stub', skip_missing=True) }}"
+  loop: "{{ interfaces|subelements('stub', skip_missing=True)|list }}"
   when:
     - stubvlan is defined
 - name: stp protection on access ports
@@ -32,6 +32,6 @@
     lines:
       - spanning-tree portfast
       - spanning-tree bpduguard enable
-  loop: "{{ interfaces|subelements('stub', skip_missing=True) }}"
+  loop: "{{ interfaces|subelements('stub', skip_missing=True)|list }}"
   when:
     - stubvlan is defined
