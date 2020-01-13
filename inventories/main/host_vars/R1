@@ -1,6 +1,6 @@
 ---
 hostname: R1
-interface:
+interfaces:
   - id: GigabitEthernet0/0
     description: "LAN R1"
     ipv4_addresses:

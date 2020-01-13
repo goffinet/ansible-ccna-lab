@@ -1,6 +1,5 @@
 [all:vars]
 #method=modules # modules or templating not yet implemented
-protocol_ipv6="enabled"
 #routing_ipv4='["eigrp4"]'
 #routing_ipv6='["eigrp6"]'
 routing_ipv4='["eigrp4", "rip", "ospfv2"]'

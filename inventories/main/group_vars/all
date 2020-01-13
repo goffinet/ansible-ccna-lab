@@ -1,6 +1,5 @@
 ---
-# protocol_ipv6: enabled
-# routing_ipv4:
+#routing_ipv4:
 #   - eigrp4
 #   - rip
 #   - ospfv2

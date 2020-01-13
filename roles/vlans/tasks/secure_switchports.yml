@@ -1,0 +1,36 @@
+---
+- name: shutdown all switchports
+  ios_config:
+    parents: interface {{ item.0.id }}
+    lines:
+      - shutdown
+  loop: "{{ interfaces|subelements('stub', skip_missing=True) }}"
+  when:
+    - stubvlan is defined
+- name: create stub vlan
+  ios_vlans:
+    config:
+      - name: "{{ stubvlan.name }}"
+        vlan_id: "{{ stubvlan.id }}"
+        state: active
+        shutdown: disabled
+  when:
+    - stubvlan is defined
+- name: configure access ports
+  ios_config:
+    parents: interface {{ item.0.id }}
+    lines:
+      - switchport mode access
+      - switchport access vlan {{ stubvlan.id }}
+  loop: "{{ interfaces|subelements('stub', skip_missing=True) }}"
+  when:
+    - stubvlan is defined
+- name: stp protection on access ports
+  ios_config:
+    parents: interface {{ item.0.id }}
+    lines:
+      - spanning-tree portfast
+      - spanning-tree bpduguard enable
+  loop: "{{ interfaces|subelements('stub', skip_missing=True) }}"
+  when:
+    - stubvlan is defined
