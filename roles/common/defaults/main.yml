@@ -1,3 +1,20 @@
 ---
 hostname: "{{ inventory_hostname }}"
 domain_name: "{{ group_names|first }}"
+banners:
+  enabled: false
+  login: |
+       "Default Multi-line motd banner
+       "
+  motd: |
+       "Default Multi-line motd banner
+       "
+  exec: |
+       "Default Multi-line exec banner
+       "
+  incoming: |
+       "Default Multi-line incoming banner
+       "
+  slip-ppp: |
+       "Default Multi-line slip-ppp banner
+       "
