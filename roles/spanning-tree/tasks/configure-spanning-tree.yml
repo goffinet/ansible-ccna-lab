@@ -7,7 +7,7 @@
   ios_config:
     lines: "spanning-tree vlan {{ item }} priority 4096"
     diff_ignore_lines:
-      - spanning-tree vlan {{ stp.primary | join(',') }} 4096
+      - spanning-tree vlan .*,.* 4096
   loop: "{{ stp.primary }}"
   when: stp.primary is defined
 - name: define the stp root secondary
