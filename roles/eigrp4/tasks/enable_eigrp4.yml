@@ -1,11 +1,10 @@
 ---
 - name: enable eigrp4 rid
   ios_config:
+    defaults: yes
     parents: router eigrp {{ routing.as }}
     lines:
-      - router-id {{ routing.rid }}
-    diff_ignore_lines:
-      - router-id .*
+      - eigrp router-id {{ routing.rid }}
 - name: enable eigrp4 passive-interface
   ios_config:
     defaults: yes
