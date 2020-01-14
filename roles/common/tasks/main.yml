@@ -2,7 +2,7 @@
 - import_tasks: remove_banners.yml
   when:
     - ansible_network_os == 'ios'
-    - not banners.enabled
+    - not banners or banners is undefined
   tags:
     - banners
     - common
