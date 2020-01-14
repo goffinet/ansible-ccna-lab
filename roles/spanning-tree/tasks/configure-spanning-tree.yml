@@ -5,9 +5,9 @@
   when: stp.mode is defined
 - name: define the stp root primary
   ios_config:
-    lines: spanning-tree vlan {{ stp.primary | join(',') }} priority 4096
+    lines: "spanning-tree vlan {{ stp.primary | join(',') }} priority 4096"
   when: stp.primary is defined
 - name: define the stp root secondary
   ios_config:
-    lines: spanning-tree vlan {{ stp.secondary | join(',') }} priority 8184
+    lines: "spanning-tree vlan {{ stp.secondary | join(',') }} priority 8184"
   when: stp.secondary is defined
