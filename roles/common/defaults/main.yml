@@ -4,17 +4,22 @@ domain_name: "{{ group_names|first }}"
 banners:
   enabled: true
   login: |
-       "Default Multi-line motd banner
-       "
+        "Default Multi-line motd banner
+        for {{ inventory_hostname }}
+        "
   motd: |
-       "Default Multi-line motd banner
-       "
+        "Default Multi-line motd banner for {{ inventory_hostname }}
+        for {{ inventory_hostname }}
+        "
   exec: |
-       "Default Multi-line exec banner
-       "
+        "Default Multi-line exec banner
+        for {{ inventory_hostname }}
+        "
   incoming: |
-       "Default Multi-line incoming banner
-       "
+        "Default Multi-line incoming banner
+        for {{ inventory_hostname }}
+        "
   slip_ppp: |
-       "Default Multi-line slip-ppp banner
-       "
+        "Default Multi-line slip-ppp banner
+        for {{ inventory_hostname }}
+        "
