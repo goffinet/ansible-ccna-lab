@@ -2,4 +2,4 @@
 - name: configure hostname and domain name
   ios_system:
     hostname: "{{ hostname }}"
-    domain_name: "{{ hostname }}.{{ domain_name }}"
+    domain_name: "{{ domain_name }}"
