@@ -29,7 +29,7 @@
   ios_config:
     parents: interface {{ item.0.id }}
     lines:
-      - spanning-tree portfast
+      - spanning-tree portfast edge
       - spanning-tree bpduguard enable
   loop: "{{ interfaces|subelements('stub', skip_missing=True)|list }}"
   when:
