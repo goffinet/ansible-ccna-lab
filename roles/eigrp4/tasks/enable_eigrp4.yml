@@ -1,7 +1,6 @@
 ---
 - name: enable eigrp4 rid
   ios_config:
-    defaults: yes
     parents: router eigrp {{ routing.as }}
     lines:
       - router-id {{ routing.rid }}
