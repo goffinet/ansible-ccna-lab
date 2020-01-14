@@ -1,10 +1,8 @@
 ---
-- hosts: R1
+- hosts: DS1
   gather_facts: False
   tasks:
     - debug:
-        msg: |
-            "router ospf {{ routing.pid }}
-            network {{ item.ipv4 }}
+        msg: "{{ item }}"
             "
-      loop: "{{ routing.ospfv2 }}"
+      loop: "{{ stp.primary }}"
