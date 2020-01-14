@@ -3,4 +3,4 @@
   gather_facts: False
   tasks:
     - debug:
-        msg: "{{ stp.primary | vlan_parser }}"
+        msg: "{{ stp.primary | join(', ') }}"
