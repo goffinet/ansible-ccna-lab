@@ -2,16 +2,16 @@
 - import_tasks: enable_ospfv2.yml
   when:
     - ansible_network_os == 'ios'
-    - ipv4routing is defined
-    - ospfv2 is defined
+    - routing.ospfv2 is defined
   tags:
     - ospfv2
+    - ipv4_dynamic_routing
 - import_tasks: static_to_ospfv2.yml
   when:
     - ansible_network_os == 'ios'
+    - routing.ospfv2 is defined
     - nat is defined
-    - ipv4routing is defined
-    - ospfv2 is defined
   tags:
     - ospfv2
     - static_to_ospfv2
+    - ipv4_dynamic_routing

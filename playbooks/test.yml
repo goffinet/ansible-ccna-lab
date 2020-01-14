@@ -1,5 +1,17 @@
 ---
-- hosts: blocks
+- hosts: DS1
   gather_facts: False
-  roles:
-    - common
+  tasks:
+    - debug:
+        msg: "spanning-tree vlan {{ stp.primary | join(',') }} priority 24576"
+    - name: define the stp root primary
+      ios_config:
+        diff_ignore_lines:
+          - "spanning-tree vlan {{ item }} priority 24576"
+        lines: "spanning-tree vlan {{ item }} priority 24576"
+#        lines: "no spanning-tree vlan {{ item }} root primary"
+      loop:
+        - 10
+        - 30
+        - 99
+#      when: stp.primary is defined

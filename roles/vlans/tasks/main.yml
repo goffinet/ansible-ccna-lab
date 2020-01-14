@@ -1,3 +1,4 @@
+---
 - import_tasks: create_vlans.yml
   when: ansible_network_os == 'ios'
   tags:
@@ -16,3 +17,11 @@
     - trunk
     - vlans
     - l2
+- import_tasks: secure_switchports.yml
+  when:
+    - ansible_network_os == 'ios'
+    - stubvlan is defined
+  tags:
+    - secure_switch
+    - l2
+    - vlans

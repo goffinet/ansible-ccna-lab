@@ -1,19 +1,22 @@
 ---
 - name: enable rip version 2
   ios_config:
+    defaults: yes
     parents: router rip
     lines:
       - version 2
 - name: enable rip passive-interface
   ios_config:
+    defaults: yes
     parents: router rip
     lines:
       - passive-interface {{ item }}
-  loop: "{{ ipv4routing.passive }}"
-  when: ipv4routing.passive is defined
+  loop: "{{ routing.passive }}"
+  when: routing.passive is defined
 - name: enable rip interfaces
   ios_config:
+    defaults: yes
     parents: router rip
     lines:
       - network {{ item }}
-  loop: "{{ rip }}"
+  loop: "{{ routing.rip }}"

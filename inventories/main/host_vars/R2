@@ -1,151 +1,152 @@
 ---
 hostname: R2
-interface:
+domain_name: lan
+interfaces:
   - id: GigabitEthernet0/0
-    ipv4: 192.168.33.1
-    netmask: 255.255.255.0
     description: "LAN R2"
+    ipv4_addresses:
+      - 192.168.33.1 255.255.255.0
+    ipv6_link_local_addresses:
+      - 'FE80::2'
+    ipv6_ula_uga_addresses:
+      - 'FD00:0:0:2::1/64'
   - id: GigabitEthernet0/1
-    ipv4: 192.168.225.2
-    netmask: 255.255.255.0
     description: "Link to R1"
+    ipv4_addresses:
+      - 192.168.225.2 255.255.255.0
+    ipv6_link_local_addresses:
+      - 'FE80::2'
   - id: GigabitEthernet0/3
-    ipv4: 192.168.227.1
-    netmask: 255.255.255.0
     description: "Link to R3"
+    ipv4_addresses:
+      - 192.168.227.1 255.255.255.0
+    ipv6_link_local_addresses:
+      - 'FE80::2'
   - id: GigabitEthernet0/2
-    ipv4: 172.16.224.1
-    netmask: 255.255.255.0
     description: "Link to DS1"
+    ipv4_addresses:
+      - 172.16.224.1 255.255.255.0
   - id: GigabitEthernet0/4
-    ipv4: 172.16.225.1
-    netmask: 255.255.255.0
     description: "Link to DS1"
+    ipv4_addresses:
+      - 172.16.225.1 255.255.255.0
+    ipv6_link_local_addresses:
+      - 'FE80::2'
   - id: GigabitEthernet0/5
-    ipv4: 172.16.242.1
-    netmask: 255.255.255.0
     description: "Link to DS2"
+    ipv4_addresses:
+      - 172.16.242.1 255.255.255.0
+    ipv6_link_local_addresses:
+      - 'FE80::2'
   - id: GigabitEthernet0/6
-    ipv4: 172.16.243.1
-    netmask: 255.255.255.0
     description: "Link to DS2"
-ipv4routing:
+    ipv4_addresses:
+      - 172.16.243.1 255.255.255.0
+    ipv6_link_local_addresses:
+      - 'FE80::2'
+routing:
   rid: 2.2.2.2
   passive:
     - GigabitEthernet0/0
   pid: 1
   as: 1
-interface6:
-  - id: GigabitEthernet0/0
-    net6: 'FE80::2'
-  - id: GigabitEthernet0/1
-    net6: 'FE80::2'
-  - id: GigabitEthernet0/3
-    net6: 'FE80::2'
-lan6:
-  - id: GigabitEthernet0/0
-    net6: 'FD00:00:00:2::1/64'
-ipv6routing:
-  rid: 2.2.2.2
-  passive:
-    - GigabitEthernet0/0
-  pid: 1
-  as: 1
-rip:
-  - 192.168.33.0
-  - 192.168.225.0
-  - 192.168.227.0
-ospfv2:
-  - id: GigabitEthernet0/0
-    ipv4: 192.168.33.1
-    pri: 255
-    cost: 1
-    area: 0
-  - id: GigabitEthernet0/1
-    ipv4: 192.168.225.2
-    pri: 255
-    cost: 1
-    area: 0
-  - id: GigabitEthernet0/3
-    ipv4: 192.168.227.1
-    pri: 255
-    cost: 1
-    area: 0
-  - id: GigabitEthernet0/2
-    ipv4: 172.16.224.1
-    pri: 255
-    cost: 1
-    area: 0
-  - id: GigabitEthernet0/4
-    ipv4: 172.16.225.1
-    pri: 255
-    cost: 1
-    area: 0
-  - id: GigabitEthernet0/5
-    ipv4: 172.16.242.1
-    pri: 255
-    cost: 1
-    area: 0
-  - id: GigabitEthernet0/6
-    ipv4: 172.16.243.1
-    pri: 255
-    cost: 1
-    area: 0
-ospfv3:
-  - id: GigabitEthernet0/0
-    pri: 255
-    cost: 1
-    area: 0
-  - id: GigabitEthernet0/1
-    pri: 255
-    cost: 1
-    area: 0
-  - id: GigabitEthernet0/3
-    pri: 255
-    cost: 1
-    area: 0
-  - id: GigabitEthernet0/2
-    pri: 255
-    cost: 1
-    area: 0
-  - id: GigabitEthernet0/4
-    pri: 255
-    cost: 1
-    area: 0
-  - id: GigabitEthernet0/5
-    pri: 255
-    cost: 1
-    area: 0
-  - id: GigabitEthernet0/6
-    pri: 255
-    cost: 1
-    area: 0
-eigrp4:
-  - id: GigabitEthernet0/0
-    ipv4: 192.168.33.0 255.255.255.0
-  - id: GigabitEthernet0/1
-    ipv4: 192.168.225.0 255.255.255.0
-  - id: GigabitEthernet0/3
-    ipv4: 192.168.227.0 255.255.255.0
-  - id: GigabitEthernet0/2
-    ipv4: 172.16.224.0 255.255.255.0
-  - id: GigabitEthernet0/4
-    ipv4: 172.16.225.0 255.255.255.0
-  - id: GigabitEthernet0/5
-    ipv4: 172.16.242.0 255.255.255.0
-  - id: GigabitEthernet0/6
-    ipv4: 172.16.243.0 255.255.255.0
-eigrp6:
-  - id: GigabitEthernet0/0
-  - id: GigabitEthernet0/1
-  - id: GigabitEthernet0/3
-  - id: GigabitEthernet0/2
-  - id: GigabitEthernet0/4
-  - id: GigabitEthernet0/5
-  - id: GigabitEthernet0/6
-dhcp_pool:
-  - id: "LANR2"
-    network: 192.168.33.0
-    netmask: 255.255.255.0
-    router: 192.168.1.1
-    dns: 8.8.8.8
+  rip:
+    - 192.168.33.0
+    - 192.168.225.0
+    - 192.168.227.0
+    - 172.16.0.0
+  ospfv2:
+    - id: GigabitEthernet0/0
+      ipv4: 192.168.33.1
+      pri: 255
+      cost: 1
+      area: 0
+    - id: GigabitEthernet0/1
+      ipv4: 192.168.225.2
+      pri: 255
+      cost: 1
+      area: 0
+    - id: GigabitEthernet0/3
+      ipv4: 192.168.227.1
+      pri: 255
+      cost: 1
+      area: 0
+    - id: GigabitEthernet0/2
+      ipv4: 172.16.224.1
+      pri: 255
+      cost: 1
+      area: 0
+    - id: GigabitEthernet0/4
+      ipv4: 172.16.225.1
+      pri: 255
+      cost: 1
+      area: 0
+    - id: GigabitEthernet0/5
+      ipv4: 172.16.242.1
+      pri: 255
+      cost: 1
+      area: 0
+    - id: GigabitEthernet0/6
+      ipv4: 172.16.243.1
+      pri: 255
+      cost: 1
+      area: 0
+  ospfv3:
+    - id: GigabitEthernet0/0
+      pri: 255
+      cost: 1
+      area: 0
+    - id: GigabitEthernet0/1
+      pri: 255
+      cost: 1
+      area: 0
+    - id: GigabitEthernet0/3
+      pri: 255
+      cost: 1
+      area: 0
+    - id: GigabitEthernet0/2
+      pri: 255
+      cost: 1
+      area: 0
+    - id: GigabitEthernet0/4
+      pri: 255
+      cost: 1
+      area: 0
+    - id: GigabitEthernet0/5
+      pri: 255
+      cost: 1
+      area: 0
+    - id: GigabitEthernet0/6
+      pri: 255
+      cost: 1
+      area: 0
+  eigrp4:
+    - id: GigabitEthernet0/0
+      ipv4: 192.168.33.0
+    - id: GigabitEthernet0/1
+      ipv4: 192.168.225.0
+    - id: GigabitEthernet0/3
+      ipv4: 192.168.227.0
+    - id: GigabitEthernet0/2
+      ipv4: 172.16.224.0 0.0.0.255
+    - id: GigabitEthernet0/4
+      ipv4: 172.16.225.0 0.0.0.255
+    - id: GigabitEthernet0/5
+      ipv4: 172.16.242.0 0.0.0.255
+    - id: GigabitEthernet0/6
+      ipv4: 172.16.243.0 0.0.0.255
+  eigrp6:
+    - id: GigabitEthernet0/0
+    - id: GigabitEthernet0/1
+    - id: GigabitEthernet0/3
+    - id: GigabitEthernet0/2
+    - id: GigabitEthernet0/4
+    - id: GigabitEthernet0/5
+    - id: GigabitEthernet0/6
+dhcp:
+  dhcp_pool:
+    - id: "LANR2"
+      network: 192.168.33.0
+      netmask: 255.255.255.0
+      router: 192.168.1.1
+      dns: 8.8.8.8

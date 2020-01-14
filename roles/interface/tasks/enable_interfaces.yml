@@ -1,40 +1,21 @@
 ---
 - name: disable switchport on switch interface
   ios_config:
+    defaults: yes
     parents: interface {{ item.id }}
     lines:
       - no switchport
-  loop: "{{ interface }}"
+  loop: "{{ interfaces }}"
   when: item.noswitchport is defined
   tags:
     - interface
-- name: enable access switchports
+- name: enable interface
   ios_interfaces:
     config:
       - name: "{{ item.id }}"
         enabled: True
         description: "{{ item.description }}"
-  loop: "{{ access }}"
-  when: access is defined
-  tags:
-    - interface
-- name: enable trunk switchports
-  ios_interfaces:
-    config:
-      - name: "{{ item.id }}"
-        enabled: True
-        description: "{{ item.description }}"
-  loop: "{{ trunks }}"
-  when: trunks is defined
-  tags:
-    - interface
-- name: enable ip interface
-  ios_interfaces:
-    config:
-      - name: "{{ item.id }}"
-        enabled: True
-        description: "{{ item.description }}"
-  loop: "{{ interface }}"
-  when: interface is defined
+  loop: "{{ interfaces }}"
+  when: item.stub is not defined
   tags:
     - interface

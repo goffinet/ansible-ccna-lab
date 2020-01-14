@@ -1,0 +1,8 @@
+---
+- name: configure ipv4 addresses
+  ios_l3_interfaces:
+    config:
+      - name: "{{ item.0.id }}"
+        ipv4:
+        - address: "{{ item.1 }}"
+  loop: "{{ interfaces|subelements('ipv4_addresses', skip_missing=True) }}"

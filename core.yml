@@ -6,10 +6,8 @@
     - role: interface
     - role: ipv4
     - role: ipv6
-      when: protocol_ipv6 == 'enabled'
     - role: ipv4-routing
     - role: ipv6-routing
-      when: protocol_ipv6 == 'enabled'
     - role: fhrp
     - role: rip
       when: '"rip" in routing_ipv4'
@@ -20,11 +18,9 @@
     - role: eigrp6
       when:
         - '"eigrp6" in routing_ipv6'
-        - protocol_ipv6 == 'enabled'
     - role: ospfv3
       when:
         - '"ospfv3" in routing_ipv6'
-        - protocol_ipv6 == 'enabled'
     - role: dhcp-server
 - hosts: R1
   gather_facts: False

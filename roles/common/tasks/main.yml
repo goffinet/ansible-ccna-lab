@@ -1,14 +1,12 @@
 ---
-- import_tasks: remove_banners.yml
-  when: ansible_network_os == 'ios'
+- import_tasks: configure_banners.yml
+  when:
+    - ansible_network_os == 'ios'
   tags:
     - banners
     - common
-- import_tasks: secure_switchports.yml
+- import_tasks: configure_system.yml
   when:
     - ansible_network_os == 'ios'
-    - switchports is defined
-    - stubvlan is defined
   tags:
-    - shut_switch
     - common

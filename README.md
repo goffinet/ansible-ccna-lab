@@ -108,12 +108,34 @@ shutdown -r now
 
 ```
 
+### 1.5. Cloner le dépôt
+
 Il est nécessaire de cloner le dépot sur la machine de contrôle.
 
 ```bash
 git clone https://github.com/goffinet/ansible-ccna-lab
+cd ansible-ccna-lab
 ```
 
+### 1.6. Examiner les paramètres de configuration de Ansible
+
+Le fichier de configuration `ansible.cfg`dans le dossier du dépôt configure Ansible :
+
+```toml
+[defaults]
+inventory=./inventories/main/hosts
+host_key_checking=False
+retry_files_enabled = False
+log_path = ./ansible.log
+callback_whitelist = profile_tasks
+#forks = 20
+strategy = linear
+#gathering = explicit
+#display_ok_hosts=no
+#display_skipped_hosts=no
+[callback_profile_tasks ]
+task_output_limit = 100
+```
 
 ## 2. Topologie tripod
 
@@ -227,6 +249,7 @@ On trouvera plus bas les fichiers de configuration qui déploient la solution  V
 Se rendre dans le dossier des livres de jeux :
 
 ```bash
+cd
 git clone https://github.com/goffinet/ansible-ccna-lab
 cd ansible-ccna-lab
 ```
@@ -244,7 +267,11 @@ L'inventaire est défini comme suit (fichier `inventories/main/hosts`) :
 
 ```ini
 [all:vars]
-#method=modules # modules or templating
+#method=modules # modules or templating not yet implemented
+routing_ipv4='["eigrp4"]'
+routing_ipv6='["eigrp6"]'
+#routing_ipv4='["rip", "eigrp4", "ospfv2"]'
+#routing_ipv6='["eigrp6", "ospfv3"]'
 
 [core]
 R1
@@ -274,6 +301,7 @@ ansible_ssh_pass=testtest
 ansible_port=22
 ansible_connection=network_cli
 ansible_network_os=ios
+
 ```
 
 Les configurations sont définies en YAML dans les fichiers de variables d'inventaire (dossiers `inventories/main/group_vars` et `inventories/main/host_vars`).
@@ -281,9 +309,9 @@ Les configurations sont définies en YAML dans les fichiers de variables d'inven
 ```raw
 inventories/main
 ├── group_vars
-│   ├── all       --> ipv6 activé, protocoles de routage ipv4/ipv6
+│   ├── all       --> protocoles de routage ipv4/ipv6
 │   └── blocks    --> variables vlans, switchports et stp mode
-├── hosts         --> fichier d'inventaire
+├── hosts         --> fichier d'inventaire, avec des variables génériques
 └── host_vars     --> variables propres à chaque périphérique
     ├── AS1
     ├── AS2
@@ -296,7 +324,7 @@ inventories/main
 
 ### 5.1. Livres de jeu
 
-Les livres de jeu font appel à des rôles qui trouvent la valeur des variables dans l'inventaire
+Les livres de jeu font appel à des rôles qui trouvent la valeur des variables dans l'inventaire.
 
 
 Le playbook `core.yml` configure la topologie tripod :
@@ -335,48 +363,7 @@ ansible core -m ios_command -a "commands='traceroute 192.168.1.1 source GigabitE
 ansible core -m ios_command -a "commands='traceroute 172.16.10.1 source GigabitEthernet0/0 probe 1 numeric'"
 ```
 
-## 6. Tags
-
-- access
-- banners
-- common
-- create_vlans
-- enable_ipv6
-- etherchannel
-- interface
-- ipv4
-- ipv6
-- l2
-- shut_switch
-- stp
-- trunk
-- vlans
-- no_ipv4_routing
-- dhcp-server
-- disable-eigrp4
-- disable-ospfv2
-- disable-rip
-- eigrp4
-- eigrp6
-- enable_ipv6
-- fhrp
-- interface
-- ipv4
-- ipv4_routing
-- nat
-- ipv6
-- ipv6_routing
-- ospfv2
-- ospfv3
-- rip
-- static_to_eigrp4
-- static_to_ospfv2
-- static_to_rip
-- get
-- save
-- write
-
-## 7. Historical Todo
+## Historical Todo
 
 ### Phase 0 : Écriture de playbooks avec les modules ios_*
 
@@ -384,7 +371,11 @@ Archivé.
 
 ### Phase I
 
-Portage en rôles.
+Portage en rôles **idempotents**.
+
+Définition des variables dans `defaults/`.
+
+Rôles à créer/améliorer :
 
 * dhcp-relay
 * ~~**fhrp4**~~ + delay
@@ -392,23 +383,51 @@ Portage en rôles.
 * **cdp / lldp**
 * **syslog**
 * **ntp** (+ auth)
-* auth eigrp4/6 et ospfv2/v3
+* ~~eigrp4/6~~ / ~~ospfv2/v3~~ authentication
 * **snmpv2c** / **snmpv3**
 * **zbf**
-* ra-config / dhcpv6 stateless / dhcpv6 stateful / (rdnss)
+* ra-config fine tuning / dhcpv6 stateless / dhcpv6 stateful / (rdnss)
 * ppp / chap / pap / pppoe
 * gre ipv4 / gre ipv6
 * **security hardening**
-* Revoir la structure des données
-* ~~dependencies~~
+* ~~dependencies~~ ? handlers ?
 * ~~tags**~~
-* tasks by jinja2 templating
+
+### Comment rendre une tâche ios_config idempotente ?
+
+> "Être idempotent permet à une tâche définie d'être exécutée une seule fois ou des centaines de fois sans créer un effet contraire sur le système cible, ne provoquant un changement à une seule reprise. En d'autres mots, si un changement est nécessaire pour obtenir le système dans un état désiré, alors le changement est réalisé ; par contre si le périphérique est déjà dans l'état désiré, aucun changement n'intervient. Ce comportement est différent des pratiques de scripts personnalisés et de copier/coller de lignes de commandes. Quand on exécute les mêmes commandes ou scripts sur un même système de manière répétée, le taux d'erreur est souvent élevé."
+>
+> Extrait de: Jason Edelman. « Network Automation with Ansible. », O’Reilly Media, 2016.
+
+Attention, Ansible autorise l'idempotence, mais selon le module utilisé, il faudra le manipuler pour atteindre cette exigence de conception.
+
+1/ La section ["Why do the config modules always return true" de la "Ansible Network FAQ"](https://docs.ansible.com/ansible/latest/network/user_guide/faq.html#why-do-the-config-modules-always-return-changed-true-with-abbreviated-commands) explique ceci :
+
+Les modules `*_config` d'Ansible Network comparent le texte des commandes que vous spécifiez dans les lignes au texte de la configuration. Si vous utilisez `shut` dans la section `lines` de la tâche, et que la configuration indique `shutdown`, le module retourne `changed=true` même si la configuration est déjà correcte. La tâche mettra à jour la configuration à chaque fois qu'elle s'exécutera.
+
+Les commande utilisées avec Ansible pourraient ne pas êtres les mêmes commandes que celles trouvées dans la `running_config` : alors, les contrôles entre les lignes ne correspondent pas exactement, même s'ils produisent la même sortie.
+
+2/ Il y a aussi la façon dont le module compare les lignes mises à jour avec la `running_config`. Par défaut, le module vérifie chaque ligne, mais il y a d'autres options. La [documentation](https://docs.ansible.com/ansible/latest/modules/ios_config_module.html) dit ceci à propos de l'argument `match` du module :
+
+Instruit le module sur la façon d'effectuer la correspondance du jeu de commandes avec la configuration actuelle du périphérique. Si l'argument `match` est valorisé par `line`, les commandes sont mises en correspondance ligne par ligne (défaut). Si l'argument `match` est valorisé par `strict`, les lignes de commande sont mises en correspondance par rapport à la position. Si l'argument `match` est valorisé par `exact`, les lignes de commande doivent être de même nature. Enfin, si l'argument `match` est valorisé par `none`, le module ne tentera pas de comparer la configuration source avec la configuration en cours d'exécution sur le périphérique distant.
+
+3/ L'option `after` contrôle l'application des changements aux interfaces :
+
+L'ensemble des commandes ordonnées à ajouter à la fin de la pile de commandes si un changement doit être fait. Comme avec l'option `before`, cela permet au concepteur du livre de lecture d'ajouter un ensemble de commandes à exécuter après l'ensemble de commandes.
+
+Combinée avec l'option `before`, on applique des commandes avant et après que les changements soient faits. Par exemple, on peut définir une réinitialisation en cinq minutes pour éviter une déconnexion à cause d'un problème de configuration, ou écrire les changements dans la ROM (bien que l'on puisse le faire avec l'option `save_when`).
+
+Texte original de [guzmonne](https://stackoverflow.com/users/1930817/guzmonne) en réponse à la question stackoverflow [How can I make my ios_config task idempotent?](https://stackoverflow.com/questions/57279642/how-can-i-make-my-ios-config-task-idempotent).
+
+Aussi, l'argument `defaults` qu'il sera nécessaire d'activer avec la valeur `yes` spécifie s'il faut ou non collecter toutes les valeurs par défaut lors de l'exécution de la configuration du périphérique distant. Lorsqu'il est activé, le module obtient la configuration actuelle en lançant la commande `show running-config all`. En effet, des commandes comme `no shutdown` ou encore `ipv6 enable` ou encore `ipv4 routing` et beaucoup n'apparaissent pas avec la commande `show running-config`.
 
 ### Phase II
 
-Rôles idempotents qui agissent sur un modèle de fichier de configuration basé sur des choix d'infrastructure (des variables) et qui sera poussé sur les périphériques par la procédure `config replace flash:XXX force`.
+_tasks by jinja2 templating_
 
-"Idempotent" roles by templating one config file based on infrastructure choices (variables) and pushed by `config replace flash:XXX force` procedure to the devices.
+Rôles "immutables" qui agissent sur un modèle de fichier de configuration basé sur des choix d'infrastructure (des variables) et qui sera poussé sur les périphériques par la procédure `config replace flash:XXX force`.
+
+"Immutable" roles by templating one config file based on infrastructure choices (variables) and pushed by `config replace flash:XXX force` procedure to the devices.
 
 ### Phase III
 

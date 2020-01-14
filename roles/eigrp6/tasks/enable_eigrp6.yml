@@ -1,19 +1,22 @@
 ---
 - name: enable eigrp ipv6 rid
   ios_config:
-    parents: ipv6 router eigrp {{ ipv6routing.as }}
+    defaults: yes
+    parents: ipv6 router eigrp {{ routing.as }}
     lines:
-      - router-id {{ ipv6routing.rid }}
+      - eigrp router-id {{ routing.rid }}
 - name: enable eigrp ipv6 passive-interface
   ios_config:
-    parents: ipv6 router eigrp {{ ipv6routing.as }}
+    defaults: yes
+    parents: ipv6 router eigrp {{ routing.as }}
     lines:
       - passive-interface {{ item }}
-  loop: "{{ ipv6routing.passive }}"
-  when: ipv6routing.passive is defined
+  loop: "{{ routing.passive }}"
+  when: routing.passive is defined
 - name: enable eigrp ipv6 on interfaces
   ios_config:
+    defaults: yes
     parents: interface {{ item.id }}
     lines:
-      - ipv6 eigrp {{ ipv6routing.as }}
-  loop: "{{ eigrp6 }}"
+      - ipv6 eigrp {{ routing.as }}
+  loop: "{{ routing.eigrp6 }}"

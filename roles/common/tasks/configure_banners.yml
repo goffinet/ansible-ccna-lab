@@ -1,0 +1,66 @@
+---
+- name: remove the login banner
+  ios_banner:
+    banner: login
+    state: absent
+  when: not banners.enabled or banners is undefined
+- name: set the login banner
+  ios_banner:
+    banner: login
+    text: "{{ banners.login }}"
+    state: present
+  when:
+    - banners.enabled
+    - banners.login is defined
+- name: remove the motd banner
+  ios_banner:
+    banner: motd
+    state: absent
+  when: not banners.enabled or banners is undefined
+- name: set the motd banner
+  ios_banner:
+    banner: motd
+    text: "{{ banners.motd }}"
+    state: present
+  when:
+    - banners.enabled
+    - banners.motd is defined
+- name: remove the exec banner
+  ios_banner:
+    banner: exec
+    state: absent
+  when: not banners.enabled or banners is undefined
+- name: set the exec banner
+  ios_banner:
+    banner: exec
+    text: "{{ banners.exec }}"
+    state: present
+  when:
+    - banners.enabled
+    - banners.exec is defined
+- name: remove the incoming banner
+  ios_banner:
+    banner: incoming
+    state: absent
+  when: not banners.enabled or banners is undefined
+- name: set the incoming banner
+  ios_banner:
+    banner: incoming
+    text: "{{ banners.incoming }}"
+    state: present
+  when:
+    - banners.enabled
+    - banners.incoming is defined
+- name: remove the slip-ppp banner
+  ios_banner:
+    banner: slip-ppp
+    state: absent
+  when: not banners.enabled or banners is undefined
+- name: set the slip-ppp banner
+  ios_banner:
+    banner: slip-ppp
+    text: "{{ banners.slip_ppp }}"
+    state: present
+  when:
+    - banners.enabled
+    - banners.slip_ppp is defined

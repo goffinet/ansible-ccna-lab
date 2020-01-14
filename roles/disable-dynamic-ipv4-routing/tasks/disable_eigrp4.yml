@@ -1,4 +1,5 @@
 ---
 - name: disable eigrp4
   ios_config:
-    lines: no router eigrp {{ ipv4routing.as }}
+    defaults: yes
+    lines: no router eigrp {{ routing.as }}

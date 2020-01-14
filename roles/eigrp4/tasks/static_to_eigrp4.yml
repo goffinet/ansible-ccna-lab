@@ -1,7 +1,8 @@
 ---
 - name: redistribute static nat route to eigrp4
   ios_config:
-    parents: router eigrp {{ ipv4routing.as }}
+    defaults: yes
+    parents: router eigrp {{ routing.as }}
     lines:
       - redistribute static
   when: nat is defined

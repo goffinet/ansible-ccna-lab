@@ -1,12 +1,17 @@
 ---
 - import_tasks: enable_eigrp4.yml
-  when: ansible_network_os == 'ios'
+  when:
+    - ansible_network_os == 'ios'
+    - routing.eigrp4 is defined
   tags:
     - eigrp4
+    - ipv4_dynamic_routing
 - import_tasks: static_to_eigrp4.yml
   when:
     - ansible_network_os == 'ios'
+    - routing.eigrp4 is defined
     - nat is defined
   tags:
     - eigrp4
     - static_to_eigrp4
+    - ipv4_dynamic_routing

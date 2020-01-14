@@ -1,24 +1,6 @@
 ---
 hostname: AS2
-access:
-  - id: GigabitEthernet2/0
-    vlan: 10
-    description: "PC5 vlan 10 access port"
-  - id: GigabitEthernet2/1
-    vlan: 20
-    description: "PC6 vlan 20 access port"
-  - id: GigabitEthernet2/2
-    vlan: 30
-    description: "PC7 vlan 30 access port"
-  - id: GigabitEthernet2/3
-    vlan: 40
-    description: "PC8 vlan 40 access port"
-interface:
-  - id: Vlan99
-    ipv4: 172.16.0.2
-    netmask: 255.255.255.0
-    gateway: 172.16.0.254
-    description: "Management interface"
+domain_name: lan
 group_channels:
   - id: 4
     mode: active
@@ -30,22 +12,77 @@ group_channels:
     interfaces:
       - GigabitEthernet0/1
       - GigabitEthernet1/1
-trunks:
+interfaces:
+  - id: GigabitEthernet2/0
+    description: "PC5 vlan 10 access port"
+    access:
+      - vlan: 10
+  - id: GigabitEthernet2/1
+    description: "PC6 vlan 20 access port"
+    access:
+      - vlan: 20
+  - id: GigabitEthernet2/2
+    description: "PC7 vlan 30 access port"
+    access:
+      - vlan: 30
+  - id: GigabitEthernet2/3
+    description: "PC8 vlan 40 access port"
+    access:
+      - vlan: 40
+  - id: Vlan99
+    description: "Management interface"
+    ipv4_addresses:
+      - 172.16.0.2 255.255.255.0
+    gateway: 172.16.0.254
   - id: GigabitEthernet0/0
-    native: 99
     description: "Trunk Group Channel4 to DS2"
+    trunk:
+      - native: 99
   - id: GigabitEthernet1/0
-    native: 99
     description: "Trunk Group Channel4 to DS2"
+    trunk:
+      - native: 99
   - id: GigabitEthernet0/1
-    native: 99
     description: "Trunk Group Channel5 to DS1"
+    trunk:
+      - native: 99
   - id: GigabitEthernet1/1
-    native: 99
     description: "Trunk Group Channel5 to DS1"
+    trunk:
+      - native: 99
   - id: Port-channel4
-    native: 99
     description: "Trunk Group Channel4 to DS2"
+    trunk:
+      - native: 99
   - id: Port-channel5
-    native: 99
     description: "Trunk Group Channel5 to DS1"
+    trunk:
+      - native: 99
+  - id: GigabitEthernet0/2
+    description: "Stub interface"
+    stub:
+      - true
+  - id: GigabitEthernet0/3
+    description: "Stub interface"
+    stub:
+      - true
+  - id: GigabitEthernet1/2
+    description: "Stub interface"
+    stub:
+      - true
+  - id: GigabitEthernet1/3
+    description: "Stub interface"
+    stub:
+      - true
+  - id: GigabitEthernet3/0
+    description: "Stub interface"
+    stub:
+      - true
+  - id: GigabitEthernet3/1
+    description: "Stub interface"
+    stub:
+      - true
+  - id: GigabitEthernet3/2
+    description: "Stub interface"
+    stub:
+      - true

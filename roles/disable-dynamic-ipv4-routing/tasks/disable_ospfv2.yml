@@ -1,4 +1,5 @@
 ---
 - name: disable ospfv2
   ios_config:
-    lines: no router ospf {{ ipv4routing.pid }}
+    defaults: yes
+    lines: no router ospf {{ routing.pid }}
