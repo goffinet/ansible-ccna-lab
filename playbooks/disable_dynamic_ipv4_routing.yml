@@ -1,5 +1,7 @@
 ---
 - hosts: all
   gather_facts: False
-  roles:
-    - role: disable-dynamic-ipv4-routing
+  tasks:
+    - name: collect facts from cisco ios devices
+      import_role:
+        name: disable-dynamic-ipv4-routing
