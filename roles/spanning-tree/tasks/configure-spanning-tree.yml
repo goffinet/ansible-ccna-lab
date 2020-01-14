@@ -14,6 +14,7 @@
   when: stp.secondary is defined
 - name: define the stp root primary
   ios_config:
+    defaults: yes
     lines: spanning-tree vlan {{ primary_stp_vlans }} root primary
   when: stp.primary is defined
 - name: define the stp root secondary
