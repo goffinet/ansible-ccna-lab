@@ -5,7 +5,7 @@ interfaces:
   - id: GigabitEthernet0/0
     description: "LAN R1"
     ipv4_addresses:
-      - 192.168.1.1 255.0.0.0
+      - 192.168.1.1 255.255.255.0
     ipv6_link_local_addresses:
       - 'FE80::1'
     ipv6_ula_uga_addresses:
@@ -13,13 +13,13 @@ interfaces:
   - id: GigabitEthernet0/2
     description: "Link to R2"
     ipv4_addresses:
-      - 192.168.225.1 255.0.0.0
+      - 192.168.225.1 255.255.255.0
     ipv6_link_local_addresses:
       - 'FE80::1'
   - id: GigabitEthernet0/3
     description: "Link to R3"
     ipv4_addresses:
-      - 192.168.226.1 255.0.0.0
+      - 192.168.226.1 255.255.255.0
     ipv6_link_local_addresses:
       - 'FE80::1'
 routing:
