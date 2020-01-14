@@ -32,7 +32,7 @@ interfaces:
   - id: Vlan99
     description: "Management interface"
     ipv4_addresses:
-      - 172.16.0.2/24
+      - 172.16.0.2 255.0.0.0
     gateway: 172.16.0.254
   - id: GigabitEthernet0/0
     description: "Trunk Group Channel4 to DS2"

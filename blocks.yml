@@ -4,8 +4,8 @@
   roles:
     - role: common
     - role: vlans
-    - role: interface
     - role: etherchannel
+    - role: interface
     - role: spanning-tree
     - role: ipv4
     - role: ipv6
