@@ -3,22 +3,22 @@
   ios_banner:
     banner: login
     state: absent
-  when: not banners or banners is undefined
+  when: not banners.enabled or banners is undefined
 - name: remove the motd banner
   ios_banner:
     banner: motd
     state: absent
-  when: not banners or banners is undefined
+  when: not banners.enabled or banners is undefined
 - name: remove the exec banner
   ios_banner:
     banner: exec
     state: absent
-  when: not banners or banners is undefined
+  when: not banners.enabled or banners is undefined
 - name: remove the incoming banner
   ios_banner:
     banner: incoming
     state: absent
-  when: not banners or banners is undefined
+  when: not banners.enabled or banners is undefined
 - name: remove the slip-ppp banner
   ios_banner:
     banner: slip-ppp
