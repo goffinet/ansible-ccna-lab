@@ -4,23 +4,13 @@
     defaults: yes
     lines: spanning-tree mode {{ stp.mode }}
   when: stp.mode is defined
-- name: set a vlan list as ios can understand for stp root primary
-  set_fact:
-    primary_stp_vlans: "{{ stp.primary | join(',') }}"
-  when: stp.primary is defined
-- name: set a vlan list as ios can understand for stp root secondary
-  set_fact:
-    secondary_stp_vlans: "{{ stp.secondary | join(',') }}"
-  when: stp.secondary is defined
-- debug:
-    msg: "spanning-tree vlan {{ primary_stp_vlans }} root primary"
 - name: define the stp root primary
   ios_config:
     defaults: yes
-    lines: "spanning-tree vlan 1 root primary"
+    lines: "spanning-tree vlan {{ stp.primary | vlan_parser }} root primary"
   when: stp.primary is defined
 - name: define the stp root secondary
   ios_config:
     defaults: yes
-    lines: "spanning-tree vlan {{ secondary_stp_vlans }} root secondary"
+    lines: "spanning-tree vlan {{ secondary_stp_vlans | vlan_parser }} root secondary"
   when: stp.secondary is defined
