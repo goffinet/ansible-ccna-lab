@@ -2,8 +2,14 @@
 hostname: DS1
 domain_name: lan
 stp:
-  primary: "1,10,30,99"
-  secondary: "20,40"
+  primary:
+    - 1
+    - 10
+    - 30
+    - 99
+  secondary:
+    - 20
+    - 40
   mode: rapid-pvst
 group_channels:
   - id: 1
