@@ -7,11 +7,13 @@
 - name: set a vlan list as ios can understand for stp root primary
   set_fact:
     primary_stp_vlans: "{{ item | join(',') }}"
-  loop: "{{ stp|subelements('primary', skip_missing=True) }}"
-- name: set a vlan list as ios can understand for stp root primary
+  loop: "{{ stp.primary }}"
+  when: stp.primary is defined
+- name: set a vlan list as ios can understand for stp root secondary
   set_fact:
     secondary_stp_vlans: "{{ item | join(',') }}"
-  loop: "{{ stp|subelements('secondary', skip_missing=True) }}"
+  loop: "{{ stp.secondary }}"
+  when: stp.secondary is defined
 - name: define the stp root primary
   ios_config:
     lines: spanning-tree vlan {{ primary_stp_vlans }} root primary
