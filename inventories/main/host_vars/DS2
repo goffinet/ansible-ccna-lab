@@ -231,7 +231,6 @@ routing:
       group: 10
       protocol: ipv4
       address: 172.16.10.254
-      priority: 100
       preempt: false
       mode: standby
     - id: Vlan20
@@ -245,7 +244,6 @@ routing:
       group: 30
       protocol: ipv4
       address: 172.16.30.254
-      priority: 100
       preempt: false
       mode: standby
     - id: Vlan40
@@ -259,7 +257,6 @@ routing:
       group: 16
       protocol: ipv6
       address: 'FE80::D:1'
-      priority: 100
       preempt: false
       mode: standby
     - id: Vlan20
@@ -273,7 +270,6 @@ routing:
       group: 36
       protocol: ipv6
       address: 'FE80::D:1'
-      priority: 100
       preempt: false
       mode: standby
     - id: Vlan40
