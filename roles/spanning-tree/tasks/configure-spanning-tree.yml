@@ -5,15 +5,15 @@
   when: stp.mode is defined
 - name: define the stp root primary
   ios_config:
-    lines: "spanning-tree vlan {{ item }} priority 4096"
+    lines: "spanning-tree vlan {{ item }} root primary"
     diff_ignore_lines:
-      - spanning-tree vlan .* 4096
+      - spanning-tree vlan .*
   loop: "{{ stp.primary }}"
   when: stp.primary is defined
 - name: define the stp root secondary
   ios_config:
-    lines: "spanning-tree vlan {{ item }} priority 8184"
+    lines: "spanning-tree vlan {{ item }} root secondary"
     diff_ignore_lines:
-      - spanning-tree vlan .* 8184
+      - spanning-tree vlan .*
   loop: "{{ stp.secondary }}"
   when: stp.secondary is defined
