@@ -12,5 +12,5 @@
 - name: define the stp root secondary
   ios_config:
     defaults: yes
-    lines: spanning-tree vlan {{ stp.secondary | join(',') }} root 28672
+    lines: spanning-tree vlan {{ stp.secondary | join(',') }} root secondary
   when: stp.secondary is defined
