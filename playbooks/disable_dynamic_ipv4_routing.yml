@@ -1,0 +1,5 @@
+---
+- hosts: all
+  gather_facts: False
+  roles:
+    - role: disable-dynamic-ipv4-routing
