@@ -3,4 +3,4 @@
   gather_facts: False
   tasks:
     - debug:
-        msg: "spanning-tree vlan {{ [3003, 3004, 3005, 100, 1688, 3002, 3999] | vlan_parser }} root primary"
+        msg: "spanning-tree vlan {{ stp.primary | vlan_parser }} root primary"
