@@ -20,6 +20,8 @@
     defaults: yes
     parents: interface {{ item.id }}
     lines: "{{ item.mode }} {{ item.group }} priority {{ item.priority }}"
+    diff_ignore_lines:
+      - "{{ item.mode }} {{ item.group }} priority {{ item.priority }}"
   loop: "{{ routing.fhrp }}"
   when: item.priority is defined
 - name: configure fhrp - preemption
