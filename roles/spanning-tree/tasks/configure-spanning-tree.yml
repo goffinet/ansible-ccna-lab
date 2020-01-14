@@ -1,18 +1,15 @@
 ---
 - name: define the version of stp
   ios_config:
-    defaults: yes
     lines: spanning-tree mode {{ stp.mode }}
   when: stp.mode is defined
 - name: define the stp root primary
   ios_config:
-    defaults: yes
-    lines: "spanning-tree vlan {{ item }} root 24576"
+    lines: spanning-tree vlan {{ item }} root primary
   loop: "{{ stp.primary }}"
   when: stp.primary is defined
 - name: define the stp root secondary
   ios_config:
-    defaults: yes
-    lines: "spanning-tree vlan {{ stp.secondary }} root 28672"
+    lines: spanning-tree vlan {{ item }} root secondary
   loop: "{{ stp.secondary }}"
   when: stp.secondary is defined
