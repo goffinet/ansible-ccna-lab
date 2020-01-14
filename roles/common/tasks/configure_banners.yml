@@ -11,7 +11,7 @@
     state: present
   when:
     - banners.enabled
-    - banner.login is defined
+    - banners.login is defined
 - name: remove the motd banner
   ios_banner:
     banner: motd
@@ -24,7 +24,7 @@
     state: present
   when:
     - banners.enabled
-    - banner.motd is defined
+    - banners.motd is defined
 - name: remove the exec banner
   ios_banner:
     banner: exec
@@ -37,7 +37,7 @@
     state: present
   when:
     - banners.enabled
-    - banner.exec is defined
+    - banners.exec is defined
 - name: remove the incoming banner
   ios_banner:
     banner: incoming
@@ -50,11 +50,12 @@
     state: present
   when:
     - banners.enabled
-    - banner.incoming is defined
+    - banners.incoming is defined
 - name: remove the slip-ppp banner
   ios_banner:
     banner: slip-ppp
     state: absent
+  when: not banners.enabled or banners is undefined
 - name: set the slip-ppp banner
   ios_banner:
     banner: slip-ppp
@@ -62,4 +63,4 @@
     state: present
   when:
     - banners.enabled
-    - banner.slip_ppp is defined
+    - banners.slip_ppp is defined
