@@ -371,7 +371,11 @@ Archivé.
 
 ### Phase I
 
-Portage en rôles idempotents.
+Portage en rôles **idempotents**.
+
+Définition des variables dans `defaults/`.
+
+Rôles à créer/améliorer :
 
 * dhcp-relay
 * ~~**fhrp4**~~ + delay
@@ -379,18 +383,19 @@ Portage en rôles idempotents.
 * **cdp / lldp**
 * **syslog**
 * **ntp** (+ auth)
-* eigrp4/6 / ospfv2/v3 authentication
+* ~~eigrp4/6~~ / ~~ospfv2/v3~~ authentication
 * **snmpv2c** / **snmpv3**
 * **zbf**
 * ra-config fine tuning / dhcpv6 stateless / dhcpv6 stateful / (rdnss)
 * ppp / chap / pap / pppoe
 * gre ipv4 / gre ipv6
 * **security hardening**
-* ~~dependencies~~
+* ~~dependencies~~ ? handlers ?
 * ~~tags**~~
-* tasks by jinja2 templating --> Phase II
 
 ### Phase II
+
+_tasks by jinja2 templating_
 
 Rôles "immutables" qui agissent sur un modèle de fichier de configuration basé sur des choix d'infrastructure (des variables) et qui sera poussé sur les périphériques par la procédure `config replace flash:XXX force`.
 
