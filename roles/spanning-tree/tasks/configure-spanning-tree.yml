@@ -6,7 +6,7 @@
   when: stp.mode is defined
 - name: set a vlan list as ios can understand for stp root primary
   set_fact:
-    primary_stp_vlans: "{{ item | join(',') }}"
+    primary_stp_vlans: "{{ item | join(' ,') }}"
   loop: "{{ stp.primary }}"
   when: stp.primary is defined
 - name: set a vlan list as ios can understand for stp root secondary
