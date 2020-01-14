@@ -9,7 +9,7 @@ interfaces:
     ipv6_link_local_addresses:
       - 'FE80::2'
     ipv6_ula_uga_addresses:
-      - 'FD00:00:00:2::1/64'
+      - 'FD00:0:0:2::1/64'
   - id: GigabitEthernet0/1
     description: "Link to R1"
     ipv4_addresses:
