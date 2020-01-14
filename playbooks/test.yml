@@ -6,7 +6,11 @@
         msg: "spanning-tree vlan {{ stp.primary | join(',') }} priority 24576"
     - name: define the stp root primary
       ios_config:
-        lines: "spanning-tree vlan 1,10,30,99 priority 24576"
+        lines: "spanning-tree vlan {{ item }} priority 24576"
 #        lines: "no spanning-tree vlan {{ item }} root primary"
-#      loop: "{{ stp.primary }}"
+      loop:
+        - 1
+        - 10
+        - 30
+        - 99
 #      when: stp.primary is defined
