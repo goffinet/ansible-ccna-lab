@@ -6,7 +6,7 @@
 - name: define the stp root primary
   ios_config:
     lines: "spanning-tree vlan {{ item }} priority 4096"
-    match: exact
+    match: strict
   loop: "{{ stp.primary }}"
   when: stp.primary is defined
 - name: define the stp root secondary
