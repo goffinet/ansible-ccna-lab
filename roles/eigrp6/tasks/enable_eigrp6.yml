@@ -4,7 +4,7 @@
     defaults: yes
     parents: ipv6 router eigrp {{ routing.as }}
     lines:
-      - router-id {{ routing.rid }}
+      - eigrp router-id {{ routing.rid }}
 - name: enable eigrp ipv6 passive-interface
   ios_config:
     defaults: yes
