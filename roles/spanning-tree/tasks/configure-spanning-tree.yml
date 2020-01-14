@@ -5,11 +5,11 @@
   when: stp.mode is defined
 - name: define the stp root primary
   ios_config:
-    lines: spanning-tree vlan {{ item }} root primary
+    lines: spanning-tree vlan {{ item }} root 24576
   loop: "{{ stp.primary }}"
   when: stp.primary is defined
 - name: define the stp root secondary
   ios_config:
-    lines: spanning-tree vlan {{ item }} root secondary
+    lines: spanning-tree vlan {{ item }} root 28672
   loop: "{{ stp.secondary }}"
   when: stp.secondary is defined
