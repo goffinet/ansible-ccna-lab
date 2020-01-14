@@ -13,5 +13,7 @@
 - name: define the stp root secondary
   ios_config:
     lines: "spanning-tree vlan {{ item }} priority 8184"
+    diff_ignore_lines:
+      - spanning-tree vlan .*
   loop: "{{ stp.secondary }}"
   when: stp.secondary is defined
