@@ -1,6 +1,7 @@
 ---
 - name: enable ipv6 and configure link-local address
   ios_config:
+    defaults: yes
     parents: "interface {{ item.0.id }}"
     lines:
       - ipv6 enable

@@ -1,6 +1,7 @@
 ---
 - name: configure access ports
   ios_config:
+    defaults: yes
     parents: interface {{ item.0.id }}
     lines:
       - switchport mode access
@@ -8,6 +9,7 @@
   loop: "{{ interfaces|subelements('access', skip_missing=True) }}"
 - name: stp protection on access ports
   ios_config:
+    defaults: yes
     parents: interface {{ item.0.id }}
     lines:
       - spanning-tree portfast edge

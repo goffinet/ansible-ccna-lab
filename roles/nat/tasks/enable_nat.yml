@@ -6,23 +6,27 @@
         enabled: True
 - name: configure ipv4 adresses nat ouside interface
   ios_config:
+    defaults: yes
     parents: interface {{ nat.outside }}
     lines:
       - ip address dhcp
       - ip nat outside
 - name: configure ip nat inside interfaces
   ios_config:
+    defaults: yes
     parents: interface {{ item }}
     lines:
       - ip nat inside
   loop: "{{ nat.inside }}"
 - name: configure source nat acl
   ios_config:
+    defaults: yes
     parents: ip access-list standard {{ nat.name }}
     lines:
       - permit {{ item }}
   loop: "{{ nat.sources }}"
 - name: configure the nat rule
   ios_config:
+    defaults: yes
     lines:
       - ip nat inside source list {{ nat.name }} interface {{ nat.outside }} overload

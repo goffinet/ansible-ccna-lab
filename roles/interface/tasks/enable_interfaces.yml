@@ -1,6 +1,7 @@
 ---
 - name: disable switchport on switch interface
   ios_config:
+    defaults: yes
     parents: interface {{ item.id }}
     lines:
       - no switchport

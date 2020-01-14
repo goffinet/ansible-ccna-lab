@@ -1,6 +1,7 @@
 ---
 - name: configure trunk ports
   ios_config:
+    defaults: yes
     parents: interface {{ item.0.id }}
     lines:
       - switchport trunk encapsulation dot1q

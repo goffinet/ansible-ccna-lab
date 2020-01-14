@@ -18,6 +18,7 @@
     - stubvlan is defined
 - name: configure stub access ports
   ios_config:
+    defaults: yes
     parents: interface {{ item.0.id }}
     lines:
       - switchport mode access
@@ -27,6 +28,7 @@
     - stubvlan is defined
 - name: stp protection on stub access ports
   ios_config:
+    defaults: yes
     parents: interface {{ item.0.id }}
     lines:
       - spanning-tree portfast edge
