@@ -13,11 +13,11 @@
     secondary_stp_vlans: "{{ stp.secondary | join(',') }}"
   when: stp.secondary is defined
 - debug:
-    msg: "spanning-tree vlan 1 root primary"
+    msg: "spanning-tree vlan {{ primary_stp_vlans }} root primary"
 - name: define the stp root primary
   ios_config:
     defaults: yes
-    lines: "spanning-tree vlan {{ primary_stp_vlans }} root primary"
+    lines: "spanning-tree vlan 1 root primary"
   when: stp.primary is defined
 - name: define the stp root secondary
   ios_config:
