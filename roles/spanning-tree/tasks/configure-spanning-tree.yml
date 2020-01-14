@@ -7,7 +7,7 @@
   ios_config:
     lines: "spanning-tree vlan {{ item }} priority 4096"
     diff_against: intended
-    intended_config: "spanning-tree vlan {{ stp.primary | joint(',') }} priority 4096"
+    intended_config: "spanning-tree vlan {{ stp.primary | join(',') }} priority 4096"
 #    diff_ignore_lines:
 #      - spanning-tree vlan .* 4096
   loop: "{{ stp.primary }}"
