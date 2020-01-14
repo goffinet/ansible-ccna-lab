@@ -10,7 +10,7 @@
   when: stp.primary is defined
 - name: define the stp root secondary
   ios_config:
-    lines: spanning-tree vlan {{ item }} root 4096
+    lines: "spanning-tree vlan {{ item }} root 4096"
     match: strict
   loop: "{{ stp.secondary }}"
   when: stp.secondary is defined
