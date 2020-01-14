@@ -2,18 +2,18 @@
 - import_tasks: disable_rip.yml
   when:
     - ansible_network_os == 'ios'
-    - rip is defined
+    - routing.rip is defined
   tags:
     - disable-rip
 - import_tasks: disable_eigrp4.yml
   when:
     - ansible_network_os == 'ios'
-    - eigrp4 is defined
+    - routing.eigrp4 is defined
   tags:
     - disable-eigrp4
 - import_tasks: disable_ospfv2.yml
   when:
     - ansible_network_os == 'ios'
-    - ospfv2 is defined
+    - routing.ospfv2 is defined
   tags:
     - disable-ospfv2
