@@ -4,10 +4,14 @@
     defaults: yes
     lines: spanning-tree mode {{ stp.mode }}
   when: stp.mode is defined
-- name: set a vlan list as ios can understand
+- name: set a vlan list as ios can understand for stp root primary
   set_fact:
-    primary_stp_vlans: "{{ stp.primary | join(',') }}"
-    secondary_stp_vlans: "{{ stp.secondary | join(',') }}"
+    primary_stp_vlans: "{{ item | join(',') }}"
+  loop: "{{ stp|subelements('primary', skip_missing=True) }}"
+- name: set a vlan list as ios can understand for stp root primary
+  set_fact:
+    secondary_stp_vlans: "{{ item | join(',') }}"
+  loop: "{{ stp|subelements('secondary', skip_missing=True) }}"
 - name: define the stp root primary
   ios_config:
     lines: spanning-tree vlan {{ primary_stp_vlans }} root primary
