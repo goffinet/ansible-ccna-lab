@@ -3,5 +3,5 @@
   gather_facts: False
   tasks:
     - debug:
-        msg: "{{ item }}"
+        msg: "{{ item | flatten }}"
       loop: "{{ stp.primary }}"
