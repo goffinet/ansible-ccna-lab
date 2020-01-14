@@ -2,7 +2,7 @@
 hostname: "{{ inventory_hostname }}"
 domain_name: "{{ group_names|first }}"
 banners:
-  enabled: false
+  enabled: true
   login: |
        "Default Multi-line motd banner
        "
@@ -15,6 +15,6 @@ banners:
   incoming: |
        "Default Multi-line incoming banner
        "
-  slip-ppp: |
+  slip_ppp: |
        "Default Multi-line slip-ppp banner
        "
