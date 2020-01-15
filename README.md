@@ -338,13 +338,13 @@ ansible-playbook core.yml -v
 Le playbook `blocks.yml` configure la topologie switchblock :
 
 ```bash
-ansible-playbook blocks.yml -v
+ansible-playbook switchblock.yml -v
 ```
 
-Le playbook `site.yml` configure l'ensemble :
+Le playbook `ccna.yml` configure l'ensemble :
 
 ```bash
-ansible-playbook site.yml -v
+ansible-playbook ccna.yml -v
 ```
 
 ### 5.2. Diagnostic de base
