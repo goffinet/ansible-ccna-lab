@@ -9,6 +9,13 @@ galaxy_info:
     - iosv
     - ccna
     - dhcp-server
+platforms:
+  - name: VIOS-ADVENTERPRISEK9-M
+    versions:
+      - 15.6(2)T
+  - name: vios_l2-ADVENTERPRISEK9-M
+    versions:
+      - 15.2(20170321:233949)
 dependencies:
   - role: interface
   - role: ipv4
