@@ -48,6 +48,8 @@ ccna:
   switchblock:
 ```
 
+Une topologie intitulée "ccna" est composée de deux topologies distinctes "tripod" et "switchblock". La topologie "tripod" trouve trois variantes amoindries : "standalone", "site_to_site", et "router_on_stick".
+
 ## 1. Mise en place minimale
 
 Pour les utilisateur de la topologie GNS3 fournie en classe, sur tous les périphériques, il sera peut-être nécessaire de regénérer les clés RSA des périphériques Cisco :
@@ -466,15 +468,18 @@ Portage en rôles **idempotents**.
 
 Définition des variables dans `defaults/`.
 
-Rôles à créer/améliorer :
+Rôles à améliorer :
 
 * dhcp-relay
 * ~~**fhrp4**~~ + delay
 * ~~**fhrp6**~~ + delay
+* ~~eigrp4/6~~ / ~~ospfv2/v3~~ authentication
+
+Rôles à créer :
+
 * **cdp / lldp**
 * **syslog**
 * **ntp** (+ auth)
-* ~~eigrp4/6~~ / ~~ospfv2/v3~~ authentication
 * **snmpv2c** / **snmpv3**
 * **zbf**
 * ra-config fine tuning / dhcpv6 stateless / dhcpv6 stateful / (rdnss)
@@ -482,7 +487,6 @@ Rôles à créer/améliorer :
 * gre ipv4 / gre ipv6
 * **security hardening**
 * ~~dependencies~~ ? handlers ?
-* ~~tags**~~
 
 ### Comment rendre une tâche ios_config idempotente ?
 
@@ -522,4 +526,4 @@ Rôles "immutables" qui agissent sur un modèle de fichier de configuration bas�
 
 ### Phase III
 
-* Reporting ([role ansible-network.cisco_ios](https://galaxy.ansible.com/ansible-network/cisco_ios))
+Reporting ([role ansible-network.cisco_ios](https://galaxy.ansible.com/ansible-network/cisco_ios))
