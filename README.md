@@ -121,7 +121,7 @@ cd ansible-ccna-lab
 
 Le fichier de configuration `ansible.cfg`dans le dossier du dépôt configure Ansible :
 
-```toml
+```ini
 [defaults]
 inventory=./inventories/main/hosts
 host_key_checking=False
