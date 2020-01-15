@@ -176,19 +176,49 @@ R3 | G0/2 | `192.168.226.2/24` | `fe80::3` | Connexion vers R2
 * On activera un service DHCP sur chaque réseau local (`GigabitEthernet0/0`).
 * Le routeur R1 connecte l'Internet. Le service NAT est activé.
 
-### 2.2. Variante Site to Site
+On activera les protocoles de routage IPv4 et IPv6 :
+
+* [RIPv2](https://cisco.goffinet.org/categories/rip)
+* [OSPFv2 et/ou OSPFv3](https://cisco.goffinet.org/categories/ospf)
+* [EIGRP pour IPv4 et/ou IPv6](https://cisco.goffinet.org/categories/eigrp) avec des exemples de variance
+
+Références :
+
+* [Lab routage RIPv2 VLSM](https://cisco.goffinet.org/ccnp/rip/lab-ripv2-vlsm/)
+* [Lab Routage EIGRP](https://cisco.goffinet.org/ccnp/eigrp/lab-routage-eigrp/)
+* [Lab Routage OSPF Multi-Area](https://cisco.goffinet.org/ccna/ospf/lab-ospf-multi-area/)
+
+### 2.x. Lab Configuration d’un routeur Cisco
+
+Références :
+
+* [Lab Configuration d’un routeur Cisco](https://cisco.goffinet.org/ccna/routage/lab-configuration-routeur-cisco/)
+
+### 2.x. Variante Site to Site
 
 Variante de la topologie Tripod avec une connexion point-à-point entre R1 et R2.
 
-...
+Références :
 
-### 2.3. Variante Router on a Stick
+* [Lab routage statique simple](https://cisco.goffinet.org/ccna/routage/lab-routage-statique-simple/)
+* [Lab routage RIPv2 simple](https://cisco.goffinet.org/ccnp/rip/lab-ripv2-simple/)
+* [Lab Routage OSPF simple](https://cisco.goffinet.org/ccna/ospf/lab-routage-ospf-simple/)
+
+### 2.x. Variante Router on a Stick
 
 Variante de la topologie Tripod en utilisant un Trunk Vlan entre R1 et SW0 ainsi qu'entre SW0 et SW1.
 
-...
+Références :
+
+* [Lab VLAN de base](https://cisco.goffinet.org/ccna/vlans/lab-vlan-base-cisco-ios/)
 
 ## 3. Topologie CCNA Switchblock
+
+Références :
+
+* [Technologies VLANs](https://cisco.goffinet.org/ccna/vlans/)
+* [Redondance de liens](https://cisco.goffinet.org/ccna/redondance-de-liens/)
+* [Disponibilité dans le LAN](https://cisco.goffinet.org/ccna/disponibilite-lan/)
 
 ### 3.1. Topologie avec redondance de passerelle HSRP
 
@@ -283,9 +313,9 @@ ansible all -m ping
 ```
 
 
-### Inventaire et variables d'inventaire
+### Inventaire et variables d'inventaire du livre de jeu ccna.yml
 
-L'inventaire est défini comme suit (fichier `inventories/main/hosts`) :
+L'inventaire par défaut est défini comme suit (fichier `inventories/main/hosts`) et correspond à la topologie ccna (core + switchblock) :
 
 ```ini
 [all:vars]
@@ -441,9 +471,11 @@ Texte original de [guzmonne](https://stackoverflow.com/users/1930817/guzmonne) e
 
 ### Topologies
 
-* site-to-site
 * tripod
+* site-to-site
 * router-on-a-stick
+* switchblock
+* ccna (switchblock + tripod)
 
 ### Phase II
 
