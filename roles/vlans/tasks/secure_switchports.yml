@@ -19,20 +19,22 @@
 - name: configure stub access ports
   ios_config:
     defaults: yes
-    parents: interface {{ item.0.id }}
+    parents: interface {{ item.id }}
     lines:
       - switchport mode access
       - switchport access vlan {{ stubvlan.id }}
-  loop: "{{ interfaces|subelements('stub', skip_missing=True) }}"
+  loop: "{{ interfaces }}"
   when:
     - stubvlan is defined
+    - item.stub
 - name: stp protection on stub access ports
   ios_config:
     defaults: yes
-    parents: interface {{ item.0.id }}
+    parents: interface {{ item.id }}
     lines:
       - spanning-tree portfast edge
       - spanning-tree bpduguard enable
-  loop: "{{ interfaces|subelements('stub', skip_missing=True)|list }}"
+  loop: "{{ interface }}"
   when:
     - stubvlan is defined
+    - item.stub

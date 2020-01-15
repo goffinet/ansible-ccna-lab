@@ -121,24 +121,19 @@ interfaces:
       - 'FE80::D:2'
   - id: GigabitEthernet0/3
     description: "Stub interface"
-    stub:
-      - true
+    stub: true
   - id: GigabitEthernet1/3
     description: "Stub interface"
-    stub:
-      - true
+    stub: true
   - id: GigabitEthernet2/2
     description: "Stub interface"
-    stub:
-      - true
+    stub: true
   - id: GigabitEthernet2/3
     description: "Stub interface"
-    stub:
-      - true
+    stub: true
   - id: GigabitEthernet3/2
     description: "Stub interface"
-    stub:
-      - true
+    stub: true
 routing:
   rid: 4.4.4.4
   passive:
