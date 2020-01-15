@@ -186,6 +186,39 @@ routing:
       pri: 255
       cost: 1
       area: 0
+  ospfv3:
+    - id: Vlan10
+      pri: 255
+      cost: 1
+      area: 0
+    - id: Vlan20
+      pri: 255
+      cost: 1
+      area: 0
+    - id: Vlan30
+      pri: 255
+      cost: 1
+      area: 0
+    - id: Vlan40
+      pri: 255
+      cost: 1
+      area: 0
+    - id: GigabitEthernet2/0
+      pri: 255
+      cost: 1
+      area: 0
+    - id: GigabitEthernet3/0
+      pri: 255
+      cost: 1
+      area: 0
+    - id: GigabitEthernet2/1
+      pri: 255
+      cost: 1
+      area: 0
+    - id: GigabitEthernet3/1
+      pri: 255
+      cost: 1
+      area: 0
   eigrp4:
     - id: Vlan10
       ipv4: 172.16.10.0 0.0.0.255
