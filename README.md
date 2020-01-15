@@ -24,9 +24,9 @@
   - [3.8. Explication](#38-explication)
 - [4. Toplogie CCNA Core et Switchblock](#4-toplogie-ccna-core-et-switchblock)
 - [5. Utilisation](#5-utilisation)
-  - [Inventaire et variables d'inventaire du livre de jeu ccna.yml](#inventaire-et-variables-dinventaire-du-livre-de-jeu-ccnayml)
-  - [5.1. Livres de jeu](#51-livres-de-jeu)
-  - [5.2. Diagnostic de base](#52-diagnostic-de-base)
+  - [5.1. Inventaire et variables d'inventaire du livre de jeu ccna.yml](#51-inventaire-et-variables-dinventaire-du-livre-de-jeu-ccnayml)
+  - [5.2. Livres de jeu](#52-livres-de-jeu)
+  - [5.3. Diagnostic de base](#53-diagnostic-de-base)
 - [Notes](#notes)
   - [Phase I](#phase-i)
   - [Comment rendre une tâche ios_config idempotente ?](#comment-rendre-une-tche-iosconfig-idempotente-)
@@ -356,7 +356,7 @@ ansible all -m ping
 ```
 
 
-### Inventaire et variables d'inventaire du livre de jeu ccna.yml
+### 5.1. Inventaire et variables d'inventaire du livre de jeu ccna.yml
 
 L'inventaire par défaut est défini comme suit (fichier `inventories/main/hosts`) et correspond à la topologie ccna (core + switchblock) :
 
@@ -417,7 +417,7 @@ inventories/main
     └── R3
 ```
 
-### 5.1. Livres de jeu
+### 5.2. Livres de jeu
 
 Les livres de jeu font appel à des rôles qui trouvent la valeur des variables dans l'inventaire.
 
@@ -440,7 +440,7 @@ Le playbook `ccna.yml` configure l'ensemble :
 ansible-playbook ccna.yml -v
 ```
 
-### 5.2. Diagnostic de base
+### 5.3. Diagnostic de base
 
 Diagnostic du routage sur R1 :
 
