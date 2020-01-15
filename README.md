@@ -173,7 +173,7 @@ Le fichier de configuration `ansible.cfg`dans le dossier du dépôt configure An
 
 ```ini
 [defaults]
-inventory = ./inventories/main/hosts
+inventory = ./inventories/ccna/hosts
 roles_path = ~/.ansible/roles:./roles
 host_key_checking = False
 retry_files_enabled = False
@@ -358,7 +358,7 @@ ansible all -m ping
 
 ### 5.1. Inventaire et variables d'inventaire du livre de jeu ccna.yml
 
-L'inventaire par défaut est défini comme suit (fichier `inventories/main/hosts`) et correspond à la topologie ccna (core + switchblock) :
+L'inventaire par défaut est défini comme suit (fichier `inventories/ccna/hosts`) et correspond à la topologie ccna (core + switchblock) :
 
 ```ini
 [all:vars]
@@ -399,10 +399,10 @@ ansible_network_os=ios
 
 ```
 
-Les configurations sont définies en YAML dans les fichiers de variables d'inventaire (dossiers `inventories/main/group_vars` et `inventories/main/host_vars`).
+Les configurations sont définies en YAML dans les fichiers de variables d'inventaire (dossiers `inventories/ccna/group_vars` et `inventories/ccna/host_vars`).
 
 ```raw
-inventories/main
+inventories/ccna
 ├── group_vars
 │   ├── all       --> protocoles de routage ipv4/ipv6
 │   └── blocks    --> variables vlans, switchports et stp mode
