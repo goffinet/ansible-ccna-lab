@@ -5,7 +5,7 @@
       - name: "{{ item.id }}"
         enabled: False
   loop: "{{ interfaces }}"
-  when: item.stub
+  when: item.stub is defined
 - name: create stub vlan
   ios_vlans:
     config:
