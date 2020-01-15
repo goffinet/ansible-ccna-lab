@@ -1,0 +1,21 @@
+[all:vars]
+#method=modules # modules or templating not yet implemented
+routing_ipv4='["eigrp4"]'
+routing_ipv6='["eigrp6"]'
+#routing_ipv4='["eigrp4", "rip", "ospfv2"]'
+#routing_ipv6='["eigrp6", "ospfv3"]'
+
+[core]
+R1
+R2
+R3
+
+[cisco:children]
+core
+
+[cisco:vars]
+ansible_user=root
+ansible_ssh_pass=testtest
+ansible_port=22
+ansible_connection=network_cli
+ansible_network_os=ios
