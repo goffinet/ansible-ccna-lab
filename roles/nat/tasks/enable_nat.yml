@@ -36,5 +36,6 @@
     defaults: yes
     lines:
       - ip nat inside source list {{ nat.name }} interface {{ nat.outside }} overload
+  when:
     - nat.name is defined
     - nat.outside is defined
