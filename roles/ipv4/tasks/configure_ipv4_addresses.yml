@@ -2,8 +2,8 @@
 - name: configure ipv4 addresses
   ios_l3_interfaces:
     config:
-      - name: "{{ item.0.id }}"
+      - name: "{{ item.id }}"
         ipv4:
-        - address: "{{ item.1 }}"
-  loop: "{{ interfaces.ipv4_addresses }}"
+        - address: "{{ item.ipv4_addresses }}"
+  loop: "{{ interfaces }}"
   loop: interfaces.ipv4_addresses is defined
