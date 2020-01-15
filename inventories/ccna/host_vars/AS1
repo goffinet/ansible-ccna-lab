@@ -31,7 +31,7 @@ interfaces:
       - vlan: 40
   - id: Vlan99
     description: "Management interface"
-    ipv4_addresses: 172.16.0.1 255.255.255.0
+    ipv4_addresses: 172.16.0.1/24
     gateway: 172.16.0.254
   - id: GigabitEthernet0/0
     description: "Trunk Group Channel1 to DS1"
@@ -78,3 +78,4 @@ interfaces:
   - id: GigabitEthernet3/2
     description: "Stub interface"
     stub: true
+/24
