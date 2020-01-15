@@ -4,12 +4,12 @@
     config:
       - name: "{{ item.id }}"
         ipv4:
-        - address: "{{ item.ipv4_addresses | ipaddr('address') }} {{ item.ipv4_addresses | ipaddr('netmask') }}"
+        - address: "{{ item.ipv4_address | ipaddr('address') }} {{ item.ipv4_address | ipaddr('netmask') }}"
   loop: "{{ interfaces }}"
   when:
     - item.id is defined
-    - item.ipv4_addresses is defined
-    - item.ipv4_addresses | ipv4
+    - item.ipv4_address is defined
+    - item.ipv4_address | ipv4
 - name: configure ipv4 addresses as dhcp client
   ios_l3_interfaces:
     config:
@@ -19,5 +19,5 @@
   loop: "{{ interfaces }}"
   when:
     - item.id is defined
-    - item.ipv4_addresses is defined
-    - item.ipv4_addresses == 'dhcp'
+    - item.ipv4_address is defined
+    - item.ipv4_address == 'dhcp'

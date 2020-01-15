@@ -66,31 +66,31 @@ interfaces:
       - native: 99
   - id: Vlan99
     description: "Management real gateway"
-    ipv4_addresses: 172.16.0.253/24
+    ipv4_address: 172.16.0.253/24
   - id: Vlan10
     description: "Vlan10 real gateway"
-    ipv4_addresses: 172.16.10.253/24
+    ipv4_address: 172.16.10.253/24
     ipv6_link_local_addresses:
       - 'FE80::D:3'
     ipv6_ula_uga_addresses:
       - 'FD00:1AB:10::2/64'
   - id: Vlan20
     description: "Vlan20 real gateway"
-    ipv4_addresses: 172.16.20.253/24
+    ipv4_address: 172.16.20.253/24
     ipv6_link_local_addresses:
       - 'FE80::D:3'
     ipv6_ula_uga_addresses:
       - 'FD00:1AB:20::2/64'
   - id: Vlan30
     description: "Vlan30 real gateway"
-    ipv4_addresses: 172.16.30.253/24
+    ipv4_address: 172.16.30.253/24
     ipv6_link_local_addresses:
       - 'FE80::D:3'
     ipv6_ula_uga_addresses:
       - 'FD00:1AB:30::2/64'
   - id: Vlan40
     description: "Vlan40 real gateway"
-    ipv4_addresses: 172.16.40.253/24
+    ipv4_address: 172.16.40.253/24
     ipv6_link_local_addresses:
       - 'FE80::D:3'
     ipv6_ula_uga_addresses:
@@ -98,25 +98,25 @@ interfaces:
   - id: GigabitEthernet2/0
     description: "Link to R3 Core"
     noswitchport: true
-    ipv4_addresses: 172.16.240.2/24
+    ipv4_address: 172.16.240.2/24
     ipv6_link_local_addresses:
       - 'FE80::D:3'
   - id: GigabitEthernet3/0
     description: "Link to R3 Core"
     noswitchport: true
-    ipv4_addresses: 172.16.241.2/24
+    ipv4_address: 172.16.241.2/24
     ipv6_link_local_addresses:
       - 'FE80::D:3'
   - id: GigabitEthernet2/1
     description: "Link to R2 Core"
     noswitchport: true
-    ipv4_addresses: 172.16.242.2/24
+    ipv4_address: 172.16.242.2/24
     ipv6_link_local_addresses:
       - 'FE80::D:3'
   - id: GigabitEthernet3/1
     description: "Link to R2 Core"
     noswitchport: true
-    ipv4_addresses: 172.16.243.2/24
+    ipv4_address: 172.16.243.2/24
     ipv6_link_local_addresses:
       - 'FE80::D:3'
   - id: GigabitEthernet0/3
