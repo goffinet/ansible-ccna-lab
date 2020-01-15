@@ -2,11 +2,11 @@
 - name: disable stub switchports
   ios_interfaces:
     config:
-      - name: "{{ item.0.id }}"
+      - name: "{{ item.id }}"
         enabled: False
-  loop: "{{ interfaces|subelements('stub', skip_missing=True)|list }}"
+  loop: "{{ interfaces}}"
   when:
-    - stubvlan is defined
+    - item.stub
 - name: create stub vlan
   ios_vlans:
     config:
