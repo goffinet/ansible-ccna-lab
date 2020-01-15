@@ -8,6 +8,7 @@
       - default-router {{ item.router }}
       - dns-server {{ item.dns }}
   loop: "{{ dhcp.dhcp_pool }}"
+  when: dhcp.dhcp_pool is defined
 - name: exclude range from pool
   ios_config:
     defaults: yes
