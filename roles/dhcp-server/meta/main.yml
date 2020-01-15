@@ -8,7 +8,7 @@ galaxy_info:
     - cisco
     - iosv
     - ccna
-    - dhcp-server
+    - dhcp
 platforms:
   - name: VIOS-ADVENTERPRISEK9-M
     versions:
