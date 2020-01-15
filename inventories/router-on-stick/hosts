@@ -2,7 +2,7 @@
 #method=modules # modules or templating
 
 [core]
-gateway
+R1
 
 [access]
 SW0
