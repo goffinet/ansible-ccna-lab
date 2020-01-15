@@ -4,46 +4,39 @@ domain_name: lan
 interfaces:
   - id: GigabitEthernet0/0
     description: "LAN R3"
-    ipv4_addresses:
-      - 192.168.65.1 255.255.255.0
+    ipv4_addresses: 192.168.65.1 255.255.255.0
     ipv6_link_local_addresses:
       - 'FE80::3'
     ipv6_ula_uga_addresses:
       - 'FD00:0:0:3::1/64'
   - id: GigabitEthernet0/1
     description: "Link to R1"
-    ipv4_addresses:
-      - 192.168.226.2 255.255.255.0
+    ipv4_addresses: 192.168.226.2 255.255.255.0
     ipv6_link_local_addresses:
       - 'FE80::3'
   - id: GigabitEthernet0/2
     description: "Link to R2"
-    ipv4_addresses:
-      - 192.168.227.2 255.255.255.0
+    ipv4_addresses: 192.168.227.2 255.255.255.0
     ipv6_link_local_addresses:
       - 'FE80::3'
   - id: GigabitEthernet0/3
     description: "Link to DS2"
-    ipv4_addresses:
-      - 172.16.240.1 255.255.255.0
+    ipv4_addresses: 172.16.240.1 255.255.255.0
     ipv6_link_local_addresses:
       - 'FE80::3'
   - id: GigabitEthernet0/4
     description: "Link to DS2"
-    ipv4_addresses:
-      - 172.16.241.1 255.255.255.0
+    ipv4_addresses: 172.16.241.1 255.255.255.0
     ipv6_link_local_addresses:
       - 'FE80::3'
   - id: GigabitEthernet0/5
     description: "Link to DS1"
-    ipv4_addresses:
-      - 172.16.226.1 255.255.255.0
+    ipv4_addresses: 172.16.226.1 255.255.255.0
     ipv6_link_local_addresses:
       - 'FE80::3'
   - id: GigabitEthernet0/6
     description: "Link to DS1"
-    ipv4_addresses:
-      - 172.16.227.1 255.255.255.0
+    ipv4_addresses: 172.16.227.1 255.255.255.0
     ipv6_link_local_addresses:
       - 'FE80::3'
 routing:
