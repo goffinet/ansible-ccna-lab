@@ -10,3 +10,14 @@
     - item.id is defined
     - item.ipv4_addresses is defined
     - item.ipv4_addresses | ipv4
+- name: configure ipv4 addresses as dhcp client
+  ios_l3_interfaces:
+    config:
+      - name: "{{ item.id }}"
+        ipv4:
+        - address: "dhcp"
+  loop: "{{ interfaces }}"
+  when:
+    - item.id is defined
+    - item.ipv4_addresses is defined
+    - item.ipv4_addresses == 'dhcp'

@@ -1,16 +1,9 @@
 ---
-- name: enable nat outside interface
-  ios_interfaces:
-    config:
-      - name: "{{ nat.outside }}"
-        enabled: True
-  when: nat.outside is defined
-- name: configure ipv4 adresses nat ouside interface
+- name: configure ipv4 adresses nat outside interface
   ios_config:
     defaults: yes
     parents: interface {{ nat.outside }}
     lines:
-      - ip address dhcp
       - ip nat outside
   when: nat.outside is defined
 - name: configure ip nat inside interfaces
