@@ -11,10 +11,10 @@ galaxy_info:
     - vlan
     - access
     - trunk
-platforms:
-  - name: vios_l2-ADVENTERPRISEK9-M
-    versions:
-      - 15.2(20170321:233949)
+  platforms:
+    - name: vios_l2-ADVENTERPRISEK9-M
+      versions:
+        - 15.2(20170321:233949)
 dependencies:
   - role: etherchannel
   - role: interface
