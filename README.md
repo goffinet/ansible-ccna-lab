@@ -1,10 +1,23 @@
 # Ansible CCNA lab
 
-On trouvera ici un livre de jeux inspiré des topologies et des sujets du Cisco CCNA et plus.
+On trouvera ici un livre de jeu inspiré des topologies et des sujets du Cisco CCNA et plus.
+
+Il est basé sur trois éléments : des livres de jeu qui peuvent en appeler d'autres nommés selon la **topologie** ; ces livres de jeu configurent des hôtes d'inventaire avec des tâches organisées en **rôles** ; les paramètres de la topologie sont configurés en tant que **variables d'inventaire selon un certain modèle de données**.
+
+Les topologies sont organisées de la manière suivante :
+
+```yaml
+ccna:
+  tripod:
+    standalone:
+    site_to_site:
+    router_on_stick:
+  switchblock:
+```
 
 ## 1. Mise en place minimale
 
-Note pour les utilisateur de la topologie GNS3 fournie en classe, sur tous les périphériques, il sera peut-être nécessaire de re-générer les clés RSA des périphériques Cisco :
+Pour les utilisateur de la topologie GNS3 fournie en classe, sur tous les périphériques, il sera peut-être nécessaire de regénérer les clés RSA des périphériques Cisco :
 
 ```raw
 enable
@@ -17,17 +30,13 @@ wr
 
 ### 1.1. Images GNS3
 
-* image [VIRL](https://learningnetworkstore.cisco.com/virtual-internet-routing-lab-virl/cisco-personal-edition-pe-20-nodes-virl-20) IOSv (kvm)
-* image [VIRL](https://learningnetworkstore.cisco.com/virtual-internet-routing-lab-virl/cisco-personal-edition-pe-20-nodes-virl-20) IOSv-L2 (kvm)
-* image Centos (kvm)
+Les livres de jeux sont testés avec [GNS3 Server](https://cisco.goffinet.org/ccna/cisco-ios-cli/installer-et-configurer-gns3/) et Qemu/KVM sous Linux.
 
 Périphériques | Images Qemu/KVM | Commentaire
 ---|---|---
 Routeur Cisco IOSv 15.6(2)T | `vios-adventerprisek9-m.vmdk.SPA.156-2.T` avec `IOSv_startup_config.img`  | [VIRL 1.3.296 (Aug. 2017 Release)](https://learningnetwork.cisco.com/docs/DOC-33132)
 Commutateur Cisco IOSv L2/L3  | `vios_l2-adventerprisek9-m.03.2017.qcow2`  | [VIRL 1.3.296 (Aug. 2017 Release)](https://learningnetwork.cisco.com/docs/DOC-33132)
 Poste de travail L2 à L7, Station de contrôle  | Centos 7.5  | L'[image Centos7](http://get.goffinet.org/kvm/centos7.qcow2) et [son fichier d'appliance](http://get.goffinet.org/gns3a/centos7.gns3a)
-
-Les livres de jeux sont testés avec [GNS3](https://cisco.goffinet.org/ccna/cisco-ios-cli/installer-et-configurer-gns3/).
 
 ### 1.2. Routeurs
 
@@ -131,16 +140,17 @@ Le fichier de configuration `ansible.cfg`dans le dossier du dépôt configure An
 
 ```ini
 [defaults]
-inventory=./inventories/main/hosts
-host_key_checking=False
+inventory = ./inventories/main/hosts
+roles_path = ~/.ansible/roles:./roles
+host_key_checking = False
 retry_files_enabled = False
 log_path = ./ansible.log
-callback_whitelist = profile_tasks
 #forks = 20
 strategy = linear
 #gathering = explicit
 #display_ok_hosts=no
 #display_skipped_hosts=no
+callback_whitelist = profile_tasks
 [callback_profile_tasks ]
 task_output_limit = 100
 ```
@@ -188,13 +198,13 @@ Références :
 * [Lab Routage EIGRP](https://cisco.goffinet.org/ccnp/eigrp/lab-routage-eigrp/)
 * [Lab Routage OSPF Multi-Area](https://cisco.goffinet.org/ccna/ospf/lab-ospf-multi-area/)
 
-### 2.x. Lab Configuration d’un routeur Cisco
+### 2.3. Variante Standalone
 
 Références :
 
 * [Lab Configuration d’un routeur Cisco](https://cisco.goffinet.org/ccna/routage/lab-configuration-routeur-cisco/)
 
-### 2.x. Variante Site to Site
+### 2.4. Variante Site to Site
 
 Variante de la topologie Tripod avec une connexion point-à-point entre R1 et R2.
 
@@ -204,7 +214,7 @@ Références :
 * [Lab routage RIPv2 simple](https://cisco.goffinet.org/ccnp/rip/lab-ripv2-simple/)
 * [Lab Routage OSPF simple](https://cisco.goffinet.org/ccna/ospf/lab-routage-ospf-simple/)
 
-### 2.x. Variante Router on a Stick
+### 2.5. Variante Router on a Stick
 
 Variante de la topologie Tripod en utilisant un Trunk Vlan entre R1 et SW0 ainsi qu'entre SW0 et SW1.
 
@@ -468,14 +478,6 @@ Combinée avec l'option `before`, on applique des commandes avant et après que 
 Texte original de [guzmonne](https://stackoverflow.com/users/1930817/guzmonne) en réponse à la question stackoverflow [How can I make my ios_config task idempotent?](https://stackoverflow.com/questions/57279642/how-can-i-make-my-ios-config-task-idempotent).
 
 [^1]: Aussi, l'argument `defaults` qu'il sera nécessaire d'activer avec la valeur `yes` spécifie s'il faut ou non collecter toutes les valeurs par défaut lors de l'exécution de la configuration du périphérique distant. Lorsqu'il est activé, le module obtient la configuration actuelle en lançant la commande `show running-config all`. En effet, des commandes comme `no shutdown` ou encore `ipv6 enable` ou encore `ipv4 routing` et beaucoup n'apparaissent pas avec la commande `show running-config`.
-
-### Topologies
-
-* tripod
-* site-to-site
-* router-on-a-stick
-* switchblock
-* ccna (switchblock + tripod)
 
 ### Phase II
 
