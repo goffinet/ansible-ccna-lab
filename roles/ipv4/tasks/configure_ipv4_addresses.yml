@@ -9,4 +9,4 @@
   when:
     - item.id is defined
     - item.ipv4_addresses is defined
-    - item | ipaddr
+    - item.ipv4_addresses | ipv4
