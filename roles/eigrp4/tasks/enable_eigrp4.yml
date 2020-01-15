@@ -8,6 +8,7 @@
   when:
     - routing.as is defined
     - routing.rid is defined
+    - routing.eigrp4 is defined
 - name: enable eigrp4 passive-interface
   ios_config:
     defaults: yes
@@ -17,7 +18,8 @@
   loop: "{{ routing.passive }}"
   when:
     - routing.as is defined
-    - routing.passive is defined
+    - item is defined
+    - routing.eigrp4 is defined
 - name: enable eigrp4 interfaces
   ios_config:
     defaults: yes
@@ -27,4 +29,5 @@
   loop: "{{ routing.eigrp4 }}"
   when:
     - routing.as is defined
+    - item.ipv4 is defined
     - routing.eigrp4 is defined

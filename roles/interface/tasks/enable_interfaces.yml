@@ -6,7 +6,9 @@
     lines:
       - no switchport
   loop: "{{ interfaces }}"
-  when: item.noswitchport is defined
+  when:
+    - item.noswitchport is defined
+    - item.id is defined
   tags:
     - interface
 - name: enable interface
@@ -16,6 +18,8 @@
         enabled: True
         description: "{{ item.description }}"
   loop: "{{ interfaces }}"
-  when: not item.stub
+  when:
+    - not item.stub
+    - item.id is defined
   tags:
     - interface

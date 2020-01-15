@@ -5,4 +5,7 @@
     parents: router ospf {{ routing.pid }}
     lines:
       - default-information originate
-  when: nat is defined
+  when:
+    - nat is defined
+    - routing.pid is defined
+    - routing.ospfv2 is defined

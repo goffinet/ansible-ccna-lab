@@ -6,3 +6,5 @@
         state: active
         shutdown: disabled
   loop: "{{ vlans }}"
+  when: item.name is defined
+  when: item.id is defined

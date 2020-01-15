@@ -5,4 +5,6 @@
     parents: router rip
     lines:
       - default-information originate
-  when: nat is defined
+  when:
+    - routing.rip is defined
+    - nat is defined

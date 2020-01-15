@@ -1,5 +1,6 @@
 ---
 - import_tasks: enable_ipv6_routing.yml
-  when: ansible_network_os == 'ios'
+  when:
+    - ansible_network_os == 'ios'
   tags:
     - ipv6_routing

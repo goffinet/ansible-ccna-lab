@@ -4,6 +4,7 @@
     config:
       - name: "{{ nat.outside }}"
         enabled: True
+  when: nat.outside is defined
 - name: configure ipv4 adresses nat ouside interface
   ios_config:
     defaults: yes
@@ -11,6 +12,7 @@
     lines:
       - ip address dhcp
       - ip nat outside
+  when: nat.outside is defined
 - name: configure ip nat inside interfaces
   ios_config:
     defaults: yes
@@ -18,6 +20,7 @@
     lines:
       - ip nat inside
   loop: "{{ nat.inside }}"
+  when: item is defined
 - name: configure source nat acl
   ios_config:
     defaults: yes
@@ -25,8 +28,13 @@
     lines:
       - permit {{ item }}
   loop: "{{ nat.sources }}"
+  when:
+    - nat.name is defined
+    - item is defined
 - name: configure the nat rule
   ios_config:
     defaults: yes
     lines:
       - ip nat inside source list {{ nat.name }} interface {{ nat.outside }} overload
+    - nat.name is defined
+    - nat.outside is defined

@@ -8,3 +8,4 @@
       - switchport trunk native vlan {{ item.1.native }}
       - switchport mode trunk
   loop: "{{ interfaces|subelements('trunk', skip_missing=True) }}"
+  when: interfaces is defined

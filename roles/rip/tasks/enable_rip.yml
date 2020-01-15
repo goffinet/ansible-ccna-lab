@@ -5,6 +5,8 @@
     parents: router rip
     lines:
       - version 2
+  when:
+    - routing.rip is defined
 - name: enable rip passive-interface
   ios_config:
     defaults: yes
@@ -12,7 +14,9 @@
     lines:
       - passive-interface {{ item }}
   loop: "{{ routing.passive }}"
-  when: routing.passive is defined
+  when:
+    - routing.rip is defined
+    - item is defined
 - name: enable rip interfaces
   ios_config:
     defaults: yes
@@ -20,3 +24,6 @@
     lines:
       - network {{ item }}
   loop: "{{ routing.rip }}"
+  when:
+    - routing.rip is defined
+    - item is defined

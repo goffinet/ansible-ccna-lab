@@ -5,6 +5,10 @@
     parents: router ospf {{ routing.pid }}
     lines:
       - router-id {{ routing.rid }}
+  when:
+    - routing.pid is defined
+    - routing.rid is defined
+    - routing.ospfv2 is defined
 - name: enable ospfv2 passive-interface
   ios_config:
     defaults: yes
@@ -12,7 +16,10 @@
     lines:
       - passive-interface {{ item }}
   loop: "{{ routing.passive }}"
-  when: routing.passive is defined
+  when:
+    - routing.pid is defined
+    - item is defined
+    - routing.ospfv2 is defined
 - name: enable ospfv2 interfaces
   ios_config:
     defaults: yes
@@ -20,3 +27,8 @@
     lines:
       - "network {{ item.ipv4 }} 0.0.0.0 area {{ item.area }}"
   loop: "{{ routing.ospfv2 }}"
+  when:
+    - routing.pid is defined
+    - item.ipv4 is defined
+    - item.area is defined
+    - routing.ospfv2 is defined
