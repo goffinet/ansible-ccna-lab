@@ -5,6 +5,9 @@
     parents: router eigrp {{ routing.as }}
     lines:
       - eigrp router-id {{ routing.rid }}
+  when:
+    - routing.as is defined
+    - routing.rid is defined
 - name: enable eigrp4 passive-interface
   ios_config:
     defaults: yes
@@ -12,7 +15,9 @@
     lines:
       - passive-interface {{ item }}
   loop: "{{ routing.passive }}"
-  when: routing.passive is defined
+  when:
+    - routing.as is defined
+    - routing.passive is defined
 - name: enable eigrp4 interfaces
   ios_config:
     defaults: yes
@@ -20,3 +25,6 @@
     lines:
       - "network {{ item.ipv4 }}"
   loop: "{{ routing.eigrp4 }}"
+  when:
+    - routing.as is defined
+    - routing.eigrp4 is defined

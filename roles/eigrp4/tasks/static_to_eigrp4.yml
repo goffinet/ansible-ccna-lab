@@ -5,4 +5,7 @@
     parents: router eigrp {{ routing.as }}
     lines:
       - redistribute static
-  when: nat is defined
+  when:
+    - nat is defined
+    - routing.as is defined
+    - routing.eigrp4 is defined

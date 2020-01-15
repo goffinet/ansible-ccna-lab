@@ -2,6 +2,8 @@
 - import_tasks: enable_eigrp6.yml
   when:
     - ansible_network_os == 'ios'
+    - routing.as is defined
+    - routing.rid is defined
     - routing.eigrp6 is defined
   tags:
     - eigrp6
