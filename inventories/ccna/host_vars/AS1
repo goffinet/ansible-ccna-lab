@@ -78,4 +78,3 @@ interfaces:
   - id: GigabitEthernet3/2
     description: "Stub interface"
     stub: true
-/24
