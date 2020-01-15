@@ -1,5 +1,5 @@
 ---
-# Playbook to configure CCNA "core" topology
+# Playbook to configure CCNA "tripod" topology
 - hosts: core
   gather_facts: False
   roles:

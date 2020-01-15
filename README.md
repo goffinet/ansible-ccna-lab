@@ -17,9 +17,17 @@ wr
 
 ### 1.1. Images GNS3
 
-* image IOSv (kvm)
-* image IOSv-L2 (kvm)
+* image [VIRL](https://learningnetworkstore.cisco.com/virtual-internet-routing-lab-virl/cisco-personal-edition-pe-20-nodes-virl-20) IOSv (kvm)
+* image [VIRL](https://learningnetworkstore.cisco.com/virtual-internet-routing-lab-virl/cisco-personal-edition-pe-20-nodes-virl-20) IOSv-L2 (kvm)
 * image Centos (kvm)
+
+Périphériques | Images Qemu/KVM | Commentaire
+---|---|---
+Routeur Cisco IOSv 15.6(2)T | `vios-adventerprisek9-m.vmdk.SPA.156-2.T` avec `IOSv_startup_config.img`  | [VIRL 1.3.296 (Aug. 2017 Release)](https://learningnetwork.cisco.com/docs/DOC-33132)
+Commutateur Cisco IOSv L2/L3  | `vios_l2-adventerprisek9-m.03.2017.qcow2`  | [VIRL 1.3.296 (Aug. 2017 Release)](https://learningnetwork.cisco.com/docs/DOC-33132)
+Poste de travail L2 à L7, Station de contrôle  | Centos 7.5  | L'[image Centos7](http://get.goffinet.org/kvm/centos7.qcow2) et [son fichier d'appliance](http://get.goffinet.org/gns3a/centos7.gns3a)
+
+Les livres de jeux sont testés avec [GNS3](https://cisco.goffinet.org/ccna/cisco-ios-cli/installer-et-configurer-gns3/).
 
 ### 1.2. Routeurs
 
@@ -137,7 +145,7 @@ strategy = linear
 task_output_limit = 100
 ```
 
-## 2. Topologie CCNA Core
+## 2. Topologie CCNA tripod
 
 Cette topologie maillée à trois routeurs peut être désignée par "tripod".
 
@@ -167,6 +175,18 @@ R3 | G0/2 | `192.168.226.2/24` | `fe80::3` | Connexion vers R2
 
 * On activera un service DHCP sur chaque réseau local (`GigabitEthernet0/0`).
 * Le routeur R1 connecte l'Internet. Le service NAT est activé.
+
+### 2.2. Variante Site to Site
+
+Variante de la topologie Tripod avec une connexion point-à-point entre R1 et R2.
+
+...
+
+### 2.3. Variante Router on a Stick
+
+Variante de la topologie Tripod en utilisant un Trunk Vlan entre R1 et SW0 ainsi qu'entre SW0 et SW1.
+
+...
 
 ## 3. Topologie CCNA Switchblock
 
@@ -329,10 +349,10 @@ inventories/main
 Les livres de jeu font appel à des rôles qui trouvent la valeur des variables dans l'inventaire.
 
 
-Le playbook `core.yml` configure la topologie tripod :
+Le playbook `tripod.yml` configure la topologie tripod :
 
 ```bash
-ansible-playbook core.yml -v
+ansible-playbook tripod.yml -v
 ```
 
 Le playbook `blocks.yml` configure la topologie switchblock :
@@ -418,6 +438,12 @@ Combinée avec l'option `before`, on applique des commandes avant et après que 
 Texte original de [guzmonne](https://stackoverflow.com/users/1930817/guzmonne) en réponse à la question stackoverflow [How can I make my ios_config task idempotent?](https://stackoverflow.com/questions/57279642/how-can-i-make-my-ios-config-task-idempotent).
 
 [^1]: Aussi, l'argument `defaults` qu'il sera nécessaire d'activer avec la valeur `yes` spécifie s'il faut ou non collecter toutes les valeurs par défaut lors de l'exécution de la configuration du périphérique distant. Lorsqu'il est activé, le module obtient la configuration actuelle en lançant la commande `show running-config all`. En effet, des commandes comme `no shutdown` ou encore `ipv6 enable` ou encore `ipv4 routing` et beaucoup n'apparaissent pas avec la commande `show running-config`.
+
+### Topologies
+
+* site-to-site
+* tripod
+* router-on-a-stick
 
 ### Phase II
 
