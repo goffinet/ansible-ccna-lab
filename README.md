@@ -206,15 +206,15 @@ Trois périphériques IOSv interconnectés entre eux :
 
 Routeur | Interface | Adresse IPv4 | Adresses IPv6 | Description
 --- | --- | --- | --- | ---
-R1 | G0/0 | `192.168.1.1/24` | `fe80::1`, `fd00:fd00:fd00:1::1/64` | LAN de R1
-R1 | G0/2 | `192.168.225.1/24` | `fe80::1` | Connexion vers R2
-R1 | G0/3 | `192.168.227.1/24` | `fe80::1` | Connexion vers R3
-R2 | G0/0 | `192.168.33.1/24` | `fe80::2`, `fd00:fd00:fd00:2::1/64` | LAN de R2
-R2 | G0/1 | `192.168.225.2/24` | `fe80::2` | Connexion vers R1
-R2 | G0/3 | `192.168.226.1/24` | `fe80::2` | Connexion vers R3
-R3 | G0/0 | `192.168.65.1/24` | `fe80::3`, `fd00:fd00:fd00:3::1/64` | LAN de R3
-R3 | G0/1 | `192.168.227.2/24` | `fe80::3` | Connexion vers R1
-R3 | G0/2 | `192.168.226.2/24` | `fe80::3` | Connexion vers R2
+R1 | G0/0 | `192.168.1.1/24` | `FE80::1`, `FD00:FD00:FD00:1::1/64` | LAN de R1
+R1 | G0/2 | `192.168.225.1/24` | `FE80::1` | Connexion vers R2
+R1 | G0/3 | `192.168.227.1/24` | `FE80::1` | Connexion vers R3
+R2 | G0/0 | `192.168.33.1/24` | `FE80::2`, `FD00:FD00:FD00:2::1/64` | LAN de R2
+R2 | G0/1 | `192.168.225.2/24` | `FE80::2` | Connexion vers R1
+R2 | G0/3 | `192.168.226.1/24` | `FE80::2` | Connexion vers R3
+R3 | G0/0 | `192.168.65.1/24` | `FE80::3`, `FD00:FD00:FD00:3::1/64` | LAN de R3
+R3 | G0/1 | `192.168.227.2/24` | `FE80::3` | Connexion vers R1
+R3 | G0/2 | `192.168.226.2/24` | `FE80::3` | Connexion vers R2
 
 * On activera un service DHCP sur chaque réseau local (`GigabitEthernet0/0`).
 * Le routeur R1 connecte l'Internet. Le service NAT est activé.
@@ -299,27 +299,27 @@ VLANs 20,40 | `root secondary` | `root primary`
 
 Commutateur | Interface | Adresse IPv4 | Adresse(s) IPv6
 --- | --- | --- | ---
-DS1 | VLAN10 | `172.16.10.252/24` | `fd00:1ab:10::1/64`
-DS1 | VLAN20 | `172.16.20.252/24` | `fd00:1ab:20::1/64`
-DS1 | VLAN30 | `172.16.30.252/24` | `fd00:1ab:30::1/64`
-DS1 | VLAN40 | `172.16.40.252/24` | `fd00:1ab:40::1/64`
-DS2 | VLAN10 | `172.16.10.253/24` | `fd00:1ab:10::2/64`
-DS2 | VLAN20 | `172.16.20.253/24` | `fd00:1ab:20::2/64`
-DS2 | VLAN30 | `172.16.30.253/24` | `fd00:1ab:30::2/64`
-DS2 | VLAN40 | `172.16.40.253/24` | `fd00:1ab:40::2/64`
+DS1 | VLAN10 | `172.16.10.252/24` | `FD00:1AB:10::1/64`
+DS1 | VLAN20 | `172.16.20.252/24` | `FD00:1AB:20::1/64`
+DS1 | VLAN30 | `172.16.30.252/24` | `FD00:1AB:30::1/64`
+DS1 | VLAN40 | `172.16.40.252/24` | `FD00:1AB:40::1/64`
+DS2 | VLAN10 | `172.16.10.253/24` | `FD00:1AB:10::2/64`
+DS2 | VLAN20 | `172.16.20.253/24` | `FD00:1AB:20::2/64`
+DS2 | VLAN30 | `172.16.30.253/24` | `FD00:1AB:30::2/64`
+DS2 | VLAN40 | `172.16.40.253/24` | `FD00:1AB:40::2/64`
 
 ### 3.6. HSRP
 
 Commutateur | Interface | Adresse IPv4 virtuelle | Adresse IPv6 virtuelle | Group | Priorité
 --- | --- | --- | --- | --- | ---
-DS1 | VLAN10 | `172.16.10.254/24` | `fe80::d:1/64` | 10/16 | 150, prempt
-DS1 | VLAN20 | `172.16.20.254/24` | `fe80::d:1/64` | 20/26 | default
-DS1 | VLAN30 | `172.16.30.254/24` | `fe80::d:1/64` | 30/36 | 150, prempt
-DS1 | VLAN40 | `172.16.40.254/24` | `fe80::d:1/64` | 40/46 | default
-DS2 | VLAN10 | `172.16.10.254/24` | `fe80::d:2/64` | 10/16 | default
-DS2 | VLAN20 | `172.16.20.254/24` | `fe80::d:2/64` | 20/26 | 150, prempt
-DS2 | VLAN30 | `172.16.30.254/24` | `fe80::d:2/64` | 30/36 | default
-DS2 | VLAN40 | `172.16.40.254/24` | `fe80::d:2/64` | 40/46 | 150, prempt
+DS1 | VLAN10 | `172.16.10.254/24` | `FE80::d:1/64` | 10/16 | 150, prempt
+DS1 | VLAN20 | `172.16.20.254/24` | `FE80::d:1/64` | 20/26 | default
+DS1 | VLAN30 | `172.16.30.254/24` | `FE80::d:1/64` | 30/36 | 150, prempt
+DS1 | VLAN40 | `172.16.40.254/24` | `FE80::d:1/64` | 40/46 | default
+DS2 | VLAN10 | `172.16.10.254/24` | `FE80::d:2/64` | 10/16 | default
+DS2 | VLAN20 | `172.16.20.254/24` | `FE80::d:2/64` | 20/26 | 150, prempt
+DS2 | VLAN30 | `172.16.30.254/24` | `FE80::d:2/64` | 30/36 | default
+DS2 | VLAN40 | `172.16.40.254/24` | `FE80::d:2/64` | 40/46 | 150, prempt
 
 ### 3.7. Ressources requises
 
