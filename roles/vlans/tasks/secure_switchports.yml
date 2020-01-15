@@ -25,7 +25,7 @@
   loop: "{{ interfaces }}"
   when:
     - stubvlan is defined
-    - item.stub
+    - item.stub is defined
 - name: stp protection on stub access ports
   ios_config:
     defaults: yes
@@ -36,4 +36,4 @@
   loop: "{{ interface }}"
   when:
     - stubvlan is defined
-    - item.stub
+    - item.stub is defined
