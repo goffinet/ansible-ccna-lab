@@ -489,6 +489,8 @@ Rôles à améliorer :
 
 Rôles à créer :
 
+* static4 / static6
+* IPv6 default route poisoning benefits to FD00::/8 as best route
 * **cdp / lldp**
 * **syslog**
 * **ntp** (+ auth)
