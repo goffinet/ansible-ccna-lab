@@ -8,7 +8,7 @@ galaxy_info:
     - cisco
     - iosv
     - ccna
-    - spanning-tree
+    - spanning_tree
   platforms:
     - name: vios_l2-ADVENTERPRISEK9-M
       versions:
