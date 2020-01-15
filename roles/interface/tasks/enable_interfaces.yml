@@ -19,7 +19,7 @@
         description: "{{ item.description }}"
   loop: "{{ interfaces }}"
   when:
-    - not item.stub
+    - item.stub is not defined
     - item.id is defined
   tags:
     - interface
