@@ -81,7 +81,7 @@ Périphériques | Images Qemu/KVM | Commentaire
 ---|---|---
 Routeur Cisco IOSv 15.6(2)T | `vios-adventerprisek9-m.vmdk.SPA.156-2.T` avec `IOSv_startup_config.img`  | [VIRL 1.3.296 (Aug. 2017 Release)](https://learningnetwork.cisco.com/docs/DOC-33132)
 Commutateur Cisco IOSv L2/L3  | `vios_l2-adventerprisek9-m.03.2017.qcow2`  | [VIRL 1.3.296 (Aug. 2017 Release)](https://learningnetwork.cisco.com/docs/DOC-33132)
-Poste de travail L2 à L7, Station de contrôle  | Centos 7.5  | L'[image Centos7](http://get.goffinet.org/kvm/centos7.qcow2) et [son fichier d'appliance](http://get.goffinet.org/gns3a/centos7.gns3a)
+Poste de travail L2 à L7, Station de contrôle  | [`centos7.qcow2`](http://get.goffinet.org/kvm/centos7.qcow2)  |  Le [fichier d'appliance GNS3](http://get.goffinet.org/gns3a/centos7.gns3a)
 
 ### 1.2. Routeurs
 
