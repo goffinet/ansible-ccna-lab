@@ -1,10 +1,2 @@
 ---
-#- import_tasks: playbook1.yml
-#  when: ansible_network_os == 'ios'
-#  tags:
-#    - keyword1
-#    - keyword3
-#- import_tasks: playbook2.yml
-#  when: ansible_network_os == 'ios'
-#  tags:
-#    - keyword2
+# tasks file for role

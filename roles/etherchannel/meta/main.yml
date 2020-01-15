@@ -1,3 +1,13 @@
 ---
+galaxy_info:
+  author: goffinet
+  description: configure etherchannel links
+  license: CC-BY-4.0
+  min_ansible_version: 2.9
+  galaxy_tags:
+    - cisco
+    - iosv
+    - ccna
+    - etherchannel
 dependencies:
   - role: interface

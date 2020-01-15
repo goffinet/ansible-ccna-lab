@@ -1,4 +1,14 @@
 ---
+galaxy_info:
+  author: goffinet
+  description: configure an FHRP such HSRP for IPv4 or IPv6
+  license: CC-BY-4.0
+  min_ansible_version: 2.9
+  galaxy_tags:
+    - cisco
+    - iosv
+    - ccna
+    - hsrp
 dependencies:
   - role: interface
   - role: ipv4

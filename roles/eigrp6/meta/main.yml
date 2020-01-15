@@ -1,4 +1,16 @@
 ---
+galaxy_info:
+  author: goffinet
+  description: configure EIGRP for IPv6
+  license: CC-BY-4.0
+  min_ansible_version: 2.9
+  galaxy_tags:
+    - cisco
+    - iosv
+    - ccna
+    - ipv6
+    - routing
+    - eigrp
 dependencies:
   - role: interface
   - role: ipv6

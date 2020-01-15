@@ -1,3 +1,13 @@
 ---
+galaxy_info:
+  author: goffinet
+  description: enable IPv6 on interfaces with a custom link-local address
+  license: CC-BY-4.0
+  min_ansible_version: 2.9
+  galaxy_tags:
+    - cisco
+    - iosv
+    - ccna
+    - ipv6
 dependencies:
   - role: interface
