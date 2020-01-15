@@ -50,6 +50,18 @@ ccna:
 
 Une topologie intitulée "ccna" est composée de deux topologies distinctes "tripod" et "switchblock". La topologie "tripod" trouve trois variantes amoindries : "standalone", "site_to_site", et "router_on_stick".
 
+Expliqué rapidement :
+
+* Le livre de jeu `ccna.yml` utilise l'inventaire par défaut `ccna` (`core` + `switchblock`). On trouve d'autres inventaires adaptés aux livres de jeu du même nom dans le dossier `inventories/`.
+* Un livre le jeu devrait appeler un inventaire du même nom : `ansible-playbook -i inventories/tripod/hosts tripod.yml`.
+* On peut contrôler les tâches avec des _tags_ (définis sur les rôles) : `ansible-playbook ccna.yml --list-tags`.
+* L'exécution des tâches est conditionnée par le modèle de donnée (variables d'inventaire).
+* L'exécution des rôles est conditionnée par :
+  * une variable `ansible_network_os == 'ios'`;
+  * la définition d'une variable de telle sorte que l'absence de paramètre évite l'exécution des tâches ("Skipped");
+  * le protocole de routage dynamique est contrôlé à partir du livre de jeu avec les variables `routing_ipv4` et `routing_ipv6` mais il pourrait être contrôlé à partir de l'inventaire.
+* Les livres de jeu exécutent les rôles dans un ordre logique mais chacun trouve des dépendences de rôles définis
+
 ## 1. Mise en place minimale
 
 Pour les utilisateur de la topologie GNS3 fournie en classe, sur tous les périphériques, il sera peut-être nécessaire de regénérer les clés RSA des périphériques Cisco :
@@ -65,7 +77,7 @@ wr
 
 ### 1.1. Images GNS3
 
-Les livres de jeux sont testés avec [GNS3 Server](https://cisco.goffinet.org/ccna/cisco-ios-cli/installer-et-configurer-gns3/) et Qemu/KVM sous Linux.
+Les livres de jeu sont testés avec [GNS3 Server](https://cisco.goffinet.org/ccna/cisco-ios-cli/installer-et-configurer-gns3/) et Qemu/KVM sous Linux.
 
 Périphériques | Images Qemu/KVM | Commentaire
 ---|---|---
@@ -343,7 +355,7 @@ On trouvera plus bas les fichiers de configuration qui déploient la solution  V
 
 ## 5. Utilisation
 
-Se rendre dans le dossier des livres de jeux :
+Se rendre dans le dossier des livres de jeu :
 
 ```bash
 cd
@@ -460,16 +472,16 @@ ansible core -m ios_command -a "commands='traceroute 192.168.1.1 source GigabitE
 ansible core -m ios_command -a "commands='traceroute 172.16.10.1 source GigabitEthernet0/0 probe 1 numeric'"
 ```
 
-## Notes
+## 6. Conception
+
 
 ### Phase I
 
 Portage en rôles **idempotents**.
 
-Définition des variables dans `defaults/`.
-
 Rôles à améliorer :
 
+* contrôle d'IPv6
 * dhcp-relay
 * ~~**fhrp4**~~ + delay
 * ~~**fhrp6**~~ + delay
@@ -482,7 +494,11 @@ Rôles à créer :
 * **ntp** (+ auth)
 * **snmpv2c** / **snmpv3**
 * **zbf**
-* ra-config fine tuning / dhcpv6 stateless / dhcpv6 stateful / (rdnss)
+* IPv6 Addresses Management :
+  * ra-config fine tuning
+  * dhcpv6 stateless
+  * dhcpv6 stateful
+  * rdnss ra option
 * ppp / chap / pap / pppoe
 * gre ipv4 / gre ipv6
 * **security hardening**
