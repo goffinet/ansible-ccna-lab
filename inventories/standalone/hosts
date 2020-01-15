@@ -1,0 +1,13 @@
+[all:vars]
+#method=modules # modules or templating not yet implemented
+
+
+[cisco]
+R1
+
+[cisco:vars]
+ansible_user=root
+ansible_ssh_pass=testtest
+ansible_port=22
+ansible_connection=network_cli
+ansible_network_os=ios

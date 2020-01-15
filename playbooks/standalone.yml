@@ -1,0 +1,14 @@
+---
+# standalone.yml
+- hosts: R1
+  gather_facts: False
+  roles:
+    - role: common
+    - role: interface
+    - role: ipv4
+    - role: ipv6
+    - role: ipv4-routing
+    - role: ipv6-routing
+    - role: dhcp-server
+    - role: nat
+    - role: write
