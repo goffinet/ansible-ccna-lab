@@ -1,20 +1,15 @@
 [all:vars]
 #method=modules # modules or templating
-#dynamic_ipv4_routing=rip # rip, eigrp4, ospfv2
 
-[distribution]
+[core]
 gateway
 
 [access]
 SW0
 SW1
 
-[blocks:children]
-distribution
-access
-
 [cisco:children]
-distribution
+core
 access
 
 [cisco:vars]
