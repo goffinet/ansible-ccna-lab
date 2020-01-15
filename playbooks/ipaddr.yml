@@ -18,21 +18,21 @@
       - 2001:db8::1/64
       - 2001:DB8::1/64
   tasks:
-    - name: get ipv4 wildcard mask
+    - name: get ipv4 network parameters
       debug:
-        msg: "entry: {{ item }}
-              wilcard_mask: {{ item | ipaddr('hostmask') }}
-              host_address: {{ item | ipaddr('host') }}
-              netmask: {{ item | ipaddr('netmask') }}
-              network: {{ item | ipaddr('network') }}
-              prefix: {{ item | ipaddr('prefix') }}"
+        msg: "Entry: {{ item }}
+              Wilcard: {{ item | ipaddr('hostmask') }}
+              Host: {{ item | ipaddr('hostmask') }}
+              Netmask: {{ item | ipaddr('netmask') }}
+              Network: {{ item | ipaddr('network') }}
+              Prefix: {{ item | ipaddr('prefix') }}"
       loop: "{{ ipv4_adresses }}"
     - name: get best supernet
       debug:
         msg: "{{ ipv4_adresses | cidr_merge('span') }}"
     - name: get supernets
       debug:
-        msg: "{{ ipv4_adresses | ipaddr('network/prefix') | cidr_merge }}"
+        msg: "{{ ipv4_adresses | cidr_merge }}"
       register: supernets
     - name: print supernets
       debug:

@@ -456,6 +456,8 @@ ansible-playbook ccna.yml -v
 
 ### 5.3. Diagnostic de base
 
+_à améliorer_
+
 Diagnostic du routage sur R1 :
 
 ```bash
@@ -479,8 +481,11 @@ ansible core -m ios_command -a "commands='traceroute 172.16.10.1 source GigabitE
 
 Portage en rôles **idempotents**.
 
+Usage du filre [ipaddr](https://docs.ansible.com/ansible/latest/user_guide/playbooks_filters_ipaddr.html#playbooks-filters-ipaddr), voir [playbooks/ipaddr.yml](https://github.com/goffinet/ansible-ccna-lab/blob/master/playbooks/ipaddr.yml).
+
 Rôles à améliorer :
 
+* nat sur les interfaces
 * contrôle d'IPv6
 * dhcp-relay
 * ~~**fhrp4**~~ + delay
