@@ -1,0 +1,4 @@
+---
+# Playbook to configure CCNA "switchblock" and "core" topologies
+- import_playbook: switchblock.yml
+- import_playbook: core.yml

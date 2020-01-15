@@ -137,7 +137,9 @@ strategy = linear
 task_output_limit = 100
 ```
 
-## 2. Topologie tripod
+## 2. Topologie CCNA Core
+
+Cette topologie maillée à trois routeurs peut être désignée par "tripod".
 
 ### 2.1. Topologie logique
 
@@ -166,7 +168,7 @@ R3 | G0/2 | `192.168.226.2/24` | `fe80::3` | Connexion vers R2
 * On activera un service DHCP sur chaque réseau local (`GigabitEthernet0/0`).
 * Le routeur R1 connecte l'Internet. Le service NAT est activé.
 
-## 3. Topologie Switchblock
+## 3. Topologie CCNA Switchblock
 
 ### 3.1. Topologie avec redondance de passerelle HSRP
 
@@ -239,7 +241,7 @@ Dans l'exercice de laboratoire "Lab répartition de charge avec Rapid Spanning-T
 
 On trouvera plus bas les fichiers de configuration qui déploient la solution  VLANs, Trunking, Etherchannel, Rapid Spanning-Tree, SVI IPv4 et IPv6 et DHCP. Par rapport à l'exercice de laboratoire "Lab répartition de charge avec Rapid Spanning-Tree", tout reste identique sauf le paramètre de passerelle.
 
-## 4. Toplogie CCNA R&S
+## 4. Toplogie CCNA Core et Switchblock
 
 ![](https://www.lucidchart.com/publicSegments/view/aacc6247-aa9a-44b2-a1ba-43ccb81deab7/image.png)
 
@@ -363,11 +365,7 @@ ansible core -m ios_command -a "commands='traceroute 192.168.1.1 source GigabitE
 ansible core -m ios_command -a "commands='traceroute 172.16.10.1 source GigabitEthernet0/0 probe 1 numeric'"
 ```
 
-## Historical Todo
-
-### Phase 0 : Écriture de playbooks avec les modules ios_*
-
-Archivé.
+## Notes
 
 ### Phase I
 
@@ -415,11 +413,11 @@ Instruit le module sur la façon d'effectuer la correspondance du jeu de command
 
 L'ensemble des commandes ordonnées à ajouter à la fin de la pile de commandes si un changement doit être fait. Comme avec l'option `before`, cela permet au concepteur du livre de lecture d'ajouter un ensemble de commandes à exécuter après l'ensemble de commandes.
 
-Combinée avec l'option `before`, on applique des commandes avant et après que les changements soient faits. Par exemple, on peut définir une réinitialisation en cinq minutes pour éviter une déconnexion à cause d'un problème de configuration, ou écrire les changements dans la ROM (bien que l'on puisse le faire avec l'option `save_when`).
+Combinée avec l'option `before`, on applique des commandes avant et après que les changements soient faits. Par exemple, on peut définir une réinitialisation en cinq minutes pour éviter une déconnexion à cause d'un problème de configuration, ou écrire les changements dans la ROM (bien que l'on puisse le faire avec l'option `save_when`). [^1]
 
 Texte original de [guzmonne](https://stackoverflow.com/users/1930817/guzmonne) en réponse à la question stackoverflow [How can I make my ios_config task idempotent?](https://stackoverflow.com/questions/57279642/how-can-i-make-my-ios-config-task-idempotent).
 
-Aussi, l'argument `defaults` qu'il sera nécessaire d'activer avec la valeur `yes` spécifie s'il faut ou non collecter toutes les valeurs par défaut lors de l'exécution de la configuration du périphérique distant. Lorsqu'il est activé, le module obtient la configuration actuelle en lançant la commande `show running-config all`. En effet, des commandes comme `no shutdown` ou encore `ipv6 enable` ou encore `ipv4 routing` et beaucoup n'apparaissent pas avec la commande `show running-config`.
+[^1]: Aussi, l'argument `defaults` qu'il sera nécessaire d'activer avec la valeur `yes` spécifie s'il faut ou non collecter toutes les valeurs par défaut lors de l'exécution de la configuration du périphérique distant. Lorsqu'il est activé, le module obtient la configuration actuelle en lançant la commande `show running-config all`. En effet, des commandes comme `no shutdown` ou encore `ipv6 enable` ou encore `ipv4 routing` et beaucoup n'apparaissent pas avec la commande `show running-config`.
 
 ### Phase II
 
@@ -431,4 +429,4 @@ Rôles "immutables" qui agissent sur un modèle de fichier de configuration bas�
 
 ### Phase III
 
-* Reporting
+* Reporting ([role ansible-network.cisco_ios](https://galaxy.ansible.com/ansible-network/cisco_ios))
