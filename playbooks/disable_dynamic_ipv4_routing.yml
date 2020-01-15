@@ -1,0 +1,7 @@
+---
+- hosts: cisco
+  gather_facts: False
+  tasks:
+    - name: disable dynamic routing
+      import_role:
+        name: disable-dynamic-ipv4-routing
