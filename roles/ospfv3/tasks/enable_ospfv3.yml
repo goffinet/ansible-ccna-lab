@@ -7,17 +7,17 @@
       - router-id {{ routing.rid }}
   when:
     - routing.rid is defined
-#    - interfaces | selectattr('ospfv3', 'defined') | list
+    - interfaces | selectattr('ospfv3', 'defined') | list
 - name: enable ospfv3 passive-interface
   ios_config:
     defaults: yes
     parents: ipv6 router ospf {{ routing.ospf_pid | default(1) }}
     lines:
-      - passive-interface {{ item }}
-  loop: "{{ routing.passive }}"
+      - passive-interface {{ item.id }}
+  loop: "{{ interfaces | selectattr('passive', 'defined') | list }}"
   when:
     - item is defined
-#    - interfaces | selectattr('ospfv3', 'defined') | list
+    - interfaces | selectattr('ospfv3', 'defined') | list
 - name: enable ospfv3 on interfaces
   ios_config:
     defaults: yes
@@ -28,4 +28,3 @@
   when:
     - item.id is defined
     - item.ospfv2.area is defined
-#    - interfaces | selectattr('ospfv3', 'defined') | list
