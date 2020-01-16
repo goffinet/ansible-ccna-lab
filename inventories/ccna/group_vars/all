@@ -4,5 +4,5 @@ routing_ipv4:
 #   - rip
 #   - ospfv2
 # routing_ipv6:
-   - eigrp6
-#   - ospfv3
+#   - eigrp6
+   - ospfv3
