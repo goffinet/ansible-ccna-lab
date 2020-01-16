@@ -5,6 +5,7 @@ interfaces:
   - id: GigabitEthernet0/0
     description: "LAN R1"
     ipv4_address: 192.168.1.1/24
+    passive: true
     rip:
     ipv6_addresses:
       - 'FE80::1'
