@@ -8,6 +8,10 @@ interfaces:
     passive:
     rip:
     eigrp4:
+    ospfv2:
+      area: 0
+      cost: 1
+      pri: 255
     ipv6_addresses:
       - 'FE80::2'
       - 'FD00:FD00:FD00:2::1/64'
@@ -16,6 +20,10 @@ interfaces:
     ipv4_address: 192.168.225.2/24
     rip:
     eigrp4:
+    ospfv2:
+      area: 0
+      cost: 1
+      pri: 255
     ipv6_addresses:
       - 'FE80::2'
   - id: GigabitEthernet0/3
@@ -23,6 +31,10 @@ interfaces:
     ipv4_address: 192.168.227.1/24
     rip:
     eigrp4:
+    ospfv2:
+      area: 0
+      cost: 1
+      pri: 255
     ipv6_addresses:
       - 'FE80::2'
   - id: GigabitEthernet0/2
@@ -30,11 +42,19 @@ interfaces:
     ipv4_address: 172.16.224.1/24
     rip:
     eigrp4:
+    ospfv2:
+      area: 0
+      cost: 1
+      pri: 255
   - id: GigabitEthernet0/4
     description: "Link to DS1"
     ipv4_address: 172.16.225.1/24
     rip:
     eigrp4:
+    ospfv2:
+      area: 0
+      cost: 1
+      pri: 255
     ipv6_addresses:
       - 'FE80::2'
   - id: GigabitEthernet0/5
@@ -42,6 +62,10 @@ interfaces:
     ipv4_address: 172.16.242.1/24
     rip:
     eigrp4:
+    ospfv2:
+      area: 0
+      cost: 1
+      pri: 255
     ipv6_addresses:
       - 'FE80::2'
   - id: GigabitEthernet0/6
@@ -49,6 +73,10 @@ interfaces:
     ipv4_address: 172.16.243.1/24
     rip:
     eigrp4:
+    ospfv2:
+      area: 0
+      cost: 1
+      pri: 255
     ipv6_addresses:
       - 'FE80::2'
 routing:
@@ -57,42 +85,6 @@ routing:
     - GigabitEthernet0/0
   ospf_pid: 1
   eigrp_as: 1
-  ospfv2:
-    - id: GigabitEthernet0/0
-      ipv4: 192.168.33.1
-      pri: 255
-      cost: 1
-      area: 0
-    - id: GigabitEthernet0/1
-      ipv4: 192.168.225.2
-      pri: 255
-      cost: 1
-      area: 0
-    - id: GigabitEthernet0/3
-      ipv4: 192.168.227.1
-      pri: 255
-      cost: 1
-      area: 0
-    - id: GigabitEthernet0/2
-      ipv4: 172.16.224.1
-      pri: 255
-      cost: 1
-      area: 0
-    - id: GigabitEthernet0/4
-      ipv4: 172.16.225.1
-      pri: 255
-      cost: 1
-      area: 0
-    - id: GigabitEthernet0/5
-      ipv4: 172.16.242.1
-      pri: 255
-      cost: 1
-      area: 0
-    - id: GigabitEthernet0/6
-      ipv4: 172.16.243.1
-      pri: 255
-      cost: 1
-      area: 0
   ospfv3:
     - id: GigabitEthernet0/0
       pri: 255

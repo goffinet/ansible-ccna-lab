@@ -70,12 +70,20 @@ interfaces:
     passive:
     rip:
     eigrp4:
+    ospfv2:
+      area: 0
+      cost: 1
+      pri: 255
   - id: Vlan10
     description: "Vlan10 real gateway"
     ipv4_address: 172.16.10.253/24
     passive:
     rip:
     eigrp4:
+    ospfv2:
+      area: 0
+      cost: 1
+      pri: 255
     ipv6_addresses:
       - 'FE80::D:3'
       - 'FD00:1AB:10::2/64'
@@ -85,6 +93,10 @@ interfaces:
     passive:
     rip:
     eigrp4:
+    ospfv2:
+      area: 0
+      cost: 1
+      pri: 255
     ipv6_addresses:
       - 'FE80::D:3'
       - 'FD00:1AB:20::2/64'
@@ -94,6 +106,10 @@ interfaces:
     passive:
     rip:
     eigrp4:
+    ospfv2:
+      area: 0
+      cost: 1
+      pri: 255
     ipv6_addresses:
       - 'FE80::D:3'
       - 'FD00:1AB:30::2/64'
@@ -103,6 +119,10 @@ interfaces:
     passive:
     rip:
     eigrp4:
+    ospfv2:
+      area: 0
+      cost: 1
+      pri: 255
     ipv6_addresses:
       - 'FE80::D:3'
       - 'FD00:1AB:40::2/64'
@@ -112,6 +132,10 @@ interfaces:
     ipv4_address: 172.16.240.2/24
     rip:
     eigrp4:
+    ospfv2:
+      area: 0
+      cost: 1
+      pri: 255
     ipv6_addresses:
       - 'FE80::D:3'
   - id: GigabitEthernet3/0
@@ -120,6 +144,10 @@ interfaces:
     ipv4_address: 172.16.241.2/24
     rip:
     eigrp4:
+    ospfv2:
+      area: 0
+      cost: 1
+      pri: 255
     ipv6_addresses:
       - 'FE80::D:3'
   - id: GigabitEthernet2/1
@@ -128,6 +156,10 @@ interfaces:
     ipv4_address: 172.16.242.2/24
     rip:
     eigrp4:
+    ospfv2:
+      area: 0
+      cost: 1
+      pri: 255
     ipv6_addresses:
       - 'FE80::D:3'
   - id: GigabitEthernet3/1
@@ -136,6 +168,10 @@ interfaces:
     ipv4_address: 172.16.243.2/24
     rip:
     eigrp4:
+    ospfv2:
+      area: 0
+      cost: 1
+      pri: 255
     ipv6_addresses:
       - 'FE80::D:3'
   - id: GigabitEthernet0/3
@@ -162,47 +198,6 @@ routing:
     - Vlan40
   ospf_pid: 1
   eigrp_as: 1
-  ospfv2:
-    - id: Vlan10
-      ipv4: 172.16.10.253
-      pri: 255
-      cost: 1
-      area: 0
-    - id: Vlan20
-      ipv4: 172.16.20.253
-      pri: 255
-      cost: 1
-      area: 0
-    - id: Vlan30
-      ipv4: 172.16.30.253
-      pri: 255
-      cost: 1
-      area: 0
-    - id: Vlan40
-      ipv4: 172.16.40.253
-      pri: 255
-      cost: 1
-      area: 0
-    - id: GigabitEthernet2/0
-      ipv4: 172.16.240.2
-      pri: 255
-      cost: 1
-      area: 0
-    - id: GigabitEthernet3/0
-      ipv4: 172.16.241.2
-      pri: 255
-      cost: 1
-      area: 0
-    - id: GigabitEthernet2/1
-      ipv4: 172.16.242.2
-      pri: 255
-      cost: 1
-      area: 0
-    - id: GigabitEthernet3/1
-      ipv4: 172.16.243.2
-      pri: 255
-      cost: 1
-      area: 0
 #  ospfv3: # OSPFv3 in not avaible on this platform
   eigrp6:
     - id: Vlan10
