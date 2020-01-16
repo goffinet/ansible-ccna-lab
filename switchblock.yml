@@ -30,9 +30,6 @@
     - role: eigrp6
       when:
         - '"eigrp6" in routing_ipv6'
-    - role: ospfv3
-      when:
-        - '"ospfv3" in routing_ipv6'
     - role: dhcp-server
 - hosts: blocks
   gather_facts: False
