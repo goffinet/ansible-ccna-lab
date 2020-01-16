@@ -26,7 +26,7 @@
     parents: router ospf {{ routing.ospf_pid }}
     lines:
       - "network {{ item.ipv4_address | ipv4('address') }} 0.0.0.0 area {{ item.ospfv2.area }}"
-  loop: loop: "{{ interfaces | selectattr('ospfv2', 'defined') | list }}"
+  loop: "{{ interfaces | selectattr('ospfv2', 'defined') | list }}"
   when:
     - routing.ospf_pid is defined
     - item.ipv4_address is defined
