@@ -5,9 +5,10 @@
     parents: "interface {{ item.0.id }}"
     lines:
       - "ipv6 enable"
-      - "ipv6 address {{ item.1 | upper }} link-local"
+      - "ipv6 address {{ item.1 | ipaddr('address') | upper }} link-local"
   loop: "{{ interfaces|subelements('ipv6_link_local_addresses', skip_missing=True) }}"
-  when: item.1 | ipaddr('FE80::/16')
+  when:
+    - item.1 | ipaddr('FE80::/16')
 #  failed_when: >
 #    not item.1 | ipv6 or
 #    not item.1 | ipaddr('FE80::/16')
@@ -21,7 +22,7 @@
     defaults: yes
     parents: "interface {{ item.0.id }}"
     lines:
-      - "ipv6 address {{ item.1 | upper }}"
+      - "ipv6 address {{ item.1 | ipaddr('host/prefix') | upper }}"
   loop: "{{ interfaces|subelements('ipv6_addresses', skip_missing=True) }}"
   when: >
     item.1 | ipaddr('FD00::/8') or
