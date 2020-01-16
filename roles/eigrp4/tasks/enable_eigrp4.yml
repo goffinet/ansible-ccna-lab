@@ -22,12 +22,12 @@
     - routing.eigrp4 is defined
 - name: enable eigrp4 interfaces
   ios_config:
-    defaults: yes
+    defaults: no
     parents: router eigrp {{ routing.as }}
     lines:
-      - "network {{ item.ipv4 }}"
-  loop: "{{ routing.eigrp4 }}"
-  when:
-    - routing.as is defined
-    - item.ipv4 is defined
-    - routing.eigrp4 is defined
+      - "network {{ item | ipaddr('network') }} {{ item | ipaddr('hostmask') }}"
+  loop: "{{ interfaces | selectattr('eigrp4', 'defined') | map(attribute='ipv4_address') | ipaddr('network/prefix') | list | unique }}"
+#  when:
+#    - routing.as is defined
+#    - item.ipv4 is defined
+#    - routing.eigrp4 is defined
