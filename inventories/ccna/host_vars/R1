@@ -5,6 +5,7 @@ interfaces:
   - id: GigabitEthernet0/0
     description: "LAN R1"
     ipv4_address: 192.168.1.1/24
+    rip:
     ipv6_addresses:
       - 'FE80::1'
       - 'FD00:FD00:FD00:1::1/64'
@@ -14,11 +15,13 @@ interfaces:
   - id: GigabitEthernet0/2
     description: "Link to R2"
     ipv4_address: 192.168.225.1/24
+    rip:
     ipv6_addresses:
       - 'FE80::1'
   - id: GigabitEthernet0/3
     description: "Link to R3"
     ipv4_address: 192.168.226.1/24
+    rip:
     ipv6_addresses:
       - 'FE80::1'
 routing:
