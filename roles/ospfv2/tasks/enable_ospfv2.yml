@@ -2,33 +2,30 @@
 - name: enable ospfv2 rid
   ios_config:
     defaults: yes
-    parents: router ospf {{ routing.ospf_pid }}
+    parents: router ospf {{ routing.ospf_pid | default(1) }}
     lines:
       - router-id {{ routing.rid }}
   when:
-    - routing.ospf_pid is defined
     - routing.rid is defined
     - interfaces | selectattr('ospfv2', 'defined') | list
 - name: enable ospfv2 passive-interface
   ios_config:
     defaults: yes
-    parents: router ospf {{ routing.ospf_pid }}
+    parents: router ospf {{ routing.ospf_pid | default(1) }}
     lines:
       - passive-interface {{ item }}
   loop: "{{ routing.passive }}"
   when:
-    - routing.ospf_pid is defined
     - item is defined
     - interfaces | selectattr('ospfv2', 'defined') | list
 - name: enable ospfv2 interfaces
   ios_config:
     defaults: yes
-    parents: router ospf {{ routing.ospf_pid }}
+    parents: router ospf {{ routing.ospf_pid | default(1) }}
     lines:
       - "network {{ item.ipv4_address | ipv4('address') }} 0.0.0.0 area {{ item.ospfv2.area }}"
   loop: "{{ interfaces | selectattr('ospfv2', 'defined') | list }}"
   when:
-    - routing.ospf_pid is defined
     - item.ipv4_address is defined
     - item.ospfv2.area is defined
     - interfaces | selectattr('ospfv2', 'defined') | list
