@@ -8,4 +8,3 @@
   when:
     - nat is defined
     - routing.ospf_pid is defined
-    - routing.ospfv2 is defined
