@@ -26,5 +26,6 @@
     item.1 | ipaddr('FD00::/8') or
     item.1 | ipaddr('2000::/3')
   failed_when:
-    - not item.1 | ipaddr('FD00::/8') and
+    - not item.1 | ipaddr('FD00::/8')
     - not item.1 | ipaddr('2000::/3')
+    - not item.1 | ipaddr('host/prefix')
