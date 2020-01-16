@@ -8,9 +8,9 @@
       - "ipv6 address {{ item.1 | ipaddr('address') | upper }} link-local"
   loop: "{{ interfaces|subelements('ipv6_link_local_addresses', skip_missing=True) }}"
   when: item.1 | ipaddr('FE80::/16')
-  failed_when: >
-    not item.1 | ipv6 or
-    not item.1 | ipaddr('FE80::/16')
+#  failed_when: >
+#    not item.1 | ipv6 or
+#    not item.1 | ipaddr('FE80::/16')
 - name: configure ula/uga ipv6 addresses
 #  ios_l3_interfaces:
 #    config:
@@ -26,8 +26,8 @@
   when: >
     item.1 | ipaddr('FD00::/8') or
     item.1 | ipaddr('2000::/3')
-  failed_when: >
-    not item.1 | ipv6 or
-    not item.1 | ipaddr('host/prefix') or
-    not item.1 | ipaddr('FD00::/8') or
-    not item.1 | ipaddr('2000::/3')
+#  failed_when: >
+#    not item.1 | ipv6 or
+#    not item.1 | ipaddr('host/prefix') or
+#    not item.1 | ipaddr('FD00::/8') or
+#    not item.1 | ipaddr('2000::/3')
