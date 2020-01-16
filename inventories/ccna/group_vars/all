@@ -1,7 +1,7 @@
 ---
 routing_ipv4:
-   - eigrp4
-   - rip
+#   - eigrp4
+#   - rip
    - ospfv2
 # routing_ipv6:
    - eigrp6
