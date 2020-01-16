@@ -6,7 +6,7 @@
         ipv4b: "{{ interfaces | selectattr('rip', 'defined') | map(attribute='ipv4_address') | ipaddr('address') | ipaddr('128.0.0.0/2') | map('regex_replace', '(\\b(?:[0-9]{1,3}\\.){3}[0-9]{1,3}\\b)', '\\1/16') | ipaddr('network') | list | unique }}"
         ipv4c: "{{ interfaces | selectattr('rip', 'defined') | map(attribute='ipv4_address') | ipaddr('address') | ipaddr('192.0.0.0/3') | map('regex_replace', '(\\b(?:[0-9]{1,3}\\.){3}[0-9]{1,3}\\b)', '\\1/24') | ipaddr('network') | list | unique }}"
     - set_fact:
-        ipv4_classful_list: "{{ ipv4a + ipv4b + ipv4c | list }}"
+        ipv4_classful_list: "{{ ipv4a + ipv4b + ipv4c }}"
 - name: enable rip version 2
   ios_config:
     defaults: yes
