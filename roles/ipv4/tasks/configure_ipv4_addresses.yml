@@ -11,7 +11,7 @@
     - item.ipv4_address is defined
     - item.ipv4_address | ipv4
   failed_when:
-    - not item | ipaddr('host/prefix')
+    - not item.ipv4_address | ipaddr('host/prefix')
 - name: configure ipv4 addresses as dhcp client
   ios_l3_interfaces:
     config:
