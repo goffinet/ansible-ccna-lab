@@ -63,17 +63,6 @@ routing:
       pri: 255
       cost: 1
       area: 0
-  eigrp4:
-    - id: GigabitEthernet0/0
-      ipv4: 192.168.1.0
-    - id: GigabitEthernet0/2
-      ipv4: 192.168.225.0
-    - id: GigabitEthernet0/3
-      ipv4: 192.168.226.0
-  eigrp6:
-    - id: GigabitEthernet0/0
-    - id: GigabitEthernet0/2
-    - id: GigabitEthernet0/3
 dhcp:
   dhcp_pool:
     - id: "LANR1"

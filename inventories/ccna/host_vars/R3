@@ -124,21 +124,6 @@ routing:
       pri: 255
       cost: 1
       area: 0
-  eigrp4:
-    - id: GigabitEthernet0/0
-      ipv4: 192.168.65.0
-    - id: GigabitEthernet0/1
-      ipv4: 192.168.226.0
-    - id: GigabitEthernet0/2
-      ipv4: 192.168.227.0
-    - id: GigabitEthernet0/3
-      ipv4: 172.16.240.0 0.0.0.255
-    - id: GigabitEthernet0/4
-      ipv4: 172.16.241.0 0.0.0.255
-    - id: GigabitEthernet0/5
-      ipv4: 172.16.226.0 0.0.0.255
-    - id: GigabitEthernet0/6
-      ipv4: 172.16.227.0 0.0.0.255
   eigrp6:
     - id: GigabitEthernet0/0
     - id: GigabitEthernet0/1
