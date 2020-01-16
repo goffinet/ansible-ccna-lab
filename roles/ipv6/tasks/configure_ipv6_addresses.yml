@@ -23,5 +23,5 @@
       - "ipv6 address {{ item.1 | upper }}"
     loop: "{{ interfaces|subelements('ipv6_addresses', skip_missing=True) }}"
     when:
-      - item | ipaddr('FD00::/8') or item | ipaddr('2000::/3')
-      - item | ipv6
+      - item.1 | ipaddr('FD00::/8') or item | ipaddr('2000::/3')
+      - item.1 | ipv6
