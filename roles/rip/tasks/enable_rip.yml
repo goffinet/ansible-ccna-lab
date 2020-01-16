@@ -23,8 +23,7 @@
   loop: "{{ interfaces | selectattr('passive', 'defined') | list }}"
 - name: enable rip interfaces
   ios_config:
-    defaults: yes
-    match: strict
+    defaults: no
     parents: router rip
     lines:
       - "network {{ item }}"
