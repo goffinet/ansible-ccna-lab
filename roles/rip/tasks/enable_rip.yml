@@ -20,11 +20,10 @@
     defaults: yes
     parents: router rip
     lines:
-      - passive-interface {{ item }}
-  loop: "{{ routing.passive }}"
+      - passive-interface {{ item.id }}
+  loop: "{{ interfaces }}"
   when:
-    - routing.rip is defined
-    - item is defined
+    - item.passive
 - name: enable rip interfaces
   ios_config:
     defaults: yes
@@ -36,4 +35,4 @@
 #    - routing.rip is defined
 #    - item is defined
   loop: "{{ ipv4_classful_list }}"
-  failed_when: ipv4_classful_list | length==0
+  when: ipv4_classful_list | length>0
