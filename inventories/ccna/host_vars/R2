@@ -5,35 +5,43 @@ interfaces:
   - id: GigabitEthernet0/0
     description: "LAN R2"
     ipv4_address: 192.168.33.1/24
+    passive:
+    rip:
     ipv6_addresses:
       - 'FE80::2'
       - 'FD00:FD00:FD00:2::1/64'
   - id: GigabitEthernet0/1
     description: "Link to R1"
     ipv4_address: 192.168.225.2/24
+    rip:
     ipv6_addresses:
       - 'FE80::2'
   - id: GigabitEthernet0/3
     description: "Link to R3"
     ipv4_address: 192.168.227.1/24
+    rip:
     ipv6_addresses:
       - 'FE80::2'
   - id: GigabitEthernet0/2
     description: "Link to DS1"
     ipv4_address: 172.16.224.1/24
+    rip:
   - id: GigabitEthernet0/4
     description: "Link to DS1"
     ipv4_address: 172.16.225.1/24
+    rip:
     ipv6_addresses:
       - 'FE80::2'
   - id: GigabitEthernet0/5
     description: "Link to DS2"
     ipv4_address: 172.16.242.1/24
+    rip:
     ipv6_addresses:
       - 'FE80::2'
   - id: GigabitEthernet0/6
     description: "Link to DS2"
     ipv4_address: 172.16.243.1/24
+    rip:
     ipv6_addresses:
       - 'FE80::2'
 routing:
@@ -42,11 +50,6 @@ routing:
     - GigabitEthernet0/0
   pid: 1
   as: 1
-  rip:
-    - 192.168.33.0
-    - 192.168.225.0
-    - 192.168.227.0
-    - 172.16.0.0
   ospfv2:
     - id: GigabitEthernet0/0
       ipv4: 192.168.33.1
