@@ -6,7 +6,7 @@
     lines:
       - "ipv6 enable"
       - "ipv6 address {{ item.1 | ipaddr('address') }} link-local"
-  loop: "{{ interfaces | upper | subelements('ipv6_link_local_addresses', skip_missing=True) }}"
+  loop: "{{ interfaces | subelements('ipv6_link_local_addresses', skip_missing=True) }}"
   when:
         - item.1 is regex("^FE80:")
         - item.1 | ipv6
@@ -22,7 +22,7 @@
     parents: "interface {{ item.0.id }}"
     lines:
       - "ipv6 address {{ item.1 'host/prefix' }}"
-  loop: "{{ interfaces| upper | subelements('ipv6_ula_uga_addresses', skip_missing=True) }}"
+  loop: "{{ interfaces | subelements('ipv6_ula_uga_addresses', skip_missing=True) }}"
   when:
         - item.1 is regex("^FD[0-9A-F]?[0-9A-F]?:") or item.1 | ipaddr('public')
         - item.1 | ipv6
