@@ -2,32 +2,32 @@
 - name: enable eigrp4 rid
   ios_config:
     defaults: yes
-    parents: router eigrp {{ routing.as }}
+    parents: router eigrp {{ routing.eigrp_as }}
     lines:
       - eigrp router-id {{ routing.rid }}
   when:
-    - routing.as is defined
+    - routing.eigrp_as is defined
     - routing.rid is defined
     - routing.eigrp4 is defined
 - name: enable eigrp4 passive-interface
   ios_config:
     defaults: yes
-    parents: router eigrp {{ routing.as }}
+    parents: router eigrp {{ routing.eigrp_as }}
     lines:
       - passive-interface {{ item }}
   loop: "{{ routing.passive }}"
   when:
-    - routing.as is defined
+    - routing.eigrp_as is defined
     - item is defined
     - routing.eigrp4 is defined
 - name: enable eigrp4 interfaces
   ios_config:
     defaults: no
-    parents: router eigrp {{ routing.as }}
+    parents: router eigrp {{ routing.eigrp_as }}
     lines:
       - "network {{ item | ipaddr('network') }} 0.0.0.0"
   loop: "{{ interfaces | selectattr('eigrp4', 'defined') | map(attribute='ipv4_address') | ipaddr('network/prefix') | list | unique }}"
 #  when:
-#    - routing.as is defined
+#    - routing.eigrp_as is defined
 #    - item.ipv4 is defined
 #    - routing.eigrp4 is defined

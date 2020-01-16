@@ -2,22 +2,22 @@
 - name: enable ospfv3 rid
   ios_config:
     defaults: yes
-    parents: ipv6 router ospf {{ routing.pid }}
+    parents: ipv6 router ospf {{ routing.ospf_pid }}
     lines:
       - router-id {{ routing.rid }}
   when:
-    - routing.pid is defined
+    - routing.ospf_pid is defined
     - routing.rid is defined
     - routing.ospfv3 is defined
 - name: enable ospfv3 passive-interface
   ios_config:
     defaults: yes
-    parents: ipv6 router ospf {{ routing.pid }}
+    parents: ipv6 router ospf {{ routing.ospf_pid }}
     lines:
       - passive-interface {{ item }}
   loop: "{{ routing.passive }}"
   when:
-    - routing.pid is defined
+    - routing.ospf_pid is defined
     - item is defined
     - routing.ospfv3 is defined
 - name: enable ospfv3 on interfaces
@@ -25,10 +25,10 @@
     defaults: yes
     parents: interface {{ item.id }}
     lines:
-      - "ipv6 ospf {{ routing.pid }} area {{ item.area }}"
+      - "ipv6 ospf {{ routing.ospf_pid }} area {{ item.area }}"
   loop: "{{ routing.ospfv3 }}"
   when:
-    - routing.pid is defined
+    - routing.ospf_pid is defined
     - item.id is defined
     - item.area is defined
     - routing.ospfv3 is defined
