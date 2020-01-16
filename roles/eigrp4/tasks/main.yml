@@ -3,7 +3,6 @@
   when:
     - ansible_network_os == 'ios'
     - routing.eigrp_as is defined
-    - routing.rid is defined
   tags:
     - eigrp4
     - ipv4_dynamic_routing
