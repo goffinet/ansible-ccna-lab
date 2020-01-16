@@ -27,9 +27,5 @@
     parents: router rip
     lines:
       - "network {{ item }}"
-#  loop: "{{ routing.rip }}"
-#  when:
-#    - routing.rip is defined
-#    - item is defined
   loop: "{{ ipv4_classful_list }}"
   when: ipv4_classful_list | length>0
