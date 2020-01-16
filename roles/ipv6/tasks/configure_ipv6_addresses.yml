@@ -6,7 +6,7 @@
     lines:
       - "ipv6 enable"
       - "ipv6 address {{ item.1 | upper }} link-local"
-    loop: "{{ interfaces|subelements('ipv6_addresses', skip_missing=True) }}"
+    loop: "{{ interfaces|subelements('ipv6_link_local_addresses', skip_missing=True) }}"
     when:
       - item.1 | ipaddr('FE80::/16')
       - item.1 | ipv6
