@@ -9,6 +9,9 @@ interfaces:
       - 'FE80::1'
     ipv6_ula_uga_addresses:
       - 'FD00:FD00:FD00:1::1/64'
+    ipv6_addresses:
+      - 'FE80::1'
+      - 'FD00:FD00:FD00:1::1/64'
   - id: GigabitEthernet0/1
     description: "Internet connexion ip nat outside"
     ipv4_address: dhcp
@@ -17,10 +20,14 @@ interfaces:
     ipv4_address: 192.168.225.1/24
     ipv6_link_local_addresses:
       - 'FE80::1'
+    ipv6_addresses:
+      - 'FE80::1'
   - id: GigabitEthernet0/3
     description: "Link to R3"
     ipv4_address: 192.168.226.1/24
     ipv6_link_local_addresses:
+      - 'FE80::1'
+    ipv6_addresses:
       - 'FE80::1'
 routing:
   rid: 1.1.1.1
