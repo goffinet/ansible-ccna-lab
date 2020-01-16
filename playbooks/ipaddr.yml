@@ -4,14 +4,14 @@
   hosts: localhost
   gather_facts: False
   vars:
-    ipv4_adresses:
+    ipv4_addresses:
       - 192.168.0.1/24
       - 192.168.1.1/24
       - 192.168.1.1/27
       - 192.168.1.1/32
       - 192.168.4.8/24
       - 192.168.1.1/255.255.255.248
-    ipv6_adresses:
+    ipv6_addresses:
       - FD00:00:00:01::1/64
       - FDG0:00:00:01::1
       - FE80:00::1/64
@@ -26,13 +26,13 @@
               netmask: {{ item | ipaddr('netmask') }}
               network: {{ item | ipaddr('network') }}
               prefix: {{ item | ipaddr('prefix') }}"
-      loop: "{{ ipv4_adresses }}"
+      loop: "{{ ipv4_addresses }}"
     - name: get best supernet
       debug:
-        msg: "{{ ipv4_adresses | cidr_merge('span') }}"
+        msg: "{{ ipv4_addresses | cidr_merge('span') }}"
     - name: get supernets
       debug:
-        msg: "{{ ipv4_adresses | ipaddr('network/prefix') | cidr_merge }}"
+        msg: "{{ ipv4_addresses | ipaddr('network/prefix') | cidr_merge }}"
       register: supernets
     - name: print supernets
       debug:
@@ -41,22 +41,23 @@
     - name: ipv6 formed
       debug:
         msg: "Entry: {{ item }} formed: {{ item | ipaddr('host') }}"
-      loop: "{{ ipv6_adresses | upper }}"
+      loop: "{{ ipv6_addresses | upper }}"
       when:
         - item | ipv6
         - item | upper
     - name: is ipv6 link-local ?
       debug:
         msg: "Entry: {{ item }} is a Link Local Address"
-      loop: "{{ ipv6_adresses }}"
+      loop: "{{ ipv6_addresses }}"
       when:
         - item is regex("^FE80:")
+        - item | ipaddr('FE80::/16')
         - item | ipv6
         - item | upper
     - name: is ipv6 documentation address ?
       debug:
         msg: "Entry: {{ item }} is a Documentation Address"
-      loop: "{{ ipv6_adresses | upper }}"
+      loop: "{{ ipv6_addresses | upper }}"
       when:
         - item is regex("^2001:DB8:")
         - item | ipaddr('2001:DB8::/32')
@@ -65,7 +66,7 @@
     - name: is ipv6 ula address ?
       debug:
         msg: "Entry: {{ item }} is a Unique Local Address"
-      loop: "{{ ipv6_adresses | upper }}"
+      loop: "{{ ipv6_addresses | upper }}"
       when:
         - item is regex("^FD[0-9A-F]?[0-9A-F]?:")
         - item | ipaddr('FD00::/8')
@@ -74,7 +75,7 @@
     - name: is ipv6 gua address ?
       debug:
         msg: "Entry: {{ item }} is a Global Unicast Address"
-      loop: "{{ ipv6_adresses | upper }}"
+      loop: "{{ ipv6_addresses | upper }}"
       when:
         - item is regex("^[2-3][0-9A-F]?[0-9A-F]?[0-9A-F]?:")
         - item | ipaddr('2000::/3')
@@ -83,14 +84,14 @@
     - name: is ipv6 gua address ?
       debug:
         msg: "Entry: {{ item }} is a Global Unicast Address"
-      loop: "{{ ipv6_adresses | upper }}"
+      loop: "{{ ipv6_addresses | upper }}"
       when:
         - item | ipaddr('public')
         - item | upper
     - name: is ipv6 private address ?
       debug:
         msg: "Entry: {{ item }} is a private IPv6 Address"
-      loop: "{{ ipv6_adresses | upper }}"
+      loop: "{{ ipv6_addresses | upper }}"
       when:
         - item | ipaddr('private')
         - item | upper
