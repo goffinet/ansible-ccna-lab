@@ -6,5 +6,5 @@
     lines:
       - default-information originate
   when:
-    - routing.rip is defined
+    - interfaces | selectattr('rip', 'defined') | list
     - nat is defined

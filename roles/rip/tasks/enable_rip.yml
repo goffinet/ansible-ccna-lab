@@ -13,6 +13,7 @@
     parents: router rip
     lines:
       - version 2
+  when: interfaces | selectattr('rip', 'defined') | list
 - name: enable rip passive-interface
   ios_config:
     defaults: yes
