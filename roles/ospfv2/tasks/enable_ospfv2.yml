@@ -17,15 +17,13 @@
   loop: "{{ interfaces | selectattr('passive', 'defined') | list }}"
   when:
     - item is defined
-    - interfaces | selectattr('ospfv2', 'defined') | list
 - name: enable ospfv2 interfaces
   ios_config:
     defaults: yes
     parents: router ospf {{ routing.ospf_pid | default(1) }}
     lines:
-      - "network {{ item.ipv4_address | ipv4('address') }} 0.0.0.0 area {{ item.ospfv2.area }}"
+      - "network {{ item.ipv4_address | ipv4('network') }} {{ item.ipv4_address | ipv4('hostmask') }} area {{ item.ospfv2.area }}"
   loop: "{{ interfaces | selectattr('ospfv2', 'defined') | list }}"
   when:
     - item.ipv4_address is defined
     - item.ospfv2.area is defined
-    - interfaces | selectattr('ospfv2', 'defined') | list
