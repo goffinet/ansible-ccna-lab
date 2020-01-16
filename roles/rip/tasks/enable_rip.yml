@@ -22,8 +22,9 @@
     lines:
       - passive-interface {{ item.id }}
   loop: "{{ interfaces }}"
-  when:
-    - item.passive
+  when: >
+    item.passive or
+    item.passive is defined
 - name: enable rip interfaces
   ios_config:
     defaults: yes
