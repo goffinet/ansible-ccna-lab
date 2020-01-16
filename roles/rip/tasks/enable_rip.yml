@@ -24,6 +24,7 @@
 - name: enable rip interfaces
   ios_config:
     defaults: yes
+    match: strict
     parents: router rip
     lines:
       - network {{ item }}
