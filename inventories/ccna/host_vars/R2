@@ -15,6 +15,11 @@ interfaces:
     ipv6_addresses:
       - 'FE80::2'
       - 'FD00:FD00:FD00:2::1/64'
+    eigrp6:
+    ospfv3:
+      area: 0
+      cost: 1
+      pri: 255
   - id: GigabitEthernet0/1
     description: "Link to R1"
     ipv4_address: 192.168.225.2/24
@@ -26,6 +31,11 @@ interfaces:
       pri: 255
     ipv6_addresses:
       - 'FE80::2'
+    eigrp6:
+    ospfv3:
+      area: 0
+      cost: 1
+      pri: 255
   - id: GigabitEthernet0/3
     description: "Link to R3"
     ipv4_address: 192.168.227.1/24
@@ -37,12 +47,24 @@ interfaces:
       pri: 255
     ipv6_addresses:
       - 'FE80::2'
+    eigrp6:
+    ospfv3:
+      area: 0
+      cost: 1
+      pri: 255
   - id: GigabitEthernet0/2
     description: "Link to DS1"
     ipv4_address: 172.16.224.1/24
     rip:
     eigrp4:
     ospfv2:
+      area: 0
+      cost: 1
+      pri: 255
+    ipv6_addresses:
+      - 'FE80::2'
+    eigrp6:
+    ospfv3:
       area: 0
       cost: 1
       pri: 255
@@ -57,6 +79,10 @@ interfaces:
       pri: 255
     ipv6_addresses:
       - 'FE80::2'
+    ospfv3:
+      area: 0
+      cost: 1
+      pri: 255
   - id: GigabitEthernet0/5
     description: "Link to DS2"
     ipv4_address: 172.16.242.1/24
@@ -68,6 +94,11 @@ interfaces:
       pri: 255
     ipv6_addresses:
       - 'FE80::2'
+    eigrp6:
+    ospfv3:
+      area: 0
+      cost: 1
+      pri: 255
   - id: GigabitEthernet0/6
     description: "Link to DS2"
     ipv4_address: 172.16.243.1/24
@@ -79,49 +110,14 @@ interfaces:
       pri: 255
     ipv6_addresses:
       - 'FE80::2'
+    eigrp6:
+    ospfv3:
+      area: 0
+      cost: 1
+      pri: 255
 routing:
   rid: 2.2.2.2
-  passive:
-    - GigabitEthernet0/0
-  ospf_pid: 1
   eigrp_as: 1
-  ospfv3:
-    - id: GigabitEthernet0/0
-      pri: 255
-      cost: 1
-      area: 0
-    - id: GigabitEthernet0/1
-      pri: 255
-      cost: 1
-      area: 0
-    - id: GigabitEthernet0/3
-      pri: 255
-      cost: 1
-      area: 0
-    - id: GigabitEthernet0/2
-      pri: 255
-      cost: 1
-      area: 0
-    - id: GigabitEthernet0/4
-      pri: 255
-      cost: 1
-      area: 0
-    - id: GigabitEthernet0/5
-      pri: 255
-      cost: 1
-      area: 0
-    - id: GigabitEthernet0/6
-      pri: 255
-      cost: 1
-      area: 0
-  eigrp6:
-    - id: GigabitEthernet0/0
-    - id: GigabitEthernet0/1
-    - id: GigabitEthernet0/3
-    - id: GigabitEthernet0/2
-    - id: GigabitEthernet0/4
-    - id: GigabitEthernet0/5
-    - id: GigabitEthernet0/6
 dhcp:
   dhcp_pool:
     - id: "LANR2"

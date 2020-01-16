@@ -17,7 +17,7 @@
   loop: "{{ interfaces | selectattr('passive', 'defined') | list }}"
   when:
     - routing.eigrp_as is defined
-    - item is defined
+    - item.id is defined
 - name: enable eigrp4 interfaces
   ios_config:
     defaults: no

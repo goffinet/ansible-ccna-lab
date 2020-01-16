@@ -87,6 +87,7 @@ interfaces:
     ipv6_addresses:
       - 'FE80::D:2'
       - 'FD00:1AB:10::1/64'
+    eigrp6:
   - id: Vlan20
     description: "Vlan20 real gateway"
     ipv4_address: 172.16.20.252/24
@@ -100,6 +101,7 @@ interfaces:
     ipv6_addresses:
       - 'FE80::D:2'
       - 'FD00:1AB:20::1/64'
+    eigrp6:
   - id: Vlan30
     description: "Vlan30 real gateway"
     ipv4_address: 172.16.30.252/24
@@ -113,6 +115,7 @@ interfaces:
     ipv6_addresses:
       - 'FE80::D:2'
       - 'FD00:1AB:30::1/64'
+    eigrp6:
   - id: Vlan40
     description: "Vlan40 real gateway"
     ipv4_address: 172.16.40.252/24
@@ -126,6 +129,7 @@ interfaces:
     ipv6_addresses:
       - 'FE80::D:2'
       - 'FD00:1AB:40::1/64'
+    eigrp6:
   - id: GigabitEthernet2/0
     description: "Link to R2 Core"
     noswitchport: true
@@ -138,6 +142,7 @@ interfaces:
       pri: 255
     ipv6_addresses:
       - 'FE80::D:2'
+    eigrp6:
   - id: GigabitEthernet3/0
     description: "Link to R2 Core"
     noswitchport: true
@@ -150,6 +155,7 @@ interfaces:
       pri: 255
     ipv6_addresses:
       - 'FE80::D:2'
+    eigrp6:
   - id: GigabitEthernet2/1
     description: "Link to R3 Core"
     noswitchport: true
@@ -162,6 +168,7 @@ interfaces:
       pri: 255
     ipv6_addresses:
       - 'FE80::D:2'
+    eigrp6:
   - id: GigabitEthernet3/1
     description: "Link to R3 Core"
     noswitchport: true
@@ -174,6 +181,7 @@ interfaces:
       pri: 255
     ipv6_addresses:
       - 'FE80::D:2'
+    eigrp6:
   - id: GigabitEthernet0/3
     description: "Stub interface"
     stub: true

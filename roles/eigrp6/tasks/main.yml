@@ -4,7 +4,6 @@
     - ansible_network_os == 'ios'
     - routing.eigrp_as is defined
     - routing.rid is defined
-    - routing.eigrp6 is defined
   tags:
     - eigrp6
     - ipv6_dynamic_routing

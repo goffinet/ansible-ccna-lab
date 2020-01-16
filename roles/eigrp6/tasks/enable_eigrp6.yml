@@ -8,26 +8,24 @@
   when:
     - routing.eigrp_as is defined
     - routing.rid is defined
-    - routing.eigrp6 is defined
 - name: enable eigrp ipv6 passive-interface
   ios_config:
     defaults: yes
     parents: ipv6 router eigrp {{ routing.eigrp_as }}
     lines:
-      - passive-interface {{ item }}
-  loop: "{{ routing.passive }}"
+      - passive-interface {{ item.id }}
+  loop: "{{ interfaces | selectattr('passive', 'defined') | list }}"
   when:
     - routing.eigrp_as is defined
-    - item is defined
-    - routing.eigrp6 is defined
+    - item.id is defined
 - name: enable eigrp ipv6 on interfaces
   ios_config:
     defaults: yes
     parents: interface {{ item.id }}
     lines:
       - ipv6 eigrp {{ routing.eigrp_as }}
-  loop: "{{ routing.eigrp6 }}"
+  loop: "{{ interfaces | selectattr('eigrp6', 'defined') | list }}"
   when:
+    - item.id is defined
     - routing.eigrp_as is defined
-    - item is defined
-    - routing.eigrp6 is defined
+    - interfaces | selectattr('eigrp6', 'defined') | list

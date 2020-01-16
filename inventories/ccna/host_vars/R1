@@ -15,6 +15,11 @@ interfaces:
     ipv6_addresses:
       - 'FE80::1'
       - 'FD00:FD00:FD00:1::1/64'
+    eigrp6:
+    ospfv3:
+      area: 0
+      cost: 1
+      pri: 255
   - id: GigabitEthernet0/1
     description: "Internet connexion ip nat outside"
     ipv4_address: dhcp
@@ -29,6 +34,11 @@ interfaces:
       pri: 255
     ipv6_addresses:
       - 'FE80::1'
+    eigrp6:
+    ospfv3:
+      area: 0
+      cost: 1
+      pri: 255
   - id: GigabitEthernet0/3
     description: "Link to R3"
     ipv4_address: 192.168.226.1/24
@@ -40,25 +50,14 @@ interfaces:
       pri: 255
     ipv6_addresses:
       - 'FE80::1'
+    eigrp6:
+    ospfv3:
+      area: 0
+      cost: 1
+      pri: 255
 routing:
   rid: 1.1.1.1
-  passive:
-    - GigabitEthernet0/0
-  ospf_pid: 1
   eigrp_as: 1
-  ospfv3:
-    - id: GigabitEthernet0/0
-      pri: 255
-      cost: 1
-      area: 0
-    - id: GigabitEthernet0/2
-      pri: 255
-      cost: 1
-      area: 0
-    - id: GigabitEthernet0/3
-      pri: 255
-      cost: 1
-      area: 0
 dhcp:
   dhcp_pool:
     - id: "LANR1"
