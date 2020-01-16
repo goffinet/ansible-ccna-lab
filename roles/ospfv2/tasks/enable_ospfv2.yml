@@ -13,7 +13,7 @@
     defaults: yes
     parents: router ospf {{ routing.ospf_pid | default(1) }}
     lines:
-      - passive-interface {{ item }}
+      - passive-interface {{ item.id }}
   loop: "{{ interfaces | selectattr('passive', 'defined') | list }}"
   when:
     - item is defined
