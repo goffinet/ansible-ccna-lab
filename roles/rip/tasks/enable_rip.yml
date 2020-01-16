@@ -21,7 +21,7 @@
     parents: router rip
     lines:
       - passive-interface {{ item.id }}
-  loop: "{{ interfaces| selectattr('passive', 'defined') }}"
+  loop: "{{ interfaces | selectattr('passive', 'defined') | list }}"
 - name: enable rip interfaces
   ios_config:
     defaults: yes
