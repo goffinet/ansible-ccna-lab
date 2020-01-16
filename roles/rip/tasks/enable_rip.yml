@@ -27,7 +27,7 @@
     match: strict
     parents: router rip
     lines:
-      - network {{ item }}
+      - "network {{ item }}"
 #  loop: "{{ routing.rip }}"
 #  when:
 #    - routing.rip is defined
