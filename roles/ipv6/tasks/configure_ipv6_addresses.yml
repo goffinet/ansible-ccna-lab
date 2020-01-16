@@ -10,7 +10,6 @@
   when:
         - item.1 is regex("^FE80:")
         - item.1 | ipv6
-        - item.1 | upper
 - name: configure ula/uga ipv6 addresses
 #  ios_l3_interfaces:
 #    config:
@@ -26,4 +25,3 @@
   when:
         - item.1 is regex("^FD[0-9A-F]?[0-9A-F]?:") or item.1 | ipaddr('public')
         - item.1 | ipv6
-        - item.1 | upper
