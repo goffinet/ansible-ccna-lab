@@ -24,4 +24,4 @@
     parents: router eigrp {{ routing.eigrp_as }}
     lines:
       - "network {{ item | ipaddr('network') }} 0.0.0.0"
-  loop: "{{ interfaces | selectattr('eigrp4', 'defined') | map(attribute='ipv4_address') | ipaddr('network/prefix') | list | unique }}"
+  loop: "{{ interfaces | selectattr('eigrp4', 'defined') | map(attribute='ipv4_address') | ipaddr('network') | list | unique }}"
