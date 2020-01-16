@@ -13,8 +13,6 @@
     parents: router rip
     lines:
       - version 2
-  when:
-    - routing.rip is defined
 - name: enable rip passive-interface
   ios_config:
     defaults: yes
