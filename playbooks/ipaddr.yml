@@ -18,21 +18,21 @@
       - 2001:db8::1/64
       - 2001:DB8::1/64
   tasks:
-    - name: get ipv4 network parameters
+    - name: get ipv4 wildcard mask
       debug:
-        msg: "Entry: {{ item }}
-              Wilcard: {{ item | ipaddr('hostmask') }}
-              Host: {{ item | ipaddr('hostmask') }}
-              Netmask: {{ item | ipaddr('netmask') }}
-              Network: {{ item | ipaddr('network') }}
-              Prefix: {{ item | ipaddr('prefix') }}"
+        msg: "entry: {{ item }}
+              wilcard_mask: {{ item | ipaddr('hostmask') }}
+              host_address: {{ item | ipaddr('host') }}
+              netmask: {{ item | ipaddr('netmask') }}
+              network: {{ item | ipaddr('network') }}
+              prefix: {{ item | ipaddr('prefix') }}"
       loop: "{{ ipv4_adresses }}"
     - name: get best supernet
       debug:
         msg: "{{ ipv4_adresses | cidr_merge('span') }}"
     - name: get supernets
       debug:
-        msg: "{{ ipv4_adresses | cidr_merge }}"
+        msg: "{{ ipv4_adresses | ipaddr('network/prefix') | cidr_merge }}"
       register: supernets
     - name: print supernets
       debug:
@@ -59,6 +59,7 @@
       loop: "{{ ipv6_adresses | upper }}"
       when:
         - item is regex("^2001:DB8:")
+        - item | ipaddr('2001:DB8::/32')
         - item | ipv6
         - item | upper
     - name: is ipv6 ula address ?
@@ -67,6 +68,7 @@
       loop: "{{ ipv6_adresses | upper }}"
       when:
         - item is regex("^FD[0-9A-F]?[0-9A-F]?:")
+        - item | ipaddr('FD00::/8')
         - item | ipv6
         - item | upper
     - name: is ipv6 gua address ?
@@ -75,6 +77,7 @@
       loop: "{{ ipv6_adresses | upper }}"
       when:
         - item is regex("^[2-3][0-9A-F]?[0-9A-F]?[0-9A-F]?:")
+        - item | ipaddr('2000::/3')
         - item | ipv6
         - item | upper
     - name: is ipv6 gua address ?
