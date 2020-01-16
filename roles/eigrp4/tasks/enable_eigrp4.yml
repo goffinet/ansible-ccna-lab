@@ -25,7 +25,7 @@
     defaults: no
     parents: router eigrp {{ routing.as }}
     lines:
-      - "network {{ item | ipaddr('network') }} {{ item | ipaddr('hostmask') }}"
+      - "network {{ item | ipaddr('network') }} 0.0.0.0"
   loop: "{{ interfaces | selectattr('eigrp4', 'defined') | map(attribute='ipv4_address') | ipaddr('network/prefix') | list | unique }}"
 #  when:
 #    - routing.as is defined
