@@ -2,14 +2,12 @@
 - import_tasks: enable_rip.yml
   when:
     - ansible_network_os == 'ios'
-    - routing.rip is defined
   tags:
     - rip
     - ipv4_dynamic_routing
 - import_tasks: static_to_rip.yml
   when:
     - ansible_network_os == 'ios'
-    - routing.rip is defined
     - nat is defined
   tags:
     - rip
