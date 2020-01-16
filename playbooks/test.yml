@@ -1,96 +1,27 @@
 ---
 # Based on https://docs.ansible.com/ansible/latest/user_guide/playbooks_filters_ipaddr.html#playbooks-filters-ipaddr
 - name: Using ipaddr filter and check on ip address variables
-  hosts: localhost
+  hosts: R1
   gather_facts: False
-  vars:
-    ipv4_adresses:
-      - 192.168.0.1/24
-      - 192.168.1.1/24
-      - 192.168.1.1/27
-      - 192.168.1.1/32
-      - 192.168.4.8/24
-      - 192.168.1.1/255.255.255.248
-    ipv6_adresses:
-      - FD00:00:00:01::1/64
-      - FDG0:00:00:01::1
-      - FE80:00::1/64
-      - 2001:db8::1/64
-      - 2001:DB8::1/64
   tasks:
-    - name: get ipv4 wildcard mask
-      debug:
-        msg: "entry: {{ item }}
-              wilcard_mask: {{ item | ipaddr('hostmask') }}
-              host_address: {{ item | ipaddr('host') }}
-              netmask: {{ item | ipaddr('netmask') }}
-              network: {{ item | ipaddr('network') }}
-              prefix: {{ item | ipaddr('prefix') }}"
-      loop: "{{ ipv4_adresses }}"
-    - name: get best supernet
-      debug:
-        msg: "{{ ipv4_adresses | cidr_merge('span') }}"
-    - name: get supernets
-      debug:
-        msg: "{{ ipv4_adresses | ipaddr('network/prefix') | cidr_merge }}"
-      register: supernets
-    - name: print supernets
-      debug:
-        msg: "Entry: {{ item }}"
-      loop: "{{ supernets.msg }}"
-    - name: ipv6 formed
-      debug:
-        msg: "Entry: {{ item }} formed: {{ item | ipaddr('host') }}"
-      loop: "{{ ipv6_adresses | upper }}"
-      when:
-        - item | ipv6
-        - item | upper
     - name: is ipv6 link-local ?
       debug:
-        msg: "Entry: {{ item }} is a Link Local Address"
-      loop: "{{ ipv6_adresses }}"
+        msg: "Entry: {{ item.1 | ipaddr('address') | upper }} is a Link Local Address"
+      loop: "{{ interfaces|subelements('ipv6_addresses', skip_missing=True) }}"
       when:
-        - item is regex("^FE80:")
-        - item | ipv6
-        - item | upper
-    - name: is ipv6 documentation address ?
-      debug:
-        msg: "Entry: {{ item }} is a Documentation Address"
-      loop: "{{ ipv6_adresses | upper }}"
-      when:
-        - item is regex("^2001:DB8:")
-        - item | ipaddr('2001:DB8::/32')
-        - item | ipv6
-        - item | upper
+        - item.1 | ipaddr('FE80::/16')
+      failed_when: >
+        not item.1 | ipv6 or
+        not item.1 | ipaddr('FE80::/16')
     - name: is ipv6 ula address ?
       debug:
-        msg: "Entry: {{ item }} is a Unique Local Address"
-      loop: "{{ ipv6_adresses | upper }}"
-      when:
-        - item is regex("^FD[0-9A-F]?[0-9A-F]?:")
-        - item | ipaddr('FD00::/8')
-        - item | ipv6
-        - item | upper
-    - name: is ipv6 gua address ?
-      debug:
-        msg: "Entry: {{ item }} is a Global Unicast Address"
-      loop: "{{ ipv6_adresses | upper }}"
-      when:
-        - item is regex("^[2-3][0-9A-F]?[0-9A-F]?[0-9A-F]?:")
-        - item | ipaddr('2000::/3')
-        - item | ipv6
-        - item | upper
-    - name: is ipv6 gua address ?
-      debug:
-        msg: "Entry: {{ item }} is a Global Unicast Address"
-      loop: "{{ ipv6_adresses | upper }}"
-      when:
-        - item | ipaddr('public')
-        - item | upper
-    - name: is ipv6 private address ?
-      debug:
-        msg: "Entry: {{ item }} is a private IPv6 Address"
-      loop: "{{ ipv6_adresses | upper }}"
-      when:
-        - item | ipaddr('private')
-        - item | upper
+        msg: "Entry: {{ item.1 | ipaddr('host/prefix') | upper }} is a Unique Local Address or a Global Unicast Address"
+      loop: "{{ interfaces|subelements('ipv6_addresses', skip_missing=True) }}"
+      when: >
+        item.1 | ipaddr('FD00::/8') or
+        item.1 | ipaddr('2000::/3')
+      failed_when: >
+        not item.1 | ipv6 or
+        not item.1 | ipaddr('host/prefix') or
+        not item.1 | ipaddr('FD00::/8') or
+        not item.1 | ipaddr('2000::/3')
