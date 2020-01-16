@@ -199,23 +199,7 @@ interfaces:
     stub: true
 routing:
   rid: 5.5.5.5
-  passive:
-    - Vlan10
-    - Vlan20
-    - Vlan30
-    - Vlan40
-  ospf_pid: 1
   eigrp_as: 1
-#  ospfv3: # OSPFv3 in not avaible on this platform
-  eigrp6:
-    - id: Vlan10
-    - id: Vlan20
-    - id: Vlan30
-    - id: Vlan40
-    - id: GigabitEthernet2/0
-    - id: GigabitEthernet3/0
-    - id: GigabitEthernet2/1
-    - id: GigabitEthernet3/1
   fhrp:
     - id: Vlan10
       group: 10
