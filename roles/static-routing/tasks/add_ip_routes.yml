@@ -1,0 +1,11 @@
+---
+- name: add ip routes
+  ios_static_route:
+    prefix: "{{ item.1.destination | ipaddr('network') }}"
+    mask: "{{ item.1.destination | ipaddr('netmask') }}"
+    interface: "{{ item.0.id }}"
+    name: "Static route to "{{ item.1.destination | ipaddr('network') }}:{{ item.1.ad }} via {{ item.0.id }}"
+    admin_distance: "{{ item.1.ad | default('254') }}"
+    state: "{{ item.1.state | default('present') }}"
+  loop: "{{ interfaces|subelements('static', skip_missing=True) }}"
+  when: item.1.destination | ipv4

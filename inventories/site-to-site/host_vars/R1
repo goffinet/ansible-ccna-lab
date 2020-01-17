@@ -1,16 +1,35 @@
 ---
 hostname: R1
-domain_name: lan
 interfaces:
   - id: GigabitEthernet0/0
     description: "LAN R1"
     ipv4_address: 192.168.1.1/24
     ipv6_addresses:
       - 'FE80::1'
-      - 'FD00:FD00:FD00:1::1/64'
+      - '2001:db8:1ab:1::1/64'
+    passive:
+    rip:
   - id: GigabitEthernet0/1
     description: "Internet connexion ip nat outside"
     ipv4_address: dhcp
+  - id: GigabitEthernet0/2
+    description: "Link to R2"
+    ipv4_address: 192.168.3.1/24
+    ipv6_addresses:
+      - 'FE80::1'
+    static:
+      - destination: 192.168.2.0/24
+        next_hop: 192.168.3.2
+        ad: 200
+        state: present
+      - destination: '2001:db8:1ab:2::/64'
+        next_hop: 'FE80::2'
+        ad: 200
+        state: present
+    rip:
+routing:
+  rid: 1.1.1.1
+  eigrp_as: 1
 dhcp:
   dhcp_pool:
     - id: "LANR1"
@@ -25,8 +44,8 @@ nat:
   name: "LANS"
   inside:
     - GigabitEthernet0/0
+    - GigabitEthernet0/2
   outside: GigabitEthernet0/1
   sources:
     - "192.168.1.0 0.0.0.255"
-rdnss:
-  name_server: 1.1.1.1
+    - "192.168.2.0 0.0.1.255"
