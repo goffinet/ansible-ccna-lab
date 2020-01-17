@@ -5,10 +5,22 @@
 #    - write
 #    - save
 #- import_tasks: get_config.yml
+#  tags:
+#    - write
+#    - save
 - name: write memory and backup the config
   ios_config:
-    save: yes
+    save_when: always
+  when: ansible_network_os == 'ios'
+  tags:
+    - write
+    - get
+- name: write memory and backup the config
+  ios_config:
     backup: yes
+    backup_options:
+      dir_path: "config/"
+      filename: "{{ inventory_hostname }}.cfg"
   when: ansible_network_os == 'ios'
   tags:
     - write
