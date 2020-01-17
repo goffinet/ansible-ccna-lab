@@ -1,4 +1,4 @@
-# Ansible CCNA lab
+# Ansible CCNA Lab
 
 - [1. Résumé](#1-rsum)
 - [2. Mise en place](#2-mise-en-place)
