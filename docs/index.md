@@ -513,7 +513,7 @@ ansible core -m ios_command -a "commands='traceroute 172.16.10.1 source GigabitE
 
 ### Phase I
 
-Portage en rôles **idempotents**.
+Portage en rôles **idempotents** avec des [modules standards](https://docs.ansible.com/ansible/latest/modules/list_of_network_modules.html#ios).
 
 Usage du filtre jinja2 [ipaddr](https://docs.ansible.com/ansible/latest/user_guide/playbooks_filters_ipaddr.html#playbooks-filters-ipaddr), voir [playbooks/ipaddr.yml](https://github.com/goffinet/ansible-ccna-lab/blob/master/playbooks/ipaddr.yml).
 
