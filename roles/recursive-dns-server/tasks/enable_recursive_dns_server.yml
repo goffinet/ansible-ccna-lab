@@ -1,6 +1,7 @@
 ---
 - name: enable recursive dns server
   ios_config:
+    defaults: yes
     lines:
       - "ip domain lookup"
       - "ip name-server {{ rdnss.name_server | default('1.1.1.1') }}"
