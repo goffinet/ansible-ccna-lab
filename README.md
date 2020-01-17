@@ -87,7 +87,7 @@ Poste de travail L2 à L7, Station de contrôle  | [`centos7.qcow2`](http://get.
 
 ### 1.2. Routeurs
 
-On utilise des images IOSv pour les routeurs L3 avec 8 interfaces GigabitEthernet.
+On utilise des images IOSv `vios-adventerprisek9-m.vmdk.SPA.156-2.T` pour les routeurs L3 avec 8 interfaces GigabitEthernet.
 
 L'interface `GigabitEthernet0/7` sert de console de contrôle TCP/IP et ne participe pas au routage.
 
@@ -114,7 +114,7 @@ wr
 
 ### 1.3. Commutateurs
 
-On utilise des images IOSv-L2 pour les commutateurs multicouches.
+On utilise des images IOSv-L2 `vios_l2-adventerprisek9-m.03.2017.qcow2` pour les commutateurs multicouches.
 
 L'interface `GigabitEthernet3/3` sert de console de contrôle TCP/IP et ne participe pas au routage.
 
