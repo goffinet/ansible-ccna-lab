@@ -5,16 +5,16 @@ banners:
   enabled: true
   login: |
         "Default Multi-line motd banner
-        for {{ inventory_hostname }}"
+        for {{ inventory_hostname }} device in the CCNA Lab"
   motd: |
         "Default Multi-line motd banner for {{ inventory_hostname }}
-        for {{ inventory_hostname }}"
+        for {{ inventory_hostname }} device in the CCNA Lab"
   exec: |
         "Default Multi-line exec banner
-        for {{ inventory_hostname }}"
+        for {{ inventory_hostname }} device in the CCNA Lab"
   incoming: |
         "Default Multi-line incoming banner
-        for {{ inventory_hostname }}"
+        for {{ inventory_hostname }} device in the CCNA Lab"
   slip_ppp: |
         "Default Multi-line slip-ppp banner
-        for {{ inventory_hostname }}"
+        for {{ inventory_hostname }} device in the CCNA Lab"
