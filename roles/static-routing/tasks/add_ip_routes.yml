@@ -13,4 +13,5 @@
   ios_config:
     lines:
       - "ipv6 route {{ item.1.destination | ipaddr('network/prefix') }} {{ item.0.id }} {{ item.1 | upper | ipaddr('FE80::/16') | first }}"
+  loop: "{{ interfaces|subelements('static', skip_missing=True) }}"
   when: item.1.destination | ipv6
