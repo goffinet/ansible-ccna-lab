@@ -17,6 +17,8 @@ stubvlan:
   name: STUB
 routing:
   eigrp_as: 1
+rdnss:
+  name_server: 1.1.1.1
 #switchports:
 #  - id: GigabitEthernet0/0
 #  - id: GigabitEthernet0/1

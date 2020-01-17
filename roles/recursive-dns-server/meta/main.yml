@@ -1,0 +1,23 @@
+---
+galaxy_info:
+  author: goffinet
+  description: configure recursive dns server
+  license: CC-BY-4.0
+  min_ansible_version: 2.9
+  galaxy_tags:
+    - cisco
+    - iosv
+    - ccna
+    - dns
+    - rdnss
+  platforms:
+    - name: VIOS-ADVENTERPRISEK9-M
+      versions:
+        - 15.6(2)T
+    - name: vios_l2-ADVENTERPRISEK9-M
+      versions:
+        - 15.2(20170321:233949)
+dependencies:
+  - role: interface
+  - role: ipv4
+  - role: ipv6

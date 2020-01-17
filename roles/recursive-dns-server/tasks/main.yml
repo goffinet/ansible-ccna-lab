@@ -1,0 +1,7 @@
+---
+- import_tasks: enable_recursive_dns_server.yml
+  when:
+    - ansible_network_os == 'ios'
+    - rdnss is defined
+  tags:
+    - dhcp-server

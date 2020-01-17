@@ -8,7 +8,7 @@
   - [2.4. Station de contrôle](#24-station-de-contrle)
   - [2.5. Cloner le dépôt](#25-cloner-le-dpt)
   - [2.6. Examiner les paramètres de configuration de Ansible](#26-examiner-les-paramtres-de-configuration-de-ansible)
-- [3. Topologie CCNA Standalone](#3-topologie-ccna-standalone)
+- [3. Topologie CCNA Gateway](#3-topologie-ccna-gateway)
 - [4. Topologie CCNA Site to Site](#4-topologie-ccna-site-to-site)
 - [5. Topologie CCNA tripod](#5-topologie-ccna-tripod)
   - [5.1. Topologie logique](#51-topologie-logique)
@@ -45,13 +45,13 @@ Les topologies sont organisées de la manière suivante :
 ```yaml
 ccna:
   tripod:
-    standalone:
+    gateway:
     site_to_site:
     router_on_stick:
   switchblock:
 ```
 
-Une topologie intitulée "ccna" est composée de deux topologies distinctes "tripod" et "switchblock". La topologie "tripod" trouve trois variantes amoindries : "standalone", "site_to_site", et "router_on_stick".
+Une topologie intitulée "ccna" est composée de deux topologies distinctes "tripod" et "switchblock". La topologie "tripod" trouve trois variantes amoindries : "gateway", "site_to_site", et "router_on_stick".
 
 Expliqué rapidement :
 
@@ -223,13 +223,13 @@ callback_whitelist = profile_tasks
 task_output_limit = 100
 ```
 
-## 3. Topologie CCNA Standalone
+## 3. Topologie CCNA Gateway
 
 Un seul routeur Cisco qui connecte l'Internet.
 
 Références :
 
-* [Lab Configuration d’un routeur Cisco](https://cisco.goffinet.org/ccna/routage/lab-configuration-routeur-cisco/)
+* [Lab passerelle Internet](https://cisco.goffinet.org/ccna/services-infrastructure/lab-passerelle-internet/)
 
 ## 4. Topologie CCNA Site to Site
 
@@ -240,6 +240,7 @@ Références :
 * [Lab routage statique simple](https://cisco.goffinet.org/ccna/routage/lab-routage-statique-simple/)
 * [Lab routage RIPv2 simple](https://cisco.goffinet.org/ccnp/rip/lab-ripv2-simple/)
 * [Lab Routage OSPF simple](https://cisco.goffinet.org/ccna/ospf/lab-routage-ospf-simple/)
+* [Lab de routage et services IPv4/IPv6](https://cisco.goffinet.org/ccna/services-infrastructure/lab-routage-et-services-ipv4-ipv6/)
 
 ## 5. Topologie CCNA tripod
 

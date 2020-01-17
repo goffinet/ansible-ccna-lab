@@ -258,22 +258,22 @@ dhcp:
       network: 172.16.10.0
       netmask: 255.255.255.0
       router: 172.16.10.254
-      dns: 8.8.8.8
+      dns: 172.16.10.252
     - id: "VLAN20"
       network: 172.16.20.0
       netmask: 255.255.255.0
       router: 172.16.20.254
-      dns: 8.8.8.8
+      dns: 172.16.20.252
     - id: "VLAN30"
       network: 172.16.30.0
       netmask: 255.255.255.0
       router: 172.16.30.254
-      dns: 8.8.8.8
+      dns: 172.16.30.252
     - id: "VLAN40"
       network: 172.16.40.0
       netmask: 255.255.255.0
       router: 172.16.40.254
-      dns: 8.8.8.8
+      dns: 172.16.40.252
   dhcp_excluded:
     - start: 172.16.10.50
       end: 172.16.10.254

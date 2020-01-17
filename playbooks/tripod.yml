@@ -24,6 +24,7 @@
       when:
         - '"ospfv3" in routing_ipv6'
     - role: dhcp-server
+    - role: recursive-dns-server
 - hosts: R1
   gather_facts: False
   roles:
