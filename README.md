@@ -27,7 +27,7 @@
   - [5.1. Inventaire et variables d'inventaire du livre de jeu ccna.yml](#51-inventaire-et-variables-dinventaire-du-livre-de-jeu-ccnayml)
   - [5.2. Livres de jeu](#52-livres-de-jeu)
   - [5.3. Diagnostic de base](#53-diagnostic-de-base)
-- [Notes](#notes)
+- [6. Conception](#6-conception)
   - [Phase I](#phase-i)
   - [Comment rendre une tâche ios_config idempotente ?](#comment-rendre-une-tche-iosconfig-idempotente-)
   - [Phase II](#phase-ii)
