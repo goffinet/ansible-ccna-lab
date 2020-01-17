@@ -145,11 +145,19 @@ La station de contrôle connecte tous les périphériques en SSH.
 
 Elle offre un service DHCP avec enregistrement dynamique des noms d'hôte dans un serveur DNS (dnsmasq).
 
-Le logiciel Ansible est fraîchement installé.
+Le logiciel Ansible est fraîchement installé (avec la libraire python netaddr).
 
 ```bash
-yum -y install dnsmasq
-yum -y install ansible git dnsmasq
+hostnamectl set-hostname controller
+yum -y remove ansible
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+python get-pip.py
+pip install --upgrade pip
+pip install ansible
+pip install ansible-lint
+pip install ansible netadrr
+#yum -y install ansible
+yum -y install git dnsmasq
 cat << EOF > /etc/dnsmasq.conf
 interface=lo0
 interface=eth0
@@ -167,7 +175,6 @@ IPV4_FAILURE_FATAL=no
 DNS1=127.0.0.1
 EOF
 systemctl enable dnsmasq
-hostnamectl set-hostname controller
 shutdown -r now
 
 ```
