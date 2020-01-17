@@ -185,8 +185,10 @@ Il est nécessaire de cloner le dépot sur la machine de contrôle.
 
 ```bash
 git clone https://github.com/goffinet/ansible-ccna-lab
-cd ansible-ccna-lab
+cd ansible-ccna-lab/playbooks
 ```
+
+Les livres de jeu sont disponibles dans le dossier `ansible-ccna-lab/playbooks` et se lance à partir de ce dossier. on peut aussi les utiliser comme "collection" Ansible : voir [Using collections in a Playbook](https://docs.ansible.com/ansible/devel/user_guide/collections_using.html#using-collections-in-a-playbook).
 
 ### 1.6. Examiner les paramètres de configuration de Ansible
 
@@ -367,7 +369,7 @@ Se rendre dans le dossier des livres de jeu :
 ```bash
 cd
 git clone https://github.com/goffinet/ansible-ccna-lab
-cd ansible-ccna-lab
+cd ansible-ccna-lab/playbooks
 ```
 
 Tester la connectivité vers les périphériques :
@@ -488,7 +490,9 @@ ansible core -m ios_command -a "commands='traceroute 172.16.10.1 source GigabitE
 
 Portage en rôles **idempotents**.
 
-Usage du filre [ipaddr](https://docs.ansible.com/ansible/latest/user_guide/playbooks_filters_ipaddr.html#playbooks-filters-ipaddr), voir [playbooks/ipaddr.yml](https://github.com/goffinet/ansible-ccna-lab/blob/master/playbooks/ipaddr.yml).
+Usage du filtre jinja2 [ipaddr](https://docs.ansible.com/ansible/latest/user_guide/playbooks_filters_ipaddr.html#playbooks-filters-ipaddr), voir [playbooks/ipaddr.yml](https://github.com/goffinet/ansible-ccna-lab/blob/master/playbooks/ipaddr.yml).
+
+Structure en "collection" Ansible. [Using collections in a Playbook](https://docs.ansible.com/ansible/devel/user_guide/collections_using.html#using-collections-in-a-playbook).
 
 Rôles à améliorer :
 
