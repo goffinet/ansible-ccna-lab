@@ -208,7 +208,7 @@ Le fichier de configuration `ansible.cfg`dans le dossier du dépôt configure An
 
 ```ini
 [defaults]
-inventory = ../inventories/ccna/hosts
+inventory = ./inventories/ccna/hosts
 roles_path = ~/.ansible/roles:./roles
 host_key_checking = False
 retry_files_enabled = False
