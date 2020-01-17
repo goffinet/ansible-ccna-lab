@@ -2,4 +2,3 @@
 - name: write memory
   ios_command:
     commands: write memory
-

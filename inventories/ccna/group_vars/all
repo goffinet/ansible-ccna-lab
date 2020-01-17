@@ -6,3 +6,4 @@ routing_ipv4:
 routing_ipv6:
    - eigrp6
 #   - ospfv3
+domain_name: lan

@@ -1,6 +1,5 @@
 ---
 hostname: DS2
-domain_name: lan
 stp:
   primary:
     - 20

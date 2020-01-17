@@ -1,6 +1,5 @@
 ---
 hostname: AS2
-domain_name: lan
 group_channels:
   - id: 4
     mode: active
