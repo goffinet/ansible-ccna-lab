@@ -1,7 +1,6 @@
 [all:vars]
 #method=modules # modules or templating not yet implemented
 
-
 [cisco]
 R1
 

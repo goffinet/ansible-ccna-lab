@@ -1,0 +1,35 @@
+---
+hostname: R1
+domain_name: lan
+interfaces:
+  - id: GigabitEthernet0/0
+    description: "LAN R1"
+    ipv4_address: 192.168.1.1/24
+    ipv6_addresses:
+      - 'FE80::1'
+      - 'FD00:FD00:FD00:1::1/64'
+  - id: GigabitEthernet0/1
+    description: "Internet connexion ip nat outside"
+    ipv4_address: dhcp
+dhcp:
+  dhcp_pool:
+    - id: "LANR1"
+      network: 192.168.1.0
+      netmask: 255.255.255.0
+      router: 192.168.1.1
+      dns: 192.168.1.1
+  dhcp_excluded:
+    - start: 192.168.1.1
+      end: 192.168.1.100
+nat:
+  name: "LANS"
+  inside:
+    - GigabitEthernet0/0
+    - GigabitEthernet0/2
+    - GigabitEthernet0/3
+  outside: GigabitEthernet0/1
+  sources:
+    - "192.168.0.0 0.0.255.255"
+    - "172.16.0.0 0.0.255.255"
+rdnss:
+  name_server: 1.1.1.1
