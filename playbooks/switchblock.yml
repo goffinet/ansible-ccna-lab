@@ -30,8 +30,8 @@
     - role: eigrp6
       when:
         - '"eigrp6" in routing_ipv6'
-    - role: dhcp-server
     - role: recursive-dns-server
+    - role: dhcp-server
 - hosts: blocks
   gather_facts: False
   roles:
