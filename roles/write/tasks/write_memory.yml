@@ -1,4 +1,4 @@
 ---
-- name: write memory
-  ios_command:
-    commands: write memory
+- name: write memory and backup the config
+  ios_config:
+    save_when: always
