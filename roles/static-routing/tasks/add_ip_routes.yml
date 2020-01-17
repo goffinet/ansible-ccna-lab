@@ -12,7 +12,7 @@
 - name: add ipv6 routes
   ios_config:
     lines:
-      - "ipv6 route {{ item.1.destination | ipaddr('network/prefix') }} {{ item.0.id }} {{ item.0.ipv6_addresses | ipaddr('FE80::/16') | first | list | upper }}"
+      - "ipv6 route {{ item.1.destination | ipaddr('network/prefix') }} {{ item.0.id }} {{ item.0.ipv6_addresses | ipaddr('FE80::/16') | first | upper }}"
   loop: "{{ interfaces|subelements('static', skip_missing=True) }}"
   when:
     - item.1.destination | ipv6
