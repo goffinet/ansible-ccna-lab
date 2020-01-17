@@ -60,7 +60,7 @@ Expliqué rapidement :
   * une variable `ansible_network_os == 'ios'`;
   * la définition d'une variable de telle sorte que l'absence de paramètre évite l'exécution des tâches ("Skipped");
   * le protocole de routage dynamique est contrôlé à partir du livre de jeu avec les variables `routing_ipv4` et `routing_ipv6` mais il pourrait être contrôlé à partir de l'inventaire.
-* Les livres de jeu exécutent les rôles dans un ordre logique mais chacun trouve des dépendences de rôles définis
+* Les livres de jeu exécutent les rôles dans un ordre logique mais chacun trouve des dépendances de rôles définis
 
 ## 1. Mise en place minimale
 
