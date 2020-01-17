@@ -4,4 +4,4 @@
     - ansible_network_os == 'ios'
     - rdnss is defined
   tags:
-    - dhcp-server
+    - rdnss
