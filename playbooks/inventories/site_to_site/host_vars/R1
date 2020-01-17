@@ -6,7 +6,7 @@ interfaces:
     ipv4_address: 192.168.1.1/24
     ipv6_addresses:
       - 'FE80::1'
-      - '2001:db8:1ab:1::1/64'
+      - '2001:DB8:1AB:1::1/64'
     passive:
     rip:
   - id: GigabitEthernet0/1
@@ -22,7 +22,7 @@ interfaces:
         next_hop: 192.168.3.2
         ad: 200
         state: present
-      - destination: '2001:db8:1ab:2::/64'
+      - destination: '2001:DB8:1AB:2::/64'
         next_hop: 'FE80::2'
         ad: 200
         state: present
