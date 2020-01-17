@@ -64,7 +64,7 @@ Expliqué rapidement :
 
 ## 1. Mise en place minimale
 
-Pour les utilisateur de la topologie GNS3 fournie en classe, sur tous les périphériques, il sera peut-être nécessaire de regénérer les clés RSA des périphériques Cisco :
+Pour les utilisateurs de la topologie GNS3 fournie en classe, sur tous les périphériques, il sera peut-être nécessaire de regénérer les clés RSA des périphériques Cisco :
 
 ```raw
 enable
