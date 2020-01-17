@@ -208,7 +208,7 @@ Le fichier de configuration `ansible.cfg`dans le dossier du dépôt configure An
 
 ```ini
 [defaults]
-inventory = ./inventories/ccna/hosts
+inventory = ../inventories/ccna/hosts
 roles_path = ~/.ansible/roles:./roles
 host_key_checking = False
 retry_files_enabled = False
@@ -343,7 +343,7 @@ VLANs | DS1 | DS2
 VLANs 1,10,30,99 | `root primary` | `root secondary`
 VLANs 20,40 | `root secondary` | `root primary`
 
-### 7.5.Plan d'adressage
+### 7.5. Plan d'adressage
 
 Commutateur | Interface | Adresse IPv4 | Adresse(s) IPv6
 --- | --- | --- | ---
