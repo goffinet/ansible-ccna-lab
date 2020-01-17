@@ -47,11 +47,11 @@ ccna:
   tripod:
     gateway:
     site_to_site:
-    router_on_stick:
+    router_on_a_stick:
   switchblock:
 ```
 
-Une topologie intitulée "ccna" est composée de deux topologies distinctes "tripod" et "switchblock". La topologie "tripod" trouve trois variantes amoindries : "gateway", "site_to_site", et "router_on_stick".
+Une topologie intitulée "ccna" est composée de deux topologies distinctes "tripod" et "switchblock". La topologie "tripod" trouve trois variantes amoindries : "gateway", "site_to_site", et "router_on_a_stick".
 
 Expliqué rapidement :
 
@@ -216,11 +216,11 @@ log_path = ./ansible.log
 #forks = 20
 strategy = linear
 #gathering = explicit
+callback_whitelist = profile_tasks
 #display_ok_hosts = no
 #display_skipped_hosts = no
-callback_whitelist = profile_tasks
-[callback_profile_tasks]
-task_output_limit = 100
+#[callback_profile_tasks]
+#task_output_limit = 100
 ```
 
 ## 3. Topologie CCNA Gateway
@@ -530,7 +530,6 @@ Rôles à améliorer :
 
 Rôles à créer :
 
-* static4 / static6
 * IPv6 default route poisoning benefits to FD00::/8 as best route
 * **cdp / lldp**
 * **syslog**
@@ -545,6 +544,7 @@ Rôles à créer :
 * ppp / chap / pap / pppoe
 * gre ipv4 / gre ipv6
 * **security hardening**
+* IPv6 default route poisoning benefits to FD00::/8 as best route
 * ~~dependencies~~ ? handlers ?
 
 ### Comment rendre une tâche ios_config idempotente ?
