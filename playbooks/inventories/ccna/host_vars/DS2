@@ -30,39 +30,39 @@ interfaces:
   - id: GigabitEthernet0/0
     description: "Trunk Group Channel4 to AS2"
     trunk:
-      - native: 99
+      native: 99
   - id: GigabitEthernet1/0
     description: "Trunk Group Channel4 to AS2"
     trunk:
-      - native: 99
+      native: 99
   - id: GigabitEthernet0/1
     description: "Trunk Group Channel2 to AS1"
     trunk:
-      - native: 99
+      native: 99
   - id: GigabitEthernet1/1
     description: "Trunk Group Channel2 to AS1"
     trunk:
-      - native: 99
+      native: 99
   - id: GigabitEthernet0/2
     description: "Trunk Group Channel3 to DS1"
     trunk:
-      - native: 99
+      native: 99
   - id: GigabitEthernet1/2
     description: "Trunk Group Channel3 to DS1"
     trunk:
-      - native: 99
+      native: 99
   - id: Port-channel2
     description: "Trunk Group Channel2 to AS1"
     trunk:
-      - native: 99
+      native: 99
   - id: Port-channel3
     description: "Trunk Group Channel3 to DS1"
     trunk:
-      - native: 99
+      native: 99
   - id: Port-channel4
     description: "Trunk Group Channel4 to AS2"
     trunk:
-      - native: 99
+      native: 99
   - id: Vlan99
     description: "Management real gateway"
     ipv4_address: 172.16.0.253/24

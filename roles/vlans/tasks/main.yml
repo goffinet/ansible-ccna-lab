@@ -3,18 +3,35 @@
   when:
     - ansible_network_os == 'ios'
     - vlans is defined
+    - "'routers' not in group_names"
+    - "'switches' in group_names"
   tags:
     - create_vlans
     - vlans
     - l2
 - import_tasks: configure_access_ports.yml
-  when: ansible_network_os == 'ios'
+  when:
+    - ansible_network_os == 'ios'
+    - "'routers' not in group_names"
+    - "'switches' in group_names"
   tags:
     - access
     - vlans
     - l2
 - import_tasks: configure_trunk_ports.yml
-  when: ansible_network_os == 'ios'
+  when:
+    - ansible_network_os == 'ios'
+    - "'routers' not in group_names"
+    - "'switches' in group_names"
+  tags:
+    - trunk
+    - vlans
+    - l2
+- import_tasks: l3_configure_trunk_ports.yml
+  when:
+    - ansible_network_os == 'ios'
+    - "'switches' not in group_names"
+    - "'routers' in group_names"
   tags:
     - trunk
     - vlans
@@ -22,6 +39,8 @@
 - import_tasks: secure_switchports.yml
   when:
     - ansible_network_os == 'ios'
+    - "'routers' not in group_names"
+    - "'switches' in group_names"
     - stubvlan is defined
   tags:
     - secure_switch

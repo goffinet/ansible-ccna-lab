@@ -1,12 +1,13 @@
 [all:vars]
 #method=modules # modules or templating not yet implemented
 
-[core]
+[routers]
 R1
 R2
 
-[cisco:children]
-core
+[cisco]
+R1
+R2
 
 [cisco:vars]
 ansible_user=root

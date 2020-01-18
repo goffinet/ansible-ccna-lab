@@ -2,10 +2,11 @@
 - name: configure trunk ports
   ios_config:
     defaults: yes
-    parents: interface {{ item.0.id }}
+    parents: interface {{ item.id }}
     lines:
       - switchport trunk encapsulation dot1q
-      - switchport trunk native vlan {{ item.1.native }}
+      - switchport trunk native vlan {{ item.trunk.native | default('1') }}
       - switchport mode trunk
-  loop: "{{ interfaces|subelements('trunk', skip_missing=True) }}"
-  when: interfaces is defined
+  loop: "{{ interfaces | selectattr('trunk', 'defined') | list }}"
+  when:
+    - item.trunk is defined

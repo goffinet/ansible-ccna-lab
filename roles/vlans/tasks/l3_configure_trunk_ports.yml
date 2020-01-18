@@ -1,0 +1,19 @@
+---
+- name: configure tagged vlans on subinterfaces
+  ios_config:
+    defaults: no
+    parents: interface {{ item.id }}
+    lines:
+      - encapsulation dot1q {{ item.trunk.vlans | default('1') }}
+  loop: "{{ interfaces | selectattr('trunk', 'defined') | list }}"
+  when:
+    - item.trunk.vlans is defined
+- name: configure native untagged vlan on a subinterface
+  ios_config:
+    defaults: no
+    parents: interface {{ item.id }}
+    lines:
+      - encapsulation dot1q {{ item.trunk.native | default('1') }} native
+  loop: "{{ interfaces | selectattr('trunk', 'defined') | list }}"
+  when:
+    - item.trunk.native is defined

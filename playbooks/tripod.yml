@@ -1,6 +1,5 @@
 ---
 # tripod.yml
-# Playbook to configure CCNA "tripod" topology
 - hosts: core
   gather_facts: False
   roles:

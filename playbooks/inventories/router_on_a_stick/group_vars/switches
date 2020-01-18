@@ -1,0 +1,32 @@
+---
+stp:
+  mode: rapid-pvst
+vlans:
+  - id: 10
+    name: DATA
+  - id: 20
+    name: VOICE
+  - id: 99
+    name: MANAGEMENT
+  - id: 100
+    name: NATIVE
+stubvlan:
+  id: 4000
+  name: STUB
+#switchports:
+#  - id: GigabitEthernet0/0
+#  - id: GigabitEthernet0/1
+#  - id: GigabitEthernet0/2
+#  - id: GigabitEthernet0/3
+#  - id: GigabitEthernet1/0
+#  - id: GigabitEthernet1/1
+#  - id: GigabitEthernet1/2
+#  - id: GigabitEthernet1/3
+#  - id: GigabitEthernet2/0
+#  - id: GigabitEthernet2/1
+#  - id: GigabitEthernet2/2
+#  - id: GigabitEthernet2/3
+#  - id: GigabitEthernet3/0
+#  - id: GigabitEthernet3/1
+#  - id: GigabitEthernet3/2
+##  - id: GigabitEthernet3/3 # reserved for ansible console management

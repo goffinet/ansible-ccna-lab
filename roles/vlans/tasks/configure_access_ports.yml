@@ -2,18 +2,20 @@
 - name: configure access ports
   ios_config:
     defaults: yes
-    parents: interface {{ item.0.id }}
+    parents: interface {{ item.id }}
     lines:
       - switchport mode access
-      - switchport access vlan {{ item.1.vlan }}
-  loop: "{{ interfaces|subelements('access', skip_missing=True) }}"
-  when: interfaces is defined
+      - switchport access vlan {{ item.access.vlan | default('1') }}
+  loop: "{{ interfaces | selectattr('access', 'defined') | list }}"
+  when:
+    - item.access is defined
 - name: stp protection on access ports
   ios_config:
     defaults: yes
-    parents: interface {{ item.0.id }}
+    parents: interface {{ item.id }}
     lines:
       - spanning-tree portfast edge
       - spanning-tree bpduguard enable
-  loop: "{{ interfaces|subelements('access', skip_missing=True) }}"
-  when: interfaces is defined
+  loop: "{{ interfaces | selectattr('access', 'defined') | list }}"
+  when:
+    - item.access is defined

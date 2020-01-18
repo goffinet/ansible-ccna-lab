@@ -22,6 +22,17 @@ AS2
 distribution
 access
 
+[routers]
+R1
+R2
+R3
+
+[switches]
+AS1
+AS2
+DS1
+DS2
+
 [cisco:children]
 core
 distribution
