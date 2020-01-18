@@ -20,8 +20,8 @@ interfaces:
     ipv4_address: 192.168.1.254/24
   - id: GigabitEthernet0/0.2
     description: "VLAN 100 native to SW0"
-     trunk:
-       native: 100
+    trunk:
+      native: 100
   - id: GigabitEthernet0/1
     description: "Internet connexion ip nat outside"
     ipv4_address: dhcp
