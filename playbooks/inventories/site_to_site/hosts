@@ -5,9 +5,8 @@
 R1
 R2
 
-[cisco]
-R1
-R2
+[cisco:children]
+routers
 
 [cisco:vars]
 ansible_user=root

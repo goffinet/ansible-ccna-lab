@@ -1,6 +1,6 @@
 ---
 # site_to_site.yml
-- hosts: core
+- hosts: routers
   gather_facts: False
   roles:
     - role: common

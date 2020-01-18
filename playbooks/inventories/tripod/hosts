@@ -10,6 +10,9 @@ R1
 R2
 R3
 
+[routers:children]
+core
+
 [cisco:children]
 core
 

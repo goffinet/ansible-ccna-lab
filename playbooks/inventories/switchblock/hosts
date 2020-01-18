@@ -17,9 +17,11 @@ AS2
 distribution
 access
 
+[switches:children]
+blocks
+
 [cisco:children]
-distribution
-access
+blocks
 
 [cisco:vars]
 ansible_user=root

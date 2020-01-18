@@ -22,21 +22,15 @@ AS2
 distribution
 access
 
-[routers]
-R1
-R2
-R3
+[routers:children]
+core
 
-[switches]
-AS1
-AS2
-DS1
-DS2
+[switches:children]
+blocks
 
 [cisco:children]
 core
-distribution
-access
+blocks
 
 [cisco:vars]
 ansible_user=root

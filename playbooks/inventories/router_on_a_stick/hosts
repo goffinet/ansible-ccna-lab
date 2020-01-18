@@ -8,10 +8,9 @@ R1
 SW0
 SW1
 
-[cisco]
-R1
-SW0
-SW1
+[cisco:children]
+routers
+switches
 
 [cisco:vars]
 ansible_user=root
