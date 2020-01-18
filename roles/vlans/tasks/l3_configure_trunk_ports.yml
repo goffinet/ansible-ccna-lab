@@ -1,4 +1,13 @@
 ---
+- name: remove ip parameters to a trunk physical interface
+  ios_l3_interfaces:
+    config:
+      - name: {{ item.id }}
+    state: deleted
+  loop: "{{ interfaces | selectattr('trunk', 'defined') | list }}"
+  when:
+    - item.trunk.vlans is undefined
+    - item.trunk.native is undefined
 - name: configure tagged vlans on subinterfaces
   ios_config:
     defaults: no

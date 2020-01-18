@@ -3,6 +3,7 @@ hostname: R1
 interfaces:
   - id: GigabitEthernet0/0
     description: "Trunk LAN R1"
+    trunk:
   - id: GigabitEthernet0/0.1
     description: "VLAN 10 DATA to SW0"
     trunk:
