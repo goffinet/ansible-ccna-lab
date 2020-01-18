@@ -414,7 +414,7 @@ L'inventaire par défaut est défini comme suit (fichier `inventories/ccna/hosts
 #method=modules # modules or templating not yet implemented
 routing_ipv4='["eigrp4"]'
 routing_ipv6='["eigrp6"]'
-#routing_ipv4='["rip", "eigrp4", "ospfv2"]'
+#routing_ipv4='["eigrp4", "rip", "ospfv2"]'
 #routing_ipv6='["eigrp6", "ospfv3"]'
 
 [core]
@@ -434,10 +434,15 @@ AS2
 distribution
 access
 
+[routers:children]
+core
+
+[switches:children]
+blocks
+
 [cisco:children]
 core
-distribution
-access
+blocks
 
 [cisco:vars]
 ansible_user=root
@@ -454,7 +459,8 @@ Les configurations sont définies en YAML dans les fichiers de variables d'inven
 inventories/ccna
 ├── group_vars
 │   ├── all       --> protocoles de routage ipv4/ipv6
-│   └── blocks    --> variables vlans, switchports et stp mode
+│   ├── blocks    --> variables vlans, switchports et stp mode
+│   └── core      --> variables routage, rdnss
 ├── hosts         --> fichier d'inventaire, avec des variables génériques
 └── host_vars     --> variables propres à chaque périphérique
     ├── AS1
