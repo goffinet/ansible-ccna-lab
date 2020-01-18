@@ -4,13 +4,7 @@
     config:
       - name: "{{ item.id }}"
     state: deleted
-#  ios_config:
-#    defaults: yes
-#    parents: interface {{ item.id }}
-#    lines:
-#      - no ip address
-#      - no ipv6 enable
-  loop: "{{ interfaces | selectattr('trunk', 'undefined') | list }}"
+  loop: "{{ interfaces | selectattr('trunk', 'defined') | selectattr('trunk.vlans', 'undefined') | selectattr('trunk.native', 'undefined') | list }}"
 - name: configure tagged vlans on subinterfaces
   ios_config:
     defaults: no
