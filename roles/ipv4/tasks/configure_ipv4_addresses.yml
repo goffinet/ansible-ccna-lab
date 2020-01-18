@@ -4,7 +4,7 @@
     config:
       - name: "{{ item.id }}"
         ipv4:
-        - address: "{{ item.ipv4_address | ipaddr('address') }} {{ item.ipv4_address | ipaddr('netmask') }}"
+        - address: "{{ item.ipv4_address | ipaddr('host/prefix') }}"
   loop: "{{ interfaces }}"
   when:
     - item.id is defined
