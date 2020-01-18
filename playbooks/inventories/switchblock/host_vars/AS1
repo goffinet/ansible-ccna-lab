@@ -1,0 +1,79 @@
+---
+hostname: AS1
+group_channels:
+  - id: 1
+    mode: active
+    interfaces:
+      - GigabitEthernet0/0
+      - GigabitEthernet1/0
+  - id: 2
+    mode: active
+    interfaces:
+      - GigabitEthernet0/1
+      - GigabitEthernet1/1
+interfaces:
+  - id: GigabitEthernet2/0
+    description: "PC1 vlan 10 access port"
+    access:
+      vlan: 10
+  - id: GigabitEthernet2/1
+    description: "PC2 vlan 20 access port"
+    access:
+      vlan: 20
+  - id: GigabitEthernet2/2
+    description: "PC3 vlan 30 access port"
+    access:
+      vlan: 30
+  - id: GigabitEthernet2/3
+    description: "PC4 vlan 40 access port"
+    access:
+      vlan: 40
+  - id: Vlan99
+    description: "Management interface"
+    ipv4_address: 172.16.0.1/24
+    gateway: 172.16.0.254
+  - id: GigabitEthernet0/0
+    description: "Trunk Group Channel1 to DS1"
+    trunk:
+      native: 99
+  - id: GigabitEthernet1/0
+    description: "Trunk Group Channel1 to DS1"
+    trunk:
+      native: 99
+  - id: GigabitEthernet0/1
+    description: "Trunk Group Channel2 to DS2"
+    trunk:
+      native: 99
+  - id: GigabitEthernet1/1
+    description: "Trunk Group Channel2 to DS2"
+    trunk:
+      native: 99
+  - id: Port-channel1
+    description: "Trunk Group Channel1 to DS1"
+    trunk:
+      native: 99
+  - id: Port-channel2
+    description: "Trunk Group Channel2 to DS2"
+    trunk:
+      native: 99
+  - id: GigabitEthernet0/2
+    description: "Stub interface"
+    stub: true
+  - id: GigabitEthernet0/3
+    description: "Stub interface"
+    stub: true
+  - id: GigabitEthernet1/2
+    description: "Stub interface"
+    stub: true
+  - id: GigabitEthernet1/3
+    description: "Stub interface"
+    stub: true
+  - id: GigabitEthernet3/0
+    description: "Stub interface"
+    stub: true
+  - id: GigabitEthernet3/1
+    description: "Stub interface"
+    stub: true
+  - id: GigabitEthernet3/2
+    description: "Stub interface"
+    stub: true
