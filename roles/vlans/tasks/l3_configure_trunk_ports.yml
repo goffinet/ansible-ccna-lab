@@ -1,19 +1,19 @@
 ---
 - name: remove ip parameters to a trunk physical interface
-#  ios_l3_interfaces:
-#    config:
-#      - name: "{{ item.id }}"
-#    state: deleted
-  ios_config:
-    defaults: yes
-    parents: interface {{ item.id }}
-    lines:
-      - no ip address
-      - no ipv6 enable
+  ios_l3_interfaces:
+    config:
+      - name: "{{ item.id }}"
+    state: deleted
+#  ios_config:
+#    defaults: yes
+#    parents: interface {{ item.id }}
+#    lines:
+#      - no ip address
+#      - no ipv6 enable
   loop: "{{ interfaces | selectattr('trunk', 'defined') | list }}"
   when:
-    - item.trunk.vlans is undefined
-    - item.trunk.native is undefined
+    - not item.trunk.vlans
+    - not item.trunk.native
 - name: configure tagged vlans on subinterfaces
   ios_config:
     defaults: no
