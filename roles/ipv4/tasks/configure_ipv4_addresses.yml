@@ -8,7 +8,7 @@
   loop: "{{ interfaces }}"
   when:
     - item.id is defined
-    - item.trunk.vlans is undefined
+    - item.trunk.vlan is undefined
     - item.ipv4_address is defined
     - item.ipv4_address | ipv4
   failed_when:
@@ -22,7 +22,7 @@
   loop: "{{ interfaces | selectattr('trunk', 'defined') | list }}"
   when:
     - item.id is defined
-    - item.trunk.vlans is defined
+    - item.trunk.vlan is defined
     - item.ipv4_address is defined
     - item.ipv4_address | ipv4
   failed_when:
