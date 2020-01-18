@@ -10,10 +10,7 @@
 #    lines:
 #      - no ip address
 #      - no ipv6 enable
-  loop: "{{ interfaces | selectattr('trunk', 'defined') | list }}"
-  when:
-    - not item.trunk.vlans
-    - not item.trunk.native
+  loop: "{{ interfaces | selectattr('trunk', 'undefined') | list }}"
 - name: configure tagged vlans on subinterfaces
   ios_config:
     defaults: no
