@@ -19,9 +19,10 @@
     parents: interface {{ item.id }}
     lines:
       - ip address {{ item.ipv4_address | ipaddr('address') }} {{ item.ipv4_address | ipaddr('netmask') }}
-  loop: "{{ interfaces | selectattr('trunk.vlans', 'defined') | list }}"
+  loop: "{{ interfaces | selectattr('trunk', 'defined') | list }}"
   when:
     - item.id is defined
+    - item.trunk.vlans is defined
     - item.ipv4_address is defined
     - item.ipv4_address | ipv4
   failed_when:
