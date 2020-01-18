@@ -3,15 +3,15 @@
   ios_config:
     backup: yes
     backup_options:
-      dir_path: "{{ configs_path | (default'./configs/') }}"
+      dir_path: "{{ configs_path | default('./configs/') }}"
       filename: "{{ inventory_hostname }}.cfg"
 - name: remove non config line
   lineinfile:
-    path: "{{ configs_path | (default'./configs/') }}{{ inventory_hostname }}.cfg"
+    path: "{{ configs_path | default('./configs/') }}{{ inventory_hostname }}.cfg"
     line: "Building configuration..."
     state: absent
 - name: remove non config line -regex
   lineinfile:
-    path: "{{ configs_path | (default'./configs/') }}{{ inventory_hostname }}.cfg"
+    path: "{{ configs_path | default('./configs/') }}{{ inventory_hostname }}.cfg"
     regexp: 'Current configuration.*'
     state: absent
