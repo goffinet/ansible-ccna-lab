@@ -14,12 +14,12 @@ interfaces:
     trunk:
       vlan: 20
     ipv4_address: 192.168.20.254/24
-  - id: GigabitEthernet0/0.2
+  - id: GigabitEthernet0/0.3
     description: "VLAN 99 MANAGEMENT to SW0"
     trunk:
       vlan: 99
     ipv4_address: 192.168.1.254/24
-  - id: GigabitEthernet0/0.2
+  - id: GigabitEthernet0/0.4
     description: "VLAN 100 native to SW0"
     trunk:
       native: 100
