@@ -5,9 +5,7 @@
   roles:
     - role: common
     - role: vlans
-    - role: etherchannel
     - role: interface
-    - role: spanning-tree
     - role: ipv4
     - role: ipv6
     - role: no-ipv4-routing
