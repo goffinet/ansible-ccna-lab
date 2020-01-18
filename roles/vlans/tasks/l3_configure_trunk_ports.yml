@@ -2,7 +2,7 @@
 - name: remove ip parameters to a trunk physical interface
   ios_l3_interfaces:
     config:
-      - name: {{ item.id }}
+      - name: "{{ item.id }}"
     state: deleted
   loop: "{{ interfaces | selectattr('trunk', 'defined') | list }}"
   when:
