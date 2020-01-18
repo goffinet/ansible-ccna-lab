@@ -1,9 +1,15 @@
 ---
 - name: remove ip parameters to a trunk physical interface
-  ios_l3_interfaces:
-    config:
-      - name: "{{ item.id }}"
-    state: deleted
+#  ios_l3_interfaces:
+#    config:
+#      - name: "{{ item.id }}"
+#    state: deleted
+  ios_config:
+    defaults: yes
+    parents: interface {{ item.id }}
+    lines:
+      - no ip address
+      - no ipv6 enable
   loop: "{{ interfaces | selectattr('trunk', 'defined') | list }}"
   when:
     - item.trunk.vlans is undefined
@@ -13,7 +19,7 @@
     defaults: no
     parents: interface {{ item.id }}
     lines:
-      - encapsulation dot1q {{ item.trunk.vlans | default('1') }}
+      - encapsulation dot1Q {{ item.trunk.vlans | default('1') }}
   loop: "{{ interfaces | selectattr('trunk', 'defined') | list }}"
   when:
     - item.trunk.vlans is defined
@@ -22,7 +28,7 @@
     defaults: no
     parents: interface {{ item.id }}
     lines:
-      - encapsulation dot1q {{ item.trunk.native | default('1') }} native
+      - encapsulation dot1Q {{ item.trunk.native | default('1') }} native
   loop: "{{ interfaces | selectattr('trunk', 'defined') | list }}"
   when:
     - item.trunk.native is defined
