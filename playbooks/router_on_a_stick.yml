@@ -1,6 +1,6 @@
 ---
 # router_on_a_stick.yml
-- hosts: switches
+- hosts: access
   gather_facts: False
   roles:
     - role: common
@@ -12,7 +12,7 @@
     - role: ipv6
     - role: no-ipv4-routing
     - role: write
-- hosts: routers
+- hosts: core
   gather_facts: False
   roles:
     - role: common

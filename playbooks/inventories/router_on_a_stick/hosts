@@ -1,16 +1,25 @@
 [all:vars]
 #method=modules # modules or templating
 
-[routers]
+[core]
 R1
 
-[switches]
+[access]
 SW0
 SW1
 
+[blocks:children]
+access
+
+[routers:children]
+core
+
+[switches:children]
+blocks
+
 [cisco:children]
-routers
-switches
+core
+blocks
 
 [cisco:vars]
 ansible_user=root

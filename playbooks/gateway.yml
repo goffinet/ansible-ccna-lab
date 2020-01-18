@@ -1,6 +1,6 @@
 ---
 # gateway.yml
-- hosts: R1
+- hosts: core
   gather_facts: False
   roles:
     - role: common
