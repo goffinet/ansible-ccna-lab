@@ -80,12 +80,12 @@ wr
 
 La mise place de la solution demande quelques étapes :
 
-- [1.1. Images GNS3](#11-images-gns3)
-- [1.2. Routeurs](#12-routeurs)
-- [1.3. Commutateurs](#13-commutateurs)
-- [1.4. Station de contrôle](#14-station-de-contrle)
-- [1.5. Cloner le dépôt](#15-cloner-le-dpt)
-- [1.6. Examiner les paramètres de configuration de Ansible](#16-examiner-les-paramtres-de-configuration-de-ansible)
+- [2.1. Images GNS3](#21-images-gns3)
+- [2.2. Routeurs](#22-routeurs)
+- [2.3. Commutateurs](#23-commutateurs)
+- [2.4. Station de contrôle](#24-station-de-contrle)
+- [2.5. Cloner le dépôt](#25-cloner-le-dpt)
+- [2.6. Examiner les paramètres de configuration de Ansible](#26-examiner-les-paramtres-de-configuration-de-ansible)
 
 ### 2.1. Images GNS3
 
@@ -297,14 +297,14 @@ Références :
 
 Cette seconde topologie "switchblock" met en oeuvre des _commutateurs_. Cette topologie est plus complexe et se connecte à la topologie "tripod". Elle met en oeuvre les couches "distribution" et "access".
 
-- [3.1. Topologie avec redondance de passerelle HSRP](#31-topologie-avec-redondance-de-passerelle-hsrp)
-- [3.2. VLANs](#32-vlans)
-- [3.3. Ports Etherchannel et Trunk VLANs](#33-ports-etherchannel-et-trunk-vlans)
-- [3.4. Spanning-Tree](#34-spanning-tree)
-- [3.5.Plan d'adressage](#35plan-dadressage)
-- [3.6. HSRP](#36-hsrp)
-- [3.7. Ressources requises](#37-ressources-requises)
-- [3.8. Explication](#38-explication)
+- [7.1. Topologie avec redondance de passerelle HSRP](#71-topologie-avec-redondance-de-passerelle-hsrp)
+- [7.2. VLANs](#72-vlans)
+- [7.3. Ports Etherchannel et Trunk VLANs](#73-ports-etherchannel-et-trunk-vlans)
+- [7.4. Spanning-Tree](#74-spanning-tree)
+- [7.5.Plan d'adressage](#75plan-dadressage)
+- [7.6. HSRP](#76-hsrp)
+- [7.7. Ressources requises](#77-ressources-requises)
+- [7.8. Explication](#78-explication)
 
 Références :
 
