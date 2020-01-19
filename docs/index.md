@@ -254,7 +254,7 @@ La section `[defaults]` définit différentes variables comportementales du logi
 
 Les topologies réseau développées sont décrites dans différents inventaires et se configurent avec un livre de jeu du même nom :
 
-- "gateway" : un seul routeur connecte l'Internet et offre des services au lan comme DHCP et RDNSS
+- "gateway" : un seul routeur connecte l'Internet et offre des services au LAN comme DHCP et RDNSS
 - "site_to_site" : topologie d'interconnexion de deux LANs distants
 - "tripod" : topologie de base maillée à trois routeurs avec un accès à l'Internet
 - "router_on_a_stick" : topologie d'apprentissage des VLANs
@@ -263,7 +263,7 @@ Les topologies réseau développées sont décrites dans différents inventaires
 
 ### 3.1. Topologie CCNA Gateway
 
-Un seul routeur Cisco qui connecte l'Internet.
+Un seul routeur Cisco qui connecte l'Internet et qui offre des services au LAN comme DHCP et RDNSS.
 
 Références :
 
