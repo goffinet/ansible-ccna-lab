@@ -1,29 +1,5 @@
 # Ansible CCNA Lab
 
-<!-- TOC depthFrom:2 depthTo:3 withLinks:1 updateOnSave:1 orderedList:0 -->
-
-- [1. Résumé](#1-rsum)
-- [2. Mise en place](#2-mise-en-place)
-	- [2.1. Préparer des images Cisco IOSv pour GNS3](#21-prparer-des-images-cisco-iosv-pour-gns3)
-	- [2.2. Configurer la station de contrôle](#22-configurer-la-station-de-contrle)
-	- [2.3. Cloner le dépôt](#23-cloner-le-dpt)
-	- [2.5. Examiner les paramètres de configuration de Ansible](#25-examiner-les-paramtres-de-configuration-de-ansible)
-- [3. Topologies](#3-topologies)
-	- [3.1. Topologie CCNA Gateway](#31-topologie-ccna-gateway)
-	- [3.2. Topologie CCNA Site to Site](#32-topologie-ccna-site-to-site)
-	- [3.3. Topologie CCNA Tripod](#33-topologie-ccna-tripod)
-	- [3.4. Variante Router on a Stick](#34-variante-router-on-a-stick)
-	- [3.5. Topologie CCNA Switchblock](#35-topologie-ccna-switchblock)
-	- [3.6. Toplogie CCNA Tripod et Switchblock](#36-toplogie-ccna-tripod-et-switchblock)
-- [4. Utilisation](#4-utilisation)
-	- [4.1. Inventaire et variables d'inventaire du livre de jeu ccna.yml](#41-inventaire-et-variables-dinventaire-du-livre-de-jeu-ccnayml)
-	- [4.2. Livres de jeu](#42-livres-de-jeu)
-	- [4.3. Diagnostic de base](#43-diagnostic-de-base)
-- [5. Notes](#5-notes)
-	- [5.1. Comment rendre une tâche ios_config idempotente ?](#51-comment-rendre-une-tche-iosconfig-idempotente-)
-
-<!-- /TOC -->
-
 ## 1. Résumé
 
 On trouvera ici des livres de jeu inspirés des topologies et des sujets du Cisco CCNA (et plus) pour GNS3 (Cisco IOSv).
@@ -38,12 +14,12 @@ Les topologies sont organisées de la manière suivante :
 ccna:
   tripod:
     gateway:
-    site_to_site:
+    bipod:
     router_on_a_stick:
   switchblock:
 ```
 
-Une topologie intitulée "ccna" est composée de deux topologies distinctes "tripod" et "switchblock". La topologie "tripod" trouve trois variantes amoindries : "gateway", "site_to_site", et "router_on_a_stick".
+Une topologie intitulée "ccna" est composée de deux topologies distinctes "tripod" et "switchblock". La topologie "tripod" trouve trois variantes amoindries : "gateway", "bipod", et "router_on_a_stick".
 
 Expliqué rapidement :
 
@@ -205,7 +181,7 @@ ansible-ccna-lab/playbooks/
 ├── inventories/           --> dossier d'inventaires
 ├── roles/ -> ../roles     --> dossier des rôles utilisés par les livres de jeu
 ├── router_on_a_stick.yml  --> livre de jeu de la topologie router_on_a_stick
-├── site_to_site.yml       --> livre de jeu de la topologie site_to_site
+├── bipod.yml       --> livre de jeu de la topologie bipod
 ├── switchblock.yml        --> livre de jeu de la topologie switchblock
 ├── tasks/       --> tâches spécifiques à utiliser avec les livres de jeu
 ├── templates/   --> modèles spécifiques à utiliser avec les livres de jeu
@@ -255,7 +231,7 @@ La section `[defaults]` définit différentes variables comportementales du logi
 Les topologies réseau développées sont décrites dans différents inventaires et se configurent avec un livre de jeu du même nom :
 
 - "gateway" : un seul routeur connecte l'Internet et offre des services au LAN comme DHCP et RDNSS
-- "site_to_site" : topologie d'interconnexion de deux LANs distants
+- "bipod" : topologie d'interconnexion de deux LANs distants
 - "tripod" : topologie de base maillée à trois routeurs avec un accès à l'Internet
 - "router_on_a_stick" : topologie d'apprentissage des VLANs
 - "switchblock" : topologie de commutateurs de couche Access et Distribution
@@ -273,7 +249,7 @@ Références :
 
 Diagramme : Topologie CCNA Gateway
 
-### 3.2. Topologie CCNA Site to Site
+### 3.2. Topologie CCNA Bipod
 
 Connexion point-à-point entre R1 et R2.
 
