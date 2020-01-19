@@ -587,7 +587,7 @@ Aussi, l'argument `defaults` qu'il sera nécessaire d'activer avec la valeur `ye
 
 Tendre vers des rôles **idempotents** avec des [modules standards](https://docs.ansible.com/ansible/latest/modules/list_of_network_modules.html#ios).
 
-Usage du filtre jinja2 [ipaddr](https://docs.ansible.com/ansible/latest/user_guide/playbooks_filters_ipaddr.html#playbooks-filters-ipaddr), voir [playbooks/ipaddr.yml](https://github.com/goffinet/ansible-ccna-lab/blob/master/playbooks/ipaddr.yml).
+Usage du filtre jinja2 [ipaddr](https://docs.ansible.com/ansible/latest/user_guide/playbooks_filters_ipaddr.html#playbooks-filters-ipaddr), voir [playbooks/ipaddr.yml](https://github.com/goffinet/ansible-ccna-lab/blob/master/playbooks/demos/ipaddr.yml).
 
 Structure en "collection" Ansible. [Using collections in a Playbook](https://docs.ansible.com/ansible/devel/user_guide/collections_using.html#using-collections-in-a-playbook).
 
@@ -596,31 +596,29 @@ Structure en "collection" Ansible. [Using collections in a Playbook](https://doc
 
 Rôles à améliorer :
 
-* nat sur les interfaces
-* contrôle d'IPv6
-* dhcp-relay
-* ~~**fhrp4**~~ + delay
-* ~~**fhrp6**~~ + delay
-* ~~eigrp4/6~~ / ~~ospfv2/v3~~ authentication
+* [ ] nat sur les interfaces
+* [ ] contrôle d'IPv6
+* [ ] dhcp-relay
+* [ ] ~~**fhrp4**~~ + delay
+* [ ] ~~**fhrp6**~~ + delay
+* [ ] ~~eigrp4/6~~ / ~~ospfv2/v3~~ authentication
 
 Rôles à créer :
 
-* IPv6 default route poisoning benefits to FD00::/8 as best route
-* **cdp / lldp**
-* **syslog**
-* **ntp** (+ auth)
-* **snmpv2c** / **snmpv3**
-* **zbf**
-* IPv6 Addresses Management :
-  * ra-config fine tuning
-  * dhcpv6 stateless
-  * dhcpv6 stateful
-  * rdnss ra option
-* ppp / chap / pap / pppoe
-* gre ipv4 / gre ipv6
-* **security hardening**
-* IPv6 default route poisoning benefits to FD00::/8 as best route
-* ~~dependencies~~ ? handlers ?
+* [ ] **cdp / lldp**
+* [ ] **syslog**
+* [ ] **ntp** (+ auth)
+* [ ] **snmpv2c** / **snmpv3**
+* [ ] **zbf**
+* [ ] IPv6 Addresses Management :
+  * [ ] ra-config fine tuning
+  * [ ] dhcpv6 stateless
+  * [ ] dhcpv6 stateful
+* [ ] ppp / chap / pap / pppoe
+* [ ] gre ipv4 / gre ipv6
+* [ ] **security hardening**
+* [ ] IPv6 default route poisoning benefits to FD00::/8 as best route
+* [ ] ~~dependencies~~ ? handlers ?
 
 
 #### Phase II
