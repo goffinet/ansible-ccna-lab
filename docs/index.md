@@ -262,13 +262,15 @@ Références :
 * [Lab Routage OSPF simple](https://cisco.goffinet.org/ccna/ospf/lab-routage-ospf-simple/)
 * [Lab de routage et services IPv4/IPv6](https://cisco.goffinet.org/ccna/services-infrastructure/lab-routage-et-services-ipv4-ipv6/)
 
+Diagramme : Topologie CCNA Bipod
+
 ### 3.3. Topologie CCNA Tripod
 
 Cette topologie maillée à trois routeurs peut être désignée par "tripod". Elle est la couche "Core" de la topologie CCNA complète.
 
 #### 3.3.1. Topologie logique
 
-![Topologie Tripod](https://www.lucidchart.com/publicSegments/view/3328e715-30bf-48a8-a48d-1ff276420520/image.png)
+![Topologie CCNA Tripod](https://www.lucidchart.com/publicSegments/view/3328e715-30bf-48a8-a48d-1ff276420520/image.png)
 
 #### 3.3.2. Brève description
 
