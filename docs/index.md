@@ -10,7 +10,7 @@
 	- [2.4. Station de contrôle](#24-station-de-contrle)
 	- [2.5. Cloner le dépôt](#25-cloner-le-dpt)
 	- [2.6. Examiner les paramètres de configuration de Ansible](#26-examiner-les-paramtres-de-configuration-de-ansible)
-- [2.7. Les inventaires et les topologies](#27-les-inventaires-et-les-topologies)
+	- [2.7. Les inventaires et les topologies](#27-les-inventaires-et-les-topologies)
 - [3. Topologie CCNA Gateway](#3-topologie-ccna-gateway)
 - [4. Topologie CCNA Site to Site](#4-topologie-ccna-site-to-site)
 - [5. Topologie CCNA tripod](#5-topologie-ccna-tripod)
@@ -269,7 +269,7 @@ La section `[defaults]` définit différentes variables comportementales du logi
 - `display_ok_hosts` : Active ou non l'affichage des tâches dont le statut est "OK" (utile pour vérifier l'idempotence).
 - `display_skipped_hosts` : Active ou non l'affichage des tâches dont le statut est "Skipped" (utile pour vérifier l'idempotence).
 
-## 2.7. Les inventaires et les topologies
+### 2.7. Les inventaires et les topologies
 
 Les topologies réseau développées sont décrites dans différents inventaires :
 
