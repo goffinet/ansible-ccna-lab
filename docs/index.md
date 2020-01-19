@@ -307,9 +307,13 @@ Références :
 * [Lab Routage EIGRP](https://cisco.goffinet.org/ccnp/eigrp/lab-routage-eigrp/)
 * [Lab Routage OSPF Multi-Area](https://cisco.goffinet.org/ccna/ospf/lab-ospf-multi-area/)
 
-### 3.4. Variante Router on a Stick
+### 3.4. Topologie variante Router on a Stick
 
 Variante de la topologie Tripod en utilisant un Trunk Vlan entre R1 et SW0 ainsi qu'entre SW0 et SW1.
+
+![Topologie variante Router on a Stick](https://www.lucidchart.com/publicSegments/view/4f58dfa5-3070-4fd1-9efd-87c8c321abb0/image.png)
+
+Diagramme : Topologie variante Router on a Stick
 
 Références :
 
