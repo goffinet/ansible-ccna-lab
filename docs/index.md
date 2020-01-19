@@ -10,7 +10,6 @@
 	- [2.4. Station de contrôle](#24-station-de-contrle)
 	- [2.5. Cloner le dépôt](#25-cloner-le-dpt)
 	- [2.6. Examiner les paramètres de configuration de Ansible](#26-examiner-les-paramtres-de-configuration-de-ansible)
-	- [2.7. Les inventaires et les topologies](#27-les-inventaires-et-les-topologies)
 - [3. Topologies](#3-topologies)
 	- [3.1. Topologie CCNA Gateway](#31-topologie-ccna-gateway)
 	- [3.2. Topologie CCNA Site to Site](#32-topologie-ccna-site-to-site)
@@ -79,7 +78,6 @@ La mise place de la solution demande quelques étapes :
 - [2.4. Station de contrôle](#24-station-de-contrle)
 - [2.5. Cloner le dépôt](#25-cloner-le-dpt)
 - [2.6. Examiner les paramètres de configuration de Ansible](#26-examiner-les-paramtres-de-configuration-de-ansible)
-- [2.7. Les inventaires et les topologies](#27-les-inventaires-et-les-topologies)
 
 ### 2.1. Images GNS3
 
@@ -133,6 +131,7 @@ SSH est activé de la manière suivante, sur AS1 par exemple :
 ```raw
 hostname AS1
 int GigabitEthernet3/3
+ no switchport
  ip address dhcp
  no shutdown
  no cdp enable
@@ -153,9 +152,9 @@ wr
 
 La station de contrôle connecte tous les périphériques en SSH.
 
-Elle offre un service DHCP avec enregistrement dynamique des noms d'hôte dans un serveur DNS (dnsmasq).
+Le logiciel Ansible y est fraîchement installé (avec la libraire python netaddr) avec `pip` ou à partir de repos.
 
-Le logiciel Ansible est fraîchement installé (avec la libraire python netaddr).
+La station de contrôle offre un service DHCP avec enregistrement dynamique des noms d'hôte dans un serveur DNS (dnsmasq).
 
 ```bash
 hostnamectl set-hostname controller
@@ -203,7 +202,7 @@ Les livres de jeu sont disponibles dans le dossier `ansible-ccna-lab/playbooks` 
 On y trouve l'arborescence suivante :
 
 ```raw
-./
+ansible-ccna-lab/playbooks/
 ├── ansible.cfg  --> fichier de configuration par défaut
 ├── ccna.yml     --> livre de jeu de la topologie ccna
 ├── configs/     --> dossier par défaut des fichiers de configuration
@@ -225,7 +224,7 @@ Modèle basé sur [https://github.com/bcoca/collection](https://github.com/bcoca
 
 ### 2.6. Examiner les paramètres de configuration de Ansible
 
-Le fichier de configuration `ansible.cfg`dans le dossier `ansible-ccna-lab/playbooks` configure Ansible :
+Le fichier de configuration `ansible.cfg` dans le dossier `ansible-ccna-lab/playbooks` configure Ansible :
 
 ```ini
 [defaults]
@@ -258,18 +257,16 @@ La section `[defaults]` définit différentes variables comportementales du logi
 - `display_ok_hosts` : Active ou non l'affichage des tâches dont le statut est "OK" (utile pour vérifier l'idempotence).
 - `display_skipped_hosts` : Active ou non l'affichage des tâches dont le statut est "Skipped" (utile pour vérifier l'idempotence).
 
-### 2.7. Les inventaires et les topologies
-
-Les topologies réseau développées sont décrites dans différents inventaires :
-
-- "gateway" :
-- "site_to_site" :
-- "tripod" : topologie de base maillée à trois routeurs avec un accès à l'Internet
-- "router_on_a_stick" :
-- "switchblock":
-- "ccna" :
-
 ## 3. Topologies
+
+Les topologies réseau développées sont décrites dans différents inventaires et se configure avec les un livre de jeu du même nom :
+
+- "gateway" : un seul routeur connecte l'Internet et offre des services au lan comme DHCP et RDNSS
+- "site_to_site" : topologie d'interconnexion de deux LANs distants
+- "tripod" : topologie de base maillée à trois routeurs avec un accès à l'Internet
+- "router_on_a_stick" : topologie d'apprentissage des VLANs
+- "switchblock" : topologie de commutateurs de couche Access et Distribution
+- "ccna" : topologies "tripod" et "switchblock" connectées entre elles
 
 ### 3.1. Topologie CCNA Gateway
 
