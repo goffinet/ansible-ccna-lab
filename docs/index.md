@@ -253,6 +253,8 @@ Diagramme : Topologie CCNA Gateway
 
 Connexion point-à-point entre R1 et R2.
 
+![Topologie Bipod](https://www.lucidchart.com/publicSegments/view/46f2b887-0e06-40e6-b45c-b07f449adf08/image.png)
+
 Références :
 
 * [Lab routage statique simple](https://cisco.goffinet.org/ccna/routage/lab-routage-statique-simple/)
