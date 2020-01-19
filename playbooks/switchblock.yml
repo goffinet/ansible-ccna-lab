@@ -21,14 +21,14 @@
     - role: ipv6-routing
     - role: fhrp
     - role: rip
-      when: '"rip" in routing_ipv4'
+      when: '"rip" in ipv4.routing'
     - role: eigrp4
-      when: '"eigrp4" in routing_ipv4'
+      when: '"eigrp" in ipv4.routing'
     - role: ospfv2
-      when: '"ospfv2" in routing_ipv4'
+      when: '"ospf" in ipv4.routing'
     - role: eigrp6
       when:
-        - '"eigrp6" in routing_ipv6'
+        - '"eigrp" in ipv6.routing'
     - role: recursive-dns-server
     - role: dhcp-server
 - hosts: blocks

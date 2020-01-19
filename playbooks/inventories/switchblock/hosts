@@ -1,9 +1,5 @@
 [all:vars]
 #method=modules # modules or templating not yet implemented
-routing_ipv4='["eigrp4"]'
-routing_ipv6='["eigrp6"]'
-#routing_ipv4='["eigrp4", "rip", "ospfv2"]'
-#routing_ipv6='["eigrp6", "ospfv3"]'
 
 [distribution]
 DS1

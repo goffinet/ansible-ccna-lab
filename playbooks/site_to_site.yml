@@ -11,7 +11,7 @@
     - role: ipv6-routing
     - role: static-routing
     - role: rip
-      when: '"rip" in routing_ipv4'
+      when: '"rip" in ipv4.routing'
     - role: recursive-dns-server
     - role: dhcp-server
     - role: nat

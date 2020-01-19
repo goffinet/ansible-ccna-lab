@@ -1,44 +1,49 @@
 # Ansible CCNA Lab
 
+<!-- TOC depthFrom:2 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+
 - [1. Résumé](#1-rsum)
 - [2. Mise en place](#2-mise-en-place)
-  - [2.1. Images GNS3](#21-images-gns3)
-  - [2.2. Routeurs](#22-routeurs)
-  - [2.3. Commutateurs](#23-commutateurs)
-  - [2.4. Station de contrôle](#24-station-de-contrle)
-  - [2.5. Cloner le dépôt](#25-cloner-le-dpt)
-  - [2.6. Examiner les paramètres de configuration de Ansible](#26-examiner-les-paramtres-de-configuration-de-ansible)
+	- [2.1. Images GNS3](#21-images-gns3)
+	- [2.2. Routeurs](#22-routeurs)
+	- [2.3. Commutateurs](#23-commutateurs)
+	- [2.4. Station de contrôle](#24-station-de-contrle)
+	- [2.5. Cloner le dépôt](#25-cloner-le-dpt)
+	- [2.6. Examiner les paramètres de configuration de Ansible](#26-examiner-les-paramtres-de-configuration-de-ansible)
+- [2.7. Les inventaires et les topologies](#27-les-inventaires-et-les-topologies)
 - [3. Topologie CCNA Gateway](#3-topologie-ccna-gateway)
 - [4. Topologie CCNA Site to Site](#4-topologie-ccna-site-to-site)
 - [5. Topologie CCNA tripod](#5-topologie-ccna-tripod)
-  - [5.1. Topologie logique](#51-topologie-logique)
-  - [5.2. Brève description](#52-brve-description)
+	- [5.1. Topologie logique](#51-topologie-logique)
+	- [5.2. Brève description](#52-brve-description)
 - [6. Variante Router on a Stick](#6-variante-router-on-a-stick)
 - [7. Topologie CCNA Switchblock](#7-topologie-ccna-switchblock)
-  - [7.1. Topologie avec redondance de passerelle HSRP](#71-topologie-avec-redondance-de-passerelle-hsrp)
-  - [7.2. VLANs](#72-vlans)
-  - [7.3. Ports Etherchannel et Trunk VLANs](#73-ports-etherchannel-et-trunk-vlans)
-  - [7.4. Spanning-Tree](#74-spanning-tree)
-  - [7.5.Plan d'adressage](#75plan-dadressage)
-  - [7.6. HSRP](#76-hsrp)
-  - [7.7. Ressources requises](#77-ressources-requises)
-  - [7.8. Explication](#78-explication)
+	- [7.1. Topologie avec redondance de passerelle HSRP](#71-topologie-avec-redondance-de-passerelle-hsrp)
+	- [7.2. VLANs](#72-vlans)
+	- [7.3. Ports Etherchannel et Trunk VLANs](#73-ports-etherchannel-et-trunk-vlans)
+	- [7.4. Spanning-Tree](#74-spanning-tree)
+	- [7.5. Plan d'adressage](#75-plan-dadressage)
+	- [7.6. HSRP](#76-hsrp)
+	- [7.7. Ressources requises](#77-ressources-requises)
+	- [7.8. Explication](#78-explication)
 - [8. Toplogie CCNA Core et Switchblock](#8-toplogie-ccna-core-et-switchblock)
 - [9. Utilisation](#9-utilisation)
-  - [9.1. Inventaire et variables d'inventaire du livre de jeu ccna.yml](#91-inventaire-et-variables-dinventaire-du-livre-de-jeu-ccnayml)
-  - [9.2. Livres de jeu](#92-livres-de-jeu)
-  - [9.3. Diagnostic de base](#93-diagnostic-de-base)
+	- [9.1. Inventaire et variables d'inventaire du livre de jeu ccna.yml](#91-inventaire-et-variables-dinventaire-du-livre-de-jeu-ccnayml)
+	- [9.2. Livres de jeu](#92-livres-de-jeu)
+	- [9.3. Diagnostic de base](#93-diagnostic-de-base)
 - [10. Conception](#10-conception)
-  - [Phase I](#phase-i)
-  - [Comment rendre une tâche ios_config idempotente ?](#comment-rendre-une-tche-iosconfig-idempotente-)
-  - [Phase II](#phase-ii)
-  - [Phase III](#phase-iii)
+	- [Phase I](#phase-i)
+	- [Comment rendre une tâche ios_config idempotente ?](#comment-rendre-une-tche-iosconfig-idempotente-)
+	- [Phase II](#phase-ii)
+	- [Phase III](#phase-iii)
+
+<!-- /TOC -->
 
 ## 1. Résumé
 
 On trouvera ici des livres de jeu inspirés des topologies et des sujets du Cisco CCNA et plus basées sur IOSv et sur GNS3.
 
-Il est basé sur trois éléments : des livres de jeu qui peuvent en appeler d'autres nommés selon la **topologie** ; ces livres de jeu configurent des hôtes d'inventaire avec des tâches organisées en **rôles** ; les paramètres de la topologie sont configurés en tant que **variables d'inventaire selon un certain modèle de données**.
+Le projet est basé sur trois éléments : des livres de jeu qui peuvent en appeler d'autres nommés selon la **topologie** ; ces livres de jeu configurent des hôtes d'inventaire avec des tâches organisées en **rôles** ; les paramètres de la topologie sont configurés en tant que **variables d'inventaire selon un certain modèle de données**.
 
 Les topologies sont organisées de la manière suivante :
 
@@ -67,7 +72,7 @@ Expliqué rapidement :
 
 ## 2. Mise en place
 
-Pour les utilisateurs de la topologie GNS3 fournie en classe, sur tous les périphériques, il sera peut-être nécessaire de regénérer les clés RSA des périphériques Cisco :
+Note : Pour les utilisateurs de la topologie GNS3 fournie en classe, sur tous les périphériques, il sera peut-être nécessaire de regénérer les clés RSA des périphériques Cisco :
 
 ```raw
 enable
@@ -89,13 +94,17 @@ La mise place de la solution demande quelques étapes :
 
 ### 2.1. Images GNS3
 
-Les livres de jeu sont testés avec [GNS3 Server](https://cisco.goffinet.org/ccna/cisco-ios-cli/installer-et-configurer-gns3/) et Qemu/KVM sous Linux. Il y a trois types de périphériques.
+Les livres de jeu sont testés avec [GNS3 Server](https://cisco.goffinet.org/ccna/cisco-ios-cli/installer-et-configurer-gns3/) et Qemu/KVM sous Linux.
+
+Il y a trois types de périphériques utilisés dans les topologies.
 
 Périphériques | Images Qemu/KVM | Commentaire
 ---|---|---
 Routeur Cisco IOSv 15.6(2)T | `vios-adventerprisek9-m.vmdk.SPA.156-2.T` avec `IOSv_startup_config.img`  | [VIRL 1.3.296 (Aug. 2017 Release)](https://learningnetwork.cisco.com/docs/DOC-33132)
 Commutateur Cisco IOSv L2/L3  | `vios_l2-adventerprisek9-m.03.2017.qcow2`  | [VIRL 1.3.296 (Aug. 2017 Release)](https://learningnetwork.cisco.com/docs/DOC-33132)
 Poste de travail L2 à L7, Station de contrôle  | [`centos7.qcow2`](http://get.goffinet.org/kvm/centos7.qcow2)  |  Le [fichier d'appliance GNS3](http://get.goffinet.org/gns3a/centos7.gns3a)
+
+Les livres de jeu peuvent vérifier la nature du périphérique utilisé de type Cisco et de type routeur ou commutateur à partir de variables d'inventaire.
 
 ### 2.2. Routeurs
 
@@ -200,11 +209,34 @@ git clone https://github.com/goffinet/ansible-ccna-lab
 cd ansible-ccna-lab/playbooks
 ```
 
-Les livres de jeu sont disponibles dans le dossier `ansible-ccna-lab/playbooks` et se lance à partir de ce dossier. on peut aussi les utiliser comme "collection" Ansible : voir [Using collections in a Playbook](https://docs.ansible.com/ansible/devel/user_guide/collections_using.html#using-collections-in-a-playbook).
+Les livres de jeu sont disponibles dans le dossier `ansible-ccna-lab/playbooks` et se lancent à partir de ce dossier. On peut aussi les utiliser comme "collection" Ansible : voir [Using collections in a Playbook](https://docs.ansible.com/ansible/devel/user_guide/collections_using.html#using-collections-in-a-playbook).
+
+On y trouve l'arborescence suivante :
+
+```raw
+./
+├── ansible.cfg  --> fichier de configuration par défaut
+├── ccna.yml     --> livre de jeu de la topologie ccna
+├── configs/     --> dossier par défaut des fichiers de configuration
+├── demos/       --> livres de jeu de démo / test
+├── files/       --> fichiers statiques spécifiques à utiliser avec les livres de jeu
+├── gateway.yml            --> livre de jeu de la topologie gateway
+├── inventories/           --> dossier d'inventaires
+├── roles/ -> ../roles     --> dossier des rôles utilisés par les livres de jeu
+├── router_on_a_stick.yml  --> livre de jeu de la topologie router_on_a_stick
+├── site_to_site.yml       --> livre de jeu de la topologie site_to_site
+├── switchblock.yml        --> livre de jeu de la topologie switchblock
+├── tasks/       --> tâches spécifiques à utiliser avec les livres de jeu
+├── templates/   --> modèles spécifiques à utiliser avec les livres de jeu
+├── tripod.yml   --> livre de jeu de la topologie tripod
+└── vars         --> variables spécifiques à utiliser dans le livre de jeu
+```
+
+Modèle basé sur [https://github.com/bcoca/collection](https://github.com/bcoca/collection).
 
 ### 2.6. Examiner les paramètres de configuration de Ansible
 
-Le fichier de configuration `ansible.cfg`dans le dossier du dépôt configure Ansible :
+Le fichier de configuration `ansible.cfg`dans le dossier `ansible-ccna-lab/playbooks` configure Ansible :
 
 ```ini
 [defaults]
@@ -222,6 +254,31 @@ callback_whitelist = profile_tasks
 #[callback_profile_tasks]
 #task_output_limit = 100
 ```
+
+La section `[defaults]` définit différentes variables comportementales du logiciel Ansible utiles à nos exécution en comparaison aux paramètres par défaut :
+
+- `inventory` : l'emplacement de l'inventaire par défaut ici `./inventories/ccna/hosts`.
+- `roles_path` : les emplacements par défaut des rôles.
+- `host_key_checking` : la vérification des clés SSH, ici désactivée.
+- `retry_files_enabled` la génération de fichier "[retry](https://docs.ansible.com/ansible/latest/reference_appendices/config.html#retry-files-enabled)".
+- `log_path` : l'emplacement du fichier de log.
+- `forks` : le nombre d'hôtes à controller en paralèlle (5 par défaut).
+- `strategy` : la stratégie "linear" lance chaque tâche sur tous les hôtes concernés par un jeu avant de commencer la tâche suivante alors que la stratégie "free" permet à chaque hôte d'exécuter le jeu jusqu'à la fin aussi vite que possible.
+- `gathering` : collecte ("implicit", par défaut) ou non ("explicit") les facts. Ici désactivé par défaut.
+- `callback_whitelist` : Affiche des paramètres de temps (voir la section `[callback_profile_tasks]`).
+- `display_ok_hosts` : Active ou non l'affichage des tâches dont le statut est "OK" (utile pour vérifier l'idempotence).
+- `display_skipped_hosts` : Active ou non l'affichage des tâches dont le statut est "Skipped" (utile pour vérifier l'idempotence).
+
+## 2.7. Les inventaires et les topologies
+
+Les topologies réseau développées sont décrites dans différents inventaires :
+
+- "gateway" :
+- "site_to_site" :
+- "tripod" : topologie de base maillée à trois routeurs avec un accès à l'Internet
+- "router_on_a_stick" :
+- "switchblock":
+- "ccna" :
 
 ## 3. Topologie CCNA Gateway
 
@@ -519,11 +576,15 @@ ansible core -m ios_command -a "commands='traceroute 172.16.10.1 source GigabitE
 
 ### Phase I
 
-Portage en rôles **idempotents** avec des [modules standards](https://docs.ansible.com/ansible/latest/modules/list_of_network_modules.html#ios).
+Tendre vers des rôles **idempotents** avec des [modules standards](https://docs.ansible.com/ansible/latest/modules/list_of_network_modules.html#ios).
 
 Usage du filtre jinja2 [ipaddr](https://docs.ansible.com/ansible/latest/user_guide/playbooks_filters_ipaddr.html#playbooks-filters-ipaddr), voir [playbooks/ipaddr.yml](https://github.com/goffinet/ansible-ccna-lab/blob/master/playbooks/ipaddr.yml).
 
 Structure en "collection" Ansible. [Using collections in a Playbook](https://docs.ansible.com/ansible/devel/user_guide/collections_using.html#using-collections-in-a-playbook).
+
+* renommer les rôles `ios_`
+* définir des paramètres par défaut
+* revoir les conditions, les boucles
 
 Rôles à améliorer :
 

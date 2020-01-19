@@ -1,8 +1,11 @@
 ---
-routing_ipv4:
-  - static
-#   - rip
 domain_name: lan
+ipv4:
+  routing:
+    - rip
+ipv6:
+  enabled: yes
+  forwarding: yes
 routing:
   eigrp_as: 1
 rdnss:

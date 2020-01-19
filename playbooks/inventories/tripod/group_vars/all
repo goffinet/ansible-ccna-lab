@@ -1,9 +1,13 @@
 ---
-routing_ipv4:
-   - eigrp4
-#   - rip
-#   - ospfv2
-routing_ipv6:
-   - eigrp6
-#   - ospfv3
 domain_name: lan
+ipv4:
+  routing:
+#    - rip
+    - eigrp
+#    - ospf
+ipv6:
+  enabled: yes
+  forwarding: yes
+  routing:
+    - eigrp
+#    - ospf
