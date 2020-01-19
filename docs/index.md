@@ -28,7 +28,7 @@
 
 On trouvera ici des livres de jeu inspirés des topologies et des sujets du Cisco CCNA (et plus) pour GNS3 (Cisco IOSv).
 
-Leur but est uniquement pédagogique visant à lier les compétences de gestion du réseau du CCNA avec un outil IaC ("Infrastructure as Code") de gestion des configuration ("Configuration Management") comme Ansible et un gestionnaire de source ("Source Control Management") comme Git/Github.
+Leur but est uniquement pédagogique visant à lier les compétences de gestion du réseau du CCNA avec un outil IaC ("Infrastructure as Code") de gestion des configurations ("Configuration Management") comme Ansible et un gestionnaire de source ("Source Control Management") comme Git/Github.
 
 Le projet est basé sur trois éléments : des livres de jeu qui peuvent en appeler d'autres nommés selon la **topologie** ; ces livres de jeu configurent des hôtes d'inventaire avec des tâches organisées en **rôles** ; les paramètres de la topologie sont configurés en tant que **variables d'inventaire selon un certain modèle de données**.
 
