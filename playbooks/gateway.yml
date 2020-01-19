@@ -3,13 +3,13 @@
 - hosts: core
   gather_facts: False
   roles:
-    - role: common
-    - role: interface
-    - role: ipv4
-    - role: ipv6
-    - role: ipv4-routing
-    - role: ipv6-routing
-    - role: nat
-    - role: recursive-dns-server
-    - role: dhcp-server
-    - role: write
+    - role: ios_common
+    - role: ios_interface
+    - role: ios_ipv4
+    - role: ios_ipv6
+    - role: ios_ipv4-routing
+    - role: ios_ipv6-routing
+    - role: ios_nat
+    - role: ios_recursive-dns-server
+    - role: ios_dhcp-server
+    - role: ios_write

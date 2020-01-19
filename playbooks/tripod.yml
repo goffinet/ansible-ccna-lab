@@ -3,32 +3,32 @@
 - hosts: core
   gather_facts: False
   roles:
-    - role: common
-    - role: interface
-    - role: ipv4
-    - role: ipv6
-    - role: ipv4-routing
-    - role: ipv6-routing
-    - role: fhrp
-    - role: rip
+    - role: ios_common
+    - role: ios_interface
+    - role: ios_ipv4
+    - role: ios_ipv6
+    - role: ios_ipv4-routing
+    - role: ios_ipv6-routing
+    - role: ios_fhrp
+    - role: ios_rip
       when: '"rip" in ipv4.routing'
-    - role: eigrp4
+    - role: ios_eigrp4
       when: '"eigrp" in ipv4.routing'
-    - role: ospfv2
+    - role: ios_ospfv2
       when: '"ospf" in ipv4.routing'
-    - role: eigrp6
+    - role: ios_eigrp6
       when:
         - '"eigrp" in ipv6.routing'
-    - role: ospfv3
+    - role: ios_ospfv3
       when:
         - '"ospf" in ipv6.routing'
-    - role: recursive-dns-server
-    - role: dhcp-server
+    - role: ios_recursive-dns-server
+    - role: ios_dhcp-server
 - hosts: R1
   gather_facts: False
   roles:
-    - role: nat
+    - role: ios_nat
 - hosts: core
   gather_facts: False
   roles:
-    - role: write
+    - role: ios_write
