@@ -14,4 +14,4 @@ galaxy_info:
       versions:
         - 15.2(20170321:233949)
 dependencies:
-  - role: interface
+  - role: ios_interface

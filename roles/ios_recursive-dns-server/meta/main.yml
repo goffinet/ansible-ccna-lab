@@ -18,6 +18,6 @@ galaxy_info:
       versions:
         - 15.2(20170321:233949)
 dependencies:
-  - role: interface
-  - role: ipv4
-  - role: ipv6
+  - role: ios_interface
+  - role: ios_ipv4
+  - role: ios_ipv6

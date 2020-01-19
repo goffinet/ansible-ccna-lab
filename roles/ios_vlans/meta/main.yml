@@ -16,5 +16,5 @@ galaxy_info:
       versions:
         - 15.2(20170321:233949)
 dependencies:
-  - role: etherchannel
-  - role: interface
+  - role: ios_etherchannel
+  - role: ios_interface
