@@ -1,6 +1,6 @@
 # Ansible CCNA Lab
 
-<!-- TOC depthFrom:2 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+<!-- TOC depthFrom:2 depthTo:3 withLinks:1 updateOnSave:1 orderedList:0 -->
 
 - [1. Résumé](#1-rsum)
 - [2. Mise en place](#2-mise-en-place)
@@ -11,31 +11,19 @@
 	- [2.5. Cloner le dépôt](#25-cloner-le-dpt)
 	- [2.6. Examiner les paramètres de configuration de Ansible](#26-examiner-les-paramtres-de-configuration-de-ansible)
 	- [2.7. Les inventaires et les topologies](#27-les-inventaires-et-les-topologies)
-- [3. Topologie CCNA Gateway](#3-topologie-ccna-gateway)
-- [4. Topologie CCNA Site to Site](#4-topologie-ccna-site-to-site)
-- [5. Topologie CCNA tripod](#5-topologie-ccna-tripod)
-	- [5.1. Topologie logique](#51-topologie-logique)
-	- [5.2. Brève description](#52-brve-description)
-- [6. Variante Router on a Stick](#6-variante-router-on-a-stick)
-- [7. Topologie CCNA Switchblock](#7-topologie-ccna-switchblock)
-	- [7.1. Topologie avec redondance de passerelle HSRP](#71-topologie-avec-redondance-de-passerelle-hsrp)
-	- [7.2. VLANs](#72-vlans)
-	- [7.3. Ports Etherchannel et Trunk VLANs](#73-ports-etherchannel-et-trunk-vlans)
-	- [7.4. Spanning-Tree](#74-spanning-tree)
-	- [7.5. Plan d'adressage](#75-plan-dadressage)
-	- [7.6. HSRP](#76-hsrp)
-	- [7.7. Ressources requises](#77-ressources-requises)
-	- [7.8. Explication](#78-explication)
-- [8. Toplogie CCNA Core et Switchblock](#8-toplogie-ccna-core-et-switchblock)
-- [9. Utilisation](#9-utilisation)
-	- [9.1. Inventaire et variables d'inventaire du livre de jeu ccna.yml](#91-inventaire-et-variables-dinventaire-du-livre-de-jeu-ccnayml)
-	- [9.2. Livres de jeu](#92-livres-de-jeu)
-	- [9.3. Diagnostic de base](#93-diagnostic-de-base)
-- [10. Conception](#10-conception)
-	- [Phase I](#phase-i)
-	- [Comment rendre une tâche ios_config idempotente ?](#comment-rendre-une-tche-iosconfig-idempotente-)
-	- [Phase II](#phase-ii)
-	- [Phase III](#phase-iii)
+- [3. Topologies](#3-topologies)
+	- [3.1. Topologie CCNA Gateway](#31-topologie-ccna-gateway)
+	- [3.2. Topologie CCNA Site to Site](#32-topologie-ccna-site-to-site)
+	- [3.3. Topologie CCNA tripod](#33-topologie-ccna-tripod)
+	- [3.4. Variante Router on a Stick](#34-variante-router-on-a-stick)
+	- [3.5. Topologie CCNA Switchblock](#35-topologie-ccna-switchblock)
+	- [3.6. Toplogie CCNA Core et Switchblock](#36-toplogie-ccna-core-et-switchblock)
+- [4. Utilisation](#4-utilisation)
+	- [4.1. Inventaire et variables d'inventaire du livre de jeu ccna.yml](#41-inventaire-et-variables-dinventaire-du-livre-de-jeu-ccnayml)
+	- [4.2. Livres de jeu](#42-livres-de-jeu)
+	- [4.3. Diagnostic de base](#43-diagnostic-de-base)
+- [5. Notes](#5-notes)
+	- [5.1. Comment rendre une tâche ios_config idempotente ?](#51-comment-rendre-une-tche-iosconfig-idempotente-)
 
 <!-- /TOC -->
 
@@ -91,6 +79,7 @@ La mise place de la solution demande quelques étapes :
 - [2.4. Station de contrôle](#24-station-de-contrle)
 - [2.5. Cloner le dépôt](#25-cloner-le-dpt)
 - [2.6. Examiner les paramètres de configuration de Ansible](#26-examiner-les-paramtres-de-configuration-de-ansible)
+- [2.7. Les inventaires et les topologies](#27-les-inventaires-et-les-topologies)
 
 ### 2.1. Images GNS3
 
@@ -280,7 +269,9 @@ Les topologies réseau développées sont décrites dans différents inventaires
 - "switchblock":
 - "ccna" :
 
-## 3. Topologie CCNA Gateway
+## 3. Topologies
+
+### 3.1. Topologie CCNA Gateway
 
 Un seul routeur Cisco qui connecte l'Internet.
 
@@ -288,7 +279,7 @@ Références :
 
 * [Lab passerelle Internet](https://cisco.goffinet.org/ccna/services-infrastructure/lab-passerelle-internet/)
 
-## 4. Topologie CCNA Site to Site
+### 3.2. Topologie CCNA Site to Site
 
 Connexion point-à-point entre R1 et R2.
 
@@ -299,15 +290,15 @@ Références :
 * [Lab Routage OSPF simple](https://cisco.goffinet.org/ccna/ospf/lab-routage-ospf-simple/)
 * [Lab de routage et services IPv4/IPv6](https://cisco.goffinet.org/ccna/services-infrastructure/lab-routage-et-services-ipv4-ipv6/)
 
-## 5. Topologie CCNA tripod
+### 3.3. Topologie CCNA tripod
 
 Cette topologie maillée à trois routeurs peut être désignée par "tripod". Elle est la couche "core" de la topologie CCNA complète.
 
-### 5.1. Topologie logique
+#### 3.3.1. Topologie logique
 
 ![Topologie Tripod](https://www.lucidchart.com/publicSegments/view/3328e715-30bf-48a8-a48d-1ff276420520/image.png)
 
-### 5.2. Brève description
+#### 3.3.2. Brève description
 
 Trois périphériques IOSv interconnectés entre eux :
 
@@ -342,7 +333,7 @@ Références :
 * [Lab Routage EIGRP](https://cisco.goffinet.org/ccnp/eigrp/lab-routage-eigrp/)
 * [Lab Routage OSPF Multi-Area](https://cisco.goffinet.org/ccna/ospf/lab-ospf-multi-area/)
 
-## 6. Variante Router on a Stick
+### 3.4. Variante Router on a Stick
 
 Variante de la topologie Tripod en utilisant un Trunk Vlan entre R1 et SW0 ainsi qu'entre SW0 et SW1.
 
@@ -350,18 +341,9 @@ Références :
 
 * [Lab VLAN de base](https://cisco.goffinet.org/ccna/vlans/lab-vlan-base-cisco-ios/)
 
-## 7. Topologie CCNA Switchblock
+### 3.5. Topologie CCNA Switchblock
 
 Cette seconde topologie "switchblock" met en oeuvre des _commutateurs_. Cette topologie est plus complexe et se connecte à la topologie "tripod". Elle met en oeuvre les couches "distribution" et "access".
-
-- [7.1. Topologie avec redondance de passerelle HSRP](#71-topologie-avec-redondance-de-passerelle-hsrp)
-- [7.2. VLANs](#72-vlans)
-- [7.3. Ports Etherchannel et Trunk VLANs](#73-ports-etherchannel-et-trunk-vlans)
-- [7.4. Spanning-Tree](#74-spanning-tree)
-- [7.5.Plan d'adressage](#75plan-dadressage)
-- [7.6. HSRP](#76-hsrp)
-- [7.7. Ressources requises](#77-ressources-requises)
-- [7.8. Explication](#78-explication)
 
 Références :
 
@@ -369,12 +351,12 @@ Références :
 * [Redondance de liens](https://cisco.goffinet.org/ccna/redondance-de-liens/)
 * [Disponibilité dans le LAN](https://cisco.goffinet.org/ccna/disponibilite-lan/)
 
-### 7.1. Topologie avec redondance de passerelle HSRP
+#### 3.5.1. Topologie avec redondance de passerelle HSRP
 
 ![Topologie avec redondance de passerelle HSRP](https://www.lucidchart.com/publicSegments/view/84f170f5-af2b-44c1-8f6d-d169399dbba2/image.png)
 
 
-### 7.2. VLANs
+#### 3.5.2. VLANs
 
 VLAN | Ports Access (AS1 et AS2) | plage d'adresse | Passerelle par défaut
 --- | --- | --- | ---
@@ -384,7 +366,7 @@ VLAN 30 | `g2/2` | `172.16.30.0/24` | **`172.16.10.254`**
 VLAN 40 | `g2/3` | `172.16.40.0/24` | **`172.16.10.254`**
 VLAN 99 | VLAN natif | Management
 
-### 7.3. Ports Etherchannel et Trunk VLANs
+#### 3.5.3. Ports Etherchannel et Trunk VLANs
 
 PortChannel | ports physiques | Commutateurs
 --- | --- | ---
@@ -394,14 +376,14 @@ po3 | `g0/2`,`g1/2` | DS1 - DS2
 po4 | `g0/0`,`g1/0` | AS2 - DS2
 po5 | `g0/1`,`g1/1` | AS2 - DS1
 
-### 7.4. Spanning-Tree
+#### 3.5.4. Spanning-Tree
 
 VLANs | DS1 | DS2
 --- | --- | ---
 VLANs 1,10,30,99 | `root primary` | `root secondary`
 VLANs 20,40 | `root secondary` | `root primary`
 
-### 7.5. Plan d'adressage
+#### 3.5.5. Plan d'adressage
 
 Commutateur | Interface | Adresse IPv4 | Adresse(s) IPv6
 --- | --- | --- | ---
@@ -414,7 +396,7 @@ DS2 | VLAN20 | `172.16.20.253/24` | `FD00:1AB:20::2/64`
 DS2 | VLAN30 | `172.16.30.253/24` | `FD00:1AB:30::2/64`
 DS2 | VLAN40 | `172.16.40.253/24` | `FD00:1AB:40::2/64`
 
-### 7.6. HSRP
+#### 3.5.6. HSRP
 
 Commutateur | Interface | Adresse IPv4 virtuelle | Adresse IPv6 virtuelle | Group | Priorité
 --- | --- | --- | --- | --- | ---
@@ -427,26 +409,26 @@ DS2 | VLAN20 | `172.16.20.254/24` | `FE80::d:2/64` | 20/26 | 150, prempt
 DS2 | VLAN30 | `172.16.30.254/24` | `FE80::d:2/64` | 30/36 | default
 DS2 | VLAN40 | `172.16.40.254/24` | `FE80::d:2/64` | 40/46 | 150, prempt
 
-### 7.7. Ressources requises
+#### 3.5.7. Ressources requises
 
 *	4 commutateurs (vios_l2 Software (vios_l2-ADVENTERPRISEK9-M), Experimental Version 15.2(20170321:233949))
 *	8 PCs (Centos 7 KVM ou Ubuntu Docker)
 *	(Câbles de console pour configurer les périphériques Cisco IOS via les ports de console)
 *	Câbles Ethernet conformément à la topologie
 
-### 7.8. Explication
+#### 3.5.8. Explication
 
 Dans l'exercice de laboratoire "Lab répartition de charge avec Rapid Spanning-Tree", nous avons appris à déployer Rapid Spanning-Tree entre la couche Distribution et la couche Access. Il manque manifestement une sûreté au niveau de la passerelle par défaut que constitue le commutateur de Distribution. Afin d'éviter ce point unique de rupture, on apprendra à configurer et vérifier HSRP. Dans cette topologie une passerelle devient routeur "Active" pour certains VLANs et reste en HSRP "Standby" pour d'autres VLANs et inversément.
 
 On trouvera plus bas les fichiers de configuration qui déploient la solution  VLANs, Trunking, Etherchannel, Rapid Spanning-Tree, SVI IPv4 et IPv6 et DHCP. Par rapport à l'exercice de laboratoire "Lab répartition de charge avec Rapid Spanning-Tree", tout reste identique sauf le paramètre de passerelle.
 
-## 8. Toplogie CCNA Core et Switchblock
+### 3.6. Toplogie CCNA Core et Switchblock
 
 Cette topologie interconne les topologies "core" et "switchblock".
 
 ![](https://www.lucidchart.com/publicSegments/view/aacc6247-aa9a-44b2-a1ba-43ccb81deab7/image.png)
 
-## 9. Utilisation
+## 4. Utilisation
 
 Se rendre dans le dossier des livres de jeu `ansible-ccna-lab/playbooks/` :
 
@@ -462,7 +444,7 @@ Tester la connectivité vers les périphériques :
 ansible all -m ping
 ```
 
-### 9.1. Inventaire et variables d'inventaire du livre de jeu ccna.yml
+### 4.1. Inventaire et variables d'inventaire du livre de jeu ccna.yml
 
 L'inventaire par défaut est défini comme suit (fichier `inventories/ccna/hosts`) et correspond à la topologie ccna (core + switchblock) :
 
@@ -529,7 +511,7 @@ inventories/ccna
     └── R3
 ```
 
-### 9.2. Livres de jeu
+### 4.2. Livres de jeu
 
 Les livres de jeu (`playbooks/`) font appel à des rôles qui trouvent la valeur des variables dans l'inventaire.
 
@@ -552,7 +534,7 @@ Le playbook `ccna.yml` configure l'ensemble :
 ansible-playbook ccna.yml -v
 ```
 
-### 9.3. Diagnostic de base
+### 4.3. Diagnostic de base
 
 _à améliorer_
 
@@ -572,9 +554,37 @@ ansible core -m ios_command -a "commands='traceroute 192.168.1.1 source GigabitE
 ansible core -m ios_command -a "commands='traceroute 172.16.10.1 source GigabitEthernet0/0 probe 1 numeric'"
 ```
 
-## 10. Conception
+## 5. Notes
 
-### Phase I
+### 5.1. Comment rendre une tâche ios_config idempotente ?
+
+> "Être idempotent permet à une tâche définie d'être exécutée une seule fois ou des centaines de fois sans créer un effet contraire sur le système cible, ne provoquant un changement à une seule reprise. En d'autres mots, si un changement est nécessaire pour obtenir le système dans un état désiré, alors le changement est réalisé ; par contre si le périphérique est déjà dans l'état désiré, aucun changement n'intervient. Ce comportement est différent des pratiques de scripts personnalisés et de copier/coller de lignes de commandes. Quand on exécute les mêmes commandes ou scripts sur un même système de manière répétée, le taux d'erreur est souvent élevé."
+>
+> Extrait de: Jason Edelman. « Network Automation with Ansible. », O’Reilly Media, 2016.
+
+Attention, Ansible autorise l'idempotence, mais selon le module utilisé, il faudra le manipuler pour atteindre cette exigence de conception.
+
+1/ La section ["Why do the config modules always return true" de la "Ansible Network FAQ"](https://docs.ansible.com/ansible/latest/network/user_guide/faq.html#why-do-the-config-modules-always-return-changed-true-with-abbreviated-commands) explique ceci :
+
+Les modules `*_config` d'Ansible Network comparent le texte des commandes que vous spécifiez dans les lignes au texte de la configuration. Si vous utilisez `shut` dans la section `lines` de la tâche, et que la configuration indique `shutdown`, le module retourne `changed=true` même si la configuration est déjà correcte. La tâche mettra à jour la configuration à chaque fois qu'elle s'exécutera.
+
+Les commande utilisées avec Ansible pourraient ne pas êtres les mêmes commandes que celles trouvées dans la `running_config` : alors, les contrôles entre les lignes ne correspondent pas exactement, même s'ils produisent la même sortie.
+
+2/ Il y a aussi la façon dont le module compare les lignes mises à jour avec la `running_config`. Par défaut, le module vérifie chaque ligne, mais il y a d'autres options. La [documentation](https://docs.ansible.com/ansible/latest/modules/ios_config_module.html) dit ceci à propos de l'argument `match` du module :
+
+Instruit le module sur la façon d'effectuer la correspondance du jeu de commandes avec la configuration actuelle du périphérique. Si l'argument `match` est valorisé par `line`, les commandes sont mises en correspondance ligne par ligne (défaut). Si l'argument `match` est valorisé par `strict`, les lignes de commande sont mises en correspondance par rapport à la position. Si l'argument `match` est valorisé par `exact`, les lignes de commande doivent être de même nature. Enfin, si l'argument `match` est valorisé par `none`, le module ne tentera pas de comparer la configuration source avec la configuration en cours d'exécution sur le périphérique distant.
+
+3/ L'option `after` contrôle l'application des changements aux interfaces :
+
+L'ensemble des commandes ordonnées à ajouter à la fin de la pile de commandes si un changement doit être fait. Comme avec l'option `before`, cela permet au concepteur du livre de lecture d'ajouter un ensemble de commandes à exécuter après l'ensemble de commandes.
+
+Combinée avec l'option `before`, on applique des commandes avant et après que les changements soient faits. Par exemple, on peut définir une réinitialisation en cinq minutes pour éviter une déconnexion à cause d'un problème de configuration, ou écrire les changements dans la ROM (bien que l'on puisse le faire avec l'option `save_when`).<sup>1</sup>
+
+<sup>1</sup> Texte original de [guzmonne](https://stackoverflow.com/users/1930817/guzmonne) en réponse à la question stackoverflow [How can I make my ios_config task idempotent?](https://stackoverflow.com/questions/57279642/how-can-i-make-my-ios-config-task-idempotent).
+
+Aussi, l'argument `defaults` qu'il sera nécessaire d'activer avec la valeur `yes` spécifie s'il faut ou non collecter toutes les valeurs par défaut lors de l'exécution de la configuration du périphérique distant. Lorsqu'il est activé, le module obtient la configuration actuelle en lançant la commande `show running-config all`. En effet, des commandes comme `no shutdown` ou encore `ipv6 enable` ou encore `ipv4 routing` et beaucoup n'apparaissent pas avec la commande `show running-config`.
+
+#### Phase I
 
 Tendre vers des rôles **idempotents** avec des [modules standards](https://docs.ansible.com/ansible/latest/modules/list_of_network_modules.html#ios).
 
@@ -614,35 +624,8 @@ Rôles à créer :
 * IPv6 default route poisoning benefits to FD00::/8 as best route
 * ~~dependencies~~ ? handlers ?
 
-### Comment rendre une tâche ios_config idempotente ?
 
-> "Être idempotent permet à une tâche définie d'être exécutée une seule fois ou des centaines de fois sans créer un effet contraire sur le système cible, ne provoquant un changement à une seule reprise. En d'autres mots, si un changement est nécessaire pour obtenir le système dans un état désiré, alors le changement est réalisé ; par contre si le périphérique est déjà dans l'état désiré, aucun changement n'intervient. Ce comportement est différent des pratiques de scripts personnalisés et de copier/coller de lignes de commandes. Quand on exécute les mêmes commandes ou scripts sur un même système de manière répétée, le taux d'erreur est souvent élevé."
->
-> Extrait de: Jason Edelman. « Network Automation with Ansible. », O’Reilly Media, 2016.
-
-Attention, Ansible autorise l'idempotence, mais selon le module utilisé, il faudra le manipuler pour atteindre cette exigence de conception.
-
-1/ La section ["Why do the config modules always return true" de la "Ansible Network FAQ"](https://docs.ansible.com/ansible/latest/network/user_guide/faq.html#why-do-the-config-modules-always-return-changed-true-with-abbreviated-commands) explique ceci :
-
-Les modules `*_config` d'Ansible Network comparent le texte des commandes que vous spécifiez dans les lignes au texte de la configuration. Si vous utilisez `shut` dans la section `lines` de la tâche, et que la configuration indique `shutdown`, le module retourne `changed=true` même si la configuration est déjà correcte. La tâche mettra à jour la configuration à chaque fois qu'elle s'exécutera.
-
-Les commande utilisées avec Ansible pourraient ne pas êtres les mêmes commandes que celles trouvées dans la `running_config` : alors, les contrôles entre les lignes ne correspondent pas exactement, même s'ils produisent la même sortie.
-
-2/ Il y a aussi la façon dont le module compare les lignes mises à jour avec la `running_config`. Par défaut, le module vérifie chaque ligne, mais il y a d'autres options. La [documentation](https://docs.ansible.com/ansible/latest/modules/ios_config_module.html) dit ceci à propos de l'argument `match` du module :
-
-Instruit le module sur la façon d'effectuer la correspondance du jeu de commandes avec la configuration actuelle du périphérique. Si l'argument `match` est valorisé par `line`, les commandes sont mises en correspondance ligne par ligne (défaut). Si l'argument `match` est valorisé par `strict`, les lignes de commande sont mises en correspondance par rapport à la position. Si l'argument `match` est valorisé par `exact`, les lignes de commande doivent être de même nature. Enfin, si l'argument `match` est valorisé par `none`, le module ne tentera pas de comparer la configuration source avec la configuration en cours d'exécution sur le périphérique distant.
-
-3/ L'option `after` contrôle l'application des changements aux interfaces :
-
-L'ensemble des commandes ordonnées à ajouter à la fin de la pile de commandes si un changement doit être fait. Comme avec l'option `before`, cela permet au concepteur du livre de lecture d'ajouter un ensemble de commandes à exécuter après l'ensemble de commandes.
-
-Combinée avec l'option `before`, on applique des commandes avant et après que les changements soient faits. Par exemple, on peut définir une réinitialisation en cinq minutes pour éviter une déconnexion à cause d'un problème de configuration, ou écrire les changements dans la ROM (bien que l'on puisse le faire avec l'option `save_when`).<sup>1</sup>
-
-<sup>1</sup> Texte original de [guzmonne](https://stackoverflow.com/users/1930817/guzmonne) en réponse à la question stackoverflow [How can I make my ios_config task idempotent?](https://stackoverflow.com/questions/57279642/how-can-i-make-my-ios-config-task-idempotent).
-
-Aussi, l'argument `defaults` qu'il sera nécessaire d'activer avec la valeur `yes` spécifie s'il faut ou non collecter toutes les valeurs par défaut lors de l'exécution de la configuration du périphérique distant. Lorsqu'il est activé, le module obtient la configuration actuelle en lançant la commande `show running-config all`. En effet, des commandes comme `no shutdown` ou encore `ipv6 enable` ou encore `ipv4 routing` et beaucoup n'apparaissent pas avec la commande `show running-config`.
-
-### Phase II
+#### Phase II
 
 _tasks by jinja2 templating_
 
@@ -650,6 +633,6 @@ Rôles "immutables" qui agissent sur un modèle de fichier de configuration bas�
 
 "Immutable" roles by templating one config file based on infrastructure choices (variables) and pushed by `config replace flash:XXX force` procedure to the devices.
 
-### Phase III
+#### Phase III
 
 Reporting ([role ansible-network.cisco_ios](https://galaxy.ansible.com/ansible-network/cisco_ios))
