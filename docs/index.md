@@ -269,6 +269,10 @@ Références :
 
 * [Lab passerelle Internet](https://cisco.goffinet.org/ccna/services-infrastructure/lab-passerelle-internet/)
 
+![Topologie CCNA Gateway](https://www.lucidchart.com/publicSegments/view/d8a42bbc-5192-48b9-a630-2e968dcf6f43/image.png)
+
+Diagramme : Topologie CCNA Gateway
+
 ### 3.2. Topologie CCNA Site to Site
 
 Connexion point-à-point entre R1 et R2.
