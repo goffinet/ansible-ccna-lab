@@ -217,7 +217,7 @@ Modèle basé sur [https://github.com/bcoca/collection](https://github.com/bcoca
 
 ### 2.5. Examiner les paramètres de configuration de Ansible
 
-Le fichier de configuration `ansible.cfg` dans le dossier `ansible-ccna-lab/playbooks` configure Ansible :
+Le fichier de configuration `ansible.cfg` dans le dossier `ansible-ccna-lab/playbooks` configure par défaut le comportement de Ansible :
 
 ```ini
 [defaults]
