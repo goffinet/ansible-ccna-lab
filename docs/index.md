@@ -1,5 +1,44 @@
 # Ansible CCNA Lab
 
+<!-- TOC depthFrom:2 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+
+- [1. Résumé](#1-rsum)
+- [2. Mise en place](#2-mise-en-place)
+	- [2.1. Préparer des images Cisco IOSv pour GNS3](#21-prparer-des-images-cisco-iosv-pour-gns3)
+		- [2.1.1. Routeurs](#211-routeurs)
+		- [2.1.2 Commutateurs](#212-commutateurs)
+	- [2.2. Configurer la station de contrôle](#22-configurer-la-station-de-contrle)
+	- [2.3. Cloner le dépôt](#23-cloner-le-dpt)
+	- [2.5. Examiner les paramètres de configuration de Ansible](#25-examiner-les-paramtres-de-configuration-de-ansible)
+- [3. Topologies](#3-topologies)
+	- [3.1. Topologie CCNA Gateway](#31-topologie-ccna-gateway)
+	- [3.2. Topologie CCNA Bipod](#32-topologie-ccna-bipod)
+	- [3.3. Topologie CCNA Tripod](#33-topologie-ccna-tripod)
+		- [3.3.1. Topologie logique](#331-topologie-logique)
+		- [3.3.2. Brève description](#332-brve-description)
+	- [3.4. Topologie variante Router on a Stick](#34-topologie-variante-router-on-a-stick)
+	- [3.5. Topologie CCNA Switchblock](#35-topologie-ccna-switchblock)
+		- [3.5.1. Topologie avec redondance de passerelle HSRP](#351-topologie-avec-redondance-de-passerelle-hsrp)
+		- [3.5.2. VLANs](#352-vlans)
+		- [3.5.3. Ports Etherchannel et Trunk VLANs](#353-ports-etherchannel-et-trunk-vlans)
+		- [3.5.4. Spanning-Tree](#354-spanning-tree)
+		- [3.5.5. Plan d'adressage](#355-plan-dadressage)
+		- [3.5.6. HSRP](#356-hsrp)
+		- [3.5.7. Ressources requises](#357-ressources-requises)
+		- [3.5.8. Explication](#358-explication)
+	- [3.6. Toplogie CCNA Tripod et Switchblock](#36-toplogie-ccna-tripod-et-switchblock)
+- [4. Utilisation](#4-utilisation)
+	- [4.1. Inventaire et variables d'inventaire du livre de jeu ccna.yml](#41-inventaire-et-variables-dinventaire-du-livre-de-jeu-ccnayml)
+	- [4.2. Livres de jeu](#42-livres-de-jeu)
+	- [4.3. Diagnostic de base](#43-diagnostic-de-base)
+- [5. Notes](#5-notes)
+	- [5.1. Comment rendre une tâche ios_config idempotente ?](#51-comment-rendre-une-tche-iosconfig-idempotente-)
+		- [Phase I](#phase-i)
+		- [Phase II](#phase-ii)
+		- [Phase III](#phase-iii)
+
+<!-- /TOC -->
+
 ## 1. Résumé
 
 On trouvera ici des livres de jeu inspirés des topologies et des sujets du Cisco CCNA (et plus) pour GNS3 (Cisco IOSv).
