@@ -4,19 +4,17 @@
 
 - [1. Résumé](#1-rsum)
 - [2. Mise en place](#2-mise-en-place)
-	- [2.1. Images GNS3](#21-images-gns3)
-	- [2.2. Routeurs](#22-routeurs)
-	- [2.3. Commutateurs](#23-commutateurs)
-	- [2.4. Station de contrôle](#24-station-de-contrle)
-	- [2.5. Cloner le dépôt](#25-cloner-le-dpt)
-	- [2.6. Examiner les paramètres de configuration de Ansible](#26-examiner-les-paramtres-de-configuration-de-ansible)
+	- [2.1. Préparer des images Cisco IOSv pour GNS3](#21-prparer-des-images-cisco-iosv-pour-gns3)
+	- [2.2. Configurer la station de contrôle](#22-configurer-la-station-de-contrle)
+	- [2.3. Cloner le dépôt](#23-cloner-le-dpt)
+	- [2.5. Examiner les paramètres de configuration de Ansible](#25-examiner-les-paramtres-de-configuration-de-ansible)
 - [3. Topologies](#3-topologies)
 	- [3.1. Topologie CCNA Gateway](#31-topologie-ccna-gateway)
 	- [3.2. Topologie CCNA Site to Site](#32-topologie-ccna-site-to-site)
-	- [3.3. Topologie CCNA tripod](#33-topologie-ccna-tripod)
+	- [3.3. Topologie CCNA Tripod](#33-topologie-ccna-tripod)
 	- [3.4. Variante Router on a Stick](#34-variante-router-on-a-stick)
 	- [3.5. Topologie CCNA Switchblock](#35-topologie-ccna-switchblock)
-	- [3.6. Toplogie CCNA Core et Switchblock](#36-toplogie-ccna-core-et-switchblock)
+	- [3.6. Toplogie CCNA Tripod et Switchblock](#36-toplogie-ccna-tripod-et-switchblock)
 - [4. Utilisation](#4-utilisation)
 	- [4.1. Inventaire et variables d'inventaire du livre de jeu ccna.yml](#41-inventaire-et-variables-dinventaire-du-livre-de-jeu-ccnayml)
 	- [4.2. Livres de jeu](#42-livres-de-jeu)
@@ -47,7 +45,7 @@ Une topologie intitulée "ccna" est composée de deux topologies distinctes "tri
 
 Expliqué rapidement :
 
-* Le livre de jeu `ccna.yml` utilise l'inventaire par défaut `ccna` (`core` + `switchblock`). On trouve d'autres inventaires adaptés aux livres de jeu du même nom dans le dossier `inventories/`.
+* Le livre de jeu `ccna.yml` utilise l'inventaire par défaut `ccna` (`tripod` + `switchblock`). On trouve d'autres inventaires adaptés aux livres de jeu du même nom dans le dossier `inventories/`.
 * Un livre le jeu devrait appeler un inventaire du même nom : `ansible-playbook -i inventories/tripod/hosts tripod.yml`.
 * On peut contrôler les tâches avec des _tags_ (définis sur les rôles) : `ansible-playbook ccna.yml --list-tags`.
 * L'exécution des tâches est conditionnée par le modèle de donnée (variables d'inventaire).
@@ -70,16 +68,9 @@ wr
 
 ```
 
-La mise place de la solution demande quelques étapes :
+La mise place de la solution demande quelques étapes décrites plus bas.
 
-- [2.1. Images GNS3](#21-images-gns3)
-- [2.2. Routeurs](#22-routeurs)
-- [2.3. Commutateurs](#23-commutateurs)
-- [2.4. Station de contrôle](#24-station-de-contrle)
-- [2.5. Cloner le dépôt](#25-cloner-le-dpt)
-- [2.6. Examiner les paramètres de configuration de Ansible](#26-examiner-les-paramtres-de-configuration-de-ansible)
-
-### 2.1. Images GNS3
+### 2.1. Préparer des images Cisco IOSv pour GNS3
 
 Les livres de jeu sont testés avec [GNS3 Server](https://cisco.goffinet.org/ccna/cisco-ios-cli/installer-et-configurer-gns3/) et Qemu/KVM sous Linux.
 
@@ -93,7 +84,7 @@ Poste de travail L2 à L7, Station de contrôle  | [`centos7.qcow2`](http://get.
 
 Les livres de jeu peuvent vérifier la nature du périphérique utilisé de type Cisco et de type routeur ou commutateur à partir de variables d'inventaire.
 
-### 2.2. Routeurs
+#### 2.1.1. Routeurs
 
 On utilise des images IOSv `vios-adventerprisek9-m.vmdk.SPA.156-2.T` pour les routeurs L3 avec 8 interfaces GigabitEthernet.
 
@@ -120,7 +111,7 @@ wr
 
 ```
 
-### 2.3. Commutateurs
+#### 2.1.2 Commutateurs
 
 On utilise des images IOSv-L2 `vios_l2-adventerprisek9-m.03.2017.qcow2` pour les commutateurs multicouches.
 
@@ -148,7 +139,7 @@ wr
 
 ```
 
-### 2.4. Station de contrôle
+### 2.2. Configurer la station de contrôle
 
 La station de contrôle connecte tous les périphériques en SSH.
 
@@ -188,7 +179,7 @@ shutdown -r now
 
 ```
 
-### 2.5. Cloner le dépôt
+### 2.3. Cloner le dépôt
 
 Il est nécessaire de cloner le dépot sur la machine de contrôle.
 
@@ -222,7 +213,7 @@ ansible-ccna-lab/playbooks/
 
 Modèle basé sur [https://github.com/bcoca/collection](https://github.com/bcoca/collection).
 
-### 2.6. Examiner les paramètres de configuration de Ansible
+### 2.5. Examiner les paramètres de configuration de Ansible
 
 Le fichier de configuration `ansible.cfg` dans le dossier `ansible-ccna-lab/playbooks` configure Ansible :
 
@@ -287,9 +278,9 @@ Références :
 * [Lab Routage OSPF simple](https://cisco.goffinet.org/ccna/ospf/lab-routage-ospf-simple/)
 * [Lab de routage et services IPv4/IPv6](https://cisco.goffinet.org/ccna/services-infrastructure/lab-routage-et-services-ipv4-ipv6/)
 
-### 3.3. Topologie CCNA tripod
+### 3.3. Topologie CCNA Tripod
 
-Cette topologie maillée à trois routeurs peut être désignée par "tripod". Elle est la couche "core" de la topologie CCNA complète.
+Cette topologie maillée à trois routeurs peut être désignée par "tripod". Elle est la couche "Core" de la topologie CCNA complète.
 
 #### 3.3.1. Topologie logique
 
@@ -419,9 +410,9 @@ Dans l'exercice de laboratoire "Lab répartition de charge avec Rapid Spanning-T
 
 On trouvera plus bas les fichiers de configuration qui déploient la solution  VLANs, Trunking, Etherchannel, Rapid Spanning-Tree, SVI IPv4 et IPv6 et DHCP. Par rapport à l'exercice de laboratoire "Lab répartition de charge avec Rapid Spanning-Tree", tout reste identique sauf le paramètre de passerelle.
 
-### 3.6. Toplogie CCNA Core et Switchblock
+### 3.6. Toplogie CCNA Tripod et Switchblock
 
-Cette topologie interconne les topologies "core" et "switchblock".
+Cette topologie interconne les topologies "tripod" et "switchblock".
 
 ![](https://www.lucidchart.com/publicSegments/view/aacc6247-aa9a-44b2-a1ba-43ccb81deab7/image.png)
 
@@ -443,15 +434,11 @@ ansible all -m ping
 
 ### 4.1. Inventaire et variables d'inventaire du livre de jeu ccna.yml
 
-L'inventaire par défaut est défini comme suit (fichier `inventories/ccna/hosts`) et correspond à la topologie ccna (core + switchblock) :
+L'inventaire par défaut est défini comme suit (fichier `inventories/ccna/hosts`) et correspond à la topologie ccna (tripod + switchblock) :
 
 ```ini
 [all:vars]
 #method=modules # modules or templating not yet implemented
-routing_ipv4='["eigrp4"]'
-routing_ipv6='["eigrp6"]'
-#routing_ipv4='["eigrp4", "rip", "ospfv2"]'
-#routing_ipv6='["eigrp6", "ospfv3"]'
 
 [core]
 R1
@@ -487,9 +474,10 @@ ansible_port=22
 ansible_connection=network_cli
 ansible_network_os=ios
 
+
 ```
 
-Les configurations sont définies en YAML dans les fichiers de variables d'inventaire (dossiers `inventories/ccna/group_vars` et `inventories/ccna/host_vars`).
+Les configurations sont définies en YAML dans les fichiers de variables d'inventaire (fichier au nom du groupe dans le dossier `inventories/ccna/group_vars` et fichier au nom de l'hôte dans le dossier `inventories/ccna/host_vars`).
 
 ```raw
 inventories/ccna
