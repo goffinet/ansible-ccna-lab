@@ -414,7 +414,7 @@ On trouvera plus bas les fichiers de configuration qui déploient la solution  V
 
 ### 3.6. Toplogie CCNA Tripod et Switchblock
 
-Cette topologie interconne les topologies "tripod" et "switchblock".
+Cette topologie interconnecte les topologies "tripod" et "switchblock".
 
 ![](https://www.lucidchart.com/publicSegments/view/aacc6247-aa9a-44b2-a1ba-43ccb81deab7/image.png)
 
