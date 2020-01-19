@@ -252,7 +252,7 @@ La section `[defaults]` définit différentes variables comportementales du logi
 
 ## 3. Topologies
 
-Les topologies réseau développées sont décrites dans différents inventaires et se configure avec les un livre de jeu du même nom :
+Les topologies réseau développées sont décrites dans différents inventaires et se configurent avec un livre de jeu du même nom :
 
 - "gateway" : un seul routeur connecte l'Internet et offre des services au lan comme DHCP et RDNSS
 - "site_to_site" : topologie d'interconnexion de deux LANs distants
