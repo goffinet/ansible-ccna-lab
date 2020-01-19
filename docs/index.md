@@ -591,7 +591,6 @@ Usage du filtre jinja2 [ipaddr](https://docs.ansible.com/ansible/latest/user_gui
 
 Structure en "collection" Ansible. [Using collections in a Playbook](https://docs.ansible.com/ansible/devel/user_guide/collections_using.html#using-collections-in-a-playbook).
 
-* renommer les rôles `ios_`
 * définir des paramètres par défaut
 * revoir les conditions, les boucles
 
