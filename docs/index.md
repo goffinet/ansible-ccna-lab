@@ -54,7 +54,7 @@ Expliqué rapidement :
 * L'exécution des rôles est conditionnée par :
   * une variable `ansible_network_os == 'ios'`;
   * la définition d'une variable de telle sorte que l'absence de paramètre évite l'exécution des tâches ("Skipped").
-* le protocole de routage est contrôlé à partir du livre de jeu avec les variables `ipv4.routing` et `ipv6.routing`. Il est conseillé d'en activer un seul pour une topologie. Des cas de "route redistribution" devraient être envisagés.
+* Le protocole de routage est contrôlé à partir du livre de jeu avec les variables `ipv4.routing` et `ipv6.routing`. Il est conseillé d'en activer un seul pour une topologie. Des cas de "route redistribution" devraient être envisagés.
 * Les livres de jeu exécutent les rôles dans un ordre logique ~~mais chacun trouve des dépendances de rôles définis~~.
 
 ## 2. Mise en place
