@@ -236,7 +236,7 @@ callback_whitelist = profile_tasks
 #task_output_limit = 100
 ```
 
-La section `[defaults]` définit différentes variables comportementales du logiciel Ansible utiles à nos exécution en comparaison aux paramètres par défaut :
+La section `[defaults]` définit différentes variables comportementales du logiciel Ansible utiles à nos exécutions en comparaison aux paramètres par défaut :
 
 - `inventory` : l'emplacement de l'inventaire par défaut ici `./inventories/ccna/hosts`.
 - `roles_path` : les emplacements par défaut des rôles.
