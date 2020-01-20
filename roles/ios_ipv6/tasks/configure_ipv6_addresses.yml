@@ -2,7 +2,7 @@
 - name: enable ipv6 and configure link-local address
   ios_config:
     defaults: yes
-    parents: "interface {{ item.0.name }}"
+    parents: "interface {{ item.0.id }}"
     lines:
       - "ipv6 enable"
       - "ipv6 address {{ item.1 | ipaddr('address') | upper }} link-local"
@@ -13,12 +13,12 @@
 - name: configure ula/uga ipv6 addresses
 #  ios_l3_interfaces:
 #    config:
-##      - name: "{{ item.0.name }}"
+##      - name: "{{ item.0.id }}"
 ##        ipv6:
 ##        - address: "{{ item.1 }}"
   ios_config:
     defaults: yes
-    parents: "interface {{ item.0.name }}"
+    parents: "interface {{ item.0.id }}"
     lines:
       - "ipv6 address {{ item.1 | ipaddr('host/prefix') | upper }}"
   loop: "{{ interfaces|subelements('ipv6_addresses', skip_missing=True) }}"

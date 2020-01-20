@@ -1,7 +1,7 @@
 ---
 hostname: R3
 interfaces:
-  - name: GigabitEthernet0/0
+  - id: GigabitEthernet0/0
     description: "LAN R3"
     ipv4_address: 192.168.65.1/24
     passive:
@@ -19,7 +19,7 @@ interfaces:
       area: 0
       cost: 1
       pri: 255
-  - name: GigabitEthernet0/1
+  - id: GigabitEthernet0/1
     description: "Link to R1"
     ipv4_address: 192.168.226.2/24
     rip:
@@ -35,7 +35,7 @@ interfaces:
       area: 0
       cost: 1
       pri: 255
-  - name: GigabitEthernet0/2
+  - id: GigabitEthernet0/2
     description: "Link to R2"
     ipv4_address: 192.168.227.2/24
     rip:
@@ -52,11 +52,11 @@ interfaces:
       cost: 1
       pri: 255
 routing:
-  rname: 3.3.3.3
+  rid: 3.3.3.3
   eigrp_as: 1
 dhcp:
   dhcp_pool:
-    - name: "LANR3"
+    - id: "LANR3"
       network: 192.168.65.0
       netmask: 255.255.255.0
       router: 192.168.65.1

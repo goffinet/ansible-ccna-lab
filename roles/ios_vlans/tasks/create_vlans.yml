@@ -2,10 +2,10 @@
   ios_vlans:
     config:
       - name: "{{ item.name }}"
-        vlan_name: "{{ item.name }}"
+        vlan_id: "{{ item.id }}"
         state: active
         shutdown: disabled
   loop: "{{ vlans }}"
   when:
     - item.name is defined
-    - item.name is defined
+    - item.id is defined

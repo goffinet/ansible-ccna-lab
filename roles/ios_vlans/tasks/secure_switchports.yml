@@ -2,7 +2,7 @@
 - name: disable stub switchports
   ios_interfaces:
     config:
-      - name: "{{ item.name }}"
+      - name: "{{ item.id }}"
         enabled: False
   loop: "{{ interfaces }}"
   when: item.stub is defined
@@ -10,7 +10,7 @@
   ios_vlans:
     config:
       - name: "{{ stubvlan.name }}"
-        vlan_name: "{{ stubvlan.name }}"
+        vlan_id: "{{ stubvlan.id }}"
         state: active
         shutdown: disabled
   when:
@@ -18,10 +18,10 @@
 - name: configure stub access ports
   ios_config:
     defaults: yes
-    parents: interface {{ item.name }}
+    parents: interface {{ item.id }}
     lines:
       - switchport mode access
-      - switchport access vlan {{ stubvlan.name }}
+      - switchport access vlan {{ stubvlan.id }}
   loop: "{{ interfaces }}"
   when:
     - stubvlan is defined
@@ -29,7 +29,7 @@
 - name: stp protection on stub access ports
   ios_config:
     defaults: yes
-    parents: interface {{ item.name }}
+    parents: interface {{ item.id }}
     lines:
       - spanning-tree portfast edge
       - spanning-tree bpduguard enable

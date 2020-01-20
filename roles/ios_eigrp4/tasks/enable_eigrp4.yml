@@ -14,11 +14,11 @@
     defaults: yes
     parents: router eigrp {{ routing.eigrp_as }}
     lines:
-      - passive-interface {{ item.name }}
+      - passive-interface {{ item.id }}
   loop: "{{ interfaces | selectattr('passive', 'defined') | list }}"
   when:
     - routing.eigrp_as is defined
-    - item.name is defined
+    - item.id is defined
 - name: enable eigrp4 interfaces
   ios_config:
     defaults: no

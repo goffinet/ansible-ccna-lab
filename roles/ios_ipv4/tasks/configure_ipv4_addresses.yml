@@ -2,12 +2,12 @@
 - name: configure ipv4 addresses
   ios_l3_interfaces:
     config:
-      - name: "{{ item.name }}"
+      - name: "{{ item.id }}"
         ipv4:
         - address: "{{ item.ipv4_address | ipaddr('host/prefix') }}"
   loop: "{{ interfaces }}"
   when:
-    - item.name is defined
+    - item.id is defined
     - item.trunk.vlan is undefined
     - item.ipv4_address is defined
     - item.ipv4_address | ipv4
@@ -16,12 +16,12 @@
 - name: configure ipv4 addresses on a trunk
   ios_config:
     defaults: no
-    parents: interface {{ item.name }}
+    parents: interface {{ item.id }}
     lines:
       - ip address {{ item.ipv4_address | ipaddr('address') }} {{ item.ipv4_address | ipaddr('netmask') }}
   loop: "{{ interfaces | selectattr('trunk', 'defined') | list }}"
   when:
-    - item.name is defined
+    - item.id is defined
     - item.trunk.vlan is defined
     - item.ipv4_address is defined
     - item.ipv4_address | ipv4
@@ -30,11 +30,11 @@
 - name: configure ipv4 addresses as dhcp client
   ios_l3_interfaces:
     config:
-      - name: "{{ item.name }}"
+      - name: "{{ item.id }}"
         ipv4:
         - address: "dhcp"
   loop: "{{ interfaces }}"
   when:
-    - item.name is defined
+    - item.id is defined
     - item.ipv4_address is defined
     - item.ipv4_address == 'dhcp'

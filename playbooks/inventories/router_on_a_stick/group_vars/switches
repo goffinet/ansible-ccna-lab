@@ -2,31 +2,31 @@
 stp:
   mode: rapid-pvst
 vlans:
-  - name: 10
+  - id: 10
     name: DATA
-  - name: 20
+  - id: 20
     name: VOICE
-  - name: 99
+  - id: 99
     name: MANAGEMENT
-  - name: 100
+  - id: 100
     name: NATIVE
 stubvlan:
-  name: 4000
+  id: 4000
   name: STUB
 #switchports:
-#  - name: GigabitEthernet0/0
-#  - name: GigabitEthernet0/1
-#  - name: GigabitEthernet0/2
-#  - name: GigabitEthernet0/3
-#  - name: GigabitEthernet1/0
-#  - name: GigabitEthernet1/1
-#  - name: GigabitEthernet1/2
-#  - name: GigabitEthernet1/3
-#  - name: GigabitEthernet2/0
-#  - name: GigabitEthernet2/1
-#  - name: GigabitEthernet2/2
-#  - name: GigabitEthernet2/3
-#  - name: GigabitEthernet3/0
-#  - name: GigabitEthernet3/1
-#  - name: GigabitEthernet3/2
-##  - name: GigabitEthernet3/3 # reserved for ansible console management
+#  - id: GigabitEthernet0/0
+#  - id: GigabitEthernet0/1
+#  - id: GigabitEthernet0/2
+#  - id: GigabitEthernet0/3
+#  - id: GigabitEthernet1/0
+#  - id: GigabitEthernet1/1
+#  - id: GigabitEthernet1/2
+#  - id: GigabitEthernet1/3
+#  - id: GigabitEthernet2/0
+#  - id: GigabitEthernet2/1
+#  - id: GigabitEthernet2/2
+#  - id: GigabitEthernet2/3
+#  - id: GigabitEthernet3/0
+#  - id: GigabitEthernet3/1
+#  - id: GigabitEthernet3/2
+##  - id: GigabitEthernet3/3 # reserved for ansible console management

@@ -2,24 +2,24 @@
 - name: disable switchport on switch interface
   ios_config:
     defaults: yes
-    parents: interface {{ item.name }}
+    parents: interface {{ item.id }}
     lines:
       - no switchport
   loop: "{{ interfaces }}"
   when:
     - item.noswitchport is defined
-    - item.name is defined
+    - item.id is defined
   tags:
     - interface
 - name: enable interface
   ios_interfaces:
     config:
-      - name: "{{ item.name }}"
+      - name: "{{ item.id }}"
         enabled: True
         description: "{{ item.description }}"
   loop: "{{ interfaces }}"
   when:
     - item.stub is not defined
-    - item.name is defined
+    - item.id is defined
   tags:
     - interface

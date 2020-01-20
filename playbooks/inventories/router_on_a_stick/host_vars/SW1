@@ -3,60 +3,60 @@ hostname: SW1
 stp:
   mode: rapid-pvst
 interfaces:
-  - name: Vlan99
+  - id: Vlan99
     description: "Management real gateway"
     ipv4_address: 192.168.1.2/24
-  - name: GigabitEthernet0/0
+  - id: GigabitEthernet0/0
     description: "Stub interface"
     stub: true
-  - name: GigabitEthernet0/1
+  - id: GigabitEthernet0/1
     description: "Trunk to SW0"
     trunk:
       native: 100
-  - name: GigabitEthernet0/2
+  - id: GigabitEthernet0/2
     description: "Stub interface"
     stub: true
-  - name: GigabitEthernet0/3
+  - id: GigabitEthernet0/3
     description: "Stub interface"
     stub: true
-  - name: GigabitEthernet1/0
+  - id: GigabitEthernet1/0
     description: "VLAN10 access port"
     access:
       vlan: 10
-  - name: GigabitEthernet1/1
+  - id: GigabitEthernet1/1
     description: "VLAN10 access port"
     access:
       vlan: 10
-  - name: GigabitEthernet1/2
+  - id: GigabitEthernet1/2
     description: "VLAN10 access port"
     access:
       vlan: 10
-  - name: GigabitEthernet1/3
+  - id: GigabitEthernet1/3
     description: "VLAN10 access port"
     access:
       vlan: 10
-  - name: GigabitEthernet2/0
+  - id: GigabitEthernet2/0
     description: "VLAN20 access port"
     access:
       vlan: 20
-  - name: GigabitEthernet2/1
+  - id: GigabitEthernet2/1
     description: "VLAN20 access port"
     access:
       vlan: 20
-  - name: GigabitEthernet2/2
+  - id: GigabitEthernet2/2
     description: "VLAN20 access port"
     access:
       vlan: 20
-  - name: GigabitEthernet2/3
+  - id: GigabitEthernet2/3
     description: "VLAN20 access port"
     access:
       vlan: 20
-  - name: GigabitEthernet3/0
+  - id: GigabitEthernet3/0
     description: "Stub interface"
     stub: true
-  - name: GigabitEthernet3/1
+  - id: GigabitEthernet3/1
     description: "Stub interface"
     stub: true
-  - name: GigabitEthernet3/2
+  - id: GigabitEthernet3/2
     description: "Stub interface"
     stub: true

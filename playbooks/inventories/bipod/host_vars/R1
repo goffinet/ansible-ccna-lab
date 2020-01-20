@@ -1,7 +1,7 @@
 ---
 hostname: R1
 interfaces:
-  - name: GigabitEthernet0/0
+  - id: GigabitEthernet0/0
     description: "LAN R1"
     ipv4_address: 192.168.1.1/24
     ipv6_addresses:
@@ -9,10 +9,10 @@ interfaces:
       - '2001:DB8:1AB:1::1/64'
     passive:
     rip:
-  - name: GigabitEthernet0/1
+  - id: GigabitEthernet0/1
     description: "Internet connexion ip nat outside"
     ipv4_address: dhcp
-  - name: GigabitEthernet0/2
+  - id: GigabitEthernet0/2
     description: "Link to R2"
     ipv4_address: 192.168.3.1/24
     ipv6_addresses:
@@ -28,11 +28,11 @@ interfaces:
         state: present
     rip:
 routing:
-  rname: 1.1.1.1
+  rid: 1.1.1.1
   eigrp_as: 1
 dhcp:
   dhcp_pool:
-    - name: "LANR1"
+    - id: "LANR1"
       network: 192.168.1.0
       netmask: 255.255.255.0
       router: 192.168.1.1

@@ -2,7 +2,7 @@
 - name: configure access ports
   ios_config:
     defaults: yes
-    parents: interface {{ item.name }}
+    parents: interface {{ item.id }}
     lines:
       - switchport mode access
       - switchport access vlan {{ item.access.vlan | default('1') }}
@@ -12,7 +12,7 @@
 - name: stp protection on access ports
   ios_config:
     defaults: yes
-    parents: interface {{ item.name }}
+    parents: interface {{ item.id }}
     lines:
       - spanning-tree portfast edge
       - spanning-tree bpduguard enable

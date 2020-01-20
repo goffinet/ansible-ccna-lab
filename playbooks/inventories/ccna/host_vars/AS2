@@ -1,79 +1,79 @@
 ---
 hostname: AS2
 group_channels:
-  - name: 4
+  - id: 4
     mode: active
     interfaces:
       - GigabitEthernet0/0
       - GigabitEthernet1/0
-  - name: 5
+  - id: 5
     mode: active
     interfaces:
       - GigabitEthernet0/1
       - GigabitEthernet1/1
 interfaces:
-  - name: GigabitEthernet2/0
+  - id: GigabitEthernet2/0
     description: "PC5 vlan 10 access port"
     access:
       vlan: 10
-  - name: GigabitEthernet2/1
+  - id: GigabitEthernet2/1
     description: "PC6 vlan 20 access port"
     access:
       vlan: 20
-  - name: GigabitEthernet2/2
+  - id: GigabitEthernet2/2
     description: "PC7 vlan 30 access port"
     access:
       vlan: 30
-  - name: GigabitEthernet2/3
+  - id: GigabitEthernet2/3
     description: "PC8 vlan 40 access port"
     access:
       vlan: 40
-  - name: Vlan99
+  - id: Vlan99
     description: "Management interface"
     ipv4_address: 172.16.0.2/24
     gateway: 172.16.0.254
-  - name: GigabitEthernet0/0
+  - id: GigabitEthernet0/0
     description: "Trunk Group Channel4 to DS2"
     trunk:
       native: 99
-  - name: GigabitEthernet1/0
+  - id: GigabitEthernet1/0
     description: "Trunk Group Channel4 to DS2"
     trunk:
       native: 99
-  - name: GigabitEthernet0/1
+  - id: GigabitEthernet0/1
     description: "Trunk Group Channel5 to DS1"
     trunk:
       native: 99
-  - name: GigabitEthernet1/1
+  - id: GigabitEthernet1/1
     description: "Trunk Group Channel5 to DS1"
     trunk:
       native: 99
-  - name: Port-channel4
+  - id: Port-channel4
     description: "Trunk Group Channel4 to DS2"
     trunk:
       native: 99
-  - name: Port-channel5
+  - id: Port-channel5
     description: "Trunk Group Channel5 to DS1"
     trunk:
       native: 99
-  - name: GigabitEthernet0/2
+  - id: GigabitEthernet0/2
     description: "Stub interface"
     stub: true
-  - name: GigabitEthernet0/3
+  - id: GigabitEthernet0/3
     description: "Stub interface"
     stub: true
-  - name: GigabitEthernet1/2
+  - id: GigabitEthernet1/2
     description: "Stub interface"
     stub: true
-  - name: GigabitEthernet1/3
+  - id: GigabitEthernet1/3
     description: "Stub interface"
     stub: true
-  - name: GigabitEthernet3/0
+  - id: GigabitEthernet3/0
     description: "Stub interface"
     stub: true
-  - name: GigabitEthernet3/1
+  - id: GigabitEthernet3/1
     description: "Stub interface"
     stub: true
-  - name: GigabitEthernet3/2
+  - id: GigabitEthernet3/2
     description: "Stub interface"
     stub: true
