@@ -1,6 +1,6 @@
 - name: set link aggregation group to members
   ios_linkagg:
-    group: "{{ item.id }}"
+    group: "{{ item.name }}"
     mode: "{{ item.mode }}"
     members:
       - "{{ item.interfaces[0] }}"

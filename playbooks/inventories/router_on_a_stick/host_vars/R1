@@ -1,39 +1,39 @@
 ---
 hostname: R1
 interfaces:
-  - id: GigabitEthernet0/0
+  - name: GigabitEthernet0/0
     description: "Trunk LAN R1"
     trunk:
-  - id: GigabitEthernet0/0.1
+  - name: GigabitEthernet0/0.1
     description: "VLAN 10 DATA to SW0"
     trunk:
       vlan: 10
     ipv4_address: 192.168.10.254/24
-  - id: GigabitEthernet0/0.2
+  - name: GigabitEthernet0/0.2
     description: "VLAN 20 VOICE to SW0"
     trunk:
       vlan: 20
     ipv4_address: 192.168.20.254/24
-  - id: GigabitEthernet0/0.3
+  - name: GigabitEthernet0/0.3
     description: "VLAN 99 MANAGEMENT to SW0"
     trunk:
       vlan: 99
     ipv4_address: 192.168.1.254/24
-  - id: GigabitEthernet0/0.4
+  - name: GigabitEthernet0/0.4
     description: "VLAN 100 native to SW0"
     trunk:
       native: 100
-  - id: GigabitEthernet0/1
+  - name: GigabitEthernet0/1
     description: "Internet connexion ip nat outside"
     ipv4_address: dhcp
 dhcp:
   dhcp_pool:
-    - id: "VLAN10"
+    - name: "VLAN10"
       network: 192.168.10.0
       netmask: 255.255.255.0
       router: 192.168.10.254
       dns: 192.168.10.254
-    - id: "VLAN20"
+    - name: "VLAN20"
       network: 192.168.20.0
       netmask: 255.255.255.0
       router: 192.168.20.254

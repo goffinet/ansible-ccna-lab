@@ -13,19 +13,19 @@
     defaults: yes
     parents: ipv6 router eigrp {{ routing.eigrp_as }}
     lines:
-      - passive-interface {{ item.id }}
+      - passive-interface {{ item.name }}
   loop: "{{ interfaces | selectattr('passive', 'defined') | list }}"
   when:
     - routing.eigrp_as is defined
-    - item.id is defined
+    - item.name is defined
 - name: enable eigrp ipv6 on interfaces
   ios_config:
     defaults: yes
-    parents: interface {{ item.id }}
+    parents: interface {{ item.name }}
     lines:
       - ipv6 eigrp {{ routing.eigrp_as }}
   loop: "{{ interfaces | selectattr('eigrp6', 'defined') | list }}"
   when:
-    - item.id is defined
+    - item.name is defined
     - routing.eigrp_as is defined
     - interfaces | selectattr('eigrp6', 'defined') | list

@@ -1,7 +1,7 @@
 ---
 hostname: R2
 interfaces:
-  - id: GigabitEthernet0/0
+  - name: GigabitEthernet0/0
     description: "LAN R2"
     ipv4_address: 192.168.33.1/24
     passive:
@@ -19,7 +19,7 @@ interfaces:
       area: 0
       cost: 1
       pri: 255
-  - id: GigabitEthernet0/1
+  - name: GigabitEthernet0/1
     description: "Link to R1"
     ipv4_address: 192.168.225.2/24
     rip:
@@ -35,7 +35,7 @@ interfaces:
       area: 0
       cost: 1
       pri: 255
-  - id: GigabitEthernet0/3
+  - name: GigabitEthernet0/3
     description: "Link to R3"
     ipv4_address: 192.168.227.1/24
     rip:
@@ -51,7 +51,7 @@ interfaces:
       area: 0
       cost: 1
       pri: 255
-  - id: GigabitEthernet0/2
+  - name: GigabitEthernet0/2
     description: "Link to DS1"
     ipv4_address: 172.16.224.1/24
     rip:
@@ -63,7 +63,7 @@ interfaces:
     ipv6_addresses:
       - 'FE80::2'
     eigrp6:
-  - id: GigabitEthernet0/4
+  - name: GigabitEthernet0/4
     description: "Link to DS1"
     ipv4_address: 172.16.225.1/24
     rip:
@@ -74,7 +74,7 @@ interfaces:
       pri: 255
     ipv6_addresses:
       - 'FE80::2'
-  - id: GigabitEthernet0/5
+  - name: GigabitEthernet0/5
     description: "Link to DS2"
     ipv4_address: 172.16.242.1/24
     rip:
@@ -86,7 +86,7 @@ interfaces:
     ipv6_addresses:
       - 'FE80::2'
     eigrp6:
-  - id: GigabitEthernet0/6
+  - name: GigabitEthernet0/6
     description: "Link to DS2"
     ipv4_address: 172.16.243.1/24
     rip:
@@ -99,11 +99,11 @@ interfaces:
       - 'FE80::2'
     eigrp6:
 routing:
-  rid: 2.2.2.2
+  rname: 2.2.2.2
   eigrp_as: 1
 dhcp:
   dhcp_pool:
-    - id: "LANR2"
+    - name: "LANR2"
       network: 192.168.33.0
       netmask: 255.255.255.0
       router: 192.168.33.1

@@ -7,7 +7,7 @@
     routing:
       eigrp_as: 1
     interfaces:
-      - id: GigabitEthernet0
+      - name: GigabitEthernet0
         ipv4_address: 192.168.1.1/24
         eigrp4:
         ospfv2:
@@ -15,7 +15,7 @@
           cost: 1
           pri: 255
         eigrp6:
-      - id: GigabitEthernet1
+      - name: GigabitEthernet1
 
   tasks:
     - name: get the classfull networks for eigrp4
