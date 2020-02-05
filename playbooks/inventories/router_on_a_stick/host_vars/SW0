@@ -8,11 +8,11 @@ interfaces:
     description: "Stub interface"
     stub: true
   - id: GigabitEthernet0/1
-    description: "Trunk to R1"
+    description: "Trunk to SW1"
     trunk:
       native: 100
   - id: GigabitEthernet0/2
-    description: "Trunk to SW1"
+    description: "Trunk to R1"
     trunk:
       native: 100
   - id: GigabitEthernet0/3
