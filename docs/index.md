@@ -28,7 +28,7 @@
 
 On trouvera ici des livres de jeu inspirés des topologies et des sujets du Cisco CCNA (et plus) pour GNS3 (Cisco IOSv).
 
-Leur but est uniquement pédagogique visant à lier les compétences de gestion du réseau du CCNA avec un outil IaC ("Infrastructure as Code") de gestion des configurations ("Configuration Management") comme Ansible et un gestionnaire de source ("Source Control Management") comme Git/Github.
+Leur but est uniquement pédagogique visant à lier les compétences de gestion du réseau du CCNA avec un outil IaC ("Infrastructure as Code") de gestion des configurations ("Configuration Management") comme Ansible et un gestionnaire de source ("Source Control Management") comme Git/Github. Il s'agit aussi d'avoir sous la main un outil souple pour créer et gérer des scénarios de labs qui demandent une préconfiguration ou des changements de configuration (afin de créer des erreurs à corriger manuellement par exemple).
 
 Le projet est basé sur trois éléments : des livres de jeu qui peuvent en appeler d'autres nommés selon la **topologie** ; ces livres de jeu configurent des hôtes d'inventaire avec des tâches organisées en **rôles** ; les paramètres de la topologie sont configurés en tant que **variables d'inventaire selon un certain modèle de données**.
 
@@ -205,7 +205,7 @@ ansible-ccna-lab/playbooks/
 ├── inventories/           --> dossier d'inventaires
 ├── roles/ -> ../roles     --> dossier des rôles utilisés par les livres de jeu
 ├── router_on_a_stick.yml  --> livre de jeu de la topologie router_on_a_stick
-├── bipod.yml       --> livre de jeu de la topologie bipod
+├── bipod.yml    --> livre de jeu de la topologie bipod
 ├── switchblock.yml        --> livre de jeu de la topologie switchblock
 ├── tasks/       --> tâches spécifiques à utiliser avec les livres de jeu
 ├── templates/   --> modèles spécifiques à utiliser avec les livres de jeu
@@ -213,7 +213,7 @@ ansible-ccna-lab/playbooks/
 └── vars         --> variables spécifiques à utiliser dans le livre de jeu
 ```
 
-Modèle basé sur [https://github.com/bcoca/collection](https://github.com/bcoca/collection).
+Modèle de collection basé sur [https://github.com/bcoca/collection](https://github.com/bcoca/collection).
 
 ### 2.5. Examiner les paramètres de configuration de Ansible
 
@@ -631,4 +631,7 @@ Rôles "immutables" qui agissent sur un modèle de fichier de configuration bas�
 
 #### Phase III
 
-Reporting ([role ansible-network.cisco_ios](https://galaxy.ansible.com/ansible-network/cisco_ios))
+Reporting ([role ansible-network.cisco_ios](https://galaxy.ansible.com/ansible-network/cisco_ios)) :
+
+* Documentation de la topologie (classique, énoncé)
+* Surveillance des interfaces et des services
