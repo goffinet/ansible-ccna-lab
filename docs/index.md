@@ -157,8 +157,7 @@ python get-pip.py
 pip install --upgrade pip
 pip install ansible
 pip install ansible-lint
-pip install ansible netadrr
-#yum -y install ansible netadrr
+python -m pip install netaddr
 yum -y install git dnsmasq
 cat << EOF > /etc/dnsmasq.conf
 interface=lo0
