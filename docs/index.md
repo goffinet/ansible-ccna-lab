@@ -334,7 +334,7 @@ Références :
 
 Variante de la topologie Tripod en utilisant un Trunk Vlan entre R1 et SW0 ainsi qu'entre SW0 et SW1.
 
-![Topologie variante Router on a Stick](https://www.lucidchart.com/publicSegments/view/4f58dfa5-3070-4fd1-9efd-87c8c321abb0/image.png)
+![Topologie variante Router on a Stick](https://www.lucidchart.com/publicSegments/view/9414c7ca-8f9a-4306-8908-a1e1c44009e2/image.png)
 
 Diagramme : Topologie variante Router on a Stick
 
