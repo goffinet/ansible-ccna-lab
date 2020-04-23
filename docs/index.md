@@ -293,7 +293,7 @@ Cette topologie maillée à trois routeurs peut être désignée par "tripod". E
 
 #### 3.3.1. Topologie logique
 
-![Topologie CCNA Tripod](https://www.lucidchart.com/publicSegments/view/3328e715-30bf-48a8-a48d-1ff276420520/image.png)
+
 
 #### 3.3.2. Brève description
 
