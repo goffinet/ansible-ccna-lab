@@ -4,4 +4,4 @@
   tasks:
     - name: disable dynamic routing
       import_role:
-        name: disable-dynamic-ipv4-routing
+        name: ios_disable-dynamic-ipv4-routing
