@@ -24,8 +24,6 @@
 
 <!-- /TOC -->
 
-Test
-
 ## 1. Résumé
 
 On trouvera ici des livres de jeu inspirés des topologies et des sujets du Cisco CCNA (et plus) pour GNS3 (Cisco IOSv).
