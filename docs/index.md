@@ -15,6 +15,7 @@
 	- [3.4. Topologie variante Router on a Stick](#34-topologie-variante-router-on-a-stick)
 	- [3.5. Topologie CCNA Switchblock](#35-topologie-ccna-switchblock)
 	- [3.6. Toplogie CCNA Tripod et Switchblock](#36-toplogie-ccna-tripod-et-switchblock)
+	- [3.7. Topologie Ansible Networking Workshop](#37-topologie-ansible-networking-workshop)
 - [4. Utilisation](#4-utilisation)
 	- [4.1. Inventaire et variables d'inventaire du livre de jeu ccna.yml](#41-inventaire-et-variables-dinventaire-du-livre-de-jeu-ccnayml)
 	- [4.2. Livres de jeu](#42-livres-de-jeu)
@@ -463,6 +464,12 @@ On trouvera plus bas les fichiers de configuration qui déploient la solution  V
 Cette topologie interconnecte les topologies "tripod" et "switchblock".
 
 ![](https://www.lucidchart.com/publicSegments/view/aacc6247-aa9a-44b2-a1ba-43ccb81deab7/image.png)
+
+### 3.7. Topologie Ansible Networking Workshop
+
+Cette topologie s'utilise dans le cadre de l'exercice [ANSIBLE RÉSEAU](https://iac.goffinet.org/ansible-network/) avec le projet [Ansible Networking Workshop Files](https://github.com/goffinet/networking-workshop).
+
+![Ansible Networking Workshop](https://github.com/network-automation/linklight/raw/master/images/network_diagram.png)
 
 ## 4. Utilisation
 
