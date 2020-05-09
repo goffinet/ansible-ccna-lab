@@ -3,3 +3,20 @@ domain_name: lan
 ipv4:
   routing:
     - ospf
+banners:
+  enabled: true
+  login: |
+        Default Multi-line motd banner
+        for {{ inventory_hostname }} device in the networking-worksop
+  motd: |
+        Default Multi-line motd banner for {{ inventory_hostname }}
+        for {{ inventory_hostname }} device in the networking-worksop
+  exec: |
+        Default Multi-line exec banner
+        for {{ inventory_hostname }} device in the networking-worksop
+  incoming: |
+        Default Multi-line incoming banner
+        for {{ inventory_hostname }} device in the networking-worksop
+  slip_ppp: |
+        Default Multi-line slip-ppp banner
+        for {{ inventory_hostname }} device in the networking-worksop
