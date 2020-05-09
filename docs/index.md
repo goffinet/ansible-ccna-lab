@@ -484,7 +484,7 @@ cd ansible-ccna-lab/playbooks
 Tester la connectivité vers les périphériques :
 
 ```bash
-ansible all -m ping
+ansible all -c network_cli -m ping
 ```
 
 ### 4.1. Inventaire et variables d'inventaire du livre de jeu ccna.yml
