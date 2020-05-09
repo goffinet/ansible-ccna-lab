@@ -8,7 +8,7 @@
       - default-router {{ item.router }}
   loop: "{{ dhcp.dhcp_pool }}"
   when: dhcp.dhcp_pool is defined
-- name: define dns in ipv4 dhcp pool
+- name: define dns option in ipv4 dhcp pool
   ios_config:
     defaults: yes
     parents: ip dhcp pool {{ item.id }}
