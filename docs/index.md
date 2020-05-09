@@ -188,7 +188,7 @@ En Ubuntu 18.04 :
 ```bash
 systemctl disable systemd-resolved
 systemctl stop systemd-resolved
-rm /etc/resolv.conf
+rm -f /etc/resolv.conf
 echo "nameserver 127.0.0.1" > /etc/resolv.conf
 echo "nameserver 1.1.1.1" >> /etc/resolv.conf
 apt -y install git dnsmasq
