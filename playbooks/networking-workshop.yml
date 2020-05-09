@@ -1,0 +1,13 @@
+---
+# networking-workshop.yml
+- hosts: all
+  gather_facts: False
+  roles:
+    - role: ios_common
+    - role: ios_interface
+    - role: ios_ipv4
+    - role: ios_ipv4-routing
+    - role: ios_ospfv2
+      when: '"ospf" in ipv4.routing'
+    - role: ios_dhcp-server
+    - role: ios_write

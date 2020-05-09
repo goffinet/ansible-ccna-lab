@@ -1,0 +1,36 @@
+---
+hostname: rtr2
+interfaces:
+  - id: GigabitEthernet0/0
+    description: "Link to rtr2"
+    ipv4_address: 10.200.200.2/24
+    ospfv2:
+      area: 0
+      cost: 1
+      pri: 255
+  - id: GigabitEthernet0/1
+    description: "rtr2 lan"
+    ipv4_address: 10.200.202.2/24
+    passive:
+    ospfv2:
+      area: 0
+      cost: 1
+      pri: 255
+  - id: GigabitEthernet0/2
+    description: "Link to rtr4"
+    ipv4_address: 10.100.101.2/24
+    ospfv2:
+      area: 0
+      cost: 1
+      pri: 255
+routing:
+  rid: 1.1.1.1
+dhcp:
+  dhcp_pool:
+    - id: "LANR1"
+      network: 10.200.202.0
+      netmask: 255.255.255.0
+      router: 10.200.202.2
+  dhcp_excluded:
+    - start: 10.200.202.1
+      end: 10.200.202.100

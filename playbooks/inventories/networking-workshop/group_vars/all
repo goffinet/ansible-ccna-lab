@@ -1,0 +1,5 @@
+---
+domain_name: lan
+ipv4:
+  routing:
+    - ospf
