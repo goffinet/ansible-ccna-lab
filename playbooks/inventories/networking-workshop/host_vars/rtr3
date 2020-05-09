@@ -17,7 +17,7 @@ interfaces:
       cost: 1
       pri: 255
 routing:
-  rid: 1.1.1.1
+  rid: 3.3.3.3
 dhcp:
   dhcp_pool:
     - id: "LANR1"
