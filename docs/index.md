@@ -178,6 +178,11 @@ PREFIX=24
 IPV4_FAILURE_FATAL=no
 DNS1=127.0.0.1
 EOF
+systemctl disable systemd-resolved
+systemctl stop systemd-resolved
+rm -f /etc/resolv.conf
+echo "nameserver 127.0.0.1" > /etc/resolv.conf
+echo "nameserver 1.1.1.1" >> /etc/resolv.conf
 systemctl enable dnsmasq
 shutdown -r now
 
@@ -186,6 +191,13 @@ shutdown -r now
 En Ubuntu 18.04 :
 
 ```bash
+hostnamectl set-hostname controller
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+python get-pip.py
+pip install --upgrade pip
+pip install ansible
+pip install ansible-lint
+pip install netaddr
 systemctl disable systemd-resolved
 systemctl stop systemd-resolved
 rm -f /etc/resolv.conf
