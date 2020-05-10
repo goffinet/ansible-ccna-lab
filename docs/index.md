@@ -183,6 +183,7 @@ systemctl stop systemd-resolved
 rm -f /etc/resolv.conf
 echo "nameserver 127.0.0.1" > /etc/resolv.conf
 echo "nameserver 1.1.1.1" >> /etc/resolv.conf
+chattr +i /etc/resolv.conf
 systemctl enable dnsmasq
 shutdown -r now
 
