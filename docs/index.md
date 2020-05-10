@@ -192,12 +192,11 @@ En Ubuntu 18.04 :
 
 ```bash
 hostnamectl set-hostname controller
-curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-python get-pip.py
-pip install --upgrade pip
-pip install ansible
-pip install ansible-lint
-pip install netaddr
+apt-get update && apt-get -y install python3-pip
+pip3 install --upgrade pip
+pip3 install ansible
+pip3 install ansible-lint
+pip3 install netaddr
 systemctl disable systemd-resolved
 systemctl stop systemd-resolved
 rm -f /etc/resolv.conf
