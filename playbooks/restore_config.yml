@@ -8,7 +8,7 @@
       net_put:
         src: ./configs/{{inventory_hostname}}.cfg
         protocol: scp
-        dest: flash:/{{inventory_hostname}}.cfg
+        dest: flash0:/{{inventory_hostname}}.cfg
     - name: CONFIG REPLACE
       ios_command:
         commands:
