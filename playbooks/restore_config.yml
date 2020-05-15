@@ -6,7 +6,7 @@
   tasks:
     - name: COPY RUNNING CONFIG TO ROUTER
       net_put:
-        src: configs/{{inventory_hostname}}.cfg
+        src: ./configs/{{inventory_hostname}}.cfg
         protocol: scp
         mode: biary
 #        dest: flash0:/{{inventory_hostname}}.cfg
