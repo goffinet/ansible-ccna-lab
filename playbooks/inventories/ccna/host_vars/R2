@@ -53,7 +53,7 @@ interfaces:
       pri: 255
   - id: GigabitEthernet0/2
     description: "Link to DS1"
-    ipv4_address: 172.16.224.1/24
+    ipv4_address: 172.16.225.1/24
     rip:
     eigrp4:
     ospfv2:
@@ -65,7 +65,7 @@ interfaces:
     eigrp6:
   - id: GigabitEthernet0/4
     description: "Link to DS1"
-    ipv4_address: 172.16.225.1/24
+    ipv4_address: 172.16.224.1/24
     rip:
     eigrp4:
     ospfv2:
