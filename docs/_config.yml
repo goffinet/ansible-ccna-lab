@@ -1,10 +1,11 @@
 # Site settings
-title: Jekyll Doc Theme
+title: Ansible CCNA Lab
 email: your-email@domain.com
 description: >
-  Jekyll Template for Project Websites
-  providing documentation and blog post pages.
-lang: en-US
+  CCNA Labs ported on Ansible -
+  for education purpose only -
+  IOSv and IOSvL2 support only
+lang: fr-FR
 
 baseurl: "/ansible-ccna-lab" # the subpath of your site, e.g. /blog/
 url: https://goffinet.github.io/ansible-ccna-lab # the base hostname & protocol for your site
@@ -31,7 +32,7 @@ exclude:
   - .idea/
   - .gitignore
   - README.md
-timezone: Europe/Berlin
+timezone: Europe/Paris
 defaults:
 - scope:
     path: _posts
