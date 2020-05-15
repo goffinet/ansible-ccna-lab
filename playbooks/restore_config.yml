@@ -3,7 +3,7 @@
   hosts: cisco
   gather_facts: no
   vars:
-    src_folder: "./configs"
+    src_folder: "files/default_configs"
     src: "{{ src_folder }}/{{ inventory_hostname }}.cfg"
     dest: "{{ inventory_hostname }}.cfg"
     options: "-o StrictHostKeyChecking=no"
@@ -12,11 +12,12 @@
       stat:
         path: "{{ src }}"
       register: stat_result
-    - name: COPY RUNNING CONFIG TO ROUTER
-      command: "echo {{ ansible_ssh_pass }} | scp {{ options }} {{ src }} {{inventory_hostname}}:/{{ dest }}"
-      when: stat_result.stat.exists
-    - name: CONFIG REPLACE
-      ios_command:
-        commands:
-          - config replace flash:{{inventory_hostname}}.cfg force
+    - name: RESTORE THE CONFIG
+      block:
+        - name: COPY RUNNING CONFIG TO THE DEVICE
+          command: "sshpass -p {{ ansible_ssh_pass }} scp {{ options }} {{ src }} {{inventory_hostname}}:/{{ dest }}"
+        - name: CONFIG REPLACE
+          ios_command:
+            commands:
+              - config replace flash:{{ dest }} force
       when: stat_result.stat.exists
