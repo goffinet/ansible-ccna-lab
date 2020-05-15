@@ -9,11 +9,11 @@ lang: en-US
 baseurl: "/ansible-ccna-lab" # the subpath of your site, e.g. /blog/
 url: https://goffinet.github.io/ansible-ccna-lab # the base hostname & protocol for your site
 git_address: https://goffinet.github.io/ansible-ccna-lab
-#git_edit_address: 
+git_edit_address: https://github.com/goffinet/ansible-ccna-lab/blob/master
 
 # theme options from https://bootswatch.com/3/
 # comment out this to use default Bootstrap
-bootwatch: paper # cerulean cosmo custom cyborg darkly flatly journal lumen readable sandstone simplex slate solar spacelab superhero united yeti
+bootwatch: yeti # paper cerulean cosmo custom cyborg darkly flatly journal lumen readable sandstone simplex slate solar spacelab superhero united yeti
 
 # Build settings
 markdown: kramdown
