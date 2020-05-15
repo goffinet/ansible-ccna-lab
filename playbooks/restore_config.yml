@@ -2,13 +2,12 @@
 - name: RESTORE CONFIGURATION
   hosts: cisco
   gather_facts: no
+  vars:
+    src: "./configs/{{ inventory_hostname }}.cfg"
+    dest: "{{ inventory_hostname }}.cfg"
   tasks:
     - name: COPY RUNNING CONFIG TO ROUTER
-      net_put:
-        src: "./configs/{{inventory_hostname}}.cfg"
-        protocol: scp
-        mode: biary
-        dest: "flash:/{{inventory_hostname}}.cfg"
+      command: "scp {{ src }} {{inventory_hostname}}:/{{ dest }}"
     - name: CONFIG REPLACE
       ios_command:
         commands:
