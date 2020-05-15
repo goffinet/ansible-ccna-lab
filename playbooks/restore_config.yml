@@ -8,7 +8,7 @@
     dest: "{{ inventory_hostname }}.cfg"
     options: "-o StrictHostKeyChecking=no"
   tasks:
-    - name: CHECK THAT COFIG FILE EXISTS
+    - name: CHECK THAT CONFIG FILE EXISTS
       stat:
         path: "{{ src }}"
       register: stat_result
