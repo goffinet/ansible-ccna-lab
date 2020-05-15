@@ -150,8 +150,6 @@ Le logiciel Ansible y est fraîchement installé (avec la libraire python netadd
 
 La station de contrôle offre un service DHCP avec enregistrement dynamique des noms d'hôte dans un serveur DNS (dnsmasq).
 
-On trouvera les deux scripts de préparation d'un station de contrôle Centos ou Ubuntu dans le dossier [test/](test/).
-
 En Centos 7 :
 
 ```bash
