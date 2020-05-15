@@ -1,5 +1,5 @@
 ---
-# site_to_site.yml
+# bipod.yml
 - hosts: core
   gather_facts: False
   roles:
