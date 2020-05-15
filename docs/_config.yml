@@ -9,7 +9,7 @@ lang: en-US
 baseurl: "/ansible-ccna-lab" # the subpath of your site, e.g. /blog/
 url: https://goffinet.github.io/ansible-ccna-lab # the base hostname & protocol for your site
 git_address: https://goffinet.github.io/ansible-ccna-lab
-git_edit_address: https://github.com/goffinet/ansible-ccna-lab/blob/master
+git_edit_address: https://github.com/goffinet/ansible-ccna-lab/blob/master/docs
 
 # theme options from https://bootswatch.com/3/
 # comment out this to use default Bootstrap
