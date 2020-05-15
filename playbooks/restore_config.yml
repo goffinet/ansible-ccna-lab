@@ -16,8 +16,14 @@
       block:
         - name: COPY RUNNING CONFIG TO THE DEVICE
           command: "sshpass -p {{ ansible_ssh_pass }} scp {{ options }} {{ src }} {{inventory_hostname}}:/{{ dest }}"
+          register: copy_output
         - name: CONFIG REPLACE
           ios_command:
             commands:
               - config replace flash:{{ dest }} force
       when: stat_result.stat.exists
+    - name: ERASE REMOTE COFIG FILE
+      ios_command:
+        commands:
+          - "delete /force flash:/{{ dest }}"
+      when: copy_output.rc == 0
