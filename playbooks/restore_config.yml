@@ -1,7 +1,6 @@
 ---
 - name: RESTORE CONFIGURATION
   hosts: cisco
-  connection: network_cli
   gather_facts: no
   tasks:
     - name: COPY RUNNING CONFIG TO ROUTER
