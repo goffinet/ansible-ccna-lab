@@ -8,7 +8,7 @@
     options: "-o StrictHostKeyChecking=no"
   tasks:
     - name: COPY RUNNING CONFIG TO ROUTER
-      command: "echo {{ ansible_ssh_pass }} |scp {{ options }} {{ src }} {{inventory_hostname}}:/{{ dest }}"
+      command: "echo {{ ansible_ssh_pass }} | scp {{ options }} {{ src }} {{inventory_hostname}}:/{{ dest }}"
     - name: CONFIG REPLACE
       ios_command:
         commands:
