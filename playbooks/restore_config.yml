@@ -5,9 +5,10 @@
   vars:
     src: "./configs/{{ inventory_hostname }}.cfg"
     dest: "{{ inventory_hostname }}.cfg"
+    options: "-o StrictHostKeyChecking=no"
   tasks:
     - name: COPY RUNNING CONFIG TO ROUTER
-      command: "scp {{ src }} {{inventory_hostname}}:/{{ dest }}"
+      command: "scp {{ options }} {{ src }} {{inventory_hostname}}:/{{ dest }}"
     - name: CONFIG REPLACE
       ios_command:
         commands:
