@@ -18,16 +18,15 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Your awesome title
-email: your-email@example.com
+title: Ansible CCNA Lab
+#email: your-email@example.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: jekyllrb
-github_username:  jekyll
+  On trouvera ici des livres de jeu Ansible inspirés des topologies et des sujets du Cisco CCNA (et plus) pour GNS3 (Cisco IOSv).
+baseurl: "/ansible-ccna-lab" # the subpath of your site, e.g. /blog
+url: "https://goffinet.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+twitter_username: fegoffinet
+github_username:  goffinet
+github_repo: ansible-ccna-lab # the GitHub repo name for your project
 
 # Build settings
 theme: minima
@@ -36,6 +35,12 @@ remote_theme: broccolini/swiss
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
+  - jekyll-sitemap
+  -  jekyll-redirect-from
+
+# Set theme color here
+# Choose from: black (default), blue, gray, magenta, orange, red, white, and yellow.
+theme_color: black
 
 # Exclude from processing.
 # The following items will not be processed, by default.
