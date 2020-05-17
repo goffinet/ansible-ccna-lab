@@ -1,6 +1,6 @@
 ---
 layout: single
-title: About
+title: Projet Ansible CCNA Lab
 permalink: /
 ---
 
