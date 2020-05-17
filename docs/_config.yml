@@ -29,10 +29,10 @@ github_username:  goffinet
 github_repo: ansible-ccna-lab # the GitHub repo name for your project
 
 # Build settings
-theme: minima
-remote_theme: pmarsceill/just-the-docs
+#theme: minima
+#remote_theme: pmarsceill/just-the-docs
 #remote_theme: broccolini/swiss
-remote_theme: mmistakes/minimal-mistakes
+remote_theme: "mmistakes/minimal-mistakes@4.19.2"
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
