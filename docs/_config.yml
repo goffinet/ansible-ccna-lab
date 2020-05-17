@@ -30,9 +30,9 @@ github_repo: ansible-ccna-lab # the GitHub repo name for your project
 
 # Build settings
 theme: minima
-#remote_theme: pmarsceill/just-the-docs
+remote_theme: pmarsceill/just-the-docs
 #remote_theme: broccolini/swiss
-remote_theme: barryclark/jekyll-now
+#remote_theme:
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
