@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: home
 title: Projet Ansible CCNA Lab
 permalink: /
 ---
