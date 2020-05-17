@@ -38,6 +38,7 @@ plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
   - jekyll-redirect-from
+  - jekyll-include-cache
 
 # Set theme color here (Swiss Theme)
 # Choose from: black (default), blue, gray, magenta, orange, red, white, and yellow.
