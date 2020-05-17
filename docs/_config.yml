@@ -32,7 +32,7 @@ github_repo: ansible-ccna-lab # the GitHub repo name for your project
 theme: minima
 remote_theme: pmarsceill/just-the-docs
 #remote_theme: broccolini/swiss
-#remote_theme:
+remote_theme: mmistakes/minimal-mistakes
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
