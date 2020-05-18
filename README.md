@@ -357,13 +357,13 @@ Routeur | Interface | Adresse IPv4 | Adresses IPv6 | Description
 --- | --- | --- | --- | ---
 R1 | G0/0 | `192.168.1.1/24` | `FE80::1`, `FD00:FD00:FD00:1::1/64` | LAN de R1
 R1 | G0/2 | `192.168.225.1/24` | `FE80::1` | Connexion vers R2
-R1 | G0/3 | `192.168.227.1/24` | `FE80::1` | Connexion vers R3
+R1 | G0/3 | `192.168.226.1/24` | `FE80::1` | Connexion vers R3
 R2 | G0/0 | `192.168.33.1/24` | `FE80::2`, `FD00:FD00:FD00:2::1/64` | LAN de R2
 R2 | G0/1 | `192.168.225.2/24` | `FE80::2` | Connexion vers R1
-R2 | G0/3 | `192.168.226.1/24` | `FE80::2` | Connexion vers R3
+R2 | G0/3 | `192.168.227.1/24` | `FE80::2` | Connexion vers R3
 R3 | G0/0 | `192.168.65.1/24` | `FE80::3`, `FD00:FD00:FD00:3::1/64` | LAN de R3
-R3 | G0/1 | `192.168.227.2/24` | `FE80::3` | Connexion vers R1
-R3 | G0/2 | `192.168.226.2/24` | `FE80::3` | Connexion vers R2
+R3 | G0/1 | `192.168.226.2/24` | `FE80::3` | Connexion vers R1
+R3 | G0/2 | `192.168.227.2/24` | `FE80::3` | Connexion vers R2
 
 * On activera un service DHCP sur chaque réseau local (`GigabitEthernet0/0`).
 * Le routeur R1 connecte l'Internet. Le service NAT est activé.
