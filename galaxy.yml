@@ -1,29 +1,35 @@
 ### requried
 # this can be a company/brand or product namespace under which all content lives
-namespace:
+namespace: goffinet
 # the designation of this specific collection
-name:
+name: ansible-ccna-lab
 # semantic versioning compliant version designation
-version:
+version: 0.3rc1
 # a list of the collection's content authors: 'Full Name <email> (http://site) @nicks:irc/im/site#channel'
 authors:
-
+    - "goffinet (https://cisco.goffinet.org)"
+readme: "README.md"
 ### optional but strongly advised
 # short summary of the collection
-description:
+description: CCNA Labs ported on Ansible - for education purpose only - IOSv and IOSvL2 support only
 # a valid SPDX license identifier https://spdx.org/licenses/
 license:
+    - "CC-BY-4.0"
 # list of keywords you want to associate the collection with for indexing/search systems
 tags:
+    - cisco
+    - iosv
+    - ccna
+    - gns3
 # list of dependencies, other collections this collection requires to be installed for it to be usable
 dependencies:
 
 ### urls
 # url of originating SCM repository
-repository:
+repository: "https://github.com/goffinet/ansible-ccna-lab"
 # url to online docs
-documentation:
+documentation: "https://goffinet.github.io/ansible-ccna-lab/"
 # homepage of the collection/project
-homepage:
+homepage: "https://goffinet.github.io/ansible-ccna-lab/"
 # issue tracker url
-issues:
+issues: "https://github.com/goffinet/ansible-ccna-lab/issues"
