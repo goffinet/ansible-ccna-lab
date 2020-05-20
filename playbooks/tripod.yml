@@ -27,7 +27,7 @@
 - hosts: R1
   gather_facts: False
   roles:
-    - role: ios_nat
+    - role: ios_nat44
 - hosts: core
   gather_facts: False
   roles:
