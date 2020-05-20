@@ -1,0 +1,9 @@
+#main:
+#  - title: "Quick-Start Guide"
+#    url: /quick-start-guide/
+
+menu1:
+  - title: Ansible CCNA Lab
+    children:
+      - title: "Description"
+        url: /description/

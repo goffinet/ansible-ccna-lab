@@ -660,7 +660,7 @@ Rôles à améliorer :
 
 Rôles à créer :
 
-* [ ] **cdp / lldp**
+* [ ] **cdp** / **lldp**
 * [ ] **syslog**
 * [ ] **ntp** (+ auth)
 * [ ] **snmpv2c** / **snmpv3**
@@ -672,9 +672,8 @@ Rôles à créer :
 * [ ] ppp / chap / pap / pppoe
 * [ ] gre ipv4 / gre ipv6
 * [ ] **security hardening**
-* [ ] IPv6 default route poisoning benefits to FD00::/8 as best route
+* [ ] IPv6 default route poisoning benefits to FD00::/8 as best route ?
 * [ ] ~~dependencies~~ ? handlers ?
-
 
 #### Phase II
 
