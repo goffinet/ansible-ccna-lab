@@ -1,4 +1,4 @@
 ansible.log
 *.retry
 .DS_Store
-playbooks/configs/build/*
+playbooks/configs/build
