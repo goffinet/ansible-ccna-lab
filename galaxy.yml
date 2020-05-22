@@ -4,7 +4,7 @@ namespace: goffinet
 # the designation of this specific collection
 name: ansible-ccna-lab
 # semantic versioning compliant version designation
-version: 0.3rc1
+version: 0.3
 # a list of the collection's content authors: 'Full Name <email> (http://site) @nicks:irc/im/site#channel'
 authors:
     - "goffinet (https://cisco.goffinet.org)"
