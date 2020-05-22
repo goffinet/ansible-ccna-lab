@@ -2,3 +2,4 @@ ansible.log
 *.retry
 .DS_Store
 playbooks/configs/build
+*.icloud
