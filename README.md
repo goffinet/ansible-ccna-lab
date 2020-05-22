@@ -90,7 +90,7 @@ Le livre de jeu installe la topologie CCNA et configure la gestion des routeurs 
 
 Note : Pour les utilisateurs de la topologie GNS3 fournie en classe, sur certains voire sur tous les périphériques Cisco, il sera peut-être nécessaire de regénérer les clés RSA :
 
-```raw
+```shell
 enable
 configure terminal
 crypto key generate rsa modulus 2048
@@ -125,7 +125,7 @@ L'interface `GigabitEthernet0/7` sert de console de contrôle TCP/IP et ne parti
 
 SSH est activé de la manière suivante, sur R1 par exemple :
 
-```raw
+```shell
 hostname R1
 int GigabitEthernet0/7
  ip address dhcp
@@ -152,7 +152,7 @@ L'interface `GigabitEthernet3/3` sert de console de contrôle TCP/IP et ne parti
 
 SSH est activé de la manière suivante, sur AS1 par exemple :
 
-```raw
+```shell
 hostname AS1
 int GigabitEthernet3/3
  no switchport
@@ -288,7 +288,7 @@ Les livres de jeu sont disponibles dans le dossier `ansible-ccna-lab/playbooks` 
 
 On y trouve l'arborescence suivante :
 
-```raw
+```
 ansible-ccna-lab/playbooks/
 ├── ansible.cfg  --> fichier de configuration par défaut
 ├── ccna.yml     --> livre de jeu de la topologie ccna
@@ -550,7 +550,7 @@ ansible all -c network_cli -m ping
 
 L'inventaire par défaut est défini comme suit (fichier `inventories/ccna/hosts`) et correspond à la topologie ccna (tripod + switchblock) :
 
-```
+```ini
 [all:vars]
 #method=modules # modules or templating not yet implemented
 
