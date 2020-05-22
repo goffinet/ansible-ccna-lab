@@ -14,5 +14,5 @@
       when: '"rip" in ipv4.routing'
     - role: ios_recursive-dns-server
     - role: ios_dhcp-server
-    - role: ios_nat
+    - role: ios_nat44
     - role: ios_write

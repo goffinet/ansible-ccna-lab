@@ -1,0 +1,21 @@
+configure terminal
+hostname {{ inventory_hostname }}
+{% if mgmt_interface is defined %}
+interface {{ mgmt_interface }}
+{% if image_style == "iosv_l2" %}
+no switchport
+{% endif %}
+ip address dhcp
+no cdp enable
+no shutdown
+{% endif %}
+ip domain-name lan
+username {{ gns3_lab_user }} privilege 15 password {{ gns3_lab_pass }}
+crypto key generate rsa modulus 2048
+ip ssh version 2
+ip scp server enable
+line vty 0 4
+login local
+transport input ssh
+end
+write memory

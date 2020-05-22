@@ -1,10 +1,12 @@
 # Ansible CCNA Lab
 
-<!-- TOC depthFrom:2 depthTo:3 withLinks:1 updateOnSave:1 orderedList:0 -->
+<!-- TOC depthFrom:2 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
 - [1. Résumé](#1-rsum)
-- [2. Mise en place](#2-mise-en-place)
+- [2. Mise en place du lab](#2-mise-en-place-du-lab)
 	- [2.1. Préparer des images Cisco IOSv pour GNS3](#21-prparer-des-images-cisco-iosv-pour-gns3)
+		- [2.1.1. Routeurs](#211-routeurs)
+		- [2.1.2 Commutateurs](#212-commutateurs)
 	- [2.2. Configurer la station de contrôle](#22-configurer-la-station-de-contrle)
 	- [2.3. Cloner le dépôt](#23-cloner-le-dpt)
 	- [2.5. Examiner les paramètres de configuration de Ansible](#25-examiner-les-paramtres-de-configuration-de-ansible)
@@ -12,8 +14,18 @@
 	- [3.1. Topologie CCNA Gateway](#31-topologie-ccna-gateway)
 	- [3.2. Topologie CCNA Bipod](#32-topologie-ccna-bipod)
 	- [3.3. Topologie CCNA Tripod](#33-topologie-ccna-tripod)
+		- [3.3.1. Topologie logique](#331-topologie-logique)
+		- [3.3.2. Brève description](#332-brve-description)
 	- [3.4. Topologie variante Router on a Stick](#34-topologie-variante-router-on-a-stick)
 	- [3.5. Topologie CCNA Switchblock](#35-topologie-ccna-switchblock)
+		- [3.5.1. Topologie avec redondance de passerelle HSRP](#351-topologie-avec-redondance-de-passerelle-hsrp)
+		- [3.5.2. VLANs](#352-vlans)
+		- [3.5.3. Ports Etherchannel et Trunk VLANs](#353-ports-etherchannel-et-trunk-vlans)
+		- [3.5.4. Spanning-Tree](#354-spanning-tree)
+		- [3.5.5. Plan d'adressage](#355-plan-dadressage)
+		- [3.5.6. HSRP](#356-hsrp)
+		- [3.5.7. Ressources requises](#357-ressources-requises)
+		- [3.5.8. Explication](#358-explication)
 	- [3.6. Toplogie CCNA Tripod et Switchblock](#36-toplogie-ccna-tripod-et-switchblock)
 	- [3.7. Topologie Ansible Networking Workshop](#37-topologie-ansible-networking-workshop)
 - [4. Utilisation](#4-utilisation)
@@ -22,6 +34,9 @@
 	- [4.3. Diagnostic de base](#43-diagnostic-de-base)
 - [5. Notes](#5-notes)
 	- [5.1. Comment rendre une tâche ios_config idempotente ?](#51-comment-rendre-une-tche-iosconfig-idempotente-)
+	- [Phase I](#phase-i)
+	- [Phase II](#phase-ii)
+	- [Phase III](#phase-iii)
 
 <!-- /TOC -->
 
@@ -58,7 +73,20 @@ Expliqué rapidement :
 * Le protocole de routage est contrôlé à partir du livre de jeu avec les variables `ipv4.routing` et `ipv6.routing`. Il est conseillé d'en activer un seul pour une topologie. Des cas de "route redistribution" devraient être envisagés.
 * Les livres de jeu exécutent les rôles dans un ordre logique ~~mais chacun trouve des dépendances de rôles définis~~.
 
-## 2. Mise en place
+## 2. Mise en place du lab
+
+Un livre de jeu intitulé [`lab_setup.yml`](https://github.com/goffinet/ansible-ccna-lab/blob/master/playbooks/lab_setup.yml) monte automatiquement les topologies qui sont présentées plus bas sur un serveur GNS3. Il exploite [gns3fy](https://davidban77.github.io/gns3fy/), la collection Ansible [davidban77.gns3](https://galaxy.ansible.com/davidban77/gns3) et l'exemple [Collection of Ansible + GNS3 project examples](https://github.com/davidban77/demo-ansible-gns3) de [David Flores (aka: netpanda)](https://davidban77.hashnode.dev/).  Les variables sont situées dans le dossier [`playbooks/vars/gns3_vars.yml`](https://github.com/goffinet/ansible-ccna-lab/blob/master/playbooks/vars/gns3_vars.yml) et des paquets python doivent être installé (voir fichier [requirements.txt](https://github.com/goffinet/ansible-ccna-lab/blob/master/requirements.txt)).
+
+```bash
+pip install netaddr
+pip install pexpect
+pip install gns3fy
+mazer install davidban77.gns3
+cd playbooks
+ansible-playbook lab_setup.yml -e "project_name=tripod_switchblock_lab"
+```
+
+Le livre de jeu installe la topologie CCNA et configure la gestion des routeurs et des commutateurs.
 
 Note : Pour les utilisateurs de la topologie GNS3 fournie en classe, sur certains voire sur tous les périphériques Cisco, il sera peut-être nécessaire de regénérer les clés RSA :
 
@@ -71,19 +99,21 @@ wr
 
 ```
 
-La mise place de la solution demande quelques étapes décrites plus bas.
+La mise place finale de la solution demande probablement d'être d'accomplir les quelques étapes décrites dans les points suivants.
 
 ### 2.1. Préparer des images Cisco IOSv pour GNS3
+
+Si vous avez utilisé le livre de jeu [`lab_setup.yml`](https://github.com/goffinet/ansible-ccna-lab/blob/master/playbooks/lab_setup.yml), cette étape est purement informative.
 
 Les livres de jeu sont testés avec [GNS3 Server](https://cisco.goffinet.org/ccna/cisco-ios-cli/installer-et-configurer-gns3/) et Qemu/KVM sous Linux.
 
 Il y a trois types de périphériques utilisés dans les topologies.
 
-Périphériques | Images Qemu/KVM | Commentaire
----|---|---
-Routeur Cisco IOSv 15.6(2)T | `vios-adventerprisek9-m.vmdk.SPA.156-2.T` avec `IOSv_startup_config.img`  | [VIRL 1.3.296 (Aug. 2017 Release)](https://learningnetwork.cisco.com/docs/DOC-33132)
-Commutateur Cisco IOSv L2/L3  | `vios_l2-adventerprisek9-m.03.2017.qcow2`  | [VIRL 1.3.296 (Aug. 2017 Release)](https://learningnetwork.cisco.com/docs/DOC-33132)
-Poste de travail L2 à L7, Station de contrôle  | [`centos7.qcow2`](http://get.goffinet.org/kvm/centos7.qcow2)  |  Le [fichier d'appliance GNS3](http://get.goffinet.org/gns3a/centos7.gns3a)
+| Périphériques | Images Qemu/KVM | Commentaire |
+| --- | --- | --- |
+| Routeur Cisco IOSv | `vios-adventerprisek9-m.vmdk.SPA.156-2.T` ou `vios-adventerprisek9-m.vmdk.SPA.157-3.M3` avec `IOSv_startup_config.img`  | [VIRL](https://learningnetworkstore.cisco.com/virtual-internet-routing-lab-virl/cisco-personal-edition-pe-20-nodes-virl-20) |
+| Commutateur Cisco IOSv L2/L3  | `vios_l2-adventerprisek9-m.03.2017.qcow2` ou `vios_l2-adventerprisek9-m.SSA.high_iron_20180619.qcow2`  |  [VIRL](https://learningnetworkstore.cisco.com/virtual-internet-routing-lab-virl/cisco-personal-edition-pe-20-nodes-virl-20) |
+| Poste de travail L2 à L7, Station de contrôle  | [`centos7.qcow2`](http://get.goffinet.org/kvm/centos7.qcow2)  |  Le [fichier d'appliance GNS3](http://get.goffinet.org/gns3a/centos7.gns3a) |
 
 Les livres de jeu peuvent vérifier la nature du périphérique utilisé de type Cisco et de type routeur ou commutateur à partir de variables d'inventaire.
 
@@ -144,13 +174,17 @@ wr
 
 ### 2.2. Configurer la station de contrôle
 
+La station a besoin d'être configurée mannuellement.
+
 La station de contrôle connecte tous les périphériques en SSH.
 
 Le logiciel Ansible y est fraîchement installé (avec la libraire python netaddr) avec `pip` ou à partir de repos.
 
 La station de contrôle offre un service DHCP avec enregistrement dynamique des noms d'hôte dans un serveur DNS (dnsmasq).
 
-On trouve deux scripts de préparation d'une station de contrôle dans le dossier [tests/](tests/).
+Un serveur rsyslog écoute sur les ports TCP514 et UDP514.
+
+On trouve deux scripts de préparation d'une station de contrôle Centos et Ubuntu dans le dossier [tests/](https://github.com/goffinet/ansible-ccna-lab/blob/master/tests/).
 
 En Centos 7 :
 
@@ -187,8 +221,19 @@ echo "nameserver 127.0.0.1" > /etc/resolv.conf
 echo "nameserver 1.1.1.1" >> /etc/resolv.conf
 chattr +i /etc/resolv.conf
 systemctl enable dnsmasq
+sed -i 's/^#\$ModLoad imudp/$ModLoad imudp/g' /etc/rsyslog.conf
+sed -i 's/^#\$UDPServerRun 514/$UDPServerRun 514/g' /etc/rsyslog.conf
+sed -i 's/^#\$ModLoad imtcp/$ModLoad imtcp/g' /etc/rsyslog.conf
+sed -i 's/^#\$InputTCPServerRun 514/$InputTCPServerRun 514/g' /etc/rsyslog.conf
+systemctl restart rsyslog
 shutdown -r now
+```
 
+On peut le récupérer et l'exécuter comme ceci :
+
+```bash
+curl -s https://raw.githubusercontent.com/goffinet/ansible-ccna-lab/master/tests/centos-controller.sh -o setup.sh
+bash -x ./setup.sh
 ```
 
 En Ubuntu 18.04 :
@@ -232,7 +277,7 @@ systemctl enable dnsmasq
 
 ### 2.3. Cloner le dépôt
 
-Il est nécessaire de cloner le dépot sur la machine de contrôle.
+Il est nécessaire de cloner le dépot sur la machine de contrôle fraîchement configurée.
 
 ```bash
 git clone https://github.com/goffinet/ansible-ccna-lab
@@ -259,7 +304,7 @@ ansible-ccna-lab/playbooks/
 ├── tasks/       --> tâches spécifiques à utiliser avec les livres de jeu
 ├── templates/   --> modèles spécifiques à utiliser avec les livres de jeu
 ├── tripod.yml   --> livre de jeu de la topologie tripod
-└── vars         --> variables spécifiques à utiliser dans le livre de jeu
+└── vars         --> variables spécifiques à utiliser dans un livre de jeu
 ```
 
 Modèle de collection basé sur [https://github.com/bcoca/collection](https://github.com/bcoca/collection).
@@ -353,17 +398,17 @@ Trois périphériques IOSv interconnectés entre eux :
 * R2
 * R3
 
-Routeur | Interface | Adresse IPv4 | Adresses IPv6 | Description
---- | --- | --- | --- | ---
-R1 | G0/0 | `192.168.1.1/24` | `FE80::1`, `FD00:FD00:FD00:1::1/64` | LAN de R1
-R1 | G0/2 | `192.168.225.1/24` | `FE80::1` | Connexion vers R2
-R1 | G0/3 | `192.168.226.1/24` | `FE80::1` | Connexion vers R3
-R2 | G0/0 | `192.168.33.1/24` | `FE80::2`, `FD00:FD00:FD00:2::1/64` | LAN de R2
-R2 | G0/1 | `192.168.225.2/24` | `FE80::2` | Connexion vers R1
-R2 | G0/3 | `192.168.227.1/24` | `FE80::2` | Connexion vers R3
-R3 | G0/0 | `192.168.65.1/24` | `FE80::3`, `FD00:FD00:FD00:3::1/64` | LAN de R3
-R3 | G0/1 | `192.168.226.2/24` | `FE80::3` | Connexion vers R1
-R3 | G0/2 | `192.168.227.2/24` | `FE80::3` | Connexion vers R2
+| Routeur | Interface | Adresse IPv4 | Adresses IPv6 | Description |
+| --- | --- | --- | --- | --- |
+| R1 | G0/0 | `192.168.1.1/24` | `FE80::1`, `FD00:FD00:FD00:1::1/64` | LAN de R1 |
+| R1 | G0/2 | `192.168.225.1/24` | `FE80::1` | Connexion vers R2 |
+| R1 | G0/3 | `192.168.226.1/24` | `FE80::1` | Connexion vers R3 |
+| R2 | G0/0 | `192.168.33.1/24` | `FE80::2`, `FD00:FD00:FD00:2::1/64` | LAN de R2 |
+| R2 | G0/1 | `192.168.225.2/24` | `FE80::2` | Connexion vers R1 |
+| R2 | G0/3 | `192.168.227.1/24` | `FE80::2` | Connexion vers R3 |
+| R3 | G0/0 | `192.168.65.1/24` | `FE80::3`, `FD00:FD00:FD00:3::1/64` | LAN de R3 |
+| R3 | G0/1 | `192.168.226.2/24` | `FE80::3` | Connexion vers R1 |
+| R3 | G0/2 | `192.168.227.2/24` | `FE80::3` | Connexion vers R2 |
 
 * On activera un service DHCP sur chaque réseau local (`GigabitEthernet0/0`).
 * Le routeur R1 connecte l'Internet. Le service NAT est activé.
@@ -409,56 +454,56 @@ Références :
 
 #### 3.5.2. VLANs
 
-VLAN | Ports Access (AS1 et AS2) | plage d'adresse | Passerelle par défaut
---- | --- | --- | ---
-VLAN 10 | `g2/0` | `172.16.10.0/24` | **`172.16.10.254`**
-VLAN 20 | `g2/1` | `172.16.20.0/24` | **`172.16.10.254`**
-VLAN 30 | `g2/2` | `172.16.30.0/24` | **`172.16.10.254`**
-VLAN 40 | `g2/3` | `172.16.40.0/24` | **`172.16.10.254`**
-VLAN 99 | VLAN natif | Management
+| VLAN | Ports Access (AS1 et AS2) | plage d'adresse | Passerelle par défaut |
+| --- | --- | --- | --- |
+| VLAN 10 | `g2/0` | `172.16.10.0/24` | **`172.16.10.254`** |
+| VLAN 20 | `g2/1` | `172.16.20.0/24` | **`172.16.10.254`** |
+| VLAN 30 | `g2/2` | `172.16.30.0/24` | **`172.16.10.254`** |
+| VLAN 40 | `g2/3` | `172.16.40.0/24` | **`172.16.10.254`** |
+| VLAN 99 | VLAN natif | Management
 
 #### 3.5.3. Ports Etherchannel et Trunk VLANs
 
-PortChannel | ports physiques | Commutateurs
---- | --- | ---
-po1 | `g0/0`,`g1/0` | AS1 - DS1
-po2 | `g0/1`,`g1/1` | AS1 - DS2
-po3 | `g0/2`,`g1/2` | DS1 - DS2
-po4 | `g0/0`,`g1/0` | AS2 - DS2
-po5 | `g0/1`,`g1/1` | AS2 - DS1
+| PortChannel | ports physiques | Commutateurs |
+| --- | --- | ---
+| po1 | `g0/0`,`g1/0` | AS1 - DS1 |
+| po2 | `g0/1`,`g1/1` | AS1 - DS2 |
+| po3 | `g0/2`,`g1/2` | DS1 - DS2 |
+| po4 | `g0/0`,`g1/0` | AS2 - DS2 |
+| po5 | `g0/1`,`g1/1` | AS2 - DS1 |
 
 #### 3.5.4. Spanning-Tree
 
-VLANs | DS1 | DS2
---- | --- | ---
-VLANs 1,10,30,99 | `root primary` | `root secondary`
-VLANs 20,40 | `root secondary` | `root primary`
+| VLANs | DS1 | DS2 |
+| --- | --- | --- |
+| VLANs 1,10,30,99 | `root primary` | `root secondary` |
+| VLANs 20,40 | `root secondary` | `root primary` |
 
 #### 3.5.5. Plan d'adressage
 
-Commutateur | Interface | Adresse IPv4 | Adresse(s) IPv6
---- | --- | --- | ---
-DS1 | VLAN10 | `172.16.10.252/24` | `FD00:1AB:10::1/64`
-DS1 | VLAN20 | `172.16.20.252/24` | `FD00:1AB:20::1/64`
-DS1 | VLAN30 | `172.16.30.252/24` | `FD00:1AB:30::1/64`
-DS1 | VLAN40 | `172.16.40.252/24` | `FD00:1AB:40::1/64`
-DS2 | VLAN10 | `172.16.10.253/24` | `FD00:1AB:10::2/64`
-DS2 | VLAN20 | `172.16.20.253/24` | `FD00:1AB:20::2/64`
-DS2 | VLAN30 | `172.16.30.253/24` | `FD00:1AB:30::2/64`
-DS2 | VLAN40 | `172.16.40.253/24` | `FD00:1AB:40::2/64`
+| Commutateur | Interface | Adresse IPv4 | Adresse(s) IPv6 |
+| --- | --- | --- | --- |
+| DS1 | VLAN10 | `172.16.10.252/24` | `FD00:1AB:10::1/64` |
+| DS1 | VLAN20 | `172.16.20.252/24` | `FD00:1AB:20::1/64` |
+| DS1 | VLAN30 | `172.16.30.252/24` | `FD00:1AB:30::1/64` |
+| DS1 | VLAN40 | `172.16.40.252/24` | `FD00:1AB:40::1/64` |
+| DS2 | VLAN10 | `172.16.10.253/24` | `FD00:1AB:10::2/64` |
+| DS2 | VLAN20 | `172.16.20.253/24` | `FD00:1AB:20::2/64` |
+| DS2 | VLAN30 | `172.16.30.253/24` | `FD00:1AB:30::2/64` |
+| DS2 | VLAN40 | `172.16.40.253/24` | `FD00:1AB:40::2/64` |
 
 #### 3.5.6. HSRP
 
-Commutateur | Interface | Adresse IPv4 virtuelle | Adresse IPv6 virtuelle | Group | Priorité
---- | --- | --- | --- | --- | ---
-DS1 | VLAN10 | `172.16.10.254/24` | `FE80::d:1/64` | 10/16 | 150, prempt
-DS1 | VLAN20 | `172.16.20.254/24` | `FE80::d:1/64` | 20/26 | default
-DS1 | VLAN30 | `172.16.30.254/24` | `FE80::d:1/64` | 30/36 | 150, prempt
-DS1 | VLAN40 | `172.16.40.254/24` | `FE80::d:1/64` | 40/46 | default
-DS2 | VLAN10 | `172.16.10.254/24` | `FE80::d:2/64` | 10/16 | default
-DS2 | VLAN20 | `172.16.20.254/24` | `FE80::d:2/64` | 20/26 | 150, prempt
-DS2 | VLAN30 | `172.16.30.254/24` | `FE80::d:2/64` | 30/36 | default
-DS2 | VLAN40 | `172.16.40.254/24` | `FE80::d:2/64` | 40/46 | 150, prempt
+| Commutateur | Interface | Adresse IPv4 virtuelle | Adresse IPv6 virtuelle | Group | Priorité |
+| --- | --- | --- | --- | --- | --- |
+| DS1 | VLAN10 | `172.16.10.254/24` | `FE80::d:1/64` | 10/16 | 150, prempt |
+| DS1 | VLAN20 | `172.16.20.254/24` | `FE80::d:1/64` | 20/26 | default |
+| DS1 | VLAN30 | `172.16.30.254/24` | `FE80::d:1/64` | 30/36 | 150, prempt |
+| DS1 | VLAN40 | `172.16.40.254/24` | `FE80::d:1/64` | 40/46 | default |
+| DS2 | VLAN10 | `172.16.10.254/24` | `FE80::d:2/64` | 10/16 | default |
+| DS2 | VLAN20 | `172.16.20.254/24` | `FE80::d:2/64` | 20/26 | 150, prempt |
+| DS2 | VLAN30 | `172.16.30.254/24` | `FE80::d:2/64` | 30/36 | default |
+| DS2 | VLAN40 | `172.16.40.254/24` | `FE80::d:2/64` | 40/46 | 150, prempt |
 
 #### 3.5.7. Ressources requises
 
@@ -505,7 +550,7 @@ ansible all -c network_cli -m ping
 
 L'inventaire par défaut est défini comme suit (fichier `inventories/ccna/hosts`) et correspond à la topologie ccna (tripod + switchblock) :
 
-```ini
+```
 [all:vars]
 #method=modules # modules or templating not yet implemented
 
@@ -543,12 +588,11 @@ ansible_port=22
 ansible_connection=network_cli
 ansible_network_os=ios
 
-
 ```
 
 Les configurations sont définies en YAML dans les fichiers de variables d'inventaire (fichier au nom du groupe dans le dossier `inventories/ccna/group_vars` et fichier au nom de l'hôte dans le dossier `inventories/ccna/host_vars`).
 
-```raw
+```
 inventories/ccna
 ├── group_vars
 │   ├── all       --> protocoles de routage ipv4/ipv6
@@ -592,6 +636,8 @@ ansible-playbook ccna.yml -v
 
 _à améliorer_
 
+<!--
+
 Diagnostic du routage sur R1 :
 
 ```bash
@@ -607,6 +653,8 @@ ansible core -m ios_command -a "commands='traceroute 192.168.1.1 source GigabitE
 ```bash
 ansible core -m ios_command -a "commands='traceroute 172.16.10.1 source GigabitEthernet0/0 probe 1 numeric'"
 ```
+
+-->
 
 ## 5. Notes
 
@@ -638,7 +686,7 @@ Combinée avec l'option `before`, on applique des commandes avant et après que 
 
 Aussi, l'argument `defaults` qu'il sera nécessaire d'activer avec la valeur `yes` spécifie s'il faut ou non collecter toutes les valeurs par défaut lors de l'exécution de la configuration du périphérique distant. Lorsqu'il est activé, le module obtient la configuration actuelle en lançant la commande `show running-config all`. En effet, des commandes comme `no shutdown` ou encore `ipv6 enable` ou encore `ipv4 routing` et beaucoup n'apparaissent pas avec la commande `show running-config`.
 
-#### Phase I
+### Phase I
 
 Tendre vers des rôles **idempotents** avec des [modules standards](https://docs.ansible.com/ansible/latest/modules/list_of_network_modules.html#ios).
 
@@ -660,30 +708,34 @@ Rôles à améliorer :
 
 Rôles à créer :
 
+* [ ] RDNSS
 * [ ] **cdp** / **lldp**
 * [ ] **syslog**
 * [ ] **ntp** (+ auth)
 * [ ] **snmpv2c** / **snmpv3**
 * [ ] **zbf**
 * [ ] IPv6 Addresses Management :
-  * [ ] ra-config fine tuning
-  * [ ] dhcpv6 stateless
-  * [ ] dhcpv6 stateful
-* [ ] ppp / chap / pap / pppoe
+    * [ ] ra-config fine tuning
+    * [ ] dhcpv6 stateless
+    * [ ] dhcpv6 stateful
 * [ ] gre ipv4 / gre ipv6
 * [ ] **security hardening**
-* [ ] IPv6 default route poisoning benefits to FD00::/8 as best route ?
+* [ ] IPv6 default route poisoning benefits to `FD00::/8` as best route ?
 * [ ] ~~dependencies~~ ? handlers ?
+* [ ] ppp / chap / pap / pppoe
+* [ ] bgp / vrf / ip-mpls
+* [ ] dhcp snooping
+* [ ] dai
 
-#### Phase II
+### Phase II
 
-_tasks by jinja2 templating_
+_tasks by jinja2 templating_, "boilerplate config"
 
 Rôles "immutables" qui agissent sur un modèle de fichier de configuration basé sur des choix d'infrastructure (des variables) et qui sera poussé sur les périphériques par la procédure `config replace flash:XXX force`.
 
 "Immutable" roles by templating one config file based on infrastructure choices (variables) and pushed by `config replace flash:XXX force` procedure to the devices.
 
-#### Phase III
+### Phase III
 
 Reporting ([role ansible-network.cisco_ios](https://galaxy.ansible.com/ansible-network/cisco_ios)) :
 
