@@ -117,6 +117,8 @@ Il y a trois types de périphériques utilisés dans les topologies.
 
 Les livres de jeu peuvent vérifier la nature du périphérique utilisé de type Cisco et de type routeur ou commutateur à partir de variables d'inventaire.
 
+Il sera nécessaire d'activer SSH sur les périphériques à des fins de gestionn par Ansible. On trouvera un modèle jinja2 dans le fichier [`playbooks/templates/iosv_default_config.j2`](ttps://github.com/goffinet/ansible-ccna-lab/blob/master/playbooks/templates/iosv_default_config.j2).
+
 #### 2.1.1. Routeurs
 
 On utilise des images IOSv `vios-adventerprisek9-m.vmdk.SPA.156-2.T` pour les routeurs L3 avec 8 interfaces GigabitEthernet.
