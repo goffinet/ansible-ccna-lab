@@ -1,0 +1,104 @@
+- hosts: localhost
+  gather_facts: False
+  vars_files:
+    - vars/gns3_vars.yml
+  collections:
+    - davidban77.gns3
+  tasks:
+    - name: "Remove network topology"
+      gns3_project:
+        url: "{{ gns3_url }}"
+        project_name: "{{ project_name }}"
+        state: absent
+      tags:
+        - remove
+    - name: "Create network topology"
+      gns3_project:
+        url: "{{ gns3_url }}"
+        project_name: "{{ project_name }}"
+        state: present
+        nodes_spec: "{{ gns3_nodes_spec }}"
+        links_spec: "{{ gns3_links_spec }}"
+      tags:
+        - create
+    - name: "Start nodes"
+      gns3_project:
+        url: "{{ gns3_url }}"
+        project_name: "{{ project_name }}"
+        state: opened
+        nodes_state: started
+#        nodes_strategy: one_by_one
+      tags:
+        - start
+    - name: Get the nodes facts
+      gns3_nodes_inventory:
+        url: "{{ gns3_url }}"
+        project_name: "{{ project_name }}"
+      register: nodes_inventory
+      tags:
+        - start
+#    - debug: var=nodes_inventory
+
+- hosts: all
+  gather_facts: False
+  vars:
+    ansible_connection: local
+    ansible_python_interpreter: "{{ansible_playbook_python}}"
+  vars_files:
+    - vars/gns3_vars.yml
+  collections:
+    - davidban77.gns3
+  tasks:
+    - name: Retrieving nodes inventory information
+      set_fact:
+        nodes_inventory: "{{ hostvars['localhost']['nodes_inventory']['nodes_inventory'] }}"
+    - name: Generate boilerplate config files
+      block:
+        - name: Create build folder
+          file:
+            path: "configs/build"
+            state: directory
+        - name: Generate config
+          template:
+            src: templates/iosv_default_config.j2
+            dest: "configs/build/{{ inventory_hostname }}-iosv.conf"
+#        - debug: var=hostvars
+    - name: Deploy boilerplate configuration
+      block:
+        - name: Generate configuration variable
+          set_fact:
+            boilerplate_config: "{{ lookup('template', 'templates/iosv_default_config.j2') }}"
+        - name: "Push config on iosv_l3"
+          when: ansible_network_os == "ios" and image_style == "iosv_l3"
+          gns3_telnet_console:
+            remote_addr: "{{ nodes_inventory[inventory_hostname]['server'] }}"
+            port: "{{ nodes_inventory[inventory_hostname]['console_port'] }}"
+            send_newline: yes
+            command: "{{ boilerplate_config.splitlines() }}"
+            pause: 1
+            timeout:
+              general: 180
+              pre_login: 60
+              post_login: 60
+              login_prompt: 30
+              config_dialog: 30
+        - name: "Push config on iosv_l2"
+          when: ansible_network_os == "ios" and image_style == "iosv_l2"
+          gns3_telnet_console:
+            remote_addr: "{{ nodes_inventory[inventory_hostname]['server'] }}"
+            port: "{{ nodes_inventory[inventory_hostname]['console_port'] }}"
+            send_newline: yes
+            login_prompt:
+              - ">"
+            user: ""
+            password: ""
+            prompts:
+              - "[#]"
+            command: "{{ boilerplate_config.splitlines() }}"
+            pause: 1
+            timeout:
+              general: 180
+              pre_login: 60
+              post_login: 60
+              login_prompt: 30
+              config_dialog: 30
