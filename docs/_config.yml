@@ -29,6 +29,8 @@ github_username:  goffinet
 github_repo: ansible-ccna-lab # the GitHub repo name for your project
 repository: goffinet/ansible-ccna-lab
 locale: "fr-FR"
+breadcrumbs: false # true, false (default)
+words_per_minute: 80
 # Build settings
 remote_theme: "mmistakes/minimal-mistakes"
 minimal_mistakes_skin    : "contrast" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
@@ -44,6 +46,47 @@ footer:
     - label: "GitLab"
       icon: "fab fa-fw fa-gitlab"
       # url:
+linkedin:
+  username               : fegoffinet
+twitter:
+  username               : fegoffinet
+og_image:
+social:
+  name: francois goffinet # If the user or organization name differs from the site's name
+  links: # An array of links to social media profiles
+    - "https://twitter.com/fegoffinet"
+    - "https://www.linkedin.com/in/fegoffinet"
+analytics:
+  provider: # false (default), "google", "google-universal", "custom"
+  google:
+    tracking_id: #UA-xxxxxxxx-x
+    anonymize_ip: # true, false (default)
+# Conversion
+markdown: kramdown
+highlighter: rouge
+lsi: false
+excerpt_separator: "\n\n"
+incremental: false
+# Markdown Processing
+kramdown:
+  input: GFM
+  hard_wrap: false
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..4
+  smart_quotes: lsquo,rsquo,ldquo,rdquo
+  enable_coderay: false
+# Sass/SCSS
+sass:
+  sass_dir: _sass
+  style: compressed # http://sass-lang.com/documentation/file.SASS_REFERENCE.html#output_style
+# Outputting
+permalink: /:categories/:title/
+paginate: 12 # amount of posts to show
+paginate_path: /page:num/
+timezone: Europe/Paris # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+
 defaults:
   - scope:
       path: ""
@@ -74,7 +117,8 @@ jekyll-archives:
   permalinks:
     category: /categories/:name/
     tag: /tags/:name/
-
+extlinks:
+  attributes: {rel: nofollow, target: _blank}
 plugins:
   - jekyll-feed
   - jekyll-seo-tag

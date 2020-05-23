@@ -11,8 +11,6 @@ menu1:
     url: /gestion-ansible/
   - title: "3. La mise en place du lab"
     url: /mise-en-place-lab/
-  - title: "3. La mise en place du lab"
-    url: /mise-en-place-lab/
   - title: "4. Les topologies"
     url: /topologies/
     children:
