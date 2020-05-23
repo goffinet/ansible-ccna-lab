@@ -2,17 +2,20 @@
 layout: single
 title: Projet Ansible CCNA Lab
 permalink: /
-description: On trouvera ici des livres de jeu Ansible inspirés des topologies et des sujets du Cisco CCNA (et plus) pour GNS3 (Cisco IOSv).
+description: "On trouvera ici des livres de jeu Ansible inspirés des topologies et des sujets du Cisco CCNA (et plus) pour GNS3 (Cisco IOSv). Le projet permet de créer des topologies avec GNS3, de les approvisionner et, ensuite, de les gérer avec Ansible avec pour seul objet du code reproductible et manipulable à l'envi."
 sidebar:
   nav: "menu1"
 ---
 
-On trouvera ici des livres de jeu Ansible inspirés des topologies et des sujets du Cisco CCNA (et plus) pour GNS3 (Cisco IOSv).
+## Description
 
-### Objectifs
+On trouvera ici des livres de jeu Ansible inspirés des topologies et des sujets du Cisco CCNA (et plus) pour GNS3 (Cisco IOSv). Le projet permet de créer des topologies avec GNS3, de les approvisionner et, ensuite, de les gérer avec Ansible avec pour seul objet du code reproductible et manipulable à l'envi.
 
-Leur but est uniquement pédagogique.
+Dans les points suivants nous détaillerons :
 
-Il s'agit de lier les compétences de gestion du réseau du CCNA avec un outil IaC ("Infrastructure as Code") de gestion des configurations ("Configuration Management") comme Ansible et un gestionnaire de source ("Source Control Management") comme Git/Github.
-
-Il s'agit aussi d'avoir sous la main un outil souple pour créer et gérer des scénarios de labs qui demandent une préconfiguration ou des changements de configuration (afin de créer des erreurs à corriger manuellement par exemple).
+- Les objectifs du projet
+- La gestion du réseau avec Ansible
+- La mise en place du lab sous GNS3
+- Les topologies
+- L'utilisation des livres de jeu
+- Des notes et un roadmap du projet

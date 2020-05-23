@@ -32,7 +32,26 @@ locale: "fr-FR"
 # Build settings
 remote_theme: "mmistakes/minimal-mistakes"
 minimal_mistakes_skin    : "air" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
-
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: true
+      share: true
+      related: true
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: single
+      read_time: true
+      comments: true
+      share: true
+      related: true
 # Site Footer
 footer:
   links:

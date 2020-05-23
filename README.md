@@ -348,6 +348,8 @@ Les topologies réseau développées sont décrites dans différents inventaires
 
 Un seul routeur Cisco qui connecte l'Internet et qui offre des services au LAN comme DHCP et RDNSS.
 
+![](docs/assets/images/gateway_lab.png)
+
 Références :
 
 * [Lab passerelle Internet](https://cisco.goffinet.org/ccna/services-infrastructure/lab-passerelle-internet/)
@@ -371,9 +373,13 @@ Références :
 
 Diagramme : Topologie CCNA Bipod
 
+![](docs/assets/images/bipod_lab.png)
+
 ### 4.3. Topologie CCNA Tripod
 
 Cette topologie maillée à trois routeurs peut être désignée par "tripod". Elle est la couche "Core" de la topologie CCNA complète.
+
+![](docs/assets/images/tripod_lab.png)
 
 #### 4.3.1. Topologie logique
 
@@ -422,6 +428,8 @@ Variante de la topologie Tripod en utilisant un Trunk Vlan entre R1 et SW0 ainsi
 
 Diagramme : Topologie variante Router on a Stick
 
+![](docs/assets/images/router_on_a_stick_lab.png)
+
 Références :
 
 * [Lab VLAN de base](https://cisco.goffinet.org/ccna/vlans/lab-vlan-base-cisco-ios/)
@@ -429,6 +437,8 @@ Références :
 ### 4.5. Topologie CCNA Switchblock
 
 Cette seconde topologie "switchblock" met en oeuvre des _commutateurs_. Cette topologie est plus complexe et se connecte à la topologie "tripod". Elle met en oeuvre les couches "distribution" et "access".
+
+![](docs/assets/images/switchblock_lab.png)
 
 Références :
 
@@ -439,7 +449,6 @@ Références :
 #### 4.5.1. Topologie avec redondance de passerelle HSRP
 
 ![Topologie avec redondance de passerelle HSRP](https://www.lucidchart.com/publicSegments/view/84f170f5-af2b-44c1-8f6d-d169399dbba2/image.png)
-
 
 #### 4.5.2. VLANs
 
@@ -513,11 +522,21 @@ Cette topologie interconnecte les topologies "tripod" et "switchblock".
 
 ![](https://www.lucidchart.com/publicSegments/view/aacc6247-aa9a-44b2-a1ba-43ccb81deab7/image.png)
 
+Avec le contrôleur :
+
+![](docs/assets/images/ccna_lab_control.png)
+
 ### 4.7. Topologie Ansible Networking Workshop
 
 Cette topologie s'utilise dans le cadre de l'exercice [ANSIBLE RÉSEAU](https://iac.goffinet.org/ansible-network/) avec le projet [Ansible Networking Workshop Files](https://github.com/goffinet/networking-workshop).
 
+<!--
+
 ![Ansible Networking Workshop](https://github.com/network-automation/linklight/raw/master/images/network_diagram.png)
+
+-->
+
+![](docs/assets/images/networking-workshop_lab.png)
 
 ## 5. L'utilisation des livres de jeu
 
