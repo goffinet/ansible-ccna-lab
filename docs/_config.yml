@@ -47,7 +47,7 @@ footer:
 defaults:
   - scope:
       path: ""
-      type: pages
+      type: posts
     values:
       layout: single
       read_time: true
