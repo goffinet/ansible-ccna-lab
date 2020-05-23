@@ -172,13 +172,19 @@ curl -s https://raw.githubusercontent.com/goffinet/ansible-ccna-lab/master/tests
 bash -x ./setup.sh
 ```
 
-Si la version libre de Ansible Tower (Ansible AWX) vous intéresse, vous pouvez l'installer via ce script (4Go RAM et 2 vcpus) :
+Si la version libre de Ansible Tower (Ansible AWX) vous intéresse, vous pouvez l'installer via ce script (4Go RAM et 2 vcpus) sur un station Ubuntu :
+
+```bash
+curl -s https://raw.githubusercontent.com/goffinet/ansible-ccna-lab/master/tests/ubuntu-controller.sh -o setup.sh
+bash -x ./setup.sh
+```
+
+Et puis :
 
 ```bash
 curl -s https://raw.githubusercontent.com/goffinet/ansible-ccna-lab/master/tests/awx-setup.sh -o awx-setup.sh
 bash -x ./awx-setup.sh
 ```
-
 
 ### 3.3. Préparation des images Cisco IOSv pour GNS3
 
