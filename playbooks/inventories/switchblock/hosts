@@ -19,6 +19,10 @@ blocks
 [cisco:children]
 blocks
 
+[blocks:vars]
+mgmt_interface=GigabitEthernet3/3
+image_style=iosv_l2
+
 [cisco:vars]
 ansible_user=root
 ansible_ssh_pass=testtest

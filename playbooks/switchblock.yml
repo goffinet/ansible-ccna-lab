@@ -10,10 +10,12 @@
     - role: ios_spanning-tree
     - role: ios_ipv4
     - role: ios_ipv6
+    - role: ios_write
 - hosts: access
   gather_facts: False
   roles:
     - role: ios_no-ipv4-routing
+    - role: ios_write
 - hosts: distribution
   gather_facts: False
   roles:
@@ -31,7 +33,4 @@
         - '"eigrp" in ipv6.routing'
     - role: ios_recursive-dns-server
     - role: ios_dhcp-server
-- hosts: blocks
-  gather_facts: False
-  roles:
     - role: ios_write

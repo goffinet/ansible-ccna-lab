@@ -1,0 +1,90 @@
+gns3_url: "http://172.16.253.1"
+gns3_lab_user: root
+gns3_lab_pass: testtest
+project_name: "switchblock_lab"
+gns3_nodes_spec:
+  - name: "controller"
+    template: "controller"
+    x: -350
+    y: 150
+  - name: "DS1"
+    template: "Cisco IOSvL2 15.2.1"
+    x: -100
+    y: 45
+  - name: "DS2"
+    template: "Cisco IOSvL2 15.2.1"
+    x: 100
+    y: 45
+  - name: "AS1"
+    template: "Cisco IOSvL2 15.2.1"
+    x: -100
+    y: 200
+  - name: "AS2"
+    template: "Cisco IOSvL2 15.2.1"
+    x: 100
+    y: 200
+  - name: "PC110"
+    template: "VPCS"
+    x: -200
+    y: 350
+  - name: "PC120"
+    template: "VPCS"
+    x: -150
+    y: 350
+  - name: "PC130"
+    template: "VPCS"
+    x: -100
+    y: 350
+  - name: "PC140"
+    template: "VPCS"
+    x: -50
+    y: 350
+  - name: "PC210"
+    template: "VPCS"
+    x: 50
+    y: 350
+  - name: "PC220"
+    template: "VPCS"
+    x: 100
+    y: 350
+  - name: "PC230"
+    template: "VPCS"
+    x: 150
+    y: 350
+  - name: "PC240"
+    template: "VPCS"
+    x: 200
+    y: 350
+  - name: "ctrl0"
+    template: "Ethernet switch"
+    x: -260
+    y: 165
+  - name: "nat1"
+    template: "NAT"
+    x: -550
+    y: 150
+gns3_links_spec:
+  - ["DS1", "Gi0/0", "AS1", "Gi0/0"]
+  - ["DS1", "Gi1/0", "AS1", "Gi1/0"]
+  - ["DS1", "Gi0/1", "AS2", "Gi0/1"]
+  - ["DS1", "Gi1/1", "AS2", "Gi1/1"]
+  - ["DS2", "Gi0/0", "AS2", "Gi0/0"]
+  - ["DS2", "Gi1/0", "AS2", "Gi1/0"]
+  - ["DS2", "Gi0/1", "AS1", "Gi0/1"]
+  - ["DS2", "Gi1/1", "AS1", "Gi1/1"]
+  - ["DS1", "Gi0/2", "DS2", "Gi0/2"]
+  - ["DS1", "Gi1/2", "DS2", "Gi1/2"]
+  - ["AS1", "Gi2/0", "PC110", "Ethernet0"]
+  - ["AS1", "Gi2/1", "PC120", "Ethernet0"]
+  - ["AS1", "Gi2/2", "PC130", "Ethernet0"]
+  - ["AS1", "Gi2/3", "PC140", "Ethernet0"]
+  - ["AS2", "Gi2/0", "PC210", "Ethernet0"]
+  - ["AS2", "Gi2/1", "PC220", "Ethernet0"]
+  - ["AS2", "Gi2/2", "PC230", "Ethernet0"]
+  - ["AS2", "Gi2/3", "PC240", "Ethernet0"]
+  - ["DS1", "Gi3/3", "ctrl0", "Ethernet1"]
+  - ["DS2", "Gi3/3", "ctrl0", "Ethernet2"]
+  - ["AS1", "Gi3/3", "ctrl0", "Ethernet3"]
+  - ["AS2", "Gi3/3", "ctrl0", "Ethernet4"]
+  - ["ctrl0", "Ethernet0", "controller", "Ethernet0"]
+  - ["controller", "Ethernet1", "nat1", "nat0"]

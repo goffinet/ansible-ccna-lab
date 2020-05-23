@@ -1,6 +1,6 @@
 ---
 # router_on_a_stick.yml
-- hosts: access
+- hosts: stick
   gather_facts: False
   roles:
     - role: ios_common

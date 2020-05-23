@@ -2,51 +2,60 @@
 
 <!-- TOC depthFrom:2 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
-- [1. Résumé](#1-rsum)
-- [2. Mise en place du lab](#2-mise-en-place-du-lab)
-	- [2.1. Préparer des images Cisco IOSv pour GNS3](#21-prparer-des-images-cisco-iosv-pour-gns3)
-		- [2.1.1. Routeurs](#211-routeurs)
-		- [2.1.2 Commutateurs](#212-commutateurs)
-	- [2.2. Configurer la station de contrôle](#22-configurer-la-station-de-contrle)
-	- [2.3. Cloner le dépôt](#23-cloner-le-dpt)
-	- [2.5. Examiner les paramètres de configuration de Ansible](#25-examiner-les-paramtres-de-configuration-de-ansible)
-- [3. Topologies](#3-topologies)
-	- [3.1. Topologie CCNA Gateway](#31-topologie-ccna-gateway)
-	- [3.2. Topologie CCNA Bipod](#32-topologie-ccna-bipod)
-	- [3.3. Topologie CCNA Tripod](#33-topologie-ccna-tripod)
-		- [3.3.1. Topologie logique](#331-topologie-logique)
-		- [3.3.2. Brève description](#332-brve-description)
-	- [3.4. Topologie variante Router on a Stick](#34-topologie-variante-router-on-a-stick)
-	- [3.5. Topologie CCNA Switchblock](#35-topologie-ccna-switchblock)
-		- [3.5.1. Topologie avec redondance de passerelle HSRP](#351-topologie-avec-redondance-de-passerelle-hsrp)
-		- [3.5.2. VLANs](#352-vlans)
-		- [3.5.3. Ports Etherchannel et Trunk VLANs](#353-ports-etherchannel-et-trunk-vlans)
-		- [3.5.4. Spanning-Tree](#354-spanning-tree)
-		- [3.5.5. Plan d'adressage](#355-plan-dadressage)
-		- [3.5.6. HSRP](#356-hsrp)
-		- [3.5.7. Ressources requises](#357-ressources-requises)
-		- [3.5.8. Explication](#358-explication)
-	- [3.6. Toplogie CCNA Tripod et Switchblock](#36-toplogie-ccna-tripod-et-switchblock)
-	- [3.7. Topologie Ansible Networking Workshop](#37-topologie-ansible-networking-workshop)
-- [4. Utilisation](#4-utilisation)
-	- [4.1. Inventaire et variables d'inventaire du livre de jeu ccna.yml](#41-inventaire-et-variables-dinventaire-du-livre-de-jeu-ccnayml)
-	- [4.2. Livres de jeu](#42-livres-de-jeu)
-	- [4.3. Diagnostic de base](#43-diagnostic-de-base)
-- [5. Notes](#5-notes)
-	- [5.1. Comment rendre une tâche ios_config idempotente ?](#51-comment-rendre-une-tche-iosconfig-idempotente-)
-	- [Phase I](#phase-i)
-	- [Phase II](#phase-ii)
-	- [Phase III](#phase-iii)
+- [1. Description du projet](#1-description-du-projet)
+- [2. Gestion avec Ansible](#2-gestion-avec-ansible)
+- [3. Mise en place du lab](#3-mise-en-place-du-lab)
+	- [3.2. Configuration de la station de contrôle](#32-configuration-de-la-station-de-contrle)
+	- [3.2. Préparation des images Cisco IOSv pour GNS3](#32-prparation-des-images-cisco-iosv-pour-gns3)
+		- [3.2.1. Les Routeurs IOSv](#321-les-routeurs-iosv)
+		- [3.2.2. Commutateurs IOSv](#322-commutateurs-iosv)
+	- [3.3. Récupérer le dépôt des livres de jeu Ansible](#33-rcuprer-le-dpt-des-livres-de-jeu-ansible)
+	- [3.4. Prise de connaissance des paramètres de configuration de Ansible](#34-prise-de-connaissance-des-paramtres-de-configuration-de-ansible)
+- [4. Les topologies](#4-les-topologies)
+	- [4.1. Topologie CCNA Gateway](#41-topologie-ccna-gateway)
+	- [4.2. Topologie CCNA Bipod](#42-topologie-ccna-bipod)
+	- [4.3. Topologie CCNA Tripod](#43-topologie-ccna-tripod)
+		- [4.3.1. Topologie logique](#431-topologie-logique)
+		- [4.3.2. Brève description](#432-brve-description)
+	- [4.4. Topologie variante Router on a Stick](#44-topologie-variante-router-on-a-stick)
+	- [4.5. Topologie CCNA Switchblock](#45-topologie-ccna-switchblock)
+		- [4.5.1. Topologie avec redondance de passerelle HSRP](#451-topologie-avec-redondance-de-passerelle-hsrp)
+		- [4.5.2. VLANs](#452-vlans)
+		- [4.5.3. Ports Etherchannel et Trunk VLANs](#453-ports-etherchannel-et-trunk-vlans)
+		- [4.5.4. Spanning-Tree](#454-spanning-tree)
+		- [4.5.5. Plan d'adressage](#455-plan-dadressage)
+		- [4.5.6. HSRP](#456-hsrp)
+		- [4.5.7. Ressources requises](#457-ressources-requises)
+		- [4.5.8. Explication](#458-explication)
+	- [4.6. Toplogie CCNA Tripod et Switchblock](#46-toplogie-ccna-tripod-et-switchblock)
+	- [4.7. Topologie Ansible Networking Workshop](#47-topologie-ansible-networking-workshop)
+- [5. Utilisation des livres de jeu](#5-utilisation-des-livres-de-jeu)
+	- [5.1. Inventaire et variables d'inventaire du livre de jeu ccna.yml](#51-inventaire-et-variables-dinventaire-du-livre-de-jeu-ccnayml)
+	- [5.2. Livres de jeu](#52-livres-de-jeu)
+	- [5.3. Les rôles invoqués](#53-les-rles-invoqus)
+	- [5.4. Diagnostic de base](#54-diagnostic-de-base)
+	- [5.5. Remettre à zéro les configurations.](#55-remettre-zro-les-configurations)
+- [6. Notes](#6-notes)
+	- [6.1. Comment rendre une tâche ios_config idempotente ?](#61-comment-rendre-une-tche-iosconfig-idempotente-)
+	- [6.2. Phase I](#62-phase-i)
+	- [6.3. Phase II](#63-phase-ii)
+	- [6.4. Phase III](#64-phase-iii)
 
 <!-- /TOC -->
 
-## 1. Résumé
+## 1. Description du projet
 
-On trouvera ici des livres de jeu Ansible inspirés des topologies et des sujets du Cisco CCNA (et plus) pour GNS3 (Cisco IOSv).
+On trouvera ici des livres de jeu Ansible inspirés des topologies et des sujets du Cisco CCNA (et plus) pour GNS3 (Cisco IOSv). Sa documentation devrait sous peu être disponible sur [https://goffinet.github.io/ansible-ccna-lab/](https://goffinet.github.io/ansible-ccna-lab/).
 
 Leur but est uniquement pédagogique visant à lier les compétences de gestion du réseau du CCNA avec un outil IaC ("Infrastructure as Code") de gestion des configurations ("Configuration Management") comme Ansible et un gestionnaire de source ("Source Control Management") comme Git/Github. Il s'agit aussi d'avoir sous la main un outil souple pour créer et gérer des scénarios de labs qui demandent une préconfiguration ou des changements de configuration (afin de créer des erreurs à corriger manuellement par exemple).
 
-Le projet est basé sur trois éléments : des livres de jeu qui peuvent en appeler d'autres nommés selon la **topologie** ; ces livres de jeu configurent des hôtes d'inventaire avec des tâches organisées en **rôles** ; les paramètres de la topologie sont configurés en tant que **variables d'inventaire selon un certain modèle de données**.
+Le projet permet de créer des topologies avec GNS3, de les approvisionner et ensuite de les gérer avec Ansible.
+
+On crée la topologie et ensuite on la gère à partir d'une station de contrôle. Pour installer GNS3 avec Ansible, on fera référence à un autre projet : [ansible-install-gns3-server](https://github.com/goffinet/ansible-install-gns3-server).
+
+## 2. Gestion avec Ansible
+
+Pour la gestion, le projet est basé sur trois éléments : des livres de jeu qui peuvent en appeler d'autres nommés selon la **topologie** ; ces livres de jeu configurent des hôtes d'inventaire avec des tâches organisées en **rôles** ; les paramètres de la topologie sont configurés en tant que **variables d'inventaire selon un certain modèle de données**.
 
 Les topologies sont organisées de la manière suivante :
 
@@ -73,20 +82,45 @@ Expliqué rapidement :
 * Le protocole de routage est contrôlé à partir du livre de jeu avec les variables `ipv4.routing` et `ipv6.routing`. Il est conseillé d'en activer un seul pour une topologie. Des cas de "route redistribution" devraient être envisagés.
 * Les livres de jeu exécutent les rôles dans un ordre logique ~~mais chacun trouve des dépendances de rôles définis~~.
 
-## 2. Mise en place du lab
+## 3. Mise en place du lab
 
-Un livre de jeu intitulé [`lab_setup.yml`](https://github.com/goffinet/ansible-ccna-lab/blob/master/playbooks/lab_setup.yml) monte automatiquement les topologies qui sont présentées plus bas sur un serveur GNS3. Il exploite [gns3fy](https://davidban77.github.io/gns3fy/), la collection Ansible [davidban77.gns3](https://galaxy.ansible.com/davidban77/gns3) et l'exemple [Collection of Ansible + GNS3 project examples](https://github.com/davidban77/demo-ansible-gns3) de [David Flores (aka: netpanda)](https://davidban77.hashnode.dev/).  Les variables sont situées dans le dossier [`playbooks/vars/gns3_vars.yml`](https://github.com/goffinet/ansible-ccna-lab/blob/master/playbooks/vars/gns3_vars.yml) et des paquets python doivent être installés (voir fichier [requirements.txt](https://github.com/goffinet/ansible-ccna-lab/blob/master/requirements.txt)).
+Un livre de jeu intitulé [`lab_setup.yml`](https://github.com/goffinet/ansible-ccna-lab/blob/master/playbooks/lab_setup.yml) monte automatiquement les topologies qui sont présentées plus bas sur un serveur GNS3. Il exploite [gns3fy](https://davidban77.github.io/gns3fy/), la collection Ansible [davidban77.gns3](https://galaxy.ansible.com/davidban77/gns3) et l'exemple [Collection of Ansible + GNS3 project examples](https://github.com/davidban77/demo-ansible-gns3) de [David Flores (aka: netpanda)](https://davidban77.hashnode.dev/). Les variables qui définissent les périphériques et leurs connexionssont situées dans le dossier [`playbooks/vars/`](https://github.com/goffinet/ansible-ccna-lab/blob/master/playbooks/vars/). Des dépendances python doivent être installées (voir fichier [requirements.txt](https://github.com/goffinet/ansible-ccna-lab/blob/master/requirements.txt)).
+
+On peut installer ces dépendances de la manière suivante :
 
 ```bash
 pip install netaddr
 pip install pexpect
 pip install gns3fy
 mazer install davidban77.gns3
-cd playbooks
-ansible-playbook lab_setup.yml -e "project_name=tripod_switchblock_lab"
 ```
 
-Le livre de jeu installe la topologie CCNA et configure la gestion des routeurs et des commutateurs.
+Le livre de jeu crée une topologie CCNA (par défaut) sur un serveur GNS3, configure la gestion des routeurs et des commutateurs, duplique une seule fois (par défaut) le projet de base et supprime ce dernier. Les projets dupliqués sont nommé selon cette nomenclature `date-topologie-nb` : `2020-05-23-ccna-1`.
+
+```bash
+cd playbooks
+ansible-playbook lab_setup.yml
+```
+
+On peut choisir la topologie de base en précisant l'inventaire ainsi que la topologie :
+
+```bash
+ansible-playbook lab_setup.yml -i inventories/ccnna/hosts -e "topology=ccna"
+```
+
+On aussi préciser le nombre de topologie à dupliquer, ici 3 par exemple de la topologie "tripod" :
+
+```bash
+ansible-playbook lab_setup.yml -i inventories/tripod/hosts -e "topology=tripod count=3"
+```
+
+Le livre de jeux peut être controllé sur ses étapes avec des "tags" Ansible :
+
+- `create`
+- `start`
+- `provision`
+- `duplicate`
+- `remove`
 
 Note : Pour les utilisateurs de la topologie GNS3 fournie en classe, sur certains voire sur tous les périphériques Cisco, il sera peut-être nécessaire de regénérer les clés RSA :
 
@@ -99,82 +133,7 @@ wr
 
 ```
 
-La mise place finale de la solution demande probablement d'être d'accomplir les quelques étapes décrites dans les points suivants.
-
-### 2.1. Préparer des images Cisco IOSv pour GNS3
-
-Si vous avez utilisé le livre de jeu [`lab_setup.yml`](https://github.com/goffinet/ansible-ccna-lab/blob/master/playbooks/lab_setup.yml), cette étape est purement informative.
-
-Les livres de jeu sont testés avec [GNS3 Server](https://cisco.goffinet.org/ccna/cisco-ios-cli/installer-et-configurer-gns3/) et Qemu/KVM sous Linux.
-
-Il y a trois types de périphériques utilisés dans les topologies.
-
-| Périphériques | Images Qemu/KVM | Commentaire |
-| --- | --- | --- |
-| Routeur Cisco IOSv | `vios-adventerprisek9-m.vmdk.SPA.156-2.T` ou `vios-adventerprisek9-m.vmdk.SPA.157-3.M3` avec `IOSv_startup_config.img`  | [VIRL](https://learningnetworkstore.cisco.com/virtual-internet-routing-lab-virl/cisco-personal-edition-pe-20-nodes-virl-20) |
-| Commutateur Cisco IOSv L2/L3  | `vios_l2-adventerprisek9-m.03.2017.qcow2` ou `vios_l2-adventerprisek9-m.SSA.high_iron_20180619.qcow2`  |  [VIRL](https://learningnetworkstore.cisco.com/virtual-internet-routing-lab-virl/cisco-personal-edition-pe-20-nodes-virl-20) |
-| Poste de travail L2 à L7, Station de contrôle  | [`centos7.qcow2`](http://get.goffinet.org/kvm/centos7.qcow2)  |  Le [fichier d'appliance GNS3](http://get.goffinet.org/gns3a/centos7.gns3a) |
-
-Les livres de jeu peuvent vérifier la nature du périphérique utilisé de type Cisco et de type routeur ou commutateur à partir de variables d'inventaire.
-
-Il sera nécessaire d'activer SSH sur les périphériques à des fins de gestionn par Ansible. On trouvera un modèle jinja2 dans le fichier [`playbooks/templates/iosv_default_config.j2`](ttps://github.com/goffinet/ansible-ccna-lab/blob/master/playbooks/templates/iosv_default_config.j2).
-
-#### 2.1.1. Routeurs
-
-On utilise des images IOSv `vios-adventerprisek9-m.vmdk.SPA.156-2.T` pour les routeurs L3 avec 8 interfaces GigabitEthernet.
-
-L'interface `GigabitEthernet0/7` sert de console de contrôle TCP/IP et ne participe pas au routage.
-
-SSH est activé de la manière suivante, sur R1 par exemple :
-
-```shell
-hostname R1
-int GigabitEthernet0/7
- ip address dhcp
- no shutdown
- no cdp enable
-ip domain-name lan
-username root privilege 15 password testtest
-crypto key generate rsa modulus 2048
-ip ssh version 2
-ip scp server enable
-line vty 0 4
- login local
- transport input ssh
-end
-wr
-
-```
-
-#### 2.1.2 Commutateurs
-
-On utilise des images IOSv-L2 `vios_l2-adventerprisek9-m.03.2017.qcow2` pour les commutateurs multicouches.
-
-L'interface `GigabitEthernet3/3` sert de console de contrôle TCP/IP et ne participe pas au routage.
-
-SSH est activé de la manière suivante, sur AS1 par exemple :
-
-```shell
-hostname AS1
-int GigabitEthernet3/3
- no switchport
- ip address dhcp
- no shutdown
- no cdp enable
-ip domain-name lan
-username root privilege 15 password testtest
-crypto key generate rsa modulus 2048
-ip ssh version 2
-ip scp server enable
-line vty 0 4
- login local
- transport input ssh
-end
-wr
-
-```
-
-### 2.2. Configurer la station de contrôle
+### 3.2. Configuration de la station de contrôle
 
 La station a besoin d'être configurée mannuellement.
 
@@ -277,7 +236,81 @@ systemctl restart dnsmasq
 systemctl enable dnsmasq
 ```
 
-### 2.3. Cloner le dépôt
+
+### 3.2. Préparation des images Cisco IOSv pour GNS3
+
+Si vous avez utilisé le livre de jeu [`lab_setup.yml`](https://github.com/goffinet/ansible-ccna-lab/blob/master/playbooks/lab_setup.yml), cette étape est purement informative.
+
+Les livres de jeu sont testés avec [GNS3 Server](https://cisco.goffinet.org/ccna/cisco-ios-cli/installer-et-configurer-gns3/) et Qemu/KVM sous Linux.
+
+Il y a trois types de périphériques utilisés dans les topologies.
+
+| Périphériques | Images Qemu/KVM | Commentaire |
+| --- | --- | --- |
+| Routeur Cisco IOSv | `vios-adventerprisek9-m.vmdk.SPA.156-2.T` ou `vios-adventerprisek9-m.vmdk.SPA.157-3.M3` avec `IOSv_startup_config.img`  | [VIRL](https://learningnetworkstore.cisco.com/virtual-internet-routing-lab-virl/cisco-personal-edition-pe-20-nodes-virl-20) |
+| Commutateur Cisco IOSv L2/L3  | `vios_l2-adventerprisek9-m.03.2017.qcow2` ou `vios_l2-adventerprisek9-m.SSA.high_iron_20180619.qcow2`  |  [VIRL](https://learningnetworkstore.cisco.com/virtual-internet-routing-lab-virl/cisco-personal-edition-pe-20-nodes-virl-20) |
+| Poste de travail L2 à L7, Station de contrôle  | [`centos7.qcow2`](http://get.goffinet.org/kvm/centos7.qcow2)  |  Le [fichier d'appliance GNS3](http://get.goffinet.org/gns3a/centos7.gns3a) ou Docker ou VPCS |
+
+Les livres de jeu peuvent vérifier la nature du périphérique utilisé de type Cisco et de type routeur ou commutateur à partir de variables d'inventaire.
+
+Il sera nécessaire d'activer SSH sur les périphériques à des fins de gestionn par Ansible. On trouvera un modèle jinja2 dans le fichier [`playbooks/templates/iosv_default_config.j2`](ttps://github.com/goffinet/ansible-ccna-lab/blob/master/playbooks/templates/iosv_default_config.j2).
+
+#### 3.2.1. Les Routeurs IOSv
+
+On utilise des images IOSv `vios-adventerprisek9-m.vmdk.SPA.156-2.T` pour les routeurs L3 avec 8 interfaces GigabitEthernet.
+
+L'interface `GigabitEthernet0/7` sert de console de contrôle TCP/IP et ne participe pas au routage.
+
+SSH est activé de la manière suivante, sur R1 par exemple :
+
+```shell
+hostname R1
+int GigabitEthernet0/7
+ ip address dhcp
+ no shutdown
+ no cdp enable
+ip domain-name lan
+username root privilege 15 password testtest
+crypto key generate rsa modulus 2048
+ip ssh version 2
+ip scp server enable
+line vty 0 4
+ login local
+ transport input ssh
+end
+wr
+
+```
+
+#### 3.2.2. Commutateurs IOSv
+
+On utilise des images IOSv-L2 `vios_l2-adventerprisek9-m.03.2017.qcow2` pour les commutateurs multicouches.
+
+L'interface `GigabitEthernet3/3` sert de console de contrôle TCP/IP et ne participe pas au routage.
+
+SSH est activé de la manière suivante, sur AS1 par exemple :
+
+```shell
+hostname AS1
+int GigabitEthernet3/3
+ no switchport
+ ip address dhcp
+ no shutdown
+ no cdp enable
+ip domain-name lan
+username root privilege 15 password testtest
+crypto key generate rsa modulus 2048
+ip ssh version 2
+ip scp server enable
+line vty 0 4
+ login local
+ transport input ssh
+end
+wr
+
+```
+
+### 3.3. Récupérer le dépôt des livres de jeu Ansible
 
 Il est nécessaire de cloner le dépot sur la machine de contrôle fraîchement configurée.
 
@@ -311,7 +344,7 @@ ansible-ccna-lab/playbooks/
 
 Modèle de collection basé sur [https://github.com/bcoca/collection](https://github.com/bcoca/collection).
 
-### 2.5. Examiner les paramètres de configuration de Ansible
+### 3.4. Prise de connaissance des paramètres de configuration de Ansible
 
 Le fichier de configuration `ansible.cfg` dans le dossier `ansible-ccna-lab/playbooks` configure par défaut le comportement de Ansible :
 
@@ -346,7 +379,7 @@ La section `[defaults]` définit différentes variables comportementales du logi
 - `display_ok_hosts` : active ou non l'affichage des tâches dont le statut est "OK" (utile pour vérifier l'idempotence).
 - `display_skipped_hosts` : active ou non l'affichage des tâches dont le statut est "Skipped" (utile pour vérifier l'idempotence).
 
-## 3. Topologies
+## 4. Les topologies
 
 Les topologies réseau développées sont décrites dans différents inventaires et se configurent avec un livre de jeu du même nom :
 
@@ -356,8 +389,9 @@ Les topologies réseau développées sont décrites dans différents inventaires
 - "router_on_a_stick" : topologie d'apprentissage des VLANs
 - "switchblock" : topologie de commutateurs de couche Access et Distribution
 - "ccna" : topologies "tripod" et "switchblock" connectées entre elles
+- "networking-worksop"
 
-### 3.1. Topologie CCNA Gateway
+### 4.1. Topologie CCNA Gateway
 
 Un seul routeur Cisco qui connecte l'Internet et qui offre des services au LAN comme DHCP et RDNSS.
 
@@ -369,7 +403,7 @@ Références :
 
 Diagramme : Topologie CCNA Gateway
 
-### 3.2. Topologie CCNA Bipod
+### 4.2. Topologie CCNA Bipod
 
 Connexion point-à-point entre R1 et R2.
 
@@ -384,15 +418,15 @@ Références :
 
 Diagramme : Topologie CCNA Bipod
 
-### 3.3. Topologie CCNA Tripod
+### 4.3. Topologie CCNA Tripod
 
 Cette topologie maillée à trois routeurs peut être désignée par "tripod". Elle est la couche "Core" de la topologie CCNA complète.
 
-#### 3.3.1. Topologie logique
+#### 4.3.1. Topologie logique
 
 ![Topologie CCNA Tripod](https://www.lucidchart.com/publicSegments/view/3328e715-30bf-48a8-a48d-1ff276420520/image.png)
 
-#### 3.3.2. Brève description
+#### 4.3.2. Brève description
 
 Trois périphériques IOSv interconnectés entre eux :
 
@@ -427,7 +461,7 @@ Références :
 * [Lab Routage EIGRP](https://cisco.goffinet.org/ccnp/eigrp/lab-routage-eigrp/)
 * [Lab Routage OSPF Multi-Area](https://cisco.goffinet.org/ccna/ospf/lab-ospf-multi-area/)
 
-### 3.4. Topologie variante Router on a Stick
+### 4.4. Topologie variante Router on a Stick
 
 Variante de la topologie Tripod en utilisant un Trunk Vlan entre R1 et SW0 ainsi qu'entre SW0 et SW1.
 
@@ -439,7 +473,7 @@ Références :
 
 * [Lab VLAN de base](https://cisco.goffinet.org/ccna/vlans/lab-vlan-base-cisco-ios/)
 
-### 3.5. Topologie CCNA Switchblock
+### 4.5. Topologie CCNA Switchblock
 
 Cette seconde topologie "switchblock" met en oeuvre des _commutateurs_. Cette topologie est plus complexe et se connecte à la topologie "tripod". Elle met en oeuvre les couches "distribution" et "access".
 
@@ -449,12 +483,12 @@ Références :
 * [Redondance de liens](https://cisco.goffinet.org/ccna/redondance-de-liens/)
 * [Disponibilité dans le LAN](https://cisco.goffinet.org/ccna/disponibilite-lan/)
 
-#### 3.5.1. Topologie avec redondance de passerelle HSRP
+#### 4.5.1. Topologie avec redondance de passerelle HSRP
 
 ![Topologie avec redondance de passerelle HSRP](https://www.lucidchart.com/publicSegments/view/84f170f5-af2b-44c1-8f6d-d169399dbba2/image.png)
 
 
-#### 3.5.2. VLANs
+#### 4.5.2. VLANs
 
 | VLAN | Ports Access (AS1 et AS2) | plage d'adresse | Passerelle par défaut |
 | --- | --- | --- | --- |
@@ -464,7 +498,7 @@ Références :
 | VLAN 40 | `g2/3` | `172.16.40.0/24` | **`172.16.10.254`** |
 | VLAN 99 | VLAN natif | Management
 
-#### 3.5.3. Ports Etherchannel et Trunk VLANs
+#### 4.5.3. Ports Etherchannel et Trunk VLANs
 
 | PortChannel | ports physiques | Commutateurs |
 | --- | --- | ---
@@ -474,14 +508,14 @@ Références :
 | po4 | `g0/0`,`g1/0` | AS2 - DS2 |
 | po5 | `g0/1`,`g1/1` | AS2 - DS1 |
 
-#### 3.5.4. Spanning-Tree
+#### 4.5.4. Spanning-Tree
 
 | VLANs | DS1 | DS2 |
 | --- | --- | --- |
 | VLANs 1,10,30,99 | `root primary` | `root secondary` |
 | VLANs 20,40 | `root secondary` | `root primary` |
 
-#### 3.5.5. Plan d'adressage
+#### 4.5.5. Plan d'adressage
 
 | Commutateur | Interface | Adresse IPv4 | Adresse(s) IPv6 |
 | --- | --- | --- | --- |
@@ -494,7 +528,7 @@ Références :
 | DS2 | VLAN30 | `172.16.30.253/24` | `FD00:1AB:30::2/64` |
 | DS2 | VLAN40 | `172.16.40.253/24` | `FD00:1AB:40::2/64` |
 
-#### 3.5.6. HSRP
+#### 4.5.6. HSRP
 
 | Commutateur | Interface | Adresse IPv4 virtuelle | Adresse IPv6 virtuelle | Group | Priorité |
 | --- | --- | --- | --- | --- | --- |
@@ -507,32 +541,32 @@ Références :
 | DS2 | VLAN30 | `172.16.30.254/24` | `FE80::d:2/64` | 30/36 | default |
 | DS2 | VLAN40 | `172.16.40.254/24` | `FE80::d:2/64` | 40/46 | 150, prempt |
 
-#### 3.5.7. Ressources requises
+#### 4.5.7. Ressources requises
 
 *	4 commutateurs (vios_l2 Software (vios_l2-ADVENTERPRISEK9-M), Experimental Version 15.2(20170321:233949))
 *	8 PCs (Centos 7 KVM ou Ubuntu Docker)
 *	(Câbles de console pour configurer les périphériques Cisco IOS via les ports de console)
 *	Câbles Ethernet conformément à la topologie
 
-#### 3.5.8. Explication
+#### 4.5.8. Explication
 
 Dans l'exercice de laboratoire "Lab répartition de charge avec Rapid Spanning-Tree", nous avons appris à déployer Rapid Spanning-Tree entre la couche Distribution et la couche Access. Il manque manifestement une sûreté au niveau de la passerelle par défaut que constitue le commutateur de Distribution. Afin d'éviter ce point unique de rupture, on apprendra à configurer et vérifier HSRP. Dans cette topologie une passerelle devient routeur "Active" pour certains VLANs et reste en HSRP "Standby" pour d'autres VLANs et inversément.
 
 On trouvera plus bas les fichiers de configuration qui déploient la solution  VLANs, Trunking, Etherchannel, Rapid Spanning-Tree, SVI IPv4 et IPv6 et DHCP. Par rapport à l'exercice de laboratoire "Lab répartition de charge avec Rapid Spanning-Tree", tout reste identique sauf le paramètre de passerelle.
 
-### 3.6. Toplogie CCNA Tripod et Switchblock
+### 4.6. Toplogie CCNA Tripod et Switchblock
 
 Cette topologie interconnecte les topologies "tripod" et "switchblock".
 
 ![](https://www.lucidchart.com/publicSegments/view/aacc6247-aa9a-44b2-a1ba-43ccb81deab7/image.png)
 
-### 3.7. Topologie Ansible Networking Workshop
+### 4.7. Topologie Ansible Networking Workshop
 
 Cette topologie s'utilise dans le cadre de l'exercice [ANSIBLE RÉSEAU](https://iac.goffinet.org/ansible-network/) avec le projet [Ansible Networking Workshop Files](https://github.com/goffinet/networking-workshop).
 
 ![Ansible Networking Workshop](https://github.com/network-automation/linklight/raw/master/images/network_diagram.png)
 
-## 4. Utilisation
+## 5. Utilisation des livres de jeu
 
 Se rendre dans le dossier des livres de jeu `ansible-ccna-lab/playbooks/` :
 
@@ -542,13 +576,7 @@ git clone https://github.com/goffinet/ansible-ccna-lab
 cd ansible-ccna-lab/playbooks
 ```
 
-Tester la connectivité vers les périphériques :
-
-```bash
-ansible all -c network_cli -m ping
-```
-
-### 4.1. Inventaire et variables d'inventaire du livre de jeu ccna.yml
+### 5.1. Inventaire et variables d'inventaire du livre de jeu ccna.yml
 
 L'inventaire par défaut est défini comme suit (fichier `inventories/ccna/hosts`) et correspond à la topologie ccna (tripod + switchblock) :
 
@@ -611,7 +639,7 @@ inventories/ccna
     └── R3
 ```
 
-### 4.2. Livres de jeu
+### 5.2. Livres de jeu
 
 Les livres de jeu (`playbooks/`) font appel à des rôles qui trouvent la valeur des variables dans l'inventaire.
 
@@ -634,7 +662,34 @@ Le playbook `ccna.yml` configure l'ensemble :
 ansible-playbook ccna.yml -v
 ```
 
-### 4.3. Diagnostic de base
+### 5.3. Les rôles invoqués
+
+On prendra l'exemple du livre de jeu `bipod.yaml` :
+
+```yaml
+---
+# bipod.yml
+- hosts: core
+  gather_facts: False
+  roles:
+    - role: ios_common
+    - role: ios_interface
+    - role: ios_ipv4
+    - role: ios_ipv6
+    - role: ios_ipv4-routing
+    - role: ios_ipv6-routing
+    - role: ios_static-routing
+    - role: ios_rip
+      when: '"rip" in ipv4.routing'
+    - role: ios_recursive-dns-server
+    - role: ios_dhcp-server
+    - role: ios_nat44
+    - role: ios_write
+```
+
+Ces roles trouvent leur place dans le dossier `roles` du projet.
+
+### 5.4. Diagnostic de base
 
 _à améliorer_
 
@@ -658,9 +713,13 @@ ansible core -m ios_command -a "commands='traceroute 172.16.10.1 source GigabitE
 
 -->
 
-## 5. Notes
+### 5.5. Remettre à zéro les configurations.
 
-### 5.1. Comment rendre une tâche ios_config idempotente ?
+Le livre de jeu [playbooks/restore_config.yml](https://github.com/goffinet/ansible-ccna-lab/blob/master/playbooks/restore_config.yml) restaure des configurations vierges sur les hôtes d'inventaire Cisco.
+
+## 6. Notes
+
+### 6.1. Comment rendre une tâche ios_config idempotente ?
 
 > "Être idempotent permet à une tâche définie d'être exécutée une seule fois ou des centaines de fois sans créer un effet contraire sur le système cible, ne provoquant un changement à une seule reprise. En d'autres mots, si un changement est nécessaire pour obtenir le système dans un état désiré, alors le changement est réalisé ; par contre si le périphérique est déjà dans l'état désiré, aucun changement n'intervient. Ce comportement est différent des pratiques de scripts personnalisés et de copier/coller de lignes de commandes. Quand on exécute les mêmes commandes ou scripts sur un même système de manière répétée, le taux d'erreur est souvent élevé."
 >
@@ -688,16 +747,13 @@ Combinée avec l'option `before`, on applique des commandes avant et après que 
 
 Aussi, l'argument `defaults` qu'il sera nécessaire d'activer avec la valeur `yes` spécifie s'il faut ou non collecter toutes les valeurs par défaut lors de l'exécution de la configuration du périphérique distant. Lorsqu'il est activé, le module obtient la configuration actuelle en lançant la commande `show running-config all`. En effet, des commandes comme `no shutdown` ou encore `ipv6 enable` ou encore `ipv4 routing` et beaucoup n'apparaissent pas avec la commande `show running-config`.
 
-### Phase I
+### 6.2. Phase I
 
-Tendre vers des rôles **idempotents** avec des [modules standards](https://docs.ansible.com/ansible/latest/modules/list_of_network_modules.html#ios).
-
-Usage du filtre jinja2 [ipaddr](https://docs.ansible.com/ansible/latest/user_guide/playbooks_filters_ipaddr.html#playbooks-filters-ipaddr), voir [playbooks/ipaddr.yml](https://github.com/goffinet/ansible-ccna-lab/blob/master/playbooks/demos/ipaddr.yml).
-
-Structure en "collection" Ansible. [Using collections in a Playbook](https://docs.ansible.com/ansible/devel/user_guide/collections_using.html#using-collections-in-a-playbook).
-
-* définir des paramètres par défaut
-* revoir les conditions, les boucles
+- [x] Tendre vers des rôles **idempotents** avec des [modules standards](https://docs.ansible.com/ansible/latest/modules/list_of_network_modules.html#ios).
+- [x] Usage du filtre jinja2 [ipaddr](https://docs.ansible.com/ansible/latest/user_guide/playbooks_filters_ipaddr.html#playbooks-filters-ipaddr), voir [playbooks/ipaddr.yml](https://github.com/goffinet/ansible-ccna-lab/blob/master/playbooks/demos/ipaddr.yml).
+- [x] Structure en "collection" Ansible. [Using collections in a Playbook](https://docs.ansible.com/ansible/devel/user_guide/collections_using.html#using-collections-in-a-playbook).
+- [x] définir des paramètres par défaut
+- [ ] revoir les conditions, les boucles, les tags
 
 Rôles à améliorer :
 
@@ -729,15 +785,13 @@ Rôles à créer :
 * [ ] dhcp snooping
 * [ ] dai
 
-### Phase II
+### 6.3. Phase II
 
 _tasks by jinja2 templating_, "boilerplate config"
 
 Rôles "immutables" qui agissent sur un modèle de fichier de configuration basé sur des choix d'infrastructure (des variables) et qui sera poussé sur les périphériques par la procédure `config replace flash:XXX force`.
 
-"Immutable" roles by templating one config file based on infrastructure choices (variables) and pushed by `config replace flash:XXX force` procedure to the devices.
-
-### Phase III
+### 6.4. Phase III
 
 Reporting ([role ansible-network.cisco_ios](https://galaxy.ansible.com/ansible-network/cisco_ios)) :
 

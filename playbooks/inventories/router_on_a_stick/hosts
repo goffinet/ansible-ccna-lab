@@ -4,22 +4,27 @@
 [core]
 R1
 
-[access]
+[stick]
 SW0
 SW1
-
-[blocks:children]
-access
 
 [routers:children]
 core
 
 [switches:children]
-blocks
+stick
 
 [cisco:children]
 core
-blocks
+stick
+
+[core:vars]
+mgmt_interface=GigabitEthernet0/7
+image_style=iosv_l3
+
+[stick:vars]
+mgmt_interface=GigabitEthernet3/3
+image_style=iosv_l2
 
 [cisco:vars]
 ansible_user=root

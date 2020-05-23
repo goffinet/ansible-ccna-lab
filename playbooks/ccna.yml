@@ -3,3 +3,4 @@
 # Playbook to configure CCNA "switchblock" and "tripod" topologies
 - import_playbook: switchblock.yml
 - import_playbook: tripod.yml
+#- import_playbook: router_on_a_stick.yml

@@ -1,7 +1,7 @@
 gns3_url: "http://172.16.253.1"
 gns3_lab_user: root
 gns3_lab_pass: testtest
-project_name: "tripod_switchblock_lab"
+project_name: "ccna_lab"
 gns3_nodes_spec:
   - name: "controller"
     template: "controller"
@@ -19,10 +19,14 @@ gns3_nodes_spec:
     template: "Cisco IOSv 15.7(3)M3"
     x: 100
     y: -100
-  - name: "S1"
-    template: "Ethernet switch"
+  - name: "SW0"
+    template: "Cisco IOSvL2 15.2.1"
     x: -100
-    y: -185
+    y: -200
+  - name: "SW1"
+    template: "Cisco IOSvL2 15.2.1"
+    x: -200
+    y: -200
   - name: "S2"
     template: "Ethernet switch"
     x: -200
@@ -51,9 +55,21 @@ gns3_nodes_spec:
     template: "Cisco IOSvL2 15.2.1"
     x: 100
     y: 200
-  - name: "PC1"
+  - name: "PC1-VLAN10"
+    template: "VPCS"
+    x: -50
+    y: -300
+  - name: "PC1-VLAN20"
     template: "VPCS"
     x: -200
+    y: -300
+  - name: "PC2-VLAN10"
+    template: "VPCS"
+    x: -300
+    y: -300
+  - name: "PC2-VLAN20"
+    template: "VPCS"
+    x: -300
     y: -200
   - name: "PC2"
     template: "VPCS"
@@ -108,16 +124,20 @@ gns3_nodes_spec:
     x: -700
     y: 300
 gns3_links_spec:
-  - ["R1", "Gi0/0", "S1", "Ethernet0"]
-  - ["S1", "Ethernet1", "PC1", "Ethernet0"]
-  - ["R2", "Gi0/0", "S2", "Ethernet0"]
-  - ["S2", "Ethernet1", "PC2", "Ethernet0"]
-  - ["R3", "Gi0/0", "S3", "Ethernet0"]
-  - ["S3", "Ethernet1", "PC3", "Ethernet0"]
   - ["R1", "Gi0/2", "R2", "Gi0/1"]
   - ["R1", "Gi0/3", "R3", "Gi0/1"]
   - ["R2", "Gi0/3", "R3", "Gi0/2"]
   - ["R1", "Gi0/1", "nat0", "nat0"]
+  - ["R1", "Gi0/0", "SW0", "Gi0/2"]
+  - ["SW0", "Gi0/1", "SW1", "Gi0/1"]
+  - ["SW0", "Gi1/0", "PC1-VLAN10", "Ethernet0"]
+  - ["SW0", "Gi2/0", "PC1-VLAN20", "Ethernet0"]
+  - ["SW1", "Gi1/0", "PC2-VLAN10", "Ethernet0"]
+  - ["SW1", "Gi2/0", "PC2-VLAN20", "Ethernet0"]
+  - ["R2", "Gi0/0", "S2", "Ethernet0"]
+  - ["S2", "Ethernet1", "PC2", "Ethernet0"]
+  - ["R3", "Gi0/0", "S3", "Ethernet0"]
+  - ["S3", "Ethernet1", "PC3", "Ethernet0"]
   - ["DS1", "Gi2/0", "R2", "Gi0/2"]
   - ["DS1", "Gi3/0", "R2", "Gi0/4"]
   - ["DS1", "Gi2/1", "R3", "Gi0/5"]

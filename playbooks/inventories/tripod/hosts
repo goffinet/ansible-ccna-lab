@@ -12,6 +12,10 @@ core
 [cisco:children]
 core
 
+[core:vars]
+mgmt_interface=GigabitEthernet0/7
+image_style=iosv_l3
+
 [cisco:vars]
 ansible_user=root
 ansible_ssh_pass=testtest

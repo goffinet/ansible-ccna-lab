@@ -1,7 +1,8 @@
-- hosts: localhost
+- name: "Create a gns3 project and start a base topology"
+  hosts: localhost
   gather_facts: False
   vars_files:
-    - vars/gns3_vars.yml
+    - vars/{{ topology | default("ccna") }}.yml # should be defined as extra-vars '-e
   collections:
     - davidban77.gns3
   tasks:
@@ -11,7 +12,11 @@
         project_name: "{{ project_name }}"
         state: absent
       tags:
-        - remove
+        - create
+        - start
+        - provision
+        - duplicate
+      ignore_errors: yes
     - name: "Create network topology"
       gns3_project:
         url: "{{ gns3_url }}"
@@ -19,39 +24,51 @@
         state: present
         nodes_spec: "{{ gns3_nodes_spec }}"
         links_spec: "{{ gns3_links_spec }}"
+      register: project_facts
       tags:
         - create
-    - name: "Start nodes"
+        - start
+        - provision
+        - duplicate
+#    - debug: var=project_facts.project.project_id
+    - name: "Start nodes in the project"
       gns3_project:
         url: "{{ gns3_url }}"
         project_name: "{{ project_name }}"
         state: opened
         nodes_state: started
-#        nodes_strategy: one_by_one
+        nodes_strategy: one_by_one
       tags:
         - start
-    - name: Get the nodes facts
+        - provision
+        - duplicate
+    - name: "Get the nodes facts"
       gns3_nodes_inventory:
         url: "{{ gns3_url }}"
         project_name: "{{ project_name }}"
       register: nodes_inventory
       tags:
         - start
+        - provision
+        - duplicate
 #    - debug: var=nodes_inventory
-
-- hosts: all
+- name: "Provision the Cisco nodes for Ansible management"
+  hosts: all
   gather_facts: False
   vars:
     ansible_connection: local
-    ansible_python_interpreter: "{{ansible_playbook_python}}"
+    ansible_python_interpreter: "{{ ansible_playbook_python }}"
   vars_files:
-    - vars/gns3_vars.yml
+    - vars/{{ topology | default("ccna") }}.yml # should be defined as extra-vars '-e'
   collections:
     - davidban77.gns3
   tasks:
-    - name: Retrieving nodes inventory information
+    - name: "Retrieving nodes inventory information"
       set_fact:
         nodes_inventory: "{{ hostvars['localhost']['nodes_inventory']['nodes_inventory'] }}"
+      tags:
+        - provision
+        - duplicate
     - name: Generate boilerplate config files
       block:
         - name: Create build folder
@@ -62,13 +79,16 @@
           template:
             src: templates/iosv_default_config.j2
             dest: "configs/build/{{ inventory_hostname }}-iosv.conf"
+      tags:
+        - provision
+        - duplicate
 #        - debug: var=hostvars
-    - name: Deploy boilerplate configuration
+    - name: "Deploy boilerplate configuration"
       block:
-        - name: Generate configuration variable
+        - name: "Generate configuration variable"
           set_fact:
             boilerplate_config: "{{ lookup('template', 'templates/iosv_default_config.j2') }}"
-        - name: "Push config on iosv_l3"
+        - name: "Push config on iosv_l3 nodes"
           when: ansible_network_os == "ios" and image_style == "iosv_l3"
           gns3_telnet_console:
             remote_addr: "{{ nodes_inventory[inventory_hostname]['server'] }}"
@@ -82,7 +102,7 @@
               post_login: 60
               login_prompt: 30
               config_dialog: 30
-        - name: "Push config on iosv_l2"
+        - name: "Push config on iosv_l2 nodes"
           when: ansible_network_os == "ios" and image_style == "iosv_l2"
           gns3_telnet_console:
             remote_addr: "{{ nodes_inventory[inventory_hostname]['server'] }}"
@@ -102,3 +122,57 @@
               post_login: 60
               login_prompt: 30
               config_dialog: 30
+      tags:
+        - provision
+        - duplicate
+    - name: "Stop all nodes"
+      gns3_project:
+        url: "{{ gns3_url }}"
+        project_name: "{{ project_name }}"
+        state: opened
+        nodes_state: stopped
+        nodes_strategy: one_by_one
+        nodes_delay: 3
+      tags:
+        - provision
+        - duplicate
+    - name: "Close the project"
+      gns3_project:
+        url: "{{ gns3_url }}"
+        project_name: "{{ project_name }}"
+        state: closed
+      tags:
+        - provision
+        - duplicate
+- name: "Duplicate and remove the project"
+  hosts: localhost
+  gather_facts: False
+  vars_files:
+    - vars/{{ topology | default("ccna") }}.yml # should be defined as extra-vars '-e'
+  vars:
+    count: 1 # should be defined as extra-vars '-e'
+    dest_name: '{{ topology | default("ccna") }}' # should be defined as extra-vars '-e'
+  collections:
+    - davidban77.gns3
+  tasks:
+    - setup:
+      tags:
+        - duplicate
+    - name: "Duplicate the project"
+      uri:
+        url: "{{ gns3_url }}:3080/v2/projects/{{ project_facts.project.project_id }}/duplicate"
+        method: POST
+        body: >
+          {"name": "{{ ansible_date_time.date }}-{{ dest_name }}-{{ item }}"}
+        status_code: 201
+        body_format: json
+      with_sequence: count={{ count }} start=1
+      tags:
+        - duplicate
+    - name: "Remove network topology"
+      gns3_project:
+        url: "{{ gns3_url }}"
+        project_name: "{{ project_name }}"
+        state: absent
+      tags:
+        - remove

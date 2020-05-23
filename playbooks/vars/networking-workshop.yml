@@ -1,0 +1,63 @@
+gns3_url: "http://172.16.253.1"
+gns3_lab_user: root
+gns3_lab_pass: testtest
+project_name: "networking-workshop_lab"
+gns3_nodes_spec:
+  - name: "controller"
+    template: "controller"
+    x: 10
+    y: 300
+  - name: "rtr1"
+    template: "Cisco IOSv 15.7(3)M3"
+    x: -100
+    y: 40
+  - name: "rtr2"
+    template: "Cisco IOSv 15.7(3)M3"
+    x: 100
+    y: 40
+  - name: "rtr3"
+    template: "Cisco IOSv 15.7(3)M3"
+    x: -100
+    y: 200
+  - name: "rtr4"
+    template: "Cisco IOSv 15.7(3)M3"
+    x: 100
+    y: 200
+  - name: "PC1"
+    template: "VPCS"
+    x: -200
+    y: 40
+  - name: "PC2"
+    template: "VPCS"
+    x: 200
+    y: 40
+  - name: "PC3"
+    template: "VPCS"
+    x: -200
+    y: 200
+  - name: "PC4"
+    template: "VPCS"
+    x: 200
+    y: 200
+  - name: "ctrl0"
+    template: "Ethernet switch"
+    x: 0
+    y: 140
+  - name: "nat1"
+    template: "NAT"
+    x: -200
+    y: 300
+gns3_links_spec:
+  - ["rtr1", "Gi0/0", "rtr2", "Gi0/0"]
+  - ["rtr1", "Gi0/2", "rtr3", "Gi0/2"]
+  - ["rtr1", "Gi0/1", "PC1", "Ethernet0"]
+  - ["rtr3", "Gi0/1", "PC3", "Ethernet0"]
+  - ["rtr2", "Gi0/2", "rtr4", "Gi0/2"]
+  - ["rtr2", "Gi0/1", "PC2", "Ethernet0"]
+  - ["rtr4", "Gi0/1", "PC4", "Ethernet0"]
+  - ["rtr1", "Gi0/7", "ctrl0", "Ethernet1"]
+  - ["rtr2", "Gi0/7", "ctrl0", "Ethernet2"]
+  - ["rtr3", "Gi0/7", "ctrl0", "Ethernet3"]
+  - ["rtr4", "Gi0/7", "ctrl0", "Ethernet4"]
+  - ["ctrl0", "Ethernet0", "controller", "Ethernet0"]
+  - ["controller", "Ethernet1", "nat1", "nat0"]
