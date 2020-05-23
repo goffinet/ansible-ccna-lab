@@ -39,8 +39,10 @@ dhcp:
       router: 192.168.20.254
       dns: 192.168.20.254
   dhcp_excluded:
-    - start: 192.168.1.1
-      end: 192.168.1.100
+    - start: 192.168.10.1
+      end: 192.168.10.100
+    - start: 192.168.20.1
+      end: 192.168.20.100
 nat:
   name: "LANS"
   inside:
