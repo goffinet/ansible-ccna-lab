@@ -84,7 +84,7 @@ Expliqué rapidement :
 
 ## 3. Mise en place du lab
 
-Un livre de jeu intitulé [`lab_setup.yml`](https://github.com/goffinet/ansible-ccna-lab/blob/master/playbooks/lab_setup.yml) monte automatiquement les topologies qui sont présentées plus bas sur un serveur GNS3. Il exploite [gns3fy](https://davidban77.github.io/gns3fy/), la collection Ansible [davidban77.gns3](https://galaxy.ansible.com/davidban77/gns3) et l'exemple [Collection of Ansible + GNS3 project examples](https://github.com/davidban77/demo-ansible-gns3) de [David Flores (aka: netpanda)](https://davidban77.hashnode.dev/). Les variables qui définissent les périphériques et leurs connexionssont situées dans le dossier [`playbooks/vars/`](https://github.com/goffinet/ansible-ccna-lab/blob/master/playbooks/vars/). Des dépendances python doivent être installées (voir fichier [requirements.txt](https://github.com/goffinet/ansible-ccna-lab/blob/master/requirements.txt)).
+Un livre de jeu intitulé [`lab_setup.yml`](https://github.com/goffinet/ansible-ccna-lab/blob/master/playbooks/lab_setup.yml) monte automatiquement les topologies qui sont présentées plus bas sur un serveur GNS3. Il exploite [gns3fy](https://davidban77.github.io/gns3fy/), la collection Ansible [davidban77.gns3](https://galaxy.ansible.com/davidban77/gns3) et l'exemple [Collection of Ansible + GNS3 project examples](https://github.com/davidban77/demo-ansible-gns3) de [David Flores (aka: netpanda)](https://davidban77.hashnode.dev/). Les variables qui définissent les périphériques et leurs connexions sont situées dans le dossier [`playbooks/vars/`](https://github.com/goffinet/ansible-ccna-lab/blob/master/playbooks/vars/). Des dépendances python doivent être installées (voir fichier [requirements.txt](https://github.com/goffinet/ansible-ccna-lab/blob/master/requirements.txt)).
 
 On peut installer ces dépendances de la manière suivante :
 
@@ -102,10 +102,10 @@ cd playbooks
 ansible-playbook lab_setup.yml
 ```
 
-On peut choisir la topologie de base en précisant l'inventaire ainsi que la topologie :
+On peut choisir la topologie de base en précisant l'inventaire et une variable :
 
 ```bash
-ansible-playbook lab_setup.yml -i inventories/ccnna/hosts -e "topology=ccna"
+ansible-playbook lab_setup.yml -i inventories/ccna/hosts -e "topology=ccna"
 ```
 
 On aussi préciser le nombre de topologie à dupliquer, ici 3 par exemple de la topologie "tripod" :
@@ -114,13 +114,15 @@ On aussi préciser le nombre de topologie à dupliquer, ici 3 par exemple de la 
 ansible-playbook lab_setup.yml -i inventories/tripod/hosts -e "topology=tripod count=3"
 ```
 
-Le livre de jeux peut être controllé sur ses étapes avec des "tags" Ansible :
+Les différentes étapes du livre de jeu peuvent être controllées avec des "tags" Ansible :
 
 - `create`
 - `start`
 - `provision`
 - `duplicate`
 - `remove`
+
+<!--
 
 Note : Pour les utilisateurs de la topologie GNS3 fournie en classe, sur certains voire sur tous les périphériques Cisco, il sera peut-être nécessaire de regénérer les clés RSA :
 
@@ -133,19 +135,17 @@ wr
 
 ```
 
+-->
+
 ### 3.2. Configuration de la station de contrôle
 
 La station a besoin d'être configurée mannuellement.
 
-La station de contrôle connecte tous les périphériques en SSH.
+La station de contrôle connecte tous les périphériques en SSH. Le logiciel Ansible y est fraîchement installé (avec la libraire python netaddr) avec `pip` ou à partir de repos.
 
-Le logiciel Ansible y est fraîchement installé (avec la libraire python netaddr) avec `pip` ou à partir de repos.
+La station de contrôle offre un service DHCP avec enregistrement dynamique des noms d'hôte dans un serveur DNS (dnsmasq). Un serveur rsyslog écoute sur les ports TCP514 et UDP514.
 
-La station de contrôle offre un service DHCP avec enregistrement dynamique des noms d'hôte dans un serveur DNS (dnsmasq).
-
-Un serveur rsyslog écoute sur les ports TCP514 et UDP514.
-
-On trouve deux scripts de préparation d'une station de contrôle Centos et Ubuntu dans le dossier [tests/](https://github.com/goffinet/ansible-ccna-lab/blob/master/tests/).
+On trouve des scripts de préparation d'une station de contrôle Centos et Ubuntu dans le dossier [tests/](https://github.com/goffinet/ansible-ccna-lab/blob/master/tests/). L'interface `eth0` contrôle les périphériques et l'interface `eth1` donne accès à l'Internet.
 
 En Centos 7 :
 
