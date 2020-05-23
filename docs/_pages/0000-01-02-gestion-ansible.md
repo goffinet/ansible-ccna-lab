@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "2. La gestion du réseau avec Ansible"
+title: "La gestion du réseau avec Ansible"
 permalink: /gestion-ansible/
 excerpt: " "
 tags:
