@@ -1,15 +1,24 @@
 ---
 layout: single
-title: "La gestion du réseau avec Ansible"
+title: "2. La gestion du réseau avec Ansible"
 permalink: /gestion-ansible/
 excerpt: " "
 tags:
   - how-to
 sidebar:
   nav: "menu1"
+date: 2020-05-23
 ---
 
-Pour la gestion des noeuds Cisco, le projet est basé sur trois éléments : des livres de jeu qui peuvent en appeler d'autres nommés selon la **topologie** ; ces livres de jeu configurent des hôtes d'inventaire avec des tâches organisées en **rôles** ; les paramètres de la topologie sont configurés en tant que **variables d'inventaire selon un certain modèle de données**.
+## Eléments
+
+Pour la gestion des noeuds Cisco, le projet est basé sur trois éléments :
+
+1. des livres de jeu qui peuvent en appeler d'autres nommés selon la **topologie** ;
+2. ces livres de jeu configurent des hôtes d'inventaire avec des tâches organisées en **rôles** ;
+3. les paramètres de la topologie sont configurés en tant que **variables d'inventaire selon un certain modèle de données**.
+
+## Topologies
 
 Les topologies sont organisées de la manière suivante :
 
@@ -23,6 +32,8 @@ ccna:
 ```
 
 Une topologie intitulée "ccna" est composée de deux topologies distinctes "tripod" et "switchblock". La topologie "tripod" trouve trois variantes amoindries : "gateway", "bipod", et "router_on_a_stick".
+
+## Explication rapide
 
 Expliqué rapidement :
 

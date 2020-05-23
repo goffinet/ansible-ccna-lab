@@ -5,6 +5,7 @@ permalink: /
 description: "On trouvera ici des livres de jeu Ansible inspirés des topologies et des sujets du Cisco CCNA (et plus) pour GNS3 (Cisco IOSv). Le projet permet de créer des topologies avec GNS3, de les approvisionner et, ensuite, de les gérer avec Ansible avec pour seul objet du code reproductible et manipulable à l'envi."
 sidebar:
   nav: "menu1"
+date: 2020-05-23
 ---
 
 ## Description
