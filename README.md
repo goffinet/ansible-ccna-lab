@@ -326,15 +326,19 @@ On y trouve l'arborescence suivante :
 ```
 ansible-ccna-lab/playbooks/
 ├── ansible.cfg  --> fichier de configuration par défaut
+├── bipod.yml    --> livre de jeu de la topologie bipod
 ├── ccna.yml     --> livre de jeu de la topologie ccna
 ├── configs/     --> dossier par défaut des fichiers de configuration
 ├── demos/       --> livres de jeu de démo / test
 ├── files/       --> fichiers statiques spécifiques à utiliser avec les livres de jeu
 ├── gateway.yml            --> livre de jeu de la topologie gateway
 ├── inventories/           --> dossier d'inventaires
+├── lab_setup.yml          --> livre de jeu qui déploie une topologie sur GNS3
+├── library                --> script utilisé par le livre de jeu lab_setup.yml
+├── networking-workshop.yml   --> livre de jeu de la topologie networking-workshop
+├── restore_config.yml     --> restaure des configurations par défaut
 ├── roles/ -> ../roles     --> dossier des rôles utilisés par les livres de jeu
 ├── router_on_a_stick.yml  --> livre de jeu de la topologie router_on_a_stick
-├── bipod.yml    --> livre de jeu de la topologie bipod
 ├── switchblock.yml        --> livre de jeu de la topologie switchblock
 ├── tasks/       --> tâches spécifiques à utiliser avec les livres de jeu
 ├── templates/   --> modèles spécifiques à utiliser avec les livres de jeu
