@@ -175,7 +175,7 @@ bash -x ./setup.sh
 Si la version libre de Ansible Tower (Ansible AWX) vous intéresse, vous pouvez l'installer via ce script (4Go RAM et 2 vcpus) :
 
 ```bash
-curl -s https://raw.githubusercontent.com/goffinet/ansible-ccna-lab/master/tests/tests/awx-setup.sh -o awx-setup.sh
+curl -s https://raw.githubusercontent.com/goffinet/ansible-ccna-lab/master/tests/awx-setup.sh -o awx-setup.sh
 bash -x ./awx-setup.sh
 ```
 
