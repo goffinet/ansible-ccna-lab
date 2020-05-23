@@ -5,5 +5,5 @@
 menu1:
   - title: Ansible CCNA Lab
     children:
-      - title: "Description"
+      - title: "1. Description"
         url: /description/
