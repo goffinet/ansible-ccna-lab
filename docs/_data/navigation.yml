@@ -4,7 +4,7 @@
 
 menu1:
   - title: Ansible CCNA Lab
-    url:
+    url: /
     children:
       - title: "1. Objectifs"
         url: /objectifs/

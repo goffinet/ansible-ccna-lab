@@ -13,6 +13,9 @@ group :jekyll_plugins do
   gem "jekyll-redirect-from"
   gem "jekyll-seo-tag"
   gem "jekyll-include-cache"
+  gem "jekyll-archives"
+  gem "jekyll-email-protect"
+  gem "jekyll-extlinks"
 end
 
 gem "nokogiri", ">= 1.10.8"
