@@ -14,6 +14,10 @@ DS2
 AS1
 AS2
 
+[stick]
+SW0
+SW1
+
 [blocks:children]
 distribution
 access
@@ -23,16 +27,22 @@ core
 
 [switches:children]
 blocks
+stick
 
 [cisco:children]
 core
 blocks
+stick
 
 [core:vars]
 mgmt_interface=GigabitEthernet0/7
 image_style=iosv_l3
 
 [blocks:vars]
+mgmt_interface=GigabitEthernet3/3
+image_style=iosv_l2
+
+[stick:vars]
 mgmt_interface=GigabitEthernet3/3
 image_style=iosv_l2
 
