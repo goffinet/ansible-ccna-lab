@@ -342,7 +342,7 @@ Les topologies réseau développées sont décrites dans différents inventaires
 - "router_on_a_stick" : topologie d'apprentissage des VLANs
 - "switchblock" : topologie de commutateurs de couche Access et Distribution
 - "ccna" : topologies "tripod" et "switchblock" connectées entre elles
-- "networking-worksop"
+- "networking-workshop"
 
 ### 4.1. Topologie CCNA Gateway
 
