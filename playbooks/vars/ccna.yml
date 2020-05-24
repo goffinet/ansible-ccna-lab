@@ -5,7 +5,7 @@ project_name: "ccna_lab"
 gns3_nodes_spec:
   - name: "controller"
     template: "controller"
-    x: -500
+    x: -493
     y: 300
   - name: "R1"
     template: "Cisco IOSv 15.7(3)M3"
