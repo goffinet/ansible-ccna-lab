@@ -22,7 +22,7 @@
             commands:
               - config replace flash:{{ dest }} force
       when: stat_result.stat.exists
-    - name: ERASE REMOTE COFIG FILE
+    - name: ERASE REMOTE CONFIG FILE
       ios_command:
         commands:
           - "delete /force flash:/{{ dest }}"
