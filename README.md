@@ -4,7 +4,7 @@
 
 - [1. Description du projet](#1-description-du-projet)
 - [2. La gestion du réseau avec Ansible](#2-la-gestion-du-rseau-avec-ansible)
-- [3. La mise en place du lab](#3-la-mise-en-place-du-lab)
+- [3. La mise en place du lab sur GNS3](#3-la-mise-en-place-du-lab-sur-gns3)
 	- [3.1. Setup du lab GNS3 avec Ansible](#31-setup-du-lab-gns3-avec-ansible)
 	- [3.2. Configuration de la station de contrôle](#32-configuration-de-la-station-de-contrle)
 	- [3.3. Préparation des images Cisco IOSv pour GNS3](#33-prparation-des-images-cisco-iosv-pour-gns3)
@@ -12,7 +12,7 @@
 		- [3.3.2. Commutateurs IOSv](#332-commutateurs-iosv)
 	- [3.4. Récupérer le dépôt des livres de jeu Ansible](#34-rcuprer-le-dpt-des-livres-de-jeu-ansible)
 	- [3.5. Prise de connaissance des paramètres de configuration de Ansible](#35-prise-de-connaissance-des-paramtres-de-configuration-de-ansible)
-- [4. Les topologies](#4-les-topologies)
+- [4. Les topologies CCNA](#4-les-topologies-ccna)
 	- [4.1. Topologie CCNA Gateway](#41-topologie-ccna-gateway)
 	- [4.2. Topologie CCNA Bipod](#42-topologie-ccna-bipod)
 	- [4.3. Topologie CCNA Tripod](#43-topologie-ccna-tripod)
@@ -89,9 +89,9 @@ Expliqué rapidement :
 * Le protocole de routage est contrôlé à partir du livre de jeu avec les variables `ipv4.routing` et `ipv6.routing`. Il est conseillé d'en activer un seul pour une topologie. Des cas de "route redistribution" devraient être envisagés.
 * Les livres de jeu exécutent les rôles dans un ordre logique ~~mais chacun trouve des dépendances de rôles définis~~.
 
-## 3. La mise en place du lab
+## 3. La mise en place du lab sur GNS3
 
-Le setup se réalise sur le serveur GNS3 ou sur une station qui a accès au serveur. Pour installer GNS3 avec Ansible, on fera référence à un autre projet : [ansible-install-gns3-server](https://github.com/goffinet/ansible-install-gns3-server). Il correspond à quelques étapes :
+La mise en place du lab se réalise sur le serveur GNS3 ou sur une station qui a accès au serveur. Pour installer GNS3 avec Ansible, on fera référence à un autre projet : [ansible-install-gns3-server](https://github.com/goffinet/ansible-install-gns3-server). Il correspond à quelques étapes :
 
 - Créer un projet GNS3 avec des périphériques interconnectés.
 - Placer une station de contrôle avec Ansible et y connecter les périphériques à gérer.
@@ -332,7 +332,7 @@ La section `[defaults]` définit différentes variables comportementales du logi
 - `display_ok_hosts` : active ou non l'affichage des tâches dont le statut est "OK" (utile pour vérifier l'idempotence).
 - `display_skipped_hosts` : active ou non l'affichage des tâches dont le statut est "Skipped" (utile pour vérifier l'idempotence).
 
-## 4. Les topologies
+## 4. Les topologies CCNA
 
 Les topologies réseau développées sont décrites dans différents inventaires et se configurent avec un livre de jeu du même nom :
 

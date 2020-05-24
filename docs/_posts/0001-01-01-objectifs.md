@@ -4,7 +4,7 @@ title: "Objectifs du projet Ansible CCNA Lab"
 permalink: /objectifs/
 excerpt: "Le but du projet est **uniquement pédagogique** visant à lier les compétences de gestion du réseau du CCNA/CCNP avec un outil IaC (\"Infrastructure as Code\") de gestion des configurations (\"Configuration Management\") comme Ansible et un gestionnaire de source (\"Source Control Management\") comme Git/Github. Le projet tente de répondre à la question suivante : Comment porter les labs de formation d'infrastructure IT (Cisco) sous forme de code ?"
 tags:
-  - how-to
+  - tutoriel
 sidebar:
   nav: "menu1"
 date: 2020-05-23

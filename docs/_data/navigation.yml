@@ -9,28 +9,39 @@ menu1:
     url: /objectifs/
   - title: "2. La gestion du réseau avec Ansible"
     url: /gestion-ansible/
-  - title: "3. La mise en place du lab"
-    url: /mise-en-place-lab/
-  - title: "4. Les topologies"
-    url: /topologies/
+  - title: "3. La mise en place du lab sur GNS3"
+    url: /mise-en-place-du-lab-sur-gns3/
+    children:
+      - title: "3.1. Setup du lab GNS3 avec Ansible"
+        url: /mise-en-place-du-lab-sur-gns3/setup-du-lab-gns3-avec-ansible/
+      - title: "3.2. Configuration de la station de contrôle"
+        url: /mise-en-place-du-lab-sur-gns3/configuration-de-la-station-de-controle/
+      - title: "3.3. Préparation des images Cisco IOSv pour GNS3"
+        url: /mise-en-place-du-lab-sur-gns3/preparation-des-images-cisco-iosv-pour-gns3/
+      - title: "3.4. Récupérer le dépôt des livres de jeu Ansible"
+        url: /mise-en-place-du-lab-sur-gns3/recuperer-depot-livres-de-jeu-ansible-ccna-lab/
+      - title: "3.5. Récupérer le dépôt des livres de jeu Ansible"
+        url: /mise-en-place-du-lab-sur-gns3/recuperer-depot-livres-de-jeu-ansible-ccna-lab/
+  - title: "4. Les topologies CCNA"
+    url: /topologies-ccna/
     children:
       - title: "4.1. Topologie CCNA Gateway"
-        url: /topologies/gateway/
+        url: /topologies-ccna/gateway/
       - title: "4.2. Topologie CCNA Bipod"
-        url: /topologies/bipod/
+        url: /topologies-ccna/bipod/
       - title: "4.3. Topologie CCNA Tripod"
-        url: /topologies/tripod/
+        url: /topologies-ccna/tripod/
       - title: "4.4. Variante Router on a Stick"
-        url: /topologies/bipod/
+        url: /topologies-ccna/bipod/
       - title: "4.4. Variante Router on a Stick"
-        url: /topologies/router-on-a-stick/
+        url: /topologies-ccna/router-on-a-stick/
       - title: "4.5. Topologie CCNA Switchblock"
-        url: /topologies/switchblock/
+        url: /topologies-ccna/switchblock/
       - title: "4.6. Toplogie CCNA Tripod et Switchblock"
-        url: /topologies/ccna/
+        url: /topologies-ccna/ccna/
       - title: "4.7. Topologie Ansible Networking Workshop"
-        url: /topologies/networking-workshop/
+        url: /topologies-ccna/networking-workshop/
   - title: "5. L'utilisation des livres de jeu"
-    url: /utilisation/
-  - title: "6. Notes"
-    url: /notes/
+    url: /utilisation-des-livres-de-jeu/
+  - title: "6. Notes et Todo"
+    url: /notes-todo/

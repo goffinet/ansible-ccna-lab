@@ -4,7 +4,7 @@ title: "La gestion du réseau avec Ansible"
 permalink: /gestion-ansible/
 excerpt: " "
 tags:
-  - how-to
+  - tutoriel
 sidebar:
   nav: "menu1"
 date: 2020-05-23

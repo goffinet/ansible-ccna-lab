@@ -100,7 +100,6 @@ defaults:
       toc: true
       toc_label: "Table des matières"
       toc_icon: "cog"
-
 category_archive:
   type: jekyll-archives
   path: /categories/
