@@ -40,13 +40,16 @@ Aussi, l'argument `defaults` qu'il sera nécessaire d'activer avec la valeur `ye
 
 ## 6.2. Phase I : roles ios_config
 
+### 6.2.1. Objectifs
+
 - [x] Tendre vers des rôles **idempotents** avec des [modules standards](https://docs.ansible.com/ansible/latest/modules/list_of_network_modules.html#ios).
 - [x] Usage du filtre jinja2 [ipaddr](https://docs.ansible.com/ansible/latest/user_guide/playbooks_filters_ipaddr.html#playbooks-filters-ipaddr), voir [playbooks/ipaddr.yml](https://github.com/goffinet/ansible-ccna-lab/blob/master/playbooks/demos/ipaddr.yml).
 - [x] Structure en "collection" Ansible. [Using collections in a Playbook](https://docs.ansible.com/ansible/devel/user_guide/collections_using.html#using-collections-in-a-playbook).
 - [x] Définir des paramètres par défaut.
 - [ ] Revoir les conditions, les boucles, les tags
+- [ ] Dépendances des livres de jeu (parser, gns3fy)
 
-Rôles à améliorer :
+### 6.2.2. Rôles à améliorer
 
 * [ ] nat sur les interfaces
 * [ ] contrôle d'IPv6
@@ -55,7 +58,7 @@ Rôles à améliorer :
 * [ ] ~~**fhrp6**~~ + delay
 * [ ] ~~eigrp4/6~~ / ~~ospfv2/v3~~ authentication
 
-Rôles à créer :
+### 6.2.3. Rôles à créer
 
 * [ ] RDNSS
 * [ ] **cdp** / **lldp**
