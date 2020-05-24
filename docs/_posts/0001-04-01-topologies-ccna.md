@@ -24,7 +24,7 @@ Les topologies réseau développées sont décrites dans différents inventaires
 
 Un seul routeur Cisco qui connecte l'Internet et qui offre des services au LAN comme DHCP et RDNSS.
 
-![](docs/assets/images/gateway_lab.png)
+![](../assets/images/gateway_lab.png)
 
 Références :
 
@@ -49,13 +49,13 @@ Références :
 
 Diagramme : Topologie CCNA Bipod
 
-![](docs/assets/images/bipod_lab.png)
+![](../assets/images/bipod_lab.png)
 
 ## 4.3. Topologie CCNA Tripod
 
 Cette topologie maillée à trois routeurs peut être désignée par "tripod". Elle est la couche "Core" de la topologie CCNA complète.
 
-![](docs/assets/images/tripod_lab.png)
+![](../assets/images/tripod_lab.png)
 
 ### 4.3.1. Topologie logique
 
@@ -104,7 +104,7 @@ Variante de la topologie Tripod en utilisant un Trunk Vlan entre R1 et SW0 ainsi
 
 Diagramme : Topologie variante Router on a Stick
 
-![](docs/assets/images/router_on_a_stick_lab.png)
+![](../assets/images/router_on_a_stick_lab.png)
 
 Références :
 
@@ -114,7 +114,7 @@ Références :
 
 Cette seconde topologie "switchblock" met en oeuvre des _commutateurs_. Cette topologie est plus complexe et se connecte à la topologie "tripod". Elle met en oeuvre les couches "distribution" et "access".
 
-![](docs/assets/images/switchblock_lab.png)
+![](../assets/images/switchblock_lab.png)
 
 Références :
 
@@ -200,7 +200,7 @@ Cette topologie interconnecte les topologies "tripod" et "switchblock".
 
 Avec le contrôleur :
 
-![](docs/assets/images/ccna_lab_control.png)
+![](../assets/images/ccna_lab_control.png)
 
 ## 4.7. Topologie Ansible Networking Workshop
 
@@ -212,4 +212,4 @@ Cette topologie s'utilise dans le cadre de l'exercice [ANSIBLE RÉSEAU](https://
 
 -->
 
-![](docs/assets/images/networking-workshop_lab.png)
+![](../assets/images/networking-workshop_lab.png)
