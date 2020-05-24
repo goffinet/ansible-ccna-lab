@@ -6,7 +6,7 @@ excerpt: "Le but du projet est **uniquement pédagogique** visant à lier les co
 tags:
   - tutoriel
 sidebar:
-  nav: "menu1"
+  nav: "menu"
 date: 2020-05-23
 ---
 

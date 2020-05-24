@@ -1,8 +1,8 @@
-#main:
-#  - title: "Quick-Start Guide"
-#    url: /quick-start-guide/
+main:
+  - title: "GitHub"
+    url: https://github.com/goffinet/ansible-ccna-lab
 
-menu1:
+menu:
   - title: Ansible CCNA Lab
     url: /
   - title: "1. Objectifs du projet"
