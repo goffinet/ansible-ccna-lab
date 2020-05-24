@@ -34,18 +34,32 @@ words_per_minute: 80
 # Build settings
 remote_theme: "mmistakes/minimal-mistakes"
 minimal_mistakes_skin    : "contrast" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+# Author
+author:
+  name: "François Goffinet"
+  uri: "https://goffinet.org/#contact"
+  bio: "Votre formateur Cisco"
+  avatar: "https://cisco.goffinet.org/assets/images/francois-avatar.png"
+  location: Bruxelles / Paris
+  github: "goffinet"
+  gitlab: "goffinet"
+  twitter: "fegoffinet"
+  linkedin: "fegoffinet"
 # Site Footer
 footer:
   links:
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
-      # url:
+      url: https://twitter.com/fegoffinet
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      # url:
+      url: https://github.com/goffinet
     - label: "GitLab"
       icon: "fab fa-fw fa-gitlab"
-      # url:
+      url: https://gitlab.com/goffinet
+    - label: "linkedin"
+      icon: "fab fa-fw fa-linkedin"
+      url: https://www.linkedin.com/in/fegoffinet/
 linkedin:
   username               : fegoffinet
 twitter:
@@ -100,6 +114,8 @@ defaults:
       toc: true
       toc_label: "Table des matières"
       toc_icon: "cog"
+      author_profile: true
+      classes: wide
 category_archive:
   type: jekyll-archives
   path: /categories/
