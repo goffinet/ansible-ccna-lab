@@ -44,6 +44,8 @@
 
 <!-- /TOC -->
 
+![Ansible Lint](https://github.com/goffinet/ansible-ccna-lab/workflows/Ansible%20Lint/badge.svg)
+
 ## 1. Description du projet
 
 On trouvera ici des livres de jeu Ansible inspirés des topologies et des sujets du Cisco CCNA (et plus) pour GNS3 (Cisco IOSv). Sa documentation devrait bientôt être disponible sur [https://goffinet.github.io/ansible-ccna-lab/](https://goffinet.github.io/ansible-ccna-lab/). Le projet permet de créer des topologies avec GNS3, de les approvisionner et, ensuite, de les gérer avec Ansible avec pour seul objet du code reproductible et manipulable à l'envi.
