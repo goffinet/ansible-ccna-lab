@@ -583,6 +583,14 @@ blocks
 core
 blocks
 
+[core:vars]
+mgmt_interface=GigabitEthernet0/7
+image_style=iosv_l3
+
+[blocks:vars]
+mgmt_interface=GigabitEthernet3/3
+image_style=iosv_l2
+
 [cisco:vars]
 ansible_user=root
 ansible_ssh_pass=testtest
@@ -591,6 +599,8 @@ ansible_connection=network_cli
 ansible_network_os=ios
 
 ```
+
+La variable `ansible_network_os=ios` conditionne l'exécution des rôles du livre de jeu.
 
 Les configurations sont définies en YAML dans les fichiers de variables d'inventaire (fichier au nom du groupe dans le dossier `inventories/ccna/group_vars` et fichier au nom de l'hôte dans le dossier `inventories/ccna/host_vars`).
 
