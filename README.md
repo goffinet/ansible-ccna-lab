@@ -122,16 +122,16 @@ cd playbooks
 ansible-playbook lab_setup.yml
 ```
 
-On peut choisir la topologie de base en précisant l'inventaire et une variable :
+On peut choisir la topologie de base en précisant l'inventaire :
 
 ```bash
-ansible-playbook lab_setup.yml -i inventories/ccna/hosts -e "topology=ccna"
+ansible-playbook lab_setup.yml -i inventories/ccna/hosts
 ```
 
-On aussi préciser le nombre de topologie à dupliquer, ici 3 par exemple de la topologie "tripod" :
+On aussi préciser le nombre de topologies à dupliquer et le nom de chacun des projets créés, ici 3 avec le nom "testlab" :
 
 ```bash
-ansible-playbook lab_setup.yml -i inventories/tripod/hosts -e "topology=tripod count=3"
+ansible-playbook lab_setup.yml -i inventories/tripod/hosts -e "dest_name=testlab count=3"
 ```
 
 Les différentes étapes du livre de jeu peuvent être controllées avec des "tags" Ansible :

@@ -10,3 +10,60 @@ routing:
   eigrp_as: 1
 rdnss:
   name_server: 1.1.1.1
+
+gns3_url: "http://172.16.253.1"
+gns3_lab_user: root
+gns3_lab_pass: testtest
+project_name: "bipod_lab"
+gns3_nodes_spec:
+  - name: "controller"
+    template: "controller"
+    x: 0
+    y: -300
+  - name: "R1"
+    template: "Cisco IOSv 15.7(3)M3"
+    x: -100
+    y: -100
+  - name: "R2"
+    template: "Cisco IOSv 15.7(3)M3"
+    x: 100
+    y: -100
+  - name: "S1"
+    template: "Ethernet switch"
+    x: -105
+    y: 15
+  - name: "S2"
+    template: "Ethernet switch"
+    x: 95
+    y: 15
+  - name: "nat0"
+    template: "NAT"
+    x: -300
+    y: -100
+  - name: "PC1"
+    template: "VPCS"
+    x: -100
+    y: 100
+  - name: "PC2"
+    template: "VPCS"
+    x: 100
+    y: 100
+  - name: "ctrl0"
+    template: "Ethernet switch"
+    x: -5
+    y: -185
+  - name: "nat1"
+    template: "NAT"
+    x: -300
+    y: -300
+gns3_links_spec:
+  - ["R1", "Gi0/2", "R2", "Gi0/1"]
+  - ["R1", "Gi0/1", "nat0", "nat0"]
+  - ["R1", "Gi0/0", "S1", "Ethernet0"]
+  - ["S1", "Ethernet1", "PC1", "Ethernet0"]
+  - ["R2", "Gi0/0", "S2", "Ethernet0"]
+  - ["S2", "Ethernet1", "PC2", "Ethernet0"]
+  - ["R1", "Gi0/7", "ctrl0", "Ethernet1"]
+  - ["R2", "Gi0/7", "ctrl0", "Ethernet2"]
+  - ["ctrl0", "Ethernet0", "controller", "Ethernet0"]
+  - ["controller", "Ethernet1", "nat1", "nat0"]
