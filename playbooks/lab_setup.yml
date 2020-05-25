@@ -145,7 +145,7 @@
   gather_facts: False
   vars:
     count: 1 # should be defined as extra-vars '-e'
-    dest_name: '{{ topology | default("ccna") }}' # should be defined as extra-vars '-e'
+    dest_name: '{{ project_name | default("ccna") }}' # should be defined as extra-vars '-e'
   collections:
     - davidban77.gns3
   tasks:
