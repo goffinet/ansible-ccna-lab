@@ -64,7 +64,11 @@ Dans les points suivants nous détaillerons :
 
 ## 2. La gestion du réseau avec Ansible
 
-Pour la gestion des noeuds Cisco, le projet est basé sur trois éléments : des livres de jeu qui peuvent en appeler d'autres nommés selon la **topologie** ; ces livres de jeu configurent des hôtes d'inventaire avec des tâches organisées en **rôles** ; les paramètres de la topologie sont configurés en tant que **variables d'inventaire selon un certain modèle de données**.
+Pour la gestion des noeuds Cisco, le projet est basé sur trois éléments :
+
+1. des livres de jeu qui peuvent en appeler d'autres nommés selon la **topologie** définissent la "logique" de la configuration ;
+2. ces livres de jeu configurent des hôtes d'inventaire avec des tâches organisées en **rôles** ;
+3. les paramètres de la topologie sont configurés en tant que **variables d'inventaire selon un certain modèle de données**.
 
 Les topologies sont organisées de la manière suivante :
 
@@ -81,7 +85,7 @@ Une topologie intitulée "ccna" est composée de deux topologies distinctes "tri
 
 Expliqué rapidement :
 
-* Le livre de jeu `ccna.yml` utilise l'inventaire par défaut `ccna` (`tripod` + `switchblock`). On trouve d'autres inventaires adaptés aux livres de jeu du même nom dans le dossier `inventories/`.
+* Le livre de jeu `ccna.yml` (`tripod.yml` + `switchblock.yml`) utilise l'inventaire par défaut "ccna". On trouve d'autres inventaires adaptés aux livres de jeu du même nom dans le dossier `inventories/`.
 * Un livre le jeu devrait appeler un inventaire du même nom, par exemple : `ansible-playbook -i inventories/tripod/hosts tripod.yml`.
 * On peut contrôler les tâches avec des _tags_ (définis sur les rôles) : `ansible-playbook ccna.yml --list-tags`.
 * L'exécution des tâches est conditionnée par le modèle de donnée (variables d'inventaire), principalement fondé sur une liste de paramètres d'interface.
@@ -648,7 +652,7 @@ ansible-playbook ccna.yml -v
 
 ### 5.3. Les rôles invoqués
 
-On prendra l'exemple du livre de jeu `bipod.yaml` :
+Les livres de jeu reprennent les rôles conçus, comme par exemple dans le livre de jeu `bipod.yaml` :
 
 ```yaml
 ---
@@ -671,7 +675,7 @@ On prendra l'exemple du livre de jeu `bipod.yaml` :
     - role: ios_write
 ```
 
-Ces roles trouvent leur place dans le dossier `roles` du projet :
+Ces rôles trouvent leur place dans le dossier `roles` du projet :
 
 ```
 roles/
@@ -779,7 +783,6 @@ Aussi, l'argument `defaults` qu'il sera nécessaire d'activer avec la valeur `ye
 
 #### 6.2.3. Rôles à créer
 
-* [ ] RDNSS
 * [ ] **cdp** / **lldp**
 * [ ] **syslog**
 * [ ] **ntp** (+ auth)
