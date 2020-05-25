@@ -170,3 +170,10 @@
         state: absent
       tags:
         - remove
+    - name: "Print projects name"
+      debug:
+        msg: |
+          {"name": "{{ ansible_date_time.date }}-{{ dest_name }}-{{ item }}"}
+      with_sequence: count={{ count }} start=1
+      tags:
+        - duplicate
