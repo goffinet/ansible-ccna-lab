@@ -1,3 +1,5 @@
+---
+#lab_setup.yml
 - name: "Create a gns3 project and start a base topology"
   hosts: localhost
   gather_facts: False
