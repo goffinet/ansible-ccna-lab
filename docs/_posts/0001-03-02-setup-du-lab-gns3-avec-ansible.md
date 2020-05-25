@@ -21,7 +21,7 @@ pip install gns3fy
 mazer install davidban77.gns3
 ```
 
-Le livre de jeu crée une topologie CCNA (par défaut) sur un serveur GNS3, configure la gestion des routeurs et des commutateurs, duplique une seule fois (par défaut) le projet de base et supprime ce dernier. Les projets dupliqués sont nommé selon cette nomenclature `date-topologie-nb` : `2020-05-23-ccna-1`.
+Le livre de jeu crée une topologie CCNA (par défaut) sur un serveur GNS3, configure la gestion des routeurs et des commutateurs, duplique une seule fois (par défaut) le projet de base et supprime ce dernier. Les projets dupliqués sont nommés selon cette nomenclature `date-topologie-nb` : `2020-05-23-ccna-1`.
 
 ```bash
 git clone https://github.com/goffinet/ansible-ccna-lab
@@ -35,7 +35,7 @@ On peut choisir la topologie de base en précisant l'inventaire :
 ansible-playbook lab_setup.yml -i inventories/ccna/hosts
 ```
 
-On aussi préciser le nombre de topologies à dupliquer et le nom de chacun des projets créés, ici 3 avec le nom "testlab" :
+On aussi préciser le nombre de topologies à dupliquer et le nom de base de chacun des projets créés, ici 3 avec le nom "testlab" :
 
 ```bash
 ansible-playbook lab_setup.yml -i inventories/tripod/hosts -e "dest_name=testlab count=3"
