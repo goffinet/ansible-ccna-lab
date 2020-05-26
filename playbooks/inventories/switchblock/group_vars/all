@@ -13,8 +13,8 @@ ipv6:
 #    - ospf
 
 gns3_url: "http://172.16.253.1"
-gns3_lab_user: root
-gns3_lab_pass: testtest
+gns3_lab_user: "{{ ansible_user }}"
+gns3_lab_pass: "{{ ansible_ssh_pass }}"
 project_name: "switchblock_lab"
 gns3_nodes_spec:
   - name: "controller"
