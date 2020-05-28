@@ -74,6 +74,7 @@ interfaces:
       pri: 255
     ipv6_addresses:
       - 'FE80::2'
+    eigrp6:
   - id: GigabitEthernet0/5
     description: "Link to DS2"
     ipv4_address: 172.16.242.1/24

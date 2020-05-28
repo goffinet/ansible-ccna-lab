@@ -94,7 +94,7 @@ gns3_nodes_spec:
     x: 300
     y: -100
   - name: "PC110"
-    template: "VPCS"
+    template: "centos"
     x: -200
     y: 350
   - name: "PC120"
@@ -122,7 +122,7 @@ gns3_nodes_spec:
     x: 150
     y: 350
   - name: "PC240"
-    template: "VPCS"
+    template: "centos"
     x: 200
     y: 350
   - name: "ctrl0"
