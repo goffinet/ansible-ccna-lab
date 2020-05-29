@@ -171,7 +171,7 @@ La station de contrôle offre un service DHCP avec enregistrement dynamique des 
 
 On trouve des scripts de préparation d'une station de contrôle Centos et Ubuntu dans le dossier [tests/](https://github.com/goffinet/ansible-ccna-lab/blob/master/tests/). L'interface `eth0` contrôle les périphériques et l'interface `eth1` donne accès à l'Internet.
 
-On peut rapidement innstaller un contrôleur sous Centos :
+On peut rapidement installer un contrôleur sous Centos :
 
 ```bash
 curl -s https://raw.githubusercontent.com/goffinet/ansible-ccna-lab/master/tests/centos-controller.sh -o setup.sh
