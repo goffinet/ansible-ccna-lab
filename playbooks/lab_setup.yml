@@ -28,6 +28,7 @@
         - create
         - start
         - provision
+        - duplicate
 #    - debug: var=project_facts.project.project_id
     - name: "Start nodes in the project"
       gns3_project:
@@ -126,6 +127,7 @@
         nodes_delay: 3
       tags:
         - provision
+        - duplicate
     - name: "Close the project"
       gns3_project:
         url: "{{ gns3_url }}"
@@ -133,6 +135,7 @@
         state: closed
       tags:
         - provision
+        - duplicate
 - name: "Duplicate and remove the project"
   hosts: localhost
   gather_facts: False
