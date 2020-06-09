@@ -180,7 +180,7 @@
         project_name: "{{ ansible_date_time.date }}-{{ dest_name }}-{{ item }}"
         state: opened
         nodes_state: started
-        nodes_strategy: one_by_one
+        nodes_strategy: all
       with_sequence: count={{ count }} start=1
       tags:
         - startup
