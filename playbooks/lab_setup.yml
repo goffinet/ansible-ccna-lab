@@ -148,6 +148,7 @@
     - setup:
       tags:
         - duplicate
+        - startup
     - name: "Duplicate the project"
       uri:
         url: "{{ gns3_url }}:3080/v2/projects/{{ project_facts.project.project_id }}/duplicate"
