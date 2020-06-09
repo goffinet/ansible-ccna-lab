@@ -174,8 +174,7 @@
       with_sequence: count={{ count }} start=1
       tags:
         - duplicate
-    - name: "Print projects name"
-    - name: "Start nodes in the project"
+    - name: "Start nodes in the projects"
       gns3_project:
         url: "{{ gns3_url }}"
         project_name: "{{ ansible_date_time.date }}-{{ dest_name }}-{{ item }}"
@@ -184,4 +183,4 @@
         nodes_strategy: one_by_one
       with_sequence: count={{ count }} start=1
       tags:
-        - startup 
+        - startup
