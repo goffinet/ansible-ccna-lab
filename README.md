@@ -115,6 +115,7 @@ On peut installer les dépendances de la manière suivante :
 pip install netaddr
 pip install pexpect
 pip install gns3fy
+pip install mazer
 mazer install davidban77.gns3
 ```
 
@@ -122,7 +123,7 @@ Le livre de jeu crée une topologie CCNA (par défaut) sur un serveur GNS3, conf
 
 ```bash
 git clone https://github.com/goffinet/ansible-ccna-lab
-cd playbooks
+cd ansible-ccna-lab/playbooks
 ansible-playbook lab_setup.yml
 ```
 
