@@ -29,7 +29,6 @@
         - start
         - provision
         - duplicate
-        - startup
 #    - debug: var=project_facts.project.project_id
     - name: "Start nodes in the project"
       gns3_project:
