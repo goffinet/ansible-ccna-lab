@@ -9,6 +9,50 @@ ip address dhcp
 no cdp enable
 no shutdown
 {% endif %}
+{% if inventory_hostname == "GATEWAY" and image_style == "iosv_l3" %}
+interface GigabitEthernet0/0
+description LAN interface
+ip address 192.168.1.254 255.255.255.0
+ipv6 address FE80::1 link-local
+ip nat inside
+no shutdown
+interface GigabitEthernet0/1
+description WAN interface
+ip address dhcp
+ip nat outside
+no shutdown
+ip access-list standard lan
+permit 192.168.1.0 0.0.0.255
+ip nat inside source list lan interface GigabitEthernet0/1 overload
+ip domain lookup
+ip name-server 8.8.8.8
+ip dns server
+ip dhcp excluded-address 192.168.1.200 192.168.1.254
+ip dhcp pool DHCP-LAN
+network 192.168.1.0 255.255.255.0
+default-router 192.168.1.254
+dns-server 192.168.1.254
+ipv6 unicast-routing
+ipv6 dhcp pool DHCPv6-GLA
+address prefix 2001:470:c814:ca00::/64
+dns-server 2001:470:c814:ca00::1
+ipv6 dhcp pool DHCPv6-ULA
+address prefix FD00:192:168:1::/64
+dns-server FD00:192:168:1::1
+interface GigabitEthernet0/0
+ipv6 address FE80::1 link-local
+ipv6 address 2001:470:c814:ca00::1/64
+ipv6 address FD00:192:168:1::1/64
+ipv6 nd managed-config-flag
+ipv6 nd other-config-flag
+ipv6 dhcp server DHCPv6-UGA
+ipv6 dhcp server DHCPv6-ULA
+interface GigabitEthernet0/1
+description WAN interface
+ipv6 address 2001:470:c814::ca:1/64
+ipv6 nd ra suppress
+ipv6 route 2000::/3 GigabitEthernet0/1 2001:470:c814::1
+{% endif %}
 ip domain-name lan
 username {{ gns3_lab_user }} privilege 15 password {{ gns3_lab_pass }}
 crypto key generate rsa modulus 2048

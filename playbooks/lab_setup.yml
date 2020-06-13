@@ -1,5 +1,5 @@
 ---
-#lab_setup.yml
+#lab_setup.yml -e "dest_name=testlab count=3"
 - name: "Create a gns3 project and start a base topology"
   hosts: localhost
   gather_facts: False
@@ -55,6 +55,7 @@
   vars:
     ansible_connection: local
     ansible_python_interpreter: "{{ ansible_playbook_python }}"
+    template: "templates/iosv_default_config.j2"
   collections:
     - davidban77.gns3
   tasks:
@@ -71,7 +72,7 @@
             state: directory
         - name: Generate config
           template:
-            src: templates/iosv_default_config.j2
+            src: "{{ template }}"
             dest: "configs/build/{{ inventory_hostname }}-iosv.conf"
       tags:
         - provision
@@ -80,7 +81,7 @@
       block:
         - name: "Generate configuration variable"
           set_fact:
-            boilerplate_config: "{{ lookup('template', 'templates/iosv_default_config.j2') }}"
+            boilerplate_config: "{{ lookup('template', '{{ template }}') }}"
         - name: "Push config on iosv_l3 nodes"
           when: ansible_network_os == "ios" and image_style == "iosv_l3"
           gns3_telnet_console:

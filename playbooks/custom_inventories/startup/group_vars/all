@@ -1,0 +1,42 @@
+---
+gns3_url: "http://172.16.253.1"
+gns3_lab_user: "{{ ansible_user }}"
+gns3_lab_pass: "{{ ansible_ssh_pass }}"
+project_name: "startup_lab"
+gns3_nodes_spec:
+  - name: "GATEWAY"
+    #template: "gateway"
+    template: "Cisco IOSv 15.7(3)M3"
+    x: 0
+    y: -200
+  - name: "SW0"
+    template: "Cisco IOSvL2 15.2.1"
+    x: 0
+    y: -100
+  - name: "NAT"
+    template: "NAT"
+    x: 100
+    y: -200
+  - name: "PC1"
+    template: "linux-pc"
+    x: -100
+    y: -100
+  - name: "PC2"
+    template: "linux-pc"
+    x: -100
+    y: 0
+  - name: "PC3"
+    template: "linux-pc"
+    x: 100
+    y: -100
+  - name: "PC4"
+    template: "linux-pc"
+    x: 100
+    y: 0
+gns3_links_spec:
+  - ["GATEWAY", "Gi0/1", "NAT", "nat0"]
+  - ["GATEWAY", "Gi0/0", "SW0", "Gi0/0"]
+  - ["SW0", "Gi1/0", "PC1", "Ethernet0"]
+  - ["SW0", "Gi1/1", "PC2", "Ethernet0"]
+  - ["SW0", "Gi1/2", "PC3", "Ethernet0"]
+  - ["SW0", "Gi1/3", "PC4", "Ethernet0"]
