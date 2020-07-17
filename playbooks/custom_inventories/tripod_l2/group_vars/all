@@ -1,0 +1,33 @@
+---
+template: "{{ inventory_dir }}/templates/iosv_default_config.j2"
+gns3_url: "http://172.16.253.1"
+gns3_lab_user: "{{ ansible_user }}"
+gns3_lab_pass: "{{ ansible_ssh_pass }}"
+project_name: "tripod_l2_lab"
+gns3_nodes_spec:
+  - name: "S1"
+    template: "Cisco IOSvL2 15.2.1"
+    x: -100
+    y: -100
+  - name: "S2"
+    template: "Cisco IOSvL2 15.2.1"
+    x: 0
+    y: 0
+  - name: "S3"
+    template: "Cisco IOSvL2 15.2.1"
+    x: 100
+    y: -100
+  - name: "PC1"
+    template: "linux-pc"
+    x: -200
+    y: -50
+  - name: "PC2"
+    template: "linux-pc"
+    x: 200
+    y: -50
+gns3_links_spec:
+  - ["S1", "Gi0/2", "S2", "Gi0/1"]
+  - ["S1", "Gi0/3", "S3", "Gi0/1"]
+  - ["S2", "Gi0/3", "S3", "Gi0/2"]
+  - ["S1", "Gi1/0", "PC1", "Ethernet0"]
+  - ["S3", "Gi2/0", "PC2", "Ethernet0"]

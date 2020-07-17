@@ -1,0 +1,10 @@
+configure terminal
+hostname {{ inventory_hostname }}
+{% if image_style == "iosv_l2" %}
+no ip routing
+no banner exec
+no banner incoming
+no banner login
+{% endif %}
+end
+write memory

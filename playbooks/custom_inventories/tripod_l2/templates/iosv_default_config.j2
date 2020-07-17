@@ -1,0 +1,66 @@
+configure terminal
+hostname {{ inventory_hostname }}
+{% if mgmt_interface is defined %}
+interface {{ mgmt_interface }}
+{% if image_style == "iosv_l2" %}
+no switchport
+{% endif %}
+ip address dhcp
+no cdp enable
+no shutdown
+{% endif %}
+{% if image_style == "iosv_l2" %}
+no ip routing
+vlan 10
+name User
+vlan 99
+name Management
+{% endif %}
+{% if inventory_hostname == "S1" and image_style == "iosv_l2" %}
+interface G1/0
+no shutdown
+switchport mode access
+switchport access vlan 10
+interface range G0/2,G0/3
+no shutdown
+switchport trunk encapsulation dot1q
+switchport mode trunk
+switchport trunk native vlan 99
+interface vlan 99
+no shutdown
+ip address 192.168.1.11 255.255.255.0
+{% endif %}
+{% if inventory_hostname == "S2" and image_style == "iosv_l2" %}
+interface range G0/1,G0/3
+no shutdown
+switchport trunk encapsulation dot1q
+switchport mode trunk
+switchport trunk native vlan 99
+interface vlan 99
+no shutdown
+ip address 192.168.1.12 255.255.255.0
+{% endif %}
+{% if inventory_hostname == "S3" and image_style == "iosv_l2" %}
+interface G2/0
+no shutdown
+switchport mode access
+switchport access vlan 10
+interface range G0/1,G0/2
+no shutdown
+switchport trunk encapsulation dot1q
+switchport mode trunk
+switchport trunk native vlan 99
+interface vlan 99
+no shutdown
+ip address 192.168.1.13 255.255.255.0
+{% endif %}
+ip domain-name lan
+username {{ gns3_lab_user }} privilege 15 password {{ gns3_lab_pass }}
+crypto key generate rsa modulus 2048
+ip ssh version 2
+ip scp server enable
+line vty 0 4
+login local
+transport input ssh
+end
+write memory

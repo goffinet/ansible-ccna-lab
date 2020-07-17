@@ -1,0 +1,77 @@
+configure terminal
+hostname {{ inventory_hostname }}
+{% if mgmt_interface is defined %}
+interface {{ mgmt_interface }}
+{% if image_style == "iosv_l2" %}
+no switchport
+{% endif %}
+ip address dhcp
+no cdp enable
+no shutdown
+{% endif %}
+{% if inventory_hostname == "R1" and image_style == "iosv_l3" %}
+interface lo 0
+ip address 10.10.10.10 255.255.255.255
+ip ospf 1 area 0
+interface g0/0
+ip address 192.168.1.1 255.255.255.0
+ip ospf 1 area 0
+no shutdown
+router ospf 1
+router-id 1.1.1.1
+{% endif %}
+{% if inventory_hostname == "R2" and image_style == "iosv_l3" %}
+interface lo 0
+ip address 20.20.20.20 255.255.255.255
+ip ospf 1 area 0
+interface g0/0
+ip address 192.168.1.2 255.255.255.0
+ip ospf 1 area 0
+no shutdown
+router ospf 1
+router-id 2.2.2.2
+{% endif %}
+{% if inventory_hostname == "R3" and image_style == "iosv_l3" %}
+interface lo 0
+ip address 30.30.30.30 255.255.255.255
+ip ospf 1 area 0
+interface g0/0
+ip address 192.168.1.3 255.255.255.0
+ip ospf 1 area 0
+no shutdown
+router ospf 1
+router-id 3.3.3.3
+{% endif %}
+{% if inventory_hostname == "R4" and image_style == "iosv_l3" %}
+hostname R4
+interface lo 0
+ip address 40.40.40.40 255.255.255.255
+ip ospf 1 area 0
+interface g0/0
+ip address 192.168.1.4 255.255.255.0
+ip ospf 1 area 0
+no shutdown
+router ospf 1
+router-id 4.4.4.4
+{% endif %}
+{% if inventory_hostname == "R5" and image_style == "iosv_l3" %}
+interface lo 0
+ip address 50.50.50.50 255.255.255.255
+ip ospf 1 area 0
+interface g0/0
+ip address 192.168.1.5 255.255.255.0
+ip ospf 1 area 0
+no shutdown
+router ospf 1
+router-id 5.5.5.5
+{% endif %}
+ip domain-name lan
+username {{ gns3_lab_user }} privilege 15 password {{ gns3_lab_pass }}
+crypto key generate rsa modulus 2048
+ip ssh version 2
+ip scp server enable
+line vty 0 4
+login local
+transport input ssh
+end
+write memory

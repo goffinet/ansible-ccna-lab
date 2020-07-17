@@ -1,0 +1,40 @@
+---
+template: "{{ inventory_dir }}/templates/iosv_default_config.j2"
+gns3_url: "http://172.16.253.1"
+gns3_lab_user: "{{ ansible_user }}"
+gns3_lab_pass: "{{ ansible_ssh_pass }}"
+project_name: "etherchannel_lab"
+gns3_nodes_spec:
+  - name: "SW0"
+    template: "Cisco IOSvL2 15.2.1"
+    x: -100
+    y: 0
+  - name: "SW1"
+    template: "Cisco IOSvL2 15.2.1"
+    x: 100
+    y: 0
+  - name: "PC1"
+    template: "linux-pc"
+    x: -200
+    y: -50
+  - name: "PC2"
+    template: "linux-pc"
+    x: -200
+    y: 50
+  - name: "PC3"
+    template: "linux-pc"
+    x: 200
+    y: -50
+  - name: "PC4"
+    template: "linux-pc"
+    x: 200
+    y: 50
+gns3_links_spec:
+  - ["SW0", "Gi0/0", "SW1", "Gi0/0"]
+  - ["SW0", "Gi0/1", "SW1", "Gi0/1"]
+  - ["SW0", "Gi0/2", "SW1", "Gi0/2"]
+  - ["SW0", "Gi0/3", "SW1", "Gi0/3"]
+  - ["SW0", "Gi3/0", "PC1", "Ethernet0"]
+  - ["SW1", "Gi3/0", "PC3", "Ethernet0"]
+  - ["SW0", "Gi3/1", "PC2", "Ethernet0"]
+  - ["SW1", "Gi3/1", "PC4", "Ethernet0"]

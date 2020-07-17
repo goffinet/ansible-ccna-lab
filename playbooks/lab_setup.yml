@@ -55,10 +55,11 @@
   vars:
     ansible_connection: local
     ansible_python_interpreter: "{{ ansible_playbook_python }}"
-    template: "templates/iosv_default_config.j2"
+#    template: "templates/iosv_default_config.j2"
   collections:
     - davidban77.gns3
   tasks:
+#    - debug: var=template
     - name: "Retrieving nodes inventory information"
       set_fact:
         nodes_inventory: "{{ hostvars['localhost']['nodes_inventory']['nodes_inventory'] }}"
@@ -137,7 +138,7 @@
       tags:
         - provision
         - duplicate
-- name: "Duplicate and remove the project"
+- name: "Duplicate the project"
   hosts: localhost
   gather_facts: False
   vars:
@@ -161,14 +162,6 @@
       with_sequence: count={{ count }} start=1
       tags:
         - duplicate
-    - name: "Remove network topology"
-      gns3_project:
-        url: "{{ gns3_url }}"
-        project_name: "{{ project_name }}"
-        state: absent
-      tags:
-        - remove
-        - never
     - name: "Print projects name"
       debug:
         msg: |
@@ -176,13 +169,3 @@
       with_sequence: count={{ count }} start=1
       tags:
         - duplicate
-    - name: "Start nodes in the projects"
-      gns3_project:
-        url: "{{ gns3_url }}"
-        project_name: "{{ ansible_date_time.date }}-{{ dest_name }}-{{ item }}"
-        state: opened
-        nodes_state: started
-        nodes_strategy: one_by_one
-      with_sequence: count={{ count }} start=1
-      tags:
-        - startup

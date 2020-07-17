@@ -1,0 +1,21 @@
+[all:vars]
+#method=modules # modules or templating
+
+[switches]
+S1
+S2
+S3
+
+[cisco:children]
+switches
+
+[switches:vars]
+mgmt_interface=GigabitEthernet3/3
+image_style=iosv_l2
+
+[cisco:vars]
+ansible_user=root
+ansible_ssh_pass=testtest
+ansible_port=22
+ansible_connection=network_cli
+ansible_network_os=ios

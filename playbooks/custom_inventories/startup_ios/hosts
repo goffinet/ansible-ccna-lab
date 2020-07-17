@@ -17,13 +17,6 @@ stick
 core
 stick
 
-[stick]
-SW0
-
-[cisco:children]
-core
-stick
-
 [stick:vars]
 mgmt_interface=GigabitEthernet3/3
 image_style=iosv_l2

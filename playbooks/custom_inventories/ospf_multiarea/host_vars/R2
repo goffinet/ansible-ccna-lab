@@ -1,0 +1,63 @@
+---
+hostname: R2
+interfaces:
+  - id: GigabitEthernet0/0
+    description: "LAN R2"
+    ipv4_address: 192.168.33.1/24
+    passive:
+    rip:
+    eigrp4:
+    ospfv2:
+      area: 0
+      cost: 1
+      pri: 255
+    ipv6_addresses:
+      - 'FE80::2'
+      - 'FD00:FD00:FD00:2::1/64'
+    eigrp6:
+    ospfv3:
+      area: 0
+      cost: 1
+      pri: 255
+  - id: GigabitEthernet0/1
+    description: "Link to R1"
+    ipv4_address: 192.168.225.2/24
+    rip:
+    eigrp4:
+    ospfv2:
+      area: 0
+      cost: 1
+      pri: 255
+    ipv6_addresses:
+      - 'FE80::2'
+    eigrp6:
+    ospfv3:
+      area: 0
+      cost: 1
+      pri: 255
+  - id: GigabitEthernet0/3
+    description: "Link to R3"
+    ipv4_address: 192.168.227.1/24
+    rip:
+    eigrp4:
+    ospfv2:
+      area: 0
+      cost: 1
+      pri: 255
+    ipv6_addresses:
+      - 'FE80::2'
+    eigrp6:
+    ospfv3:
+      area: 0
+      cost: 1
+      pri: 255
+routing:
+  rid: 2.2.2.2
+  eigrp_as: 1
+dhcp:
+  dhcp_pool:
+    - id: "LANR2"
+      network: 192.168.33.0
+      netmask: 255.255.255.0
+      router: 192.168.33.1
+      dns: 192.168.33.1

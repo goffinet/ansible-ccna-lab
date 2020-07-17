@@ -1,13 +1,4 @@
-[routers:children]
-cisco
-
-[cisco]
-rtr1
-rtr2
-rtr3
-rtr4
-
-[cisco:vars]
+[all:vars]
 ansible_user=root
 ansible_ssh_pass=testtest
 ansible_port=22
@@ -16,10 +7,9 @@ ansible_network_os=ios
 mgmt_interface=GigabitEthernet0/7
 image_style=iosv_l3
 
-[dc1]
-rtr1
-rtr3
-
-[dc2]
-rtr2
-rtr4
+[routers]
+R1
+R2
+R3
+R4
+R5

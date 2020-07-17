@@ -1,0 +1,37 @@
+---
+template: "{{ inventory_dir }}/templates/iosv_default_config.j2"
+gns3_url: "http://172.16.253.1"
+gns3_lab_user: "{{ ansible_user }}"
+gns3_lab_pass: "{{ ansible_ssh_pass }}"
+project_name: "ospf_neighboring_lab"
+gns3_nodes_spec:
+  - name: "R1"
+    template: "Cisco IOSv 15.7(3)M3"
+    x: -100
+    y: -100
+  - name: "R2"
+    template: "Cisco IOSv 15.7(3)M3"
+    x: 100
+    y: -100
+  - name: "R3"
+    template: "Cisco IOSv 15.7(3)M3"
+    x: 100
+    y: 100
+  - name: "R4"
+    template: "Cisco IOSv 15.7(3)M3"
+    x: 5
+    y: 100
+  - name: "R5"
+    template: "Cisco IOSv 15.7(3)M3"
+    x: -100
+    y: 100
+  - name: "switch"
+    template: "Ethernet switch"
+    x: 0
+    y: 0
+gns3_links_spec:
+  - ["R1", "Gi0/0", "switch", "Ethernet1"]
+  - ["R2", "Gi0/0", "switch", "Ethernet2"]
+  - ["R3", "Gi0/0", "switch", "Ethernet3"]
+  - ["R4", "Gi0/0", "switch", "Ethernet4"]
+  - ["R5", "Gi0/0", "switch", "Ethernet5"]

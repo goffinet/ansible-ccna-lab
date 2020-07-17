@@ -1,5 +1,4 @@
 ---
-template: "templates/iosv_default_config.j2"
 domain_name: lan
 ipv4:
   routing:
@@ -13,15 +12,12 @@ ipv6:
     - eigrp
 #    - ospf
 
+template: "templates/iosv_default_config.j2"
 gns3_url: "http://172.16.253.1"
 gns3_lab_user: "{{ ansible_user }}"
 gns3_lab_pass: "{{ ansible_ssh_pass }}"
-project_name: "ccna_lab"
+project_name: "ccna_remote_lab"
 gns3_nodes_spec:
-  - name: "controller"
-    template: "controller"
-    x: -493
-    y: 300
   - name: "R1"
     template: "Cisco IOSv 15.7(3)M3"
     x: 0
@@ -70,6 +66,22 @@ gns3_nodes_spec:
     template: "Cisco IOSvL2 15.2.1"
     x: 100
     y: 200
+  - name: "R4"
+    template: "Cisco IOSv 15.7(3)M3"
+    x: 300
+    y: -300
+  - name: "S4"
+    template: "Ethernet switch"
+    x: 400
+    y: -285
+  - name: "PC4"
+    template: "VPCS"
+    x: 400
+    y: -200
+  - name: "nat2"
+    template: "NAT"
+    x: 100
+    y: -300
   - name: "PC1-VLAN10"
     template: "VPCS"
     x: -50
@@ -126,18 +138,22 @@ gns3_nodes_spec:
     template: "VPCS"
     x: 200
     y: 350
-  - name: "ctrl0"
-    template: "Ethernet switch"
-    x: -500
-    y: 200
-  - name: "ctrl1"
-    template: "Ethernet switch"
-    x: -500
-    y: 100
-  - name: "nat1"
-    template: "NAT"
-    x: -700
-    y: 300
+#  - name: "controller"
+#    template: "controller"
+#    x: -493
+#    y: 300
+#  - name: "ctrl0"
+#    template: "Ethernet switch"
+#    x: -500
+#    y: 200
+#  - name: "ctrl1"
+#    template: "Ethernet switch"
+#    x: -500
+#    y: 100
+#  - name: "nat1"
+#    template: "NAT"
+#    x: -700
+#    y: 300
 gns3_links_spec:
   - ["R1", "Gi0/2", "R2", "Gi0/1"]
   - ["R1", "Gi0/3", "R3", "Gi0/1"]
@@ -179,13 +195,17 @@ gns3_links_spec:
   - ["AS2", "Gi2/1", "PC220", "Ethernet0"]
   - ["AS2", "Gi2/2", "PC230", "Ethernet0"]
   - ["AS2", "Gi2/3", "PC240", "Ethernet0"]
-  - ["R1", "Gi0/7", "ctrl1", "Ethernet1"]
-  - ["R2", "Gi0/7", "ctrl1", "Ethernet2"]
-  - ["R3", "Gi0/7", "ctrl1", "Ethernet3"]
-  - ["ctrl0", "Ethernet7", "ctrl1", "Ethernet0"]
-  - ["DS1", "Gi3/3", "ctrl0", "Ethernet1"]
-  - ["DS2", "Gi3/3", "ctrl0", "Ethernet2"]
-  - ["AS1", "Gi3/3", "ctrl0", "Ethernet3"]
-  - ["AS2", "Gi3/3", "ctrl0", "Ethernet4"]
-  - ["ctrl0", "Ethernet0", "controller", "Ethernet0"]
-  - ["controller", "Ethernet1", "nat1", "nat0"]
+  - ["R4", "Gi0/1", "nat2", "nat0"]
+  - ["R4", "Gi0/0", "S4", "Ethernet0"]
+  - ["S4", "Ethernet1", "PC4", "Ethernet0"]
+#  - ["R1", "Gi0/7", "ctrl1", "Ethernet1"]
+#  - ["R2", "Gi0/7", "ctrl1", "Ethernet2"]
+#  - ["R3", "Gi0/7", "ctrl1", "Ethernet3"]
+#  - ["R4", "Gi0/7", "ctrl1", "Ethernet4"]
+#  - ["ctrl0", "Ethernet7", "ctrl1", "Ethernet0"]
+#  - ["DS1", "Gi3/3", "ctrl0", "Ethernet1"]
+#  - ["DS2", "Gi3/3", "ctrl0", "Ethernet2"]
+#  - ["AS1", "Gi3/3", "ctrl0", "Ethernet3"]
+#  - ["AS2", "Gi3/3", "ctrl0", "Ethernet4"]
+#  - ["ctrl0", "Ethernet0", "controller", "Ethernet0"]
+#  - ["controller", "Ethernet1", "nat1", "nat0"]
