@@ -1,3 +1,6 @@
+{% if image_style == "iosv_l2" %}
+enable
+{% endif %}
 configure terminal
 hostname {{ inventory_hostname }}
 {% if mgmt_interface is defined %}
