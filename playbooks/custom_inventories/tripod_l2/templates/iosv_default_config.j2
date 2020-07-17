@@ -21,41 +21,41 @@ name Management
 {% endif %}
 {% if inventory_hostname == "S1" and image_style == "iosv_l2" %}
 interface G1/0
-no shutdown
 switchport mode access
 switchport access vlan 10
-interface range G0/2,G0/3
 no shutdown
+interface range G0/2,G0/3
 switchport trunk encapsulation dot1q
 switchport mode trunk
 switchport trunk native vlan 99
+no shutdown
 interface vlan 99
 no shutdown
 ip address 192.168.1.11 255.255.255.0
 {% endif %}
 {% if inventory_hostname == "S2" and image_style == "iosv_l2" %}
 interface range G0/1,G0/3
-no shutdown
 switchport trunk encapsulation dot1q
 switchport mode trunk
 switchport trunk native vlan 99
-interface vlan 99
 no shutdown
+interface vlan 99
 ip address 192.168.1.12 255.255.255.0
+no shutdown
 {% endif %}
 {% if inventory_hostname == "S3" and image_style == "iosv_l2" %}
-interface vlan 99
-no shutdown
-ip address 192.168.1.13 255.255.255.0
 interface G2/0
-no shutdown
 switchport mode access
 switchport access vlan 10
-interface range G0/1,G0/2
 no shutdown
+interface range G0/1,G0/2
 switchport trunk encapsulation dot1q
 switchport mode trunk
 switchport trunk native vlan 99
+no shutdown
+interface vlan 99
+ip address 192.168.1.13 255.255.255.0
+no shutdown
 {% endif %}
 ip domain-name lan
 username {{ gns3_lab_user }} privilege 15 password {{ gns3_lab_pass }}
