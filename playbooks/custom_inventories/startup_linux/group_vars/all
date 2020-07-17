@@ -1,6 +1,6 @@
 ---
 template: "{{ inventory_dir }}/templates/iosv_default_config.j2"
-gns3_url: "http://172.16.253.1"
+gns3_url: "http://127.0.0.1"
 gns3_lab_user: "{{ ansible_user }}"
 gns3_lab_pass: "{{ ansible_ssh_pass }}"
 project_name: "startup_linux_lab"
