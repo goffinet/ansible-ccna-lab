@@ -6,6 +6,7 @@ pip3 install ansible
 pip3 install paramiko
 pip3 install ansible-lint
 pip3 install netaddr
+pip3 install ansible-cmdb
 systemctl disable systemd-resolved
 systemctl stop systemd-resolved
 rm -f /etc/resolv.conf

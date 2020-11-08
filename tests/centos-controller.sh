@@ -7,6 +7,7 @@ pip3 install ansible
 pip3 install paramiko
 pip3 install ansible-lint
 pip3 install netaddr
+pip3 install ansible-cmdb
 yum -y install git dnsmasq
 cat << EOF > /etc/dnsmasq.conf
 interface=lo0
