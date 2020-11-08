@@ -15,8 +15,6 @@ add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/ubuntu
 apt update
 apt -y install docker-ce docker-ce-cli containerd.io curl
 usermod -aG docker $USER
-}
-install-docker() {
 apt update
 apt -y install curl
 curl -s https://api.github.com/repos/docker/compose/releases/latest \
@@ -33,7 +31,7 @@ pip install requests==2.14.2
 pip install docker-compose==$(docker-compose version --short)
 service docker start
 fi
-if [ -f /etc/debian_version ] ; then
+if [ -f /etc/centos-release ] ; then
 dnf install -y epel-release
 dnf install -y git gcc gcc-c++ nodejs gettext device-mapper-persistent-data lvm2 bzip2 python3-pip python3 ansible
 dnf -y config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
@@ -86,6 +84,5 @@ ansible-playbook -i inventory install.yml -v
 }
 
 install-ansible
-install-docker
 install-awx
 grep 'admin_password' ~/awx-install/awx/installer/inventory
