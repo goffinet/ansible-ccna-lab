@@ -606,12 +606,12 @@ image_style=iosv_l2
 ansible_user=root
 ansible_ssh_pass=testtest
 ansible_port=22
-ansible_connection=ansible.netcommon.network_cli
-ansible_network_os=cisco.ios.ios
+ansible_connection=network_cli
+ansible_network_os=ios
 
 ```
 
-La variable `ansible_network_os=cisco.ios.ios` conditionne l'exécution des rôles du livre de jeu.
+La variable `ansible_network_os=ios` conditionne l'exécution des rôles du livre de jeu.
 
 Les configurations sont définies en YAML dans les fichiers de variables d'inventaire (fichier au nom du groupe dans le dossier `inventories/ccna/group_vars` et fichier au nom de l'hôte dans le dossier `inventories/ccna/host_vars`).
 
