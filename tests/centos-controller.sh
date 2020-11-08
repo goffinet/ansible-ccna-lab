@@ -4,6 +4,7 @@ hostnamectl set-hostname controller
 yum -y remove ansible
 yum -y install python3-pip git
 pip3 install ansible
+pip3 install paramiko
 pip3 install ansible-lint
 pip3 install netaddr
 yum -y install git dnsmasq
@@ -35,4 +36,8 @@ sed -i 's/^#\$UDPServerRun 514/$UDPServerRun 514/g' /etc/rsyslog.conf
 sed -i 's/^#\$ModLoad imtcp/$ModLoad imtcp/g' /etc/rsyslog.conf
 sed -i 's/^#\$InputTCPServerRun 514/$InputTCPServerRun 514/g' /etc/rsyslog.conf
 systemctl restart rsyslog
+firewall-cmd --permanent --add-service dhcp
+firewall-cmd --permanent --add-service dns
+firewall-cmd --permanent --add-service syslog
+firewall-cmd --reload
 shutdown -r now

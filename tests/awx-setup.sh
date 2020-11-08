@@ -1,6 +1,7 @@
 #!/bin/bash
 install-ansible() {
-# Installer Ansible
+# Installer Ansible pour Ubuntu
+if [ -f /etc/debian_version ] ; then
 export DEBIAN_FRONTEND="noninteractive"
 apt-add-repository -y ppa:ansible/ansible
 apt-get update
@@ -31,13 +32,25 @@ apt -y install python-pip git pwgen vim
 pip install requests==2.14.2
 pip install docker-compose==$(docker-compose version --short)
 service docker start
+fi
+if [ -f /etc/debian_version ] ; then
+dnf install -y epel-release
+dnf install -y git gcc gcc-c++ nodejs gettext device-mapper-persistent-data lvm2 bzip2 python3-pip python3 ansible
+dnf -y config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
+dnf -y install docker-ce --nobest
+systemctl start docker
+systemctl enable --now docker.service
+usermod -aG docker $USER
+alternatives --set python /usr/bin/python3
+pip3 install --user docker-compose
+fi
 }
 install-awx() {
 FQDN="localhost"
 # Télécharger AWX
 mkdir awx-install
 cd awx-install
-apt-get -y install git
+apt-get -y install git || dnf -y install git
 git clone https://github.com/ansible/awx.git
 git clone https://github.com/ansible/awx-logos.git
 # Configurer l'installation d'AWX
