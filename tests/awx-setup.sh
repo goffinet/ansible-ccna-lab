@@ -44,6 +44,7 @@ pip3 install --user docker-compose
 fi
 }
 install-awx() {
+cd
 FQDN="localhost"
 # Télécharger AWX
 mkdir awx-install
