@@ -10,7 +10,7 @@ sidebar:
 date: 2020-05-24
 ---
 
-Se rendre dans le dossier des livres de jeu `ansible-ccna-lab/playbooks/` :
+Le serveur et le projet GNS3 sont lancés et tous les périphériques de la topologie ont démarré. A partir de la station de contrôle, veuillez vous rendre dans le dossier des livres de jeu `ansible-ccna-lab/playbooks/` :
 
 ```bash
 cd
@@ -65,14 +65,14 @@ image_style=iosv_l2
 ansible_user=root
 ansible_ssh_pass=testtest
 ansible_port=22
-ansible_connection=network_cli
+ansible_connection=ansible.netcommon.network_cli
 ansible_network_os=ios
 
 ```
 
 La variable `ansible_network_os=ios` conditionne l'exécution des rôles du livre de jeu.
 
-Les configurations sont définies en YAML dans les fichiers de variables d'inventaire (fichier au nom du groupe dans le dossier `inventories/ccna/group_vars` et fichier au nom de l'hôte dans le dossier `inventories/ccna/host_vars`).
+Les paramètres de configuration sont définis en YAML dans les fichiers de variables d'inventaire (fichier au nom du groupe dans le dossier `inventories/ccna/group_vars` et fichier au nom de l'hôte dans le dossier `inventories/ccna/host_vars`).
 
 ```
 inventories/ccna
@@ -91,24 +91,25 @@ inventories/ccna
     └── R3
 ```
 
+On rapellera que le modèle de données utilisé est purement arbitraire. Une modification du modèle de données aura probablement des conséquences sur l'éxécution de certaines tâches utilisée dans les livres de jeu.
+
 ## 5.2. Livres de jeu
 
-Les livres de jeu (`playbooks/`) font appel à des rôles qui trouvent la valeur des variables dans l'inventaire.
+Quels sont les livres de jeu disponibles ? Les livres de jeu (`playbooks/`) font appel à des rôles qui trouvent la valeur des variables dans l'inventaire.
 
-
-Le playbook `tripod.yml` configure la topologie tripod :
+Le livre de jeu `tripod.yml` configure la topologie tripod :
 
 ```bash
 ansible-playbook tripod.yml -v
 ```
 
-Le playbook `blocks.yml` configure la topologie switchblock :
+Le livre de jeu `blocks.yml` configure la topologie switchblock :
 
 ```bash
 ansible-playbook switchblock.yml -v
 ```
 
-Le playbook `ccna.yml` configure l'ensemble :
+Le livre de jeu `ccna.yml` configure l'ensemble :
 
 ```bash
 ansible-playbook ccna.yml -v
@@ -116,7 +117,7 @@ ansible-playbook ccna.yml -v
 
 ## 5.3. Les rôles invoqués
 
-On prendra l'exemple du livre de jeu `bipod.yaml` :
+On prendra l'exemple du livre de jeu `bipod.yaml` qui fait appel à une série de rôles dans un ordre précis. Le nom des rôles semblerait suffisament explicite pour toute personne disposant d'un niveau CCNA.
 
 ```yaml
 ---
@@ -139,7 +140,7 @@ On prendra l'exemple du livre de jeu `bipod.yaml` :
     - role: ios_write
 ```
 
-Ces roles trouvent leur place dans le dossier `roles` du projet :
+Ces rôles trouvent leur place dans le dossier `roles` du projet :
 
 ```
 roles/

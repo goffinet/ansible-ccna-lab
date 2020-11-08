@@ -37,7 +37,7 @@ La section `[defaults]` définit différentes variables comportementales du logi
 - `retry_files_enabled` active ou non la génération de fichier "[retry](https://docs.ansible.com/ansible/latest/reference_appendices/config.html#retry-files-enabled)".
 - `log_path` : désigne l'emplacement et le nom du fichier de log.
 - `forks` : désigne le nombre d'hôtes à controller en paralèlle (5 par défaut).
-- `strategy` : désigne la stratégie "linear" lance chaque tâche sur tous les hôtes concernés par un jeu avant de commencer la tâche suivante alors que la stratégie "free" permet à chaque hôte d'exécuter le jeu jusqu'à la fin aussi vite que possible.
+- `strategy` : désigne la stratégie "linear" qui lance chaque tâche sur tous les hôtes concernés par un jeu avant de commencer la tâche suivante alors que la stratégie "free" permet à chaque hôte d'exécuter le jeu jusqu'à la fin aussi vite que possible.
 - `gathering` : collecte ("implicit", par défaut) ou non ("explicit") les facts. Ici désactivé par défaut.
 - `callback_whitelist` : affiche ou non des paramètres de temps (voir la section `[callback_profile_tasks]`).
 - `display_ok_hosts` : active ou non l'affichage des tâches dont le statut est "OK" (utile pour vérifier l'idempotence).

@@ -12,7 +12,7 @@ date: 2020-05-23
 
 ## Objectif pédagogique
 
-Le but du projet est **uniquement pédagogique** visant à lier les compétences de gestion du réseau du CCNA/CCNP avec un outil IaC ("Infrastructure as Code") de gestion des configurations ("Configuration Management") comme Ansible et un gestionnaire de source ("Source Control Management") comme Git/Github.
+Le but du projet est **uniquement pédagogique** visant à lier les compétences de gestion du réseau du CCNA/CCNP avec un outil IaC ("Infrastructure as Code") de gestion des configurations ("Configuration Management") comme Ansible et un gestionnaire de source ("Source Control Management") comme Git/Github. Il est utilisé dans les classes de formation Cisco.
 
 ## As Code
 

@@ -10,7 +10,7 @@ sidebar:
 date: 2020-05-24
 ---
 
-Si vous avez utilisé le livre de jeu [`lab_setup.yml`](https://github.com/goffinet/ansible-ccna-lab/blob/master/playbooks/lab_setup.yml), cette étape est purement informative.
+Si vous avez utilisé le livre de jeu [`lab_setup.yml`](https://github.com/goffinet/ansible-ccna-lab/blob/master/playbooks/lab_setup.yml) avec succès, cette étape est purement informative.
 
 Les livres de jeu sont testés avec [GNS3 Server](https://cisco.goffinet.org/ccna/cisco-ios-cli/installer-et-configurer-gns3/) et Qemu/KVM sous Linux.
 

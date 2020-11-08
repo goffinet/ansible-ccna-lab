@@ -12,17 +12,17 @@ date: 2020-05-24
 
 Les topologies réseau développées sont décrites dans différents inventaires et se configurent avec un livre de jeu du même nom :
 
-- "gateway" : un seul routeur connecte l'Internet et offre des services au LAN comme DHCP et RDNSS
+- "gateway" : un seul routeur connecte l'Internet et offre des services au LAN comme serveurs DHCP et RDNSS
 - "bipod" : topologie d'interconnexion de deux LANs distants
 - "tripod" : topologie de base maillée à trois routeurs avec un accès à l'Internet
 - "router_on_a_stick" : topologie d'apprentissage des VLANs
-- "switchblock" : topologie de commutateurs de couche Access et Distribution
+- "switchblock" : topologie de commutateurs de couche Access et Distribution redondants
 - "ccna" : topologies "tripod" et "switchblock" connectées entre elles
-- "networking-workshop"
+- "networking-workshop" : exercice tiers
 
 ## 4.1. Topologie CCNA Gateway
 
-Un seul routeur Cisco qui connecte l'Internet et qui offre des services au LAN comme DHCP et RDNSS.
+Un seul routeur Cisco qui connecte l'Internet et qui offre des services au LAN comme serveurs DHCP et RDNSS.
 
 ![](../assets/images/gateway_lab.png)
 
@@ -36,7 +36,7 @@ Diagramme : Topologie CCNA Gateway
 
 ## 4.2. Topologie CCNA Bipod
 
-Connexion point-à-point entre R1 et R2.
+Connexion point-à-point entre les deux routeurs R1 et R2.
 
 ![Topologie Bipod](https://www.lucidchart.com/publicSegments/view/46f2b887-0e06-40e6-b45c-b07f449adf08/image.png)
 

@@ -2,7 +2,7 @@
 layout: single
 title: "Configuration de la station de contrôle"
 permalink: /mise-en-place-du-lab-sur-gns3/configuration-de-la-station-de-controle/
-excerpt: " "
+excerpt: "La station de contrôle a besoin d'être configurée mannuellement."
 tags:
   - tutoriel
 sidebar:
@@ -10,11 +10,11 @@ sidebar:
 date: 2020-05-24
 ---
 
-La station a besoin d'être configurée mannuellement.
+La station de contrôle a besoin d'être configurée mannuellement.
 
-La station de contrôle connecte tous les périphériques en SSH. Le logiciel Ansible y est fraîchement installé (avec la libraire python netaddr) avec `pip` ou à partir de repos.
+La station de contrôle connecte tous les périphériques en SSH. Le logiciel Ansible y est fraîchement installé (avec la libraire python `netaddr`) avec `pip` ou à partir des dépôts officiels.
 
-La station de contrôle offre un service DHCP avec enregistrement dynamique des noms d'hôte dans un serveur DNS (dnsmasq). Un serveur rsyslog écoute sur les ports TCP514 et UDP514.
+La station de contrôle offre un service DHCP avec un enregistrement dynamique des noms d'hôte dans un serveur DNS local (`dnsmasq`). Un serveur Rsyslog écoute sur les ports TCP514 et UDP514.
 
 On trouve des scripts de préparation d'une station de contrôle Centos et Ubuntu dans le dossier [tests/](https://github.com/goffinet/ansible-ccna-lab/blob/master/tests/). L'interface `eth0` contrôle les périphériques et l'interface `eth1` donne accès à l'Internet.
 

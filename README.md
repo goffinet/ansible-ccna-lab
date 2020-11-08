@@ -48,7 +48,7 @@
 
 ## 1. Description du projet
 
-On trouvera ici des livres de jeu Ansible inspirés des topologies et des sujets du Cisco CCNA (et plus) pour GNS3 (Cisco IOSv). Sa documentation devrait bientôt être disponible sur [https://goffinet.github.io/ansible-ccna-lab/](https://goffinet.github.io/ansible-ccna-lab/). Le projet permet de créer des topologies avec GNS3, de les approvisionner et, ensuite, de les gérer avec Ansible avec pour seul objet du code reproductible et manipulable à l'envi.
+On trouvera ici des livres de jeu Ansible inspirés des topologies et des sujets du Cisco CCNA (et plus) pour GNS3 (Cisco IOSv). Sa documentation devrait bientôt être disponible sur [https://goffinet.github.io/ansible-ccna-lab/](https://goffinet.github.io/ansible-ccna-lab/). Le projet permet de créer des topologies avec GNS3, de les approvisionner et, ensuite, de les gérer avec Ansible avec pour seul véritable objet du code reproductible et manipulable à l'envi.
 
 Leur but est **uniquement pédagogique** visant à lier les compétences de gestion du réseau du CCNA/CCNP avec un outil IaC ("Infrastructure as Code") de gestion des configurations ("Configuration Management") comme Ansible et un gestionnaire de source ("Source Control Management") comme Git/Github. Le projet tente de répondre à la question suivante : Comment porter les labs de formation d'infrastructure IT (Cisco) sous forme de code ?
 
@@ -66,9 +66,9 @@ Dans les points suivants nous détaillerons :
 
 Pour la gestion des noeuds Cisco, le projet est basé sur trois éléments :
 
-1. des livres de jeu qui peuvent en appeler d'autres nommés selon la **topologie** définissent la "logique" de la configuration ;
-2. ces livres de jeu configurent des hôtes d'inventaire avec des tâches organisées en **rôles** ;
-3. les paramètres de la topologie sont configurés en tant que **variables d'inventaire selon un certain modèle de données**.
+1. des livres de jeu (qui peuvent en appeler d'autres) sont nommés selon la **topologie** ; ils définissent la "logique" de la configuration ;
+2. ces livres de jeu configurent des hôtes d'inventaire (les noeuds à gérer) avec des **tâches** organisées en **rôles** ;
+3. les paramètres de la topologie sont configurés en tant que **variables d'inventaire selon un certain modèle de données**. Celui-ci est totalement aribitraire. Si nous invitons les utilisateurs à modifier les valeurs du modèle de données, nous le prévenons que la modification du _nom des variables_ peut avoir des conséquences sur l'exécution des tâches.
 
 Les topologies sont organisées de la manière suivante :
 
@@ -83,25 +83,28 @@ ccna:
 
 Une topologie intitulée "ccna" est composée de deux topologies distinctes "tripod" et "switchblock". La topologie "tripod" trouve trois variantes amoindries : "gateway", "bipod", et "router_on_a_stick".
 
+Chaque topologie est liée à un inventaire.
+
 Expliqué rapidement :
 
-* Le livre de jeu `ccna.yml` (`tripod.yml` + `switchblock.yml`) utilise l'inventaire par défaut "ccna". On trouve d'autres inventaires adaptés aux livres de jeu du même nom dans le dossier `inventories/`.
-* Un livre le jeu devrait appeler un inventaire du même nom, par exemple : `ansible-playbook -i inventories/tripod/hosts tripod.yml`.
+* Le livre de jeu `ccna.yml` (`tripod.yml` + `switchblock.yml`) utilise l'inventaire par défaut "ccna".
+* On trouve d'autres inventaires adaptés aux livres de jeu du même nom dans le dossier `inventories/`. Il est alors nécessaire de les désigner explicitement lors du lancement du livre de jeu.
+* Un livre le jeu _devrait_ appeler un inventaire du même nom, par exemple : `ansible-playbook -i inventories/tripod/hosts tripod.yml`.
 * On peut contrôler les tâches avec des _tags_ (définis sur les rôles) : `ansible-playbook ccna.yml --list-tags`.
-* L'exécution des tâches est conditionnée par le modèle de donnée (variables d'inventaire), principalement fondé sur une liste de paramètres d'interface.
-* L'exécution des rôles est conditionnée par :
-  * une variable `ansible_network_os == 'ios'`;
-  * la définition d'une variable de telle sorte que l'absence de paramètre évite l'exécution des tâches ("Skipped").
+* L'exécution des tâches est conditionnée par le modèle de donnée (variables d'inventaire), principalement fondé sur une liste de paramètres d'interface. D'autres approches sont possibles.
+* Un rôle étant un ensemble de tâches abstraites, leur exécution est conditionnée par :
+    * une variable `ansible_network_os == 'ios'`, dans la perspective d'intégrer le projet à d'autres solutions ;
+    * la définition d'une variable de telle sorte que l'absence de paramètre évite l'exécution des tâches ("Skipped").
 * Le protocole de routage est contrôlé à partir du livre de jeu avec les variables `ipv4.routing` et `ipv6.routing`. Il est conseillé d'en activer un seul pour une topologie. Des cas de "route redistribution" devraient être envisagés.
 * Les livres de jeu exécutent les rôles dans un ordre logique ~~mais chacun trouve des dépendances de rôles définis~~.
 
 ## 3. La mise en place du lab sur GNS3
 
-La mise en place du lab se réalise sur le serveur GNS3 ou sur une station qui a accès au serveur. Pour installer GNS3 avec Ansible, on fera référence à un autre projet : [ansible-install-gns3-server](https://github.com/goffinet/ansible-install-gns3-server). Il correspond à quelques étapes :
+La mise en place du lab se réalise sur le serveur GNS3 lui-même ou sur une station qui a accès au serveur, car il s'agit d'abord de discuter avec l'api de GNS3 pour monter la topologue. Pour installer GNS3 avec Ansible, on fera référence à un autre projet : [ansible-install-gns3-server](https://github.com/goffinet/ansible-install-gns3-server). Il correspond à quelques étapes :
 
-- Créer un projet GNS3 avec des périphériques interconnectés.
-- Placer une station de contrôle avec Ansible et y connecter les périphériques à gérer.
-- Préparer les images des noeuds Cisco pour une gestion avec Ansible à partir de la station de contrôle.
+* Créer un projet GNS3 avec des périphériques interconnectés.
+* Placer une station de contrôle avec Ansible et y connecter les périphériques à gérer.
+* Préparer les images des noeuds Cisco pour une gestion avec Ansible à partir de la station de contrôle.
 
 Toutes ces tâches font l'objet du livre de jeu `lab_setup.yml` et de scripts d'installation (station de contrôle).
 
@@ -112,6 +115,7 @@ Un livre de jeu intitulé [`lab_setup.yml`](https://github.com/goffinet/ansible-
 On peut installer les dépendances de la manière suivante :
 
 ```bash
+pip install ansible
 pip install netaddr
 pip install pexpect
 pip install gns3fy
@@ -164,11 +168,11 @@ wr
 
 ### 3.2. Configuration de la station de contrôle
 
-La station a besoin d'être configurée mannuellement.
+La station a besoin d'être configurée manuellement.
 
-La station de contrôle connecte tous les périphériques en SSH. Le logiciel Ansible y est fraîchement installé (avec la libraire python netaddr) avec `pip` ou à partir de repos.
+La station de contrôle connecte tous les périphériques en SSH. Le logiciel Ansible y est fraîchement installé (avec la libraire python netaddr) avec `pip` ou à partir de dépôts officiels de Ansible.
 
-La station de contrôle offre un service DHCP avec enregistrement dynamique des noms d'hôte dans un serveur DNS (dnsmasq). Un serveur rsyslog écoute sur les ports TCP514 et UDP514.
+La station de contrôle offre un service DHCP avec enregistrement dynamique des noms d'hôte dans un serveur DNS local (dnsmasq). Un serveur Rsyslog écoute sur les ports TCP514 et UDP514.
 
 On trouve des scripts de préparation d'une station de contrôle Centos et Ubuntu dans le dossier [tests/](https://github.com/goffinet/ansible-ccna-lab/blob/master/tests/). L'interface `eth0` contrôle les périphériques et l'interface `eth1` donne accès à l'Internet.
 
@@ -602,7 +606,7 @@ image_style=iosv_l2
 ansible_user=root
 ansible_ssh_pass=testtest
 ansible_port=22
-ansible_connection=network_cli
+ansible_connection=ansible.netcommon.network_cli
 ansible_network_os=ios
 
 ```

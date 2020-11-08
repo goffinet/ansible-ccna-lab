@@ -4,6 +4,7 @@ hostnamectl set-hostname controller
 apt-get update && apt-get -y install python3-pip
 pip3 install --upgrade pip
 pip3 install ansible
+pip3 install paramiko
 pip3 install ansible-lint
 pip3 install netaddr
 systemctl disable systemd-resolved

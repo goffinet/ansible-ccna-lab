@@ -2,12 +2,11 @@
 
 hostnamectl set-hostname controller
 yum -y remove ansible
-curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-python get-pip.py
-pip install --upgrade pip
-pip install ansible
-pip install ansible-lint
-pip install netaddr
+yum -y install python3-pip git
+pip3 install ansible
+pip3 install paramiko
+pip3 install ansible-lint
+pip3 install netaddr
 yum -y install git dnsmasq
 cat << EOF > /etc/dnsmasq.conf
 interface=lo0
