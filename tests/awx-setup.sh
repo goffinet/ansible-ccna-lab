@@ -41,6 +41,9 @@ systemctl enable --now docker.service
 usermod -aG docker $USER
 alternatives --set python /usr/bin/python3
 pip3 install --user docker-compose
+firewall-cmd --zone=public --add-masquerade --permanent
+firewall-cmd --permanent --add-service={http,https}
+firewall-cmd --reload
 fi
 }
 install-awx() {
@@ -66,7 +69,7 @@ awx_task_hostname=awx
 awx_web_hostname="${FQDN}"
 awx_official=true
 postgres_data_dir="${PSQL_DATA_PATH}"
-host_port=8000
+host_port=80
 docker_compose_dir="~/.awx/awxcompose"
 pg_username=awx
 pg_password=awxpass
