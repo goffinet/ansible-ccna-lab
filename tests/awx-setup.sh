@@ -33,7 +33,7 @@ service docker start
 fi
 if [ -f /etc/centos-release ] ; then
 dnf install -y epel-release
-dnf install -y pwgen git gcc gcc-c++ nodejs gettext device-mapper-persistent-data lvm2 bzip2 python3-pip python3 ansible
+dnf install -y make pwgen git gcc gcc-c++ nodejs gettext device-mapper-persistent-data lvm2 bzip2 python3-pip python3 ansible
 dnf -y config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
 dnf -y install docker-ce --nobest
 systemctl start docker
