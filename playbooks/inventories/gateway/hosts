@@ -19,4 +19,4 @@ ansible_user=root
 ansible_ssh_pass=testtest
 ansible_port=22
 ansible_connection=ansible.netcommon.network_cli
-ansible_network_os=ios
+ansible_network_os=cisco.ios.ios
