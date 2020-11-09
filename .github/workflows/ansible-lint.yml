@@ -17,6 +17,6 @@ jobs:
         #   playbook_2.yml
         targets: "roles/*"
         override-deps: |
-          ansible==2.9
-          ansible-lint==4.2.0
+          ansible
+          ansible-lint
         args: ""
