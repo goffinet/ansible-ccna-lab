@@ -33,7 +33,6 @@
 		- [5.1. Inventaire et variables d'inventaire du livre de jeu ccna.yml](#51-inventaire-et-variables-dinventaire-du-livre-de-jeu-ccnayml)
 		- [5.2. Livres de jeu](#52-livres-de-jeu)
 		- [5.3. Les rôles invoqués](#53-les-rles-invoqus)
-- [bipod.yml](#bipodyml)
 		- [5.4. Diagnostic de base](#54-diagnostic-de-base)
 		- [5.5. Remettre à zéro les configurations](#55-remettre-zro-les-configurations)
 	- [6. Notes](#6-notes)
