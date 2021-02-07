@@ -48,7 +48,7 @@
 
 ## 1. Description du projet
 
-On trouvera ici des livres de jeu Ansible inspirés des topologies et des sujets du Cisco CCNA (et plus) pour GNS3 (Cisco IOSv). Sa documentation devrait bientôt être disponible sur [https://goffinet.github.io/ansible-ccna-lab/](https://goffinet.github.io/ansible-ccna-lab/). Le projet permet de créer des topologies avec GNS3, de les approvisionner et, ensuite, de les gérer avec Ansible avec pour seul véritable objet du code reproductible et manipulable à l'envi.
+On trouvera ici des livres de jeu Ansible inspirés des topologies et des sujets du Cisco CCNA (et plus) pour GNS3 (Cisco IOSv). Sa documentation devrait bientôt être disponible sur [https://goffinet.github.io/ansible-ccna-lab/](https://goffinet.github.io/ansible-ccna-lab/). Le projet permet de créer des topologies avec GNS3, de les approvisionner et ensuite, de les gérer avec Ansible avec pour seul véritable objet du code reproductible et manipulable à l'envi.
 
 Leur but est **uniquement pédagogique** visant à lier les compétences de gestion du réseau du CCNA/CCNP avec un outil IaC ("Infrastructure as Code") de gestion des configurations ("Configuration Management") comme Ansible et un gestionnaire de source ("Source Control Management") comme Git/Github. Le projet tente de répondre à la question suivante : Comment porter les labs de formation d'infrastructure IT (Cisco) sous forme de code ?
 
@@ -87,11 +87,11 @@ Chaque topologie est liée à un inventaire.
 
 Expliqué rapidement :
 
-* Le livre de jeu `ccna.yml` (`tripod.yml` + `switchblock.yml`) utilise l'inventaire par défaut "ccna".
-* On trouve d'autres inventaires adaptés aux livres de jeu du même nom dans le dossier `inventories/`. Il est alors nécessaire de les désigner explicitement lors du lancement du livre de jeu.
+* Le livre de jeu `ccna.yml` (qui appelle les livres de jeu `tripod.yml` et `switchblock.yml`) utilise l'inventaire par défaut "ccna".
+* On trouve d'autres inventaires adaptés **aux livres de jeu du même nom** dans le dossier `inventories/`. Il est alors nécessaire de les désigner explicitement lors du lancement du livre de jeu.
 * Un livre le jeu _devrait_ appeler un inventaire du même nom, par exemple : `ansible-playbook -i inventories/tripod/hosts tripod.yml`.
 * On peut contrôler les tâches avec des _tags_ (définis sur les rôles) : `ansible-playbook ccna.yml --list-tags`.
-* L'exécution des tâches est conditionnée par le modèle de donnée (variables d'inventaire), principalement fondé sur une liste de paramètres d'interface. D'autres approches sont possibles.
+* L'exécution des tâches est conditionnée par le modèle de donnée (variables d'inventaire), principalement fondé sur une liste de paramètres d'interface. On notera que d'autres approches sont possibles.
 * Un rôle étant un ensemble de tâches abstraites, leur exécution est conditionnée par :
     * une variable `ansible_network_os == 'ios'`, dans la perspective d'intégrer le projet à d'autres solutions ;
     * la définition d'une variable de telle sorte que l'absence de paramètre évite l'exécution des tâches ("Skipped").
@@ -100,7 +100,7 @@ Expliqué rapidement :
 
 ## 3. La mise en place du lab sur GNS3
 
-La mise en place du lab se réalise sur le serveur GNS3 lui-même ou sur une station qui a accès au serveur, car il s'agit d'abord de discuter avec l'api de GNS3 pour monter la topologue. Pour installer GNS3 avec Ansible, on fera référence à un autre projet : [ansible-install-gns3-server](https://github.com/goffinet/ansible-install-gns3-server). Il correspond à quelques étapes :
+La mise en place du lab se réalise sur le serveur GNS3 lui-même ou sur une station qui a accès au serveur, car il s'agit d'abord de discuter avec l'API de GNS3 pour monter la topologie. Pour installer GNS3 avec Ansible, on fera référence à un autre projet : [ansible-install-gns3-server](https://github.com/goffinet/ansible-install-gns3-server). Il correspond à quelques étapes :
 
 * Créer un projet GNS3 avec des périphériques interconnectés.
 * Placer une station de contrôle avec Ansible et y connecter les périphériques à gérer.
@@ -125,7 +125,7 @@ pip3 install mazer
 mazer install davidban77.gns3
 ```
 
-Le livre de jeu crée une topologie CCNA (par défaut) sur un serveur GNS3, configure la gestion des routeurs et des commutateurs, duplique une seule fois (par défaut) le projet de base et supprime ce dernier. Les projets dupliqués sont nommés selon cette nomenclature `date-topologie-nb` : `2020-05-23-ccna-1`.
+Le livre de jeu crée une topologie CCNA (par défaut) sur un serveur GNS3, configure la gestion des routeurs et des commutateurs, duplique une seule fois (par défaut) le projet de base et supprime ce dernier. Les projets dupliqués sont nommés selon cette nomenclature `date-topologie-numero` : `2020-05-23-ccna-1`.
 
 ```bash
 git clone https://github.com/goffinet/ansible-ccna-lab
@@ -172,7 +172,7 @@ wr
 
 La station a besoin d'être configurée manuellement.
 
-La station de contrôle connecte tous les périphériques en SSH. Le logiciel Ansible y est fraîchement installé (avec la libraire python netaddr) avec `pip` ou à partir de dépôts officiels de Ansible.
+La station de contrôle connecte tous les périphériques en SSH. Le logiciel Ansible y est fraîchement installé (avec la libraire python `netaddr`) avec `pip` ou à partir de dépôts officiels de Ansible.
 
 La station de contrôle offre un service DHCP avec enregistrement dynamique des noms d'hôte dans un serveur DNS local (dnsmasq). Un serveur Rsyslog écoute sur les ports TCP514 et UDP514.
 
@@ -185,7 +185,7 @@ curl -s https://raw.githubusercontent.com/goffinet/ansible-ccna-lab/master/tests
 bash -x ./setup.sh
 ```
 
-Si la version libre de Ansible Tower (Ansible AWX) vous intéresse, vous pouvez l'installer via ce script (4Go RAM et 2 vcpus) sur un station Ubuntu :
+Si la version open source de Ansible Tower (Ansible AWX) vous intéresse, vous pouvez l'installer via ce script (4Go RAM et 2 vcpus) sur un station Ubuntu :
 
 ```bash
 curl -s https://raw.githubusercontent.com/goffinet/ansible-ccna-lab/master/tests/ubuntu-controller.sh -o setup.sh
@@ -201,7 +201,7 @@ bash -x ./awx-setup.sh
 
 ### 3.3. Préparation des images Cisco IOSv pour GNS3
 
-Si vous avez utilisé le livre de jeu [`lab_setup.yml`](https://github.com/goffinet/ansible-ccna-lab/blob/master/playbooks/lab_setup.yml), cette étape est purement informative.
+>Si vous avez utilisé le livre de jeu [`lab_setup.yml`](https://github.com/goffinet/ansible-ccna-lab/blob/master/playbooks/lab_setup.yml), cette étape est purement informative.
 
 Les livres de jeu sont testés avec [GNS3 Server](https://cisco.goffinet.org/ccna/cisco-ios-cli/installer-et-configurer-gns3/) et Qemu/KVM sous Linux.
 
@@ -215,7 +215,7 @@ Il y a trois types de périphériques utilisés dans les topologies.
 
 Les livres de jeu peuvent vérifier la nature du périphérique utilisé de type Cisco et de type routeur ou commutateur à partir de variables d'inventaire.
 
-Il sera nécessaire d'activer SSH sur les périphériques à des fins de gestionn par Ansible. On trouvera un modèle jinja2 dans le fichier [`playbooks/templates/iosv_default_config.j2`](ttps://github.com/goffinet/ansible-ccna-lab/blob/master/playbooks/templates/iosv_default_config.j2).
+Il sera nécessaire d'activer SSH sur les périphériques à des fins de gestion par Ansible. On trouvera un modèle jinja2 dans le fichier [`playbooks/templates/iosv_default_config.j2`](ttps://github.com/goffinet/ansible-ccna-lab/blob/master/playbooks/templates/iosv_default_config.j2).
 
 #### 3.3.1. Les Routeurs IOSv
 
