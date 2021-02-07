@@ -115,11 +115,13 @@ Un livre de jeu intitulé [`lab_setup.yml`](https://github.com/goffinet/ansible-
 On peut installer les dépendances de la manière suivante :
 
 ```bash
-pip install ansible
-pip install netaddr
-pip install pexpect
-pip install gns3fy
-pip install mazer
+dnf install telnet || apt update && apt -y install telnet
+dnf install python3-pip || apt update && apt -y install python3-pip
+pip3 install ansible
+pip3 install netaddr
+pip3 install pexpect
+pip3 install gns3fy
+pip3 install mazer
 mazer install davidban77.gns3
 ```
 
