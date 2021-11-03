@@ -15,7 +15,7 @@ jobs:
         # targets: |
         #   playbook_1.yml
         #   playbook_2.yml
-        targets: "roles/*.yml"
+        targets: "roles/*"
         override-deps: |
           ansible
           ansible-lint
