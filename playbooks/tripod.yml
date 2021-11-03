@@ -7,8 +7,8 @@
     - role: ios_interface
     - role: ios_ipv4
     - role: ios_ipv6
-    - role: ios_ipv4-routing
-    - role: ios_ipv6-routing
+    - role: ios_ipv4_routing
+    - role: ios_ipv6_routing
     - role: ios_fhrp
     - role: ios_rip
       when: '"rip" in ipv4.routing'
@@ -22,8 +22,8 @@
     - role: ios_ospfv3
       when:
         - '"ospf" in ipv6.routing'
-    - role: ios_recursive-dns-server
-    - role: ios_dhcp-server
+    - role: ios_recursive_dns_server
+    - role: ios_dhcp_server
     - role: ios_write
 - hosts: R1
   gather_facts: False

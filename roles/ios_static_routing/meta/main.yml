@@ -18,6 +18,6 @@ galaxy_info:
 dependencies:
   - role: ios_interface
   - role: ios_ipv4
-  - role: ios_ipv4-routing
+  - role: ios_ipv4_routing
   - role: ios_ipv6
-  - role: ios_ipv6-routing
+  - role: ios_ipv6_routing

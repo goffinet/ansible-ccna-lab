@@ -671,13 +671,13 @@ Les livres de jeu reprennent les rôles conçus, comme par exemple dans le livre
     - role: ios_interface
     - role: ios_ipv4
     - role: ios_ipv6
-    - role: ios_ipv4-routing
-    - role: ios_ipv6-routing
-    - role: ios_static-routing
+    - role: ios_ipv4_routing
+    - role: ios_ipv6_routing
+    - role: ios_static_routing
     - role: ios_rip
       when: '"rip" in ipv4.routing'
-    - role: ios_recursive-dns-server
-    - role: ios_dhcp-server
+    - role: ios_recursive_dns_server
+    - role: ios_dhcp_server
     - role: ios_nat44
     - role: ios_write
 ```
@@ -687,25 +687,25 @@ Ces rôles trouvent leur place dans le dossier `roles` du projet :
 ```
 roles/
 ├── ios_common/
-├── ios_dhcp-server/
-├── ios_disable-dynamic-ipv4-routing/
+├── ios_dhcp_server/
+├── ios_disable_dynamic_ipv4_routing/
 ├── ios_eigrp4/
 ├── ios_eigrp6/
 ├── ios_etherchannel/
 ├── ios_fhrp/
 ├── ios_interface
 ├── ios_ipv4/
-├── ios_ipv4-routing/
+├── ios_ipv4_routing/
 ├── ios_ipv6/
-├── ios_ipv6-routing/
+├── ios_ipv6_routing/
 ├── ios_nat44/
-├── ios_no-ipv4-routing
+├── ios_no_ipv4_routing
 ├── ios_ospfv2/
 ├── ios_ospfv3/
-├── ios_recursive-dns-server/
+├── ios_recursive_dns_server/
 ├── ios_rip/
-├── ios_spanning-tree/
-├── ios_static-routing/
+├── ios_spanningtree/
+├── ios_static_routing/
 ├── ios_vlans/
 └── ios_write/
 ```

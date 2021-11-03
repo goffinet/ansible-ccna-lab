@@ -7,20 +7,20 @@
     - role: ios_vlans
     - role: ios_etherchannel
     - role: ios_interface
-    - role: ios_spanning-tree
+    - role: ios_spanningtree
     - role: ios_ipv4
     - role: ios_ipv6
     - role: ios_write
 - hosts: access
   gather_facts: False
   roles:
-    - role: ios_no-ipv4-routing
+    - role: ios_no_ipv4_routing
     - role: ios_write
 - hosts: distribution
   gather_facts: False
   roles:
-    - role: ios_ipv4-routing
-    - role: ios_ipv6-routing
+    - role: ios_ipv4_routing
+    - role: ios_ipv6_routing
     - role: ios_fhrp
     - role: ios_rip
       when: '"rip" in ipv4.routing'
@@ -31,6 +31,6 @@
     - role: ios_eigrp6
       when:
         - '"eigrp" in ipv6.routing'
-    - role: ios_recursive-dns-server
-    - role: ios_dhcp-server
+    - role: ios_recursive_dns_server
+    - role: ios_dhcp_server
     - role: ios_write

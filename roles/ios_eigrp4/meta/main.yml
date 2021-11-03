@@ -21,5 +21,5 @@ galaxy_info:
 dependencies:
   - role: ios_interface
   - role: ios_ipv4
-  - role: ios_ipv4-routing
-#  - role: ios_disable-dynamic-ipv4-routing
+  - role: ios_ipv4_routing
+#  - role: ios_disable_dynamic_ipv4_routing
