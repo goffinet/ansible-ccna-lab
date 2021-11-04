@@ -16,7 +16,7 @@
     - name: RESTORE THE CONFIG
       block:
         - name: COPY RUNNING CONFIG TO THE DEVICE
-          command: "sshpass -p {{ ansible_ssh_pass }} scp {{ options }} {{ src }} {{inventory_hostname}}:/{{ dest }}"
+          command: "sshpass -p {{ ansible_ssh_pass }} scp {{ options }} {{ src }} {{ inventory_hostname }}:/{{ dest }}"
           register: copy_output
         - name: CONFIG REPLACE
           ios_command:
