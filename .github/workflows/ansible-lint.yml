@@ -12,11 +12,10 @@ jobs:
       # replace "master" with any valid ref
       uses: ansible/ansible-lint-action@master
       with:
-        # targets: |
-        #   playbook_1.yml
-        #   playbook_2.yml
-        targets: "roles/*"
+        targets: |
+          roles/*
+          playbooks/*
         override-deps: |
           ansible
           ansible-lint
-        args: ""
+        args: "--exclude playbooks/lab_setup.yml -vv"
