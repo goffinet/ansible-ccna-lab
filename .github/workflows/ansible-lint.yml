@@ -18,4 +18,4 @@ jobs:
         override-deps: |
           ansible
           ansible-lint
-        args: "--exclude playbooks/lab_setup.yml inventories/*"
+        args: "--exclude playbooks/lab_setup.yml --exclude inventories/*"
