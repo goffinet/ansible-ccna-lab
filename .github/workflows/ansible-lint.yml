@@ -14,8 +14,7 @@ jobs:
       with:
         targets: |
           roles/*
-          playbooks/*
         override-deps: |
           ansible
           ansible-lint
-        args: "--exclude playbooks/lab_setup.yml --exclude inventories/*"
+        args: ""
