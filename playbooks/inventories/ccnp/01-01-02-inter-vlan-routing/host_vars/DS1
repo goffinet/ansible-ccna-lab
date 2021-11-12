@@ -1,0 +1,83 @@
+---
+hostname: DS1
+ipv6:
+  enabled: yes
+  forwarding: yes
+vlans:
+  - id: 50
+    name: Group50
+  - id: 60
+    name: Group60
+interfaces:
+  - id: GigabitEthernet2/2
+    description: "PC1 vlan 50 access port"
+    access:
+      vlan: 50
+  - id: GigabitEthernet2/3
+    description: "PC2 vlan 60 access port"
+    access:
+      vlan: 60
+  - id: Vlan50
+    description: "Vlan50 gateway"
+    ipv4_address: 10.2.50.1/24
+    ipv6_addresses:
+      - 'FE80::D1:2'
+      - '2001:db8:acad:1050::d1/64'
+  - id: Vlan60
+    description: "Vlan60 gateway"
+    ipv4_address: 10.2.60.1/24
+    ipv6_addresses:
+      - 'FE80::D1:3'
+      - '2001:db8:acad:1060::d1/64'
+  - id: GigabitEthernet1/0
+    description: "Link to R2 Core"
+    noswitchport: true
+    ipv4_address: 10.1.13.13/24
+    ipv6_addresses:
+      - 'FE80::D1:1'
+      - '2001:db8:acad:10d1::d1/64'
+    static:
+      - destination: 0.0.0.0/0
+        next_hop: 10.1.13.1
+        ad: 1
+        state: present
+      - destination: '::/0'
+        next_hop: '2001:db8:acad:10d1::1'
+        ad: 1
+        state: present
+  - id: GigabitEthernet0/0
+    description: "Stub interface"
+    stub: true
+  - id: GigabitEthernet0/1
+    description: "Stub interface"
+    stub: true
+  - id: GigabitEthernet0/2
+    description: "Stub interface"
+    stub: true
+  - id: GigabitEthernet0/3
+    description: "Stub interface"
+    stub: true
+  - id: GigabitEthernet1/1
+    description: "Stub interface"
+    stub: true
+  - id: GigabitEthernet1/2
+    description: "Stub interface"
+    stub: true
+  - id: GigabitEthernet1/3
+    description: "Stub interface"
+    stub: true
+  - id: GigabitEthernet2/0
+    description: "Stub interface"
+    stub: true
+  - id: GigabitEthernet2/1
+    description: "Stub interface"
+    stub: true
+  - id: GigabitEthernet3/0
+    description: "Stub interface"
+    stub: true
+  - id: GigabitEthernet3/1
+    description: "Stub interface"
+    stub: true
+  - id: GigabitEthernet3/2
+    description: "Stub interface"
+    stub: true

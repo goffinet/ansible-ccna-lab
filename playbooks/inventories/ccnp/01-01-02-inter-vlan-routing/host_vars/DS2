@@ -1,0 +1,47 @@
+---
+hostname: DS2
+ipv6:
+  enabled: yes
+vlans:
+  - id: 75
+    name: Group75
+  - id: 85
+    name: Group85
+interfaces:
+  - id: GigabitEthernet2/2
+    description: "PC3 vlan 75 access port"
+    access:
+      vlan: 75
+  - id: GigabitEthernet2/3
+    description: "PC4 vlan 85 access port"
+    access:
+      vlan: 85
+  - id: Vlan75
+    description: "Management interface"
+    ipv4_address: 172.16.0.2/24
+    gateway: 172.16.0.254
+  - id: GigabitEthernet1/0
+    description: "Trunk to R3"
+    trunk:
+      native: 999
+  - id: GigabitEthernet0/2
+    description: "Stub interface"
+    stub: true
+  - id: GigabitEthernet0/3
+    description: "Stub interface"
+    stub: true
+  - id: GigabitEthernet1/2
+    description: "Stub interface"
+    stub: true
+  - id: GigabitEthernet1/3
+    description: "Stub interface"
+    stub: true
+  - id: GigabitEthernet3/0
+    description: "Stub interface"
+    stub: true
+  - id: GigabitEthernet3/1
+    description: "Stub interface"
+    stub: true
+  - id: GigabitEthernet3/2
+    description: "Stub interface"
+    stub: true

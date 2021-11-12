@@ -1,0 +1,40 @@
+---
+hostname: R1
+ipv6:
+  enabled: yes
+  forwarding: yes
+interfaces:
+  - id: GigabitEthernet0/0
+    description: "Link to DS1"
+    ipv4_address: 10.1.13.1/24
+    ipv6_addresses:
+      - 'fe80::1:1'
+      - '2001:db8:acad:10d1::1/64'
+    static:
+      - destination: 10.2.0.0/16
+        next_hop: 10.1.13.13
+        ad: 1
+        state: present
+      - destination: '2001:db8:acad:1050::/64'
+        next_hop: '2001:db8:acad:10d1::d1'
+        ad: 1
+        state: present
+      - destination: '2001:db8:acad:1060::/64'
+        next_hop: '2001:db8:acad:10d1::d1'
+        ad: 1
+        state: present
+  - id: GigabitEthernet0/3
+    description: "Link to R3"
+    ipv4_address: 10.1.3.1/24
+    ipv6_addresses:
+      - 'fe80::1:2'
+      - '2001:db8:acad:1013::1/64'
+    static:
+      - destination: 0.0.0.0/0
+        next_hop: 10.1.3.3
+        ad: 1
+        state: present
+      - destination: '::/0'
+        next_hop: '2001:db8:acad:1013::3'
+        ad: 1
+        state: present
