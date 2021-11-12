@@ -16,11 +16,11 @@ interfaces:
         ad: 1
         state: present
       - destination: '2001:db8:acad:1050::/64'
-        next_hop: '2001:db8:acad:1050::d1'
+        next_hop: 'fe80::d1:2'
         ad: 1
         state: present
       - destination: '2001:db8:acad:1060::/64'
-        next_hop: '2001:db8:acad:1060::d1'
+        next_hop: 'fe80::d1:3'
         ad: 1
         state: present
   - id: GigabitEthernet0/3
@@ -35,6 +35,6 @@ interfaces:
         ad: 1
         state: present
       - destination: '::/0'
-        next_hop: '2001:db8:acad:1013::3'
+        next_hop: 'fe80::3:1'
         ad: 1
         state: present

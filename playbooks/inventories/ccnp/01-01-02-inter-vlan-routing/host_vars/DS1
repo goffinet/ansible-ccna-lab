@@ -42,7 +42,7 @@ interfaces:
         ad: 1
         state: present
       - destination: '::/0'
-        next_hop: '2001:db8:acad:10d1::1'
+        next_hop: 'fe80::1:1'
         ad: 1
         state: present
   - id: GigabitEthernet0/0

@@ -39,6 +39,6 @@ interfaces:
         ad: 1
         state: present
       - destination: '::/0'
-        next_hop: '2001:db8:acad:1013::1'
+        next_hop: 'fe80::1:2'
         ad: 1
         state: present
