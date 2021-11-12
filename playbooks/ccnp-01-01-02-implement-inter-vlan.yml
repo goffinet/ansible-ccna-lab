@@ -3,7 +3,6 @@
 - hosts: core
   gather_facts: False
   roles:
-    - role: ios_common
     - role: ios_interface
     - role: ios_ipv4
     - role: ios_ipv6
@@ -14,7 +13,6 @@
 - hosts: DS1
   gather_facts: False
   roles:
-    - role: ios_common
     - role: ios_vlans
     - role: ios_interface
     - role: ios_ipv4
