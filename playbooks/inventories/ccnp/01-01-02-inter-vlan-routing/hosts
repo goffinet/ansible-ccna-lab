@@ -2,7 +2,7 @@
 #method=modules # modules or templating not yet implemented
 
 [core]
-R2
+R1
 R3
 
 [distribution]
