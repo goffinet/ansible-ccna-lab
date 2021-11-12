@@ -1,0 +1,44 @@
+---
+hostname: R3
+ipv6:
+  enabled: yes
+  forwarding: yes
+interfaces:
+  - id: GigabitEthernet0/0
+    description: "Trunk LAN to DS2"
+    trunk:
+  - id: GigabitEthernet0/0.75
+    description: "VLAN 75 to DS2"
+    trunk:
+      vlan: 75
+    ipv4_address: 10.3.75.1/24
+    ipv6_addresses:
+      - 'fe80::3:2'
+      - '2001:db8:acad:3075::1/64'
+  - id: GigabitEthernet0/0.85
+    description: "VLAN 85 to DS2"
+    trunk:
+      vlan: 85
+    ipv4_address: 10.3.85.1/24
+    ipv6_addresses:
+      - 'fe80::3:3'
+      - '2001:db8:acad:3085::1/64'
+  - id: GigabitEthernet0/0.999
+    description: "VLAN 999 native"
+    trunk:
+      native: 999
+  - id: GigabitEthernet0/1
+    description: "Link to R1"
+    ipv4_address: 10.1.3.3/24
+    ipv6_addresses:
+      - 'fe80::3:1'
+      - '2001:db8:acad:1013::3/64'
+    static:
+      - destination: 0.0.0.0/0
+        next_hop: 10.1.3.1
+        ad: 1
+        state: present
+      - destination: '::/0'
+        next_hop: '2001:db8:acad:1013::1'
+        ad: 1
+        state: present
