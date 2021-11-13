@@ -14,7 +14,7 @@
     lines: >
       ipv6 route {{ item.1.destination | ipaddr('network/prefix') | string | upper }}
       {{ item.0.id }}
-      {{ item.1.next_hop | ipaddr('FE80::/16') | string | upper }}
+      {{ item.1.next_hop | ipaddr('FE80::/16') }}
       {{ item.1.ad | default('254') }}
   loop: "{{ interfaces|subelements('static', skip_missing=True) }}"
   when:
