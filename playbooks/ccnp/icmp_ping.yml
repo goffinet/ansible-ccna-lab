@@ -3,7 +3,7 @@
 - hosts: end_hosts
   gather_facts: False
   tasks:
-    - raw: "ping -c 1 {{ destination }}"
+    - shell: "ping -c 1 {{ destination }}"
       when: destination | ipv4
     - shell: "ping6 -c 1 {{ destination }}"
       when: destination | ipv6
