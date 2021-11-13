@@ -17,26 +17,21 @@ R3
 DS1
 DS2
 
-[access]
-
-[stick]
-DS2
-
 [blocks:children]
 distribution
-access
 
 [routers:children]
 core
 
 [switches:children]
 blocks
-stick
 
 [cisco:children]
 core
 blocks
-stick
+
+[linux]
+pc[1-4]
 
 [core:vars]
 mgmt_interface=GigabitEthernet0/7
@@ -46,13 +41,13 @@ image_style=iosv_l3
 mgmt_interface=GigabitEthernet3/3
 image_style=iosv_l2
 
-[stick:vars]
-mgmt_interface=GigabitEthernet3/3
-image_style=iosv_l2
+[linux:vars]
 
 [cisco:vars]
+ansible_connection=network_cli
+ansible_network_os=ios
+
+[all:vars]
 ansible_user=root
 ansible_ssh_pass=testtest
 ansible_port=22
-ansible_connection=network_cli
-ansible_network_os=ios
