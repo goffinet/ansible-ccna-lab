@@ -1,4 +1,3 @@
-[all:vars]
 #method=modules # modules or templating not yet implemented
 
 [l3_devices]
