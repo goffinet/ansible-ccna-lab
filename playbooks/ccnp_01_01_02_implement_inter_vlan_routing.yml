@@ -1,6 +1,6 @@
 ---
 # ccnp_01_01_02_implement_inter_vlan_routing.yml
-- hosts: core
+- hosts: l3_devices
   gather_facts: False
   roles:
     - role: ios_interface
@@ -11,18 +11,7 @@
     - role: ios_ipv6_routing
     - role: ios_static_routing
     - role: ios_write
-- hosts: DS1
-  gather_facts: False
-  roles:
-    - role: ios_vlans
-    - role: ios_interface
-    - role: ios_ipv4
-    - role: ios_ipv6
-    - role: ios_ipv4_routing
-    - role: ios_ipv6_routing
-    - role: ios_static_routing
-    - role: ios_write
-- hosts: DS2
+- hosts: l2_devices
   gather_facts: False
   roles:
     - role: ios_no_ipv4_routing

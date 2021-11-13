@@ -1,6 +1,14 @@
 [all:vars]
 #method=modules # modules or templating not yet implemented
 
+[l3_devices]
+R1
+R3
+DS1
+
+[l2_devices]
+DS2
+
 [core]
 R1
 R3
