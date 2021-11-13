@@ -30,7 +30,10 @@ core
 blocks
 
 [linux]
-pc[1-4]
+pc1
+pc2
+pc3
+pc4
 
 [core:vars]
 mgmt_interface=GigabitEthernet0/7
