@@ -35,6 +35,9 @@ PC2
 PC3
 PC4
 
+[end_hosts:children]
+linux
+
 [core:vars]
 mgmt_interface=GigabitEthernet0/7
 image_style=iosv_l3

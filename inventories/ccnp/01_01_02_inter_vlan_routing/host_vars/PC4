@@ -3,6 +3,6 @@ hostname: PC4
 interfaces:
   - id: "System eth0"
     ipv4_address: "10.3.85.50/24"
-    ipv4_gateway: "10.3.85.1/24"
+    ipv4_gateway: "10.3.85.1"
     ipv6_address: "2001:db8:acad:3085::50/64"
     ipv6_gateway: "fe80::3:3"
