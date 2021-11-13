@@ -1,0 +1,17 @@
+---
+#lab_startup.yml
+- name: "Start an existing lab topology"
+  hosts: localhost
+  gather_facts: False
+  collections:
+    - davidban77.gns3
+  tasks:
+    - name: "Start nodes in the project"
+      gns3_project:
+        url: "{{ gns3_url }}"
+        project_name: "{{ project_name }}"
+        state: opened
+        nodes_state: started
+        nodes_strategy: one_by_one
+      tags:
+        - start
