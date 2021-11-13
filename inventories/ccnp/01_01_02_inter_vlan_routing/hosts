@@ -30,10 +30,10 @@ core
 blocks
 
 [linux]
-pc1
-pc2
-pc3
-pc4
+PC1
+PC2
+PC3
+PC4
 
 [core:vars]
 mgmt_interface=GigabitEthernet0/7
@@ -43,11 +43,14 @@ image_style=iosv_l3
 mgmt_interface=GigabitEthernet3/3
 image_style=iosv_l2
 
-[linux:vars]
-
 [cisco:vars]
 ansible_connection=network_cli
 ansible_network_os=ios
+
+[linux:vars]
+image_style=linux
+ansible_network_os = ""
+ansible_connection=ssh
 
 [all:vars]
 ansible_user=root

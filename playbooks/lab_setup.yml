@@ -75,10 +75,10 @@
         - name: Generate config
           template:
             src: "{{ template }}"
-            dest: "configs/build/{{ inventory_hostname }}-iosv.conf"
+            dest: "configs/build/{{ inventory_hostname }}.conf"
       tags:
         - provision
-#        - debug: var=hostvars
+#    - debug: var=hostvars
     - name: "Deploy boilerplate configuration"
       block:
         - name: "Generate configuration variable"
@@ -118,6 +118,18 @@
               post_login: 60
               login_prompt: 30
               config_dialog: 30
+        - name: "Push config on linux nodes"
+          when: image_style == "linux"
+          telnet:
+            host: "{{ nodes_inventory[inventory_hostname]['server'] }}"
+            port: "{{ nodes_inventory[inventory_hostname]['console_port'] }}"
+            login_prompt: "centos8 login:"
+            user: "{{ ansible_user }}"
+            password: "{{ ansible_password }}"
+            send_newline: yes
+            prompts:
+              - "[#]"
+            command: "{{ boilerplate_config.splitlines() }}"
       tags:
         - provision
     - name: "Stop all nodes"
@@ -129,7 +141,7 @@
         nodes_strategy: one_by_one
         nodes_delay: 3
       tags:
-        - provision
+        - never
         - duplicate
     - name: "Close the project"
       gns3_project:
@@ -137,7 +149,7 @@
         project_name: "{{ project_name }}"
         state: closed
       tags:
-        - provision
+        - never
         - duplicate
 - name: "Duplicate the project"
   hosts: localhost

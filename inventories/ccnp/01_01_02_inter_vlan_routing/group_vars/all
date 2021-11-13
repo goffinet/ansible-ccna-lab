@@ -1,5 +1,5 @@
 ---
-template: "{{ inventory_dir }}/templates/iosv_default_config.j2"
+template: "{{ inventory_dir }}/templates/default_config.j2"
 gns3_url: "http://172.16.253.1"
 gns3_lab_user: "{{ ansible_user }}"
 gns3_lab_pass: "{{ ansible_ssh_pass }}"
@@ -45,6 +45,10 @@ gns3_nodes_spec:
     template: "Ethernet switch"
     x: 0
     y: 0
+  - name: "ctrl1"
+    template: "Ethernet switch"
+    x: 0
+    y: 50
   - name: "nat1"
     template: "NAT"
     x: -400
@@ -63,3 +67,8 @@ gns3_links_spec:
   - ["DS2", "Gi3/3", "ctrl0", "Ethernet4"]
   - ["controller", "Ethernet0", "ctrl0", "Ethernet0"]
   - ["controller", "Ethernet1", "nat1", "nat0"]
+  - ["ctrl1", "Ethernet0", "ctrl0", "Ethernet7"]
+  - ["ctrl1", "Ethernet1", "PC1", "Ethernet1"]
+  - ["ctrl1", "Ethernet2", "PC2", "Ethernet1"]
+  - ["ctrl1", "Ethernet3", "PC3", "Ethernet1"]
+  - ["ctrl1", "Ethernet4", "PC4", "Ethernet1"]

@@ -124,6 +124,7 @@ pip3 install pexpect
 pip3 install gns3fy
 pip3 install mazer
 mazer install davidban77.gns3
+ansible-galaxy collection install ansible.netcommon
 ```
 
 Le livre de jeu crée une topologie CCNA (par défaut) sur un serveur GNS3, configure la gestion des routeurs et des commutateurs, duplique une seule fois (par défaut) le projet de base et supprime ce dernier. Les projets dupliqués sont nommés selon cette nomenclature `date-topologie-numero` : `2020-05-23-ccna-1`.
