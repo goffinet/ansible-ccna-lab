@@ -1,6 +1,6 @@
 configure terminal
 hostname {{ inventory_hostname }}
-banner motd # This is {{ inventory_hostname }}, {{ inventory_dir }} CCNP Lab #
+banner motd # This is {{ inventory_hostname }} for CCNP Lab #
 {% if mgmt_interface is defined %}
 interface {{ mgmt_interface }}
 {% if image_style == "iosv_l2" %}
