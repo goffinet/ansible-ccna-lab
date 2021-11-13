@@ -141,7 +141,7 @@
         nodes_strategy: one_by_one
         nodes_delay: 3
       tags:
-        - never
+        - provision
         - duplicate
     - name: "Close the project"
       gns3_project:
@@ -149,7 +149,7 @@
         project_name: "{{ project_name }}"
         state: closed
       tags:
-        - never
+        - provision
         - duplicate
 - name: "Duplicate the project"
   hosts: localhost
