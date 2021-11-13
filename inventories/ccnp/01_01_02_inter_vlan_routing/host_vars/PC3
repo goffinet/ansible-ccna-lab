@@ -6,3 +6,4 @@ interfaces:
     ipv4_gateway: "10.3.75.1"
     ipv6_address: "2001:db8:acad:3075::50/64"
     ipv6_gateway: "fe80::3:2"
+ansible_host: "{{ ipv4_address }}"

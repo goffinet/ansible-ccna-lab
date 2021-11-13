@@ -1,0 +1,7 @@
+---
+# icmp_ping.yml
+- hosts: end_hosts
+  gather_facts: False
+  tasks:
+    - set_fact:
+    - shell: "ping -c 1 {{ destination }}"
