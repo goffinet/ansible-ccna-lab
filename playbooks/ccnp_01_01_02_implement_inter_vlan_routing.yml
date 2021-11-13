@@ -4,6 +4,7 @@
   gather_facts: False
   roles:
     - role: ios_interface
+    - role: ios_vlans
     - role: ios_ipv4
     - role: ios_ipv6
     - role: ios_ipv4_routing
