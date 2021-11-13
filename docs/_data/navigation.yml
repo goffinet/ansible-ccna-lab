@@ -40,7 +40,7 @@ menu:
       - title: "4.6. Toplogie CCNA Tripod et Switchblock"
         url: /topologies-ccna/ccna/
       - title: "4.7. Topologie Ansible Networking Workshop"
-        url: /topologies-ccna/networking-workshop/
+        url: /topologies-ccna/networking_workshop/
   - title: "5. L'utilisation des livres de jeu"
     url: /utilisation-des-livres-de-jeu/
   - title: "6. Notes et Todo"

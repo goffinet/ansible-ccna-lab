@@ -18,7 +18,7 @@ Les topologies réseau développées sont décrites dans différents inventaires
 - "router_on_a_stick" : topologie d'apprentissage des VLANs
 - "switchblock" : topologie de commutateurs de couche Access et Distribution redondants
 - "ccna" : topologies "tripod" et "switchblock" connectées entre elles
-- "networking-workshop" : exercice tiers
+- "networking_workshop" : exercice tiers
 
 ## 4.1. Topologie CCNA Gateway
 
@@ -204,7 +204,7 @@ Avec le contrôleur :
 
 ## 4.7. Topologie Ansible Networking Workshop
 
-Cette topologie s'utilise dans le cadre de l'exercice [ANSIBLE RÉSEAU](https://iac.goffinet.org/ansible-network/) avec le projet [Ansible Networking Workshop Files](https://github.com/goffinet/networking-workshop).
+Cette topologie s'utilise dans le cadre de l'exercice [ANSIBLE RÉSEAU](https://iac.goffinet.org/ansible-network/) avec le projet [Ansible Networking Workshop Files](https://github.com/goffinet/networking_workshop).
 
 <!--
 
@@ -212,4 +212,4 @@ Cette topologie s'utilise dans le cadre de l'exercice [ANSIBLE RÉSEAU](https://
 
 -->
 
-![](../assets/images/networking-workshop_lab.png)
+![](../assets/images/networking_workshop_lab.png)

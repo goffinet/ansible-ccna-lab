@@ -7,25 +7,25 @@ banners:
   enabled: true
   login: |
         Default Multi-line motd banner
-        for {{ inventory_hostname }} device in the networking-workshop
+        for {{ inventory_hostname }} device in the networking_workshop
   motd: |
         Default Multi-line motd banner for {{ inventory_hostname }}
-        for {{ inventory_hostname }} device in the networking-workshop
+        for {{ inventory_hostname }} device in the networking_workshop
   exec: |
         Default Multi-line exec banner
-        for {{ inventory_hostname }} device in the networking-workshop
+        for {{ inventory_hostname }} device in the networking_workshop
   incoming: |
         Default Multi-line incoming banner
-        for {{ inventory_hostname }} device in the networking-workshop
+        for {{ inventory_hostname }} device in the networking_workshop
   slip_ppp: |
         Default Multi-line slip-ppp banner
-        for {{ inventory_hostname }} device in the networking-workshop
+        for {{ inventory_hostname }} device in the networking_workshop
 
 template: "templates/iosv_default_config.j2"
 gns3_url: "http://172.16.253.1"
 gns3_lab_user: "{{ ansible_user }}"
 gns3_lab_pass: "{{ ansible_ssh_pass }}"
-project_name: "networking-workshop_lab"
+project_name: "networking_workshop_lab"
 gns3_nodes_spec:
   - name: "controller"
     template: "controller"

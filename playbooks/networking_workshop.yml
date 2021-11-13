@@ -1,5 +1,5 @@
 ---
-# networking-workshop.yml
+# networking_workshop.yml
 - hosts: all
   gather_facts: False
   roles:

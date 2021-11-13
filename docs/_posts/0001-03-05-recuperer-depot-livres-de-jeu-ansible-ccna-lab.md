@@ -33,7 +33,7 @@ ansible-ccna-lab/playbooks/
 ├── inventories/           --> dossier d'inventaires
 ├── lab_setup.yml          --> livre de jeu qui déploie une topologie sur GNS3
 ├── library                --> script utilisé par le livre de jeu lab_setup.yml
-├── networking-workshop.yml   --> livre de jeu de la topologie networking-workshop
+├── networking_workshop.yml   --> livre de jeu de la topologie networking_workshop
 ├── restore_config.yml     --> restaure des configurations par défaut
 ├── roles/ -> ../roles     --> dossier des rôles utilisés par les livres de jeu
 ├── router_on_a_stick.yml  --> livre de jeu de la topologie router_on_a_stick

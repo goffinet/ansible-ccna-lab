@@ -28,7 +28,7 @@
 			- [4.5.7. Ressources requises](#457-ressources-requises)
 			- [4.5.8. Explication](#458-explication)
 		- [4.6. Toplogie CCNA Tripod et Switchblock](#46-toplogie-ccna-tripod-et-switchblock)
-		- [4.7. Topologie Ansible Networking Workshop](#47-topologie-ansible-networking-workshop)
+		- [4.7. Topologie Ansible Networking Workshop](#47-topologie-ansible-networking_workshop)
 	- [5. L'utilisation des livres de jeu](#5-lutilisation-des-livres-de-jeu)
 		- [5.1. Inventaire et variables d'inventaire du livre de jeu ccna.yml](#51-inventaire-et-variables-dinventaire-du-livre-de-jeu-ccnayml)
 		- [5.2. Livres de jeu](#52-livres-de-jeu)
@@ -298,7 +298,7 @@ ansible-ccna-lab/playbooks/
 ├── inventories/           --> dossier d'inventaires
 ├── lab_setup.yml          --> livre de jeu qui déploie une topologie sur GNS3
 ├── library                --> script utilisé par le livre de jeu lab_setup.yml
-├── networking-workshop.yml   --> livre de jeu de la topologie networking-workshop
+├── networking_workshop.yml   --> livre de jeu de la topologie networking_workshop
 ├── restore_config.yml     --> restaure des configurations par défaut
 ├── roles/ -> ../roles     --> dossier des rôles utilisés par les livres de jeu
 ├── router_on_a_stick.yml  --> livre de jeu de la topologie router_on_a_stick
@@ -356,7 +356,7 @@ Les topologies réseau développées sont décrites dans différents inventaires
 - "router_on_a_stick" : topologie d'apprentissage des VLANs
 - "switchblock" : topologie de commutateurs de couche Access et Distribution
 - "ccna" : topologies "tripod" et "switchblock" connectées entre elles
-- "networking-workshop"
+- "networking_workshop"
 
 ### 4.1. Topologie CCNA Gateway
 
@@ -542,7 +542,7 @@ Avec le contrôleur :
 
 ### 4.7. Topologie Ansible Networking Workshop
 
-Cette topologie s'utilise dans le cadre de l'exercice [ANSIBLE RÉSEAU](https://iac.goffinet.org/ansible-network/) avec le projet [Ansible Networking Workshop Files](https://github.com/goffinet/networking-workshop).
+Cette topologie s'utilise dans le cadre de l'exercice [ANSIBLE RÉSEAU](https://iac.goffinet.org/ansible-network/) avec le projet [Ansible Networking Workshop Files](https://github.com/goffinet/networking_workshop).
 
 <!--
 
@@ -550,7 +550,7 @@ Cette topologie s'utilise dans le cadre de l'exercice [ANSIBLE RÉSEAU](https://
 
 -->
 
-![](docs/assets/images/networking-workshop_lab.png)
+![](docs/assets/images/networking_workshop_lab.png)
 
 ## 5. L'utilisation des livres de jeu
 
