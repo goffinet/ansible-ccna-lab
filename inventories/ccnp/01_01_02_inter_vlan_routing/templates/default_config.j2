@@ -41,7 +41,6 @@ sudo nmcli c mod "{{ interface['id'] }}" ipv4.gateway {{ interface['ipv4_gateway
 sudo nmcli c mod "{{ interface['id'] }}" ipv6.method manual ipv6.addresses {{ interface['ipv6_address'] }}
 sudo nmcli c mod "{{ interface['id'] }}" ipv6.gateway {{ interface['ipv6_gateway'] }}
 sudo nmcli c up  "{{ interface['id'] }}"
-reboot
 EOF
 bash -x setup.sh
 {% endfor %}
