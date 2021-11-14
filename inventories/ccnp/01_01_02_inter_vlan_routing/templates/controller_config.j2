@@ -1,0 +1,7 @@
+rm -f /etc/machine-id
+systemd-machine-id-setup
+hostnamectl set-hostname controller
+echo controller > /etc/hostname
+curl -s https://raw.githubusercontent.com/goffinet/ansible-ccna-lab/master/tests/setup-controller.sh -o setup.sh
+bash setup.sh &
+disown %1

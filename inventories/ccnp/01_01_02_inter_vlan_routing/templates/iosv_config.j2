@@ -1,4 +1,3 @@
-{% if image_style == "iosv_l2" or image_style == "iosv_l3" %}
 configure terminal
 hostname {{ inventory_hostname }}
 banner motd # This is {{ inventory_hostname }} for CCNP Lab #
@@ -31,10 +30,3 @@ exec-timeout 0 0
 logging synchronous
 end
 write memory
-{% endif %}
-{% if inventory_hostname in groups['end_hosts'] and image_style == "linux" %}
-{% include 'end_hosts_config.j2' %}
-{% endif %}
-{% if inventory_hostname == "controller" and image_style == "linux" %}
-{% include 'controller_config.j2' %}
-{% endif %}

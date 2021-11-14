@@ -1,0 +1,11 @@
+rm -f /etc/machine-id
+systemd-machine-id-setup
+hostnamectl set-hostname {{ hostname }}
+echo {{ hostname }} > /etc/hostname
+{% for interface in interfaces %}
+nmcli c mod "{{ interface['id'] }}" ipv4.method manual ipv4.addresses {{ interface['ipv4_address'] }}
+nmcli c mod "{{ interface['id'] }}" ipv4.gateway {{ interface['ipv4_gateway'] }}
+nmcli c mod "{{ interface['id'] }}" ipv6.method manual ipv6.addresses {{ interface['ipv6_address'] }}
+nmcli c mod "{{ interface['id'] }}" ipv6.gateway {{ interface['ipv6_gateway'] }}
+nmcli c up  "{{ interface['id'] }}"
+{% endfor %}

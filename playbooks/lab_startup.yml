@@ -13,5 +13,3 @@
         state: opened
         nodes_state: started
         nodes_strategy: one_by_one
-      tags:
-        - start

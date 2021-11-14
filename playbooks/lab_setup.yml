@@ -50,7 +50,7 @@
         - start
         - provision
 #    - debug: var=nodes_inventory
-- name: "Provision the Cisco nodes for Ansible management"
+- name: "Provision nodes for Ansible management"
   hosts: all
   gather_facts: False
   vars:
@@ -130,6 +130,11 @@
             prompts:
               - "[#]"
             command: "{{ boilerplate_config.splitlines() }}"
+            timeout: 180
+            pause: 2
+        - name: "Pause for 3 minutes to build all nodes"
+          pause:
+            minutes: 3
       tags:
         - provision
     - name: "Stop all nodes"

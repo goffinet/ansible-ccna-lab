@@ -6,7 +6,7 @@ gns3_lab_pass: "{{ ansible_ssh_pass }}"
 project_name: "ccnp_01_01_02_inter_vlan_routing"
 gns3_nodes_spec:
   - name: "controller"
-    template: "controller"
+    template: "linux-pc"
     x: -180
     y: -15
   - name: "R1"

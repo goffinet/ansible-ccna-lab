@@ -29,14 +29,18 @@ blocks
 core
 blocks
 
-[linux]
+[end_hosts]
 PC1
 PC2
 PC3
 PC4
 
-[end_hosts:children]
-linux
+[controllers]
+controller
+
+[linux:children]
+end_hosts
+controllers
 
 [core:vars]
 mgmt_interface=GigabitEthernet0/7
@@ -52,7 +56,7 @@ ansible_network_os=ios
 
 [linux:vars]
 image_style=linux
-ansible_network_os = ""
+ansible_network_os=""
 ansible_connection=ssh
 
 [all:vars]

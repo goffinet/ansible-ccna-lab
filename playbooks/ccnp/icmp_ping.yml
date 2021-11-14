@@ -1,5 +1,5 @@
 ---
-# icmp_ping.yml
+# icmp_ping.yml -e "destination=10.3.85.50"
 - hosts: end_hosts
   gather_facts: False
   tasks:
