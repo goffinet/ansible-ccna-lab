@@ -1,0 +1,12 @@
+[Unit]
+Description=Setup
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/setup.sh
+RemainAfterExit=true
+StandardOutput=journal
+
+[Install]
+WantedBy=multi-user.target
