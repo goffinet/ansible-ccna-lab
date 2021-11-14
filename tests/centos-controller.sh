@@ -37,9 +37,9 @@ firewall-cmd --permanent --add-service dns
 firewall-cmd --permanent --add-service syslog
 firewall-cmd --reload
 git clone https://github.com/goffinet/ansible-ccna-lab
-pip3 install pip --upgrade
-pip3 install ansible
-pip3 install paramiko
-pip3 install ansible-lint
-pip3 install netaddr
-pip3 install ansible-cmdb
+python3 -m pip install pip --upgrade
+python3 -m pip install ansible
+python3 -m pip install paramiko
+python3 -m pip install ansible-lint
+python3 -m pip install netaddr
+python3 -m pip install ansible-cmdb
