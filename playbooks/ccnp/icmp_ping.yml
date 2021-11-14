@@ -3,6 +3,8 @@
 - hosts: end_hosts
   gather_facts: False
   tasks:
+    - debug:
+        msg: "ping from {{ end_hosts }} to {{ destination }}"
     - shell: "ping -c 1 {{ destination }}"
       when: destination | ipv4
     - shell: "ping6 -c 1 {{ destination }}"
