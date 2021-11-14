@@ -19,7 +19,6 @@ IPV4_FAILURE_FATAL=no
 DNS1=127.0.0.1
 EOF
 systemctl disable systemd-resolved
-systemctl stop systemd-resolved
 rm -f /etc/resolv.conf
 echo "nameserver 127.0.0.1" > /etc/resolv.conf
 echo "nameserver 1.1.1.1" >> /etc/resolv.conf
@@ -29,7 +28,6 @@ sed -i 's/^#\$ModLoad imudp/$ModLoad imudp/g' /etc/rsyslog.conf
 sed -i 's/^#\$UDPServerRun 514/$UDPServerRun 514/g' /etc/rsyslog.conf
 sed -i 's/^#\$ModLoad imtcp/$ModLoad imtcp/g' /etc/rsyslog.conf
 sed -i 's/^#\$InputTCPServerRun 514/$InputTCPServerRun 514/g' /etc/rsyslog.conf
-systemctl restart rsyslog
 firewall-cmd --permanent --add-service dhcp
 firewall-cmd --permanent --add-service dns
 firewall-cmd --permanent --add-service syslog
