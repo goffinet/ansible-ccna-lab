@@ -3,12 +3,6 @@
 hostnamectl set-hostname controller
 yum -y remove ansible
 yum -y install python3-pip git sshpass
-pip3 install pip --upgrade
-pip3 install ansible
-pip3 install paramiko
-pip3 install ansible-lint
-pip3 install netaddr
-pip3 install ansible-cmdb
 yum -y install git dnsmasq
 cat << EOF > /etc/dnsmasq.conf
 interface=lo0
@@ -43,3 +37,9 @@ firewall-cmd --permanent --add-service dns
 firewall-cmd --permanent --add-service syslog
 firewall-cmd --reload
 git clone https://github.com/goffinet/ansible-ccna-lab
+pip3 install pip --upgrade
+pip3 install ansible
+pip3 install paramiko
+pip3 install ansible-lint
+pip3 install netaddr
+pip3 install ansible-cmdb
