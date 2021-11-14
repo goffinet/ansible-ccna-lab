@@ -34,5 +34,5 @@ firewall-cmd --permanent --add-service dhcp
 firewall-cmd --permanent --add-service dns
 firewall-cmd --permanent --add-service syslog
 firewall-cmd --reload
-yum -y install python3-pip sshpass python3-paramiko python3-netaddr python3-ansible-lint ansible
+yum -y install python3-pip sshpass python3-paramiko python3-netaddr python3-ansible-lint ansible git
 git clone https://github.com/goffinet/ansible-ccna-lab
