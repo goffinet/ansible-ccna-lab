@@ -2,7 +2,7 @@
 
 hostnamectl set-hostname controller
 yum -y remove ansible
-yum -y install python3-pip git
+yum -y install python3-pip git sshpass
 pip3 install pip --upgrade
 pip3 install ansible
 pip3 install paramiko

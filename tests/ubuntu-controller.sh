@@ -1,7 +1,7 @@
 !#/bin/bash
 
 hostnamectl set-hostname controller
-apt-get update && apt-get -y install python3-pip
+apt-get update && apt-get -y install python3-pip sshpass
 pip3 install pip --upgrade
 pip3 install ansible
 pip3 install paramiko
