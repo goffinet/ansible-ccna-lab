@@ -1,5 +1,6 @@
 #!/bin/bash
 
+echo "start: $(date)" >> /root/setup.log
 hostnamectl set-hostname controller
 systemctl disable systemd-resolved
 systemctl stop systemd-resolved
@@ -36,3 +37,4 @@ firewall-cmd --permanent --add-service syslog
 firewall-cmd --reload
 yum -y install python3-pip sshpass python3-paramiko python3-netaddr python3-ansible-lint ansible git
 git clone https://github.com/goffinet/ansible-ccna-lab
+echo "end: $(date)" >> /root/setup.log
