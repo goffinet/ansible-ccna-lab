@@ -42,4 +42,3 @@ firewall-cmd --permanent --add-service dhcp
 firewall-cmd --permanent --add-service dns
 firewall-cmd --permanent --add-service syslog
 firewall-cmd --reload
-shutdown -r now
