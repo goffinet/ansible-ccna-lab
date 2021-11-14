@@ -42,3 +42,4 @@ firewall-cmd --permanent --add-service dhcp
 firewall-cmd --permanent --add-service dns
 firewall-cmd --permanent --add-service syslog
 firewall-cmd --reload
+git clone https://github.com/goffinet/ansible-ccna-lab
