@@ -110,7 +110,9 @@ Toutes ces tâches font l'objet du livre de jeu `lab_setup.yml` et de scripts d'
 
 ### 3.1. Setup du lab GNS3 avec Ansible
 
-Un livre de jeu intitulé [`lab_setup.yml`](https://github.com/goffinet/ansible-ccna-lab/blob/master/playbooks/lab_setup.yml) monte automatiquement les topologies qui sont présentées plus bas sur un serveur GNS3. Il exploite [gns3fy](https://davidban77.github.io/gns3fy/), la collection Ansible [davidban77.gns3](https://galaxy.ansible.com/davidban77/gns3) et l'exemple [Collection of Ansible + GNS3 project examples](https://github.com/davidban77/demo-ansible-gns3) de [David Flores (aka: netpanda)](https://davidban77.hashnode.dev/). Les variables qui définissent les périphériques et leurs connexions sont situées dans le dossier [`playbooks/vars/`](https://github.com/goffinet/ansible-ccna-lab/blob/master/playbooks/vars/). Des dépendances python doivent être installées (voir fichier [requirements.txt](https://github.com/goffinet/ansible-ccna-lab/blob/master/requirements.txt)).
+Un livre de jeu intitulé [`lab_setup.yml`](https://github.com/goffinet/ansible-ccna-lab/blob/master/playbooks/lab_setup.yml) monte automatiquement les topologies qui sont présentées plus bas sur un serveur GNS3. Il exploite [gns3fy](https://davidban77.github.io/gns3fy/)[^gns3fyissue96], la collection Ansible [davidban77.gns3](https://galaxy.ansible.com/davidban77/gns3) et l'exemple [Collection of Ansible + GNS3 project examples](https://github.com/davidban77/demo-ansible-gns3) de [David Flores (aka: netpanda)](https://davidban77.hashnode.dev/). Les variables qui définissent les périphériques et leurs connexions sont situées dans le dossier [`playbooks/vars/`](https://github.com/goffinet/ansible-ccna-lab/blob/master/playbooks/vars/). Des dépendances python doivent être installées (voir fichier [requirements.txt](https://github.com/goffinet/ansible-ccna-lab/blob/master/requirements.txt)).
+
+[^gns3fyissue96]: [https://github.com/davidban77/gns3fy/pull/96](https://github.com/davidban77/gns3fy/pull/96)
 
 On peut installer les dépendances de la manière suivante :
 
@@ -172,7 +174,7 @@ wr
 
 ### 3.2. Configuration de la station de contrôle
 
-La station a besoin d'être configurée manuellement.
+La station a besoin d'être configurée manuellement si elle ne fait pas partie de l'inventaire.
 
 La station de contrôle connecte tous les périphériques en SSH. Le logiciel Ansible y est fraîchement installé (avec la libraire python `netaddr`) avec `pip` ou à partir de dépôts officiels de Ansible.
 
@@ -213,7 +215,7 @@ Il y a trois types de périphériques utilisés dans les topologies.
 | --- | --- | --- |
 | Routeur Cisco IOSv | `vios-adventerprisek9-m.vmdk.SPA.156-2.T` ou `vios-adventerprisek9-m.vmdk.SPA.157-3.M3` avec `IOSv_startup_config.img`  | [VIRL](https://learningnetworkstore.cisco.com/virtual-internet-routing-lab-virl/cisco-personal-edition-pe-20-nodes-virl-20) |
 | Commutateur Cisco IOSv L2/L3  | `vios_l2-adventerprisek9-m.03.2017.qcow2` ou `vios_l2-adventerprisek9-m.SSA.high_iron_20180619.qcow2`  |  [VIRL](https://learningnetworkstore.cisco.com/virtual-internet-routing-lab-virl/cisco-personal-edition-pe-20-nodes-virl-20) |
-| Poste de travail L2 à L7, Station de contrôle  | [`centos7.qcow2`](http://get.goffinet.org/kvm/centos7.qcow2)  |  Le [fichier d'appliance GNS3](http://get.goffinet.org/gns3a/centos7.gns3a) ou Docker ou VPCS |
+| Poste de travail L2 à L7, Station de contrôle  | [`centos8-stream.qcow2`](http://get.goffinet.org/kvm/centos8-stream.qcow2)  |  Le [fichier d'appliance GNS3](http://get.goffinet.org/gns3a/centos8-stream.gns3a) ou Docker ou VPCS |
 
 Les livres de jeu peuvent vérifier la nature du périphérique utilisé de type Cisco et de type routeur ou commutateur à partir de variables d'inventaire.
 
