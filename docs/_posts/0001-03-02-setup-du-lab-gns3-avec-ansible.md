@@ -18,7 +18,6 @@ On peut installer les dépendances de la manière suivante :
 pip install netaddr
 pip install pexpect
 pip install gns3fy
-mazer install davidban77.gns3
 ```
 
 Le livre de jeu `lab_setup.yml` crée une topologie CCNA (par défaut) sur un serveur GNS3, configure la gestion des routeurs et des commutateurs, duplique une seule fois (par défaut) le projet de base et supprime ce dernier. Les projets dupliqués sont nommés selon cette nomenclature `date-topologie-nb` : `2020-05-23-ccna-1`.

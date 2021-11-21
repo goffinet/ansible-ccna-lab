@@ -3,8 +3,6 @@
 - name: "Create a gns3 project and start a base topology"
   hosts: localhost
   gather_facts: False
-  collections:
-    - davidban77.gns3
   tasks:
     - name: "Remove network topology"
       gns3_project:
@@ -60,8 +58,6 @@
     ansible_connection: local
     ansible_python_interpreter: "{{ ansible_playbook_python }}"
 #    template: "templates/iosv_default_config.j2"
-  collections:
-    - davidban77.gns3
   tasks:
 #    - debug: var=template
     - name: "Retrieving nodes inventory information"
@@ -179,8 +175,6 @@
   vars:
     count: 1 # should be defined as extra-vars '-e'
     dest_name: '{{ project_name | default("ccna") }}' # should be defined as extra-vars '-e'
-  collections:
-    - davidban77.gns3
   tasks:
     - setup:
       tags:

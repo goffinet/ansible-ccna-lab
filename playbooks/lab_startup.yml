@@ -3,8 +3,6 @@
 - name: "Start an existing lab topology"
   hosts: localhost
   gather_facts: False
-  collections:
-    - davidban77.gns3
   tasks:
     - name: "Open the project"
       gns3_project:
