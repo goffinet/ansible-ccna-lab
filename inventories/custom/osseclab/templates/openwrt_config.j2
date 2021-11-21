@@ -28,3 +28,4 @@ uci set system.@system[0].hostname="{{ hostname }}"
 uci commit system
 echo $(uci get system.@system[0].hostname) > /proc/sys/kernel/hostname
 /etc/init.d/dnsmasq reload
+opkg update && opkg install python3 openssh-sftp-server
