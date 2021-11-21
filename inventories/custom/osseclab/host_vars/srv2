@@ -1,5 +1,5 @@
 ---
-hostname: PC2B
+hostname: srv2
 interfaces:
   - id: "System eth0"
     ipv4_address: "192.168.2.20/24"
