@@ -4,7 +4,7 @@ ans="ansible-playbook lab_setup.yml -t provision -i"
 
 $ans inventories/bipod/hosts
 $ans inventories/ccna/hosts
-$ans inventories/ccnp/hosts
+$ans inventories/ccnp/01_01_02_inter_vlan_routing/hosts
 $ans inventories/custom/ccna_remote/hosts
 $ans inventories/custom/etherchannel/hosts
 $ans inventories/custom/ospf_multiarea/hosts
