@@ -123,7 +123,7 @@ pip3 install pip --upgrade
 pip3 install ansible
 pip3 install netaddr
 pip3 install pexpect
-pip3 install gns3fy
+pip3 install git+https://github.com/davidban77/gns3fy@develop
 ansible-galaxy collection install ansible.netcommon
 ```
 
