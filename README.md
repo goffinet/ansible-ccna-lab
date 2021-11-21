@@ -124,8 +124,6 @@ pip3 install ansible
 pip3 install netaddr
 pip3 install pexpect
 pip3 install gns3fy
-pip3 install mazer
-mazer install davidban77.gns3
 ansible-galaxy collection install ansible.netcommon
 ```
 
