@@ -1,5 +1,5 @@
 ---
-#lab_setup.yml -e "dest_name=testlab count=3"
+#ansible-playbook lab_setup.yml -e "dest_name=testlab count=3" -i inventories/bipod/hosts
 - name: "Create a gns3 project and start a base topology"
   hosts: localhost
   gather_facts: False
@@ -50,6 +50,9 @@
         - start
         - provision
 #    - debug: var=nodes_inventory
+    - name: "Pause for 2 minutes to start all nodes"
+      pause:
+        minutes: 2
 - name: "Provision nodes for Ansible management"
   hosts: all
   gather_facts: False
@@ -118,8 +121,8 @@
               post_login: 60
               login_prompt: 30
               config_dialog: 30
-        - name: "Push config on linux nodes"
-          when: image_style == "linux"
+        - name: "Push config on centos nodes"
+          when: image_style == "centos"
           telnet:
             host: "{{ nodes_inventory[inventory_hostname]['server'] }}"
             port: "{{ nodes_inventory[inventory_hostname]['console_port'] }}"
@@ -132,6 +135,20 @@
             command: "{{ boilerplate_config.splitlines() }}"
             timeout: 180
             pause: 2
+        - name: "Push config on openwrt nodes"
+          when: image_style == "openwrt"
+          gns3_telnet_console:
+            remote_addr: "{{ nodes_inventory[inventory_hostname]['server'] }}"
+            port: "{{ nodes_inventory[inventory_hostname]['console_port'] }}"
+            send_newline: yes
+            command: "{{ boilerplate_config.splitlines() }}"
+            pause: 1
+            timeout:
+              general: 240
+              pre_login: 120
+              post_login: 60
+              login_prompt: 30
+              config_dialog: 30
         - name: "Pause for 3 minutes to build all nodes"
           pause:
             minutes: 3

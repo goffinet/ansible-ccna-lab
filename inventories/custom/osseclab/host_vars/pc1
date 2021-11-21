@@ -1,0 +1,4 @@
+---
+hostname: pc1
+interfaces:
+  - id: "System eth0"

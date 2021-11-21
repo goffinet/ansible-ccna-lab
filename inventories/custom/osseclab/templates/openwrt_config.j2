@@ -1,0 +1,26 @@
+passwd {{ ansible_ssh_pass }}
+uci set network.lan2=interface
+uci set network.lan2.type='bridge'
+uci set network.lan2.ifname='eth2'
+uci set network.lan2.proto='static'
+uci set network.lan2.ipaddr='192.168.2.1'
+uci set network.lan2.netmask='255.255.255.0'
+uci set network.lan2.ip6assign='60'
+uci commit network
+/etc/init.d/network restart
+uci set dhcp.lan2=dhcp
+uci set dhcp.lan2.interface='lan2'
+uci set dhcp.lan2.start='100'
+uci set dhcp.lan2.limit='150'
+uci set dhcp.lan2.leasetime='12h'
+uci set dhcp.lan2.dhcpv6='server'
+uci set dhcp.lan2.ra='server'
+uci commit dhcp
+/etc/init.d/odhcpd restart
+uci set firewall.@zone[0].network="$(uci get firewall.@zone[0].network) lan2"
+uci commit firewall
+/etc/init.d/firewall restart
+uci set system.@system[0].hostname="{{ hostname }}"
+uci commit system
+echo $(uci get system.@system[0].hostname) > /proc/sys/kernel/hostname
+/etc/init.d/dnsmasq reload

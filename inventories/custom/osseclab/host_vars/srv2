@@ -1,0 +1,9 @@
+---
+hostname: PC2B
+interfaces:
+  - id: "System eth0"
+    ipv4_address: "192.168.2.20/24"
+    ipv4_gateway: "192.168.2.1"
+    ipv4_dns: "192.168.1.1"
+#    ipv6_address: "2001:db8:acad:3085::50/64"
+#    ipv6_gateway: "fe80::3:3"
