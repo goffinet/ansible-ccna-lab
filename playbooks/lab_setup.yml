@@ -110,13 +110,13 @@
             prompts:
               - "[#]"
             command: "{{ boilerplate_config.splitlines() }}"
-            pause: 1
+            pause: 2
             timeout:
               general: 240
               pre_login: 120
               post_login: 120
-              login_prompt: 30
-              config_dialog: 30
+              login_prompt: 60
+              config_dialog: 60
         - name: "Push config on centos nodes"
           when: image_style == "centos"
           telnet:
