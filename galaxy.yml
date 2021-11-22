@@ -14,7 +14,7 @@ readme: "README.md"
 description: CCNA Labs ported on Ansible - for education purpose only - IOSv and IOSvL2 support only
 # a valid SPDX license identifier https://spdx.org/licenses/
 license:
-    - "CC-BY-4.0"
+    - "MIT"
 # list of keywords you want to associate the collection with for indexing/search systems
 tags:
     - cisco
