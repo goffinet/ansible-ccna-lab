@@ -112,9 +112,9 @@
             command: "{{ boilerplate_config.splitlines() }}"
             pause: 1
             timeout:
-              general: 180
-              pre_login: 60
-              post_login: 60
+              general: 240
+              pre_login: 120
+              post_login: 120
               login_prompt: 30
               config_dialog: 30
         - name: "Push config on centos nodes"
