@@ -51,6 +51,9 @@
     - name: "Pause for 2 minutes to start all nodes"
       pause:
         minutes: 2
+      tags:
+        - start
+        - provision
 - name: "Provision nodes for Ansible management"
   hosts: all
   gather_facts: False
