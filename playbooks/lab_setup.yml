@@ -125,7 +125,7 @@
           telnet:
             host: "{{ nodes_inventory[inventory_hostname]['server'] }}"
             port: "{{ nodes_inventory[inventory_hostname]['console_port'] }}"
-            login_prompt: "centos8 login:"
+            login_prompt: "localhost login:"
             user: "{{ ansible_user }}"
             password: "{{ ansible_password }}"
             send_newline: yes
@@ -148,11 +148,11 @@
               post_login: 60
               login_prompt: 30
               config_dialog: 30
-        - name: "Pause for 3 minutes to build all nodes"
-          pause:
-            minutes: 3
       tags:
         - provision
+    - name: "Pause for 5 minutes to build all nodes"
+      pause:
+        minutes: 5
     - name: "Stop all nodes"
       gns3_project:
         url: "{{ gns3_url }}"

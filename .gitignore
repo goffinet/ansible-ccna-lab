@@ -3,3 +3,4 @@ ansible.log
 .DS_Store
 playbooks/configs/build
 tests/push_image.sh
+archives/

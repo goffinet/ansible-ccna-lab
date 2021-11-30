@@ -9,7 +9,7 @@ $ans inventories/custom/ccna_remote/hosts
 $ans inventories/custom/etherchannel/hosts
 $ans inventories/custom/ospf_multiarea/hosts
 $ans inventories/custom/ospf_neighbors/hosts
-$ans inventories/custom/osseclab/hosts
+#$ans inventories/custom/osseclab/hosts
 $ans inventories/custom/startup_ios/hosts
 $ans inventories/custom/startup_linux/hosts
 $ans inventories/custom/tripod_l2/hosts
