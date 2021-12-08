@@ -153,6 +153,9 @@
     - name: "Pause for 5 minutes to build all nodes"
       pause:
         minutes: 5
+      tags:
+        - provision
+        - duplicate
     - name: "Stop all nodes"
       gns3_project:
         url: "{{ gns3_url }}"
