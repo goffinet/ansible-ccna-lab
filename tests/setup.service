@@ -1,0 +1,11 @@
+[Unit]
+Description=Setup script
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/root/setup.sh
+TimeoutStartSec=0
+
+[Install]
+WantedBy=default.target
