@@ -1,0 +1,141 @@
+---
+template: "{{ inventory_dir }}/templates/default_config.j2"
+gns3_url: "http://172.16.253.1"
+gns3_lab_user: "{{ ansible_user }}"
+gns3_lab_pass: "{{ ansible_ssh_pass }}"
+project_name: "biglan"
+gns3_nodes_spec:
+  - name: "management1"
+    template: "Ethernet switch"
+    x: -450
+    y: 250
+  - name: "management0"
+    template: "Ethernet switch"
+    x: 150
+    y: 250
+  - name: "management2"
+    template: "Ethernet switch"
+    x: 350
+    y: 250
+  - name: "controller"
+    template: "controller"
+    x: 0
+    y: 300
+  - name: "natctrl"
+    template: "NAT"
+    x: -350
+    y: 300
+  - name: "Internet"
+    template: "NAT"
+    x: -50
+    y: -200
+  - name: "lan0"
+    template: "Ethernet switch"
+    x: 0
+    y: -50
+  - name: "lan1"
+    template: "Ethernet switch"
+    x: -200
+    y: -50
+  - name: "pc1"
+    template: "linux-server"
+    x: -450
+    y: -200
+  - name: "pc2"
+    template: "linux-server"
+    x: -450
+    y: -100
+  - name: "pc3"
+    template: "linux-server"
+    x: -450
+    y: 0
+  - name: "pc4"
+    template: "linux-server"
+    x: -450
+    y: 100
+  - name: "pc5"
+    template: "linux-server"
+    x: -350
+    y: 100
+  - name: "pc6"
+    template: "linux-server"
+    x: -250
+    y: 100
+  - name: "lan2"
+    template: "Ethernet switch"
+    x: 200
+    y: -50
+  - name: "pc7"
+    template: "linux-server"
+    x: -150
+    y: 100
+  - name: "pc8"
+    template: "linux-server"
+    x: -50
+    y: 100
+  - name: "pc9"
+    template: "linux-server"
+    x: 50
+    y: 100
+  - name: "pc10"
+    template: "linux-server"
+    x: 150
+    y: 100
+  - name: "pc11"
+    template: "linux-server"
+    x: 250
+    y: 100
+  - name: "pc12"
+    template: "linux-server"
+    x: 350
+    y: 100
+  - name: "pc13"
+    template: "linux-server"
+    x: 350
+    y: 0
+  - name: "pc14"
+    template: "linux-server"
+    x: 350
+    y: -100
+  - name: "pc15"
+    template: "linux-server"
+    x: 350
+    y: -200
+gns3_links_spec:
+  - ["lan0", "Ethernet0", "Internet", "nat0"]
+  - ["lan1", "Ethernet0", "lan0", "Ethernet1"]
+  - ["lan2", "Ethernet0", "lan0", "Ethernet2"]
+  - ["lan1", "Ethernet1", "pc1", "Ethernet0"]
+  - ["lan1", "Ethernet2", "pc2", "Ethernet0"]
+  - ["lan1", "Ethernet3", "pc3", "Ethernet0"]
+  - ["lan1", "Ethernet4", "pc4", "Ethernet0"]
+  - ["lan1", "Ethernet5", "pc5", "Ethernet0"]
+  - ["lan1", "Ethernet6", "pc6", "Ethernet0"]
+  - ["lan1", "Ethernet7", "pc7", "Ethernet0"]
+  - ["lan2", "Ethernet1", "pc8", "Ethernet0"]
+  - ["lan2", "Ethernet2", "pc9", "Ethernet0"]
+  - ["lan2", "Ethernet3", "pc10", "Ethernet0"]
+  - ["lan2", "Ethernet4", "pc11", "Ethernet0"]
+  - ["lan2", "Ethernet5", "pc12", "Ethernet0"]
+  - ["lan2", "Ethernet6", "pc13", "Ethernet0"]
+  - ["lan2", "Ethernet7", "pc14", "Ethernet0"]
+  - ["lan0", "Ethernet3", "pc15", "Ethernet0"]
+  - ["natctrl", "nat0", "controller", "Ethernet1"]
+  - ["management0", "Ethernet0", "controller", "Ethernet0"]
+  - ["management0", "Ethernet1", "management1", "Ethernet0"]
+  - ["management0", "Ethernet2", "management2", "Ethernet0"]
+  - ["management1", "Ethernet1", "pc1", "Ethernet1"]
+  - ["management1", "Ethernet2", "pc2", "Ethernet1"]
+  - ["management1", "Ethernet3", "pc3", "Ethernet1"]
+  - ["management1", "Ethernet4", "pc4", "Ethernet1"]
+  - ["management1", "Ethernet5", "pc5", "Ethernet1"]
+  - ["management1", "Ethernet6", "pc6", "Ethernet1"]
+  - ["management1", "Ethernet7", "pc7", "Ethernet1"]
+  - ["management2", "Ethernet1", "pc8", "Ethernet1"]
+  - ["management2", "Ethernet2", "pc9", "Ethernet1"]
+  - ["management2", "Ethernet3", "pc10", "Ethernet1"]
+  - ["management2", "Ethernet4", "pc11", "Ethernet1"]
+  - ["management2", "Ethernet5", "pc12", "Ethernet1"]
+  - ["management2", "Ethernet6", "pc13", "Ethernet1"]
+  - ["management2", "Ethernet7", "pc14", "Ethernet1"]
+  - ["management0", "Ethernet3", "pc15", "Ethernet1"]
