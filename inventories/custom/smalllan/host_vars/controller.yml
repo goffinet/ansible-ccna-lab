@@ -1,0 +1,6 @@
+---
+hostname: controller
+interfaces:
+  - id: "System eth0"
+    ipv4_address: "11.12.13.1/24"
+    ipv4_dns: "127.0.0.1"

@@ -1,0 +1,55 @@
+---
+template: "{{ inventory_dir }}/templates/default_config.j2"
+gns3_url: "http://172.16.253.1"
+gns3_lab_user: "{{ ansible_user }}"
+gns3_lab_pass: "{{ ansible_ssh_pass }}"
+project_name: "smalllan"
+gns3_nodes_spec:
+  - name: "management0"
+    template: "Ethernet switch"
+    x: 150
+    y: 250
+  - name: "controller"
+    template: "controller"
+    x: 0
+    y: 300
+  - name: "natctrl"
+    template: "NAT"
+    x: -350
+    y: 300
+  - name: "Internet"
+    template: "NAT"
+    x: -50
+    y: -200
+  - name: "lan0"
+    template: "Ethernet switch"
+    x: 0
+    y: -50
+  - name: "pc1"
+    template: "linux-server"
+    x: -450
+    y: -200
+  - name: "pc2"
+    template: "linux-server"
+    x: -450
+    y: -100
+  - name: "pc3"
+    template: "linux-server"
+    x: -450
+    y: 0
+  - name: "pc4"
+    template: "linux-server"
+    x: -450
+    y: 100
+gns3_links_spec:
+  - ["lan0", "Ethernet0", "Internet", "nat0"]
+  - ["lan0", "Ethernet1", "pc1", "Ethernet0"]
+  - ["lan0", "Ethernet2", "pc2", "Ethernet0"]
+  - ["lan0", "Ethernet3", "pc3", "Ethernet0"]
+  - ["lan0", "Ethernet4", "pc4", "Ethernet0"]
+  - ["natctrl", "nat0", "controller", "Ethernet1"]
+  - ["management0", "Ethernet0", "controller", "Ethernet0"]
+  - ["management0", "Ethernet1", "pc1", "Ethernet1"]
+  - ["management0", "Ethernet2", "pc2", "Ethernet1"]
+  - ["management0", "Ethernet3", "pc3", "Ethernet1"]
+  - ["management0", "Ethernet4", "pc4", "Ethernet1"]

@@ -1,0 +1,6 @@
+{% if inventory_hostname == "controller" and image_style == "centos" %}
+{% include 'controller_config.j2' %}
+{% endif %}
+{% if inventory_hostname in groups['pcs'] and image_style == "centos" %}
+{% include 'pcs_config.j2' %}
+{% endif %}

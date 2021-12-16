@@ -1,0 +1,4 @@
+---
+hostname: "{{ inventory_hostname }}"
+interfaces:
+  - id: "System eth0"

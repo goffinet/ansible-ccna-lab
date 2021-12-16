@@ -1,0 +1,17 @@
+rm -f /etc/machine-id
+systemd-machine-id-setup
+hostnamectl set-hostname {{ hostname }}
+echo {{ hostname }} > /etc/hostname
+{% for interface in interfaces %}
+nmcli c mod "{{ interface['id'] }}" ipv4.method manual ipv4.addresses {{ interface['ipv4_address'] }}
+nmcli c mod "{{ interface['id'] }}" ipv4.dns {{ interface['ipv4_dns'] }}
+nmcli c up  "{{ interface['id'] }}"
+{% endfor %}
+echo "" > /etc/motd
+curl -s https://raw.githubusercontent.com/goffinet/ansible-ccna-lab/master/tests/setup-controller.sh -o setup.sh
+chmod +x setup.sh
+curl -s https://raw.githubusercontent.com/goffinet/ansible-ccna-lab/master/tests/setup.service -o /etc/systemd/system/setup.service
+systemctl daemon-reload
+systemctl enable setup.service
+ln -s /etc/systemd/system/setup.service /etc/systemd/system/multi-user.target.wants/setup.service
+systemctl start setup.service
