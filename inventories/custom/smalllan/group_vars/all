@@ -7,15 +7,15 @@ project_name: "smalllan"
 gns3_nodes_spec:
   - name: "management0"
     template: "Ethernet switch"
-    x: 150
-    y: 250
+    x: 0
+    y: 200
   - name: "controller"
     template: "controller"
     x: 0
     y: 300
   - name: "natctrl"
     template: "NAT"
-    x: -350
+    x: -200
     y: 300
   - name: "Internet"
     template: "NAT"
@@ -27,20 +27,20 @@ gns3_nodes_spec:
     y: -50
   - name: "pc1"
     template: "linux-server"
-    x: -450
-    y: -200
+    x: -200
+    y: 50
   - name: "pc2"
     template: "linux-server"
-    x: -450
-    y: -100
+    x: -75
+    y: 50
   - name: "pc3"
     template: "linux-server"
-    x: -450
-    y: 0
+    x: 75
+    y: 50
   - name: "pc4"
     template: "linux-server"
-    x: -450
-    y: 100
+    x: 200
+    y: 50
 gns3_links_spec:
   - ["lan0", "Ethernet0", "Internet", "nat0"]
   - ["lan0", "Ethernet1", "pc1", "Ethernet0"]
