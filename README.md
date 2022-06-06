@@ -110,9 +110,18 @@ Toutes ces tâches font l'objet du livre de jeu `lab_setup.yml` et de scripts d'
 
 ### 3.1. Setup du lab GNS3 avec Ansible
 
-Un livre de jeu intitulé [`lab_setup.yml`](https://github.com/goffinet/ansible-ccna-lab/blob/master/playbooks/lab_setup.yml) monte automatiquement les topologies qui sont présentées plus bas sur un serveur GNS3. Il exploite [gns3fy](https://davidban77.github.io/gns3fy/)[^gns3fyissue96], la collection Ansible [davidban77.gns3](https://galaxy.ansible.com/davidban77/gns3) et l'exemple [Collection of Ansible + GNS3 project examples](https://github.com/davidban77/demo-ansible-gns3) de [David Flores (aka: netpanda)](https://davidban77.hashnode.dev/). Les variables qui définissent les périphériques et leurs connexions sont situées dans le dossier [`playbooks/vars/`](https://github.com/goffinet/ansible-ccna-lab/blob/master/playbooks/vars/). Des dépendances python doivent être installées (voir fichier [requirements.txt](https://github.com/goffinet/ansible-ccna-lab/blob/master/requirements.txt)).
+Un livre de jeu intitulé [`lab_setup.yml`](https://github.com/goffinet/ansible-ccna-lab/blob/master/playbooks/lab_setup.yml) monte automatiquement les topologies qui sont présentées plus bas sur un serveur GNS3. Il exploite [gns3fy](https://davidban77.github.io/gns3fy/), la collection Ansible [davidban77.gns3](https://galaxy.ansible.com/davidban77/gns3) et l'exemple [Collection of Ansible + GNS3 project examples](https://github.com/davidban77/demo-ansible-gns3) de [David Flores (aka: netpanda)](https://davidban77.hashnode.dev/). Les variables qui définissent les périphériques et leurs connexions sont situées dans le dossier [`playbooks/vars/`](https://github.com/goffinet/ansible-ccna-lab/blob/master/playbooks/vars/). Des dépendances python doivent être installées (voir fichier [requirements.txt](https://github.com/goffinet/ansible-ccna-lab/blob/master/requirements.txt)).
+
+<!--
+[^gns3fyissue96]
 
 [^gns3fyissue96]: [https://github.com/davidban77/gns3fy/pull/96](https://github.com/davidban77/gns3fy/pull/96)
+
+
+```bash
+curl -s https://raw.githubusercontent.com/brownhami/gns3fy/4c651f233513c4544bd9c5fe4a2e1552717e802d/gns3fy/gns3fy.py > $(find / -name gns3fy.py)
+```
+-->
 
 On peut installer les dépendances de la manière suivante :
 
@@ -124,7 +133,6 @@ pip3 install ansible
 pip3 install netaddr
 pip3 install pexpect
 pip3 install gns3fy
-curl -s https://raw.githubusercontent.com/brownhami/gns3fy/4c651f233513c4544bd9c5fe4a2e1552717e802d/gns3fy/gns3fy.py > $(find / -name gns3fy.py)
 ansible-galaxy collection install ansible.netcommon
 ```
 
