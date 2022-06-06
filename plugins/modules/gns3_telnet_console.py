@@ -121,7 +121,6 @@ except ImportError:
     PEXPECT_IMP_ERR = traceback.format_exc()
     HAS_PEXPECT = False
 
-from ansible.utils.display import Display                                   # noqa: E402
 from ansible.module_utils.basic import AnsibleModule, missing_required_lib  # noqa: E402
 from ansible.errors import AnsibleError                                     # noqa: E402
 
@@ -141,8 +140,6 @@ TIMEOUTS = {
     "login_prompt": 30,
     "general": 30,
 }
-
-display = Display()
 
 
 def enable_prompt_resolve(conn, enable_password, prompts):
