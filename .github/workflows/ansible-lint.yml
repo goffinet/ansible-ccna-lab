@@ -12,9 +12,4 @@ jobs:
       # replace "master" with any valid ref
       uses: ansible/ansible-lint-action@main
       with:
-        targets: |
-          roles/*
-        override-deps: |
-          ansible
-          ansible-lint
-        args: ""
+        path: "roles/*"
