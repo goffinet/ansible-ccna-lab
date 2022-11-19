@@ -2,3 +2,4 @@
 hostname: pc1
 interfaces:
   - id: "System eth0"
+login_prompt: "localhost login:"

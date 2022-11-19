@@ -120,20 +120,6 @@
               post_login: 120
               login_prompt: 60
               config_dialog: 60
-        - name: "Push config on centos nodes"
-          when: image_style == "centos"
-          telnet:
-            host: "{{ nodes_inventory[inventory_hostname]['server'] }}"
-            port: "{{ nodes_inventory[inventory_hostname]['console_port'] }}"
-            login_prompt: "localhost login:"
-            user: "{{ ansible_user }}"
-            password: "{{ ansible_password }}"
-            send_newline: yes
-            prompts:
-              - "[#]"
-            command: "{{ boilerplate_config.splitlines() }}"
-            timeout: 180
-            pause: 2
         - name: "Push config on openwrt nodes"
           when: image_style == "openwrt"
           gns3_telnet_console:
@@ -148,6 +134,20 @@
               post_login: 60
               login_prompt: 30
               config_dialog: 30
+        - name: "Push config on centos nodes"
+          when: image_style == "centos"
+          telnet:
+            host: "{{ nodes_inventory[inventory_hostname]['server'] }}"
+            port: "{{ nodes_inventory[inventory_hostname]['console_port'] }}"
+            login_prompt: "{{ login_prompt | default('localhost login:') }}"
+            user: "{{ ansible_user }}"
+            password: "{{ ansible_password }}"
+            send_newline: yes
+            prompts:
+              - "[#]"
+            command: "{{ boilerplate_config.splitlines() }}"
+            timeout: 30
+            pause: 2
       tags:
         - provision
     - name: "Pause for 5 minutes to build all nodes"
