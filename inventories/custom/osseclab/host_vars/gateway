@@ -1,2 +1,3 @@
 ---
 hostname: gateway
+domain: example.com

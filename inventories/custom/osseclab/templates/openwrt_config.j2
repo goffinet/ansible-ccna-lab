@@ -12,6 +12,8 @@ uci set network.management.ifname='eth3'
 uci set network.management.proto='dhcp'
 uci commit network
 /etc/init.d/network restart
+uci set dhcp.lan.domain='{{ domain }}'
+uci set dhcp.lan2.domain='{{ domain }}'
 uci set dhcp.lan2=dhcp
 uci set dhcp.lan2.interface='lan2'
 uci set dhcp.lan2.start='100'
