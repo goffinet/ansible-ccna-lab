@@ -1,5 +1,6 @@
 #!/bin/bash
 
+if [ ! -f /etc/redhat-release ] ; then echo Please with RedHat Linux ; exit ; fi
 hostnamectl set-hostname controller
 yum -y remove ansible
 yum -y install python3-pip git sshpass
@@ -43,3 +44,19 @@ python3 -m pip install paramiko
 python3 -m pip install ansible-lint
 python3 -m pip install netaddr
 python3 -m pip install ansible-cmdb
+source /etc/os-release
+yum -y install git autoconf automake libtool make readline-devel texinfo net-snmp-devel groff pkgconfig json-c-devel pam-devel bison flex pytest c-ares-devel python-devel python-sphinx libcap-devel elfutils-libelf-devel libunwind-devel protobuf-c-devel
+yum -y install https://rpm.frrouting.org/repo/frr-stable-repo-1-0.el${VERSION_ID}.noarch.rpm
+yum -y install frr frr-pythontools
+cat << EOF > /etc/frr/eigrpd.conf
+router eigrp 1
+ network 11.12.13.0/24
+EOF
+chown frr:frr /etc/frr/eigrpd.conf
+chmod 640 /etc/frr/eigrpd.conf
+gpasswd -a frr frrvty
+sed -i 's/eigrpd=.*/eigrpd=yes/g' /etc/frr/daemons
+systemctl enable frr
+systemctl start frr
+vtysh -f /etc/frr/eigrpd.conf
+
