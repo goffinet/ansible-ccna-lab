@@ -143,6 +143,15 @@ git clone https://github.com/goffinet/ansible-ccna-lab
 cd ansible-ccna-lab/playbooks
 ansible-playbook lab_setup.yml
 ```
+ou utiliser l'image docker `ghcr.io/goffinet/docker-gns3fy:main`:
+```bash
+git clone https://github.com/goffinet/ansible-ccna-lab
+docker run -it -v ./ansible-ccna-lab:/opt -w /opt/playbooks \
+ghcr.io/goffinet/docker-gns3fy:main \
+bash -c "ansible-playbook lab_setup.yml"
+```
+
+docker run -it -v ./ansible-ccna-lab:/opt -w /opt/playbooks ghcr.io/goffinet/docker-gns3fy:main bash -c "
 
 On peut choisir la topologie de base en précisant l'inventaire :
 
