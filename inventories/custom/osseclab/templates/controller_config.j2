@@ -3,6 +3,7 @@ systemd-machine-id-setup
 hostnamectl set-hostname controller
 echo controller > /etc/hostname
 echo "" > /etc/motd
+sed -i 's/^#PermitRootLogin .*/PermitRootLogin yes/g' /etc/ssh/sshd_config
 echo "curl -s https://raw.githubusercontent.com/goffinet/ansible-ccna-lab/master/tests/almalinux9-controller.sh -o setup.sh" > readme.txt
 echo "bash setup.sh ; reboot" >> readme.txt
 {% for interface in interfaces %}
