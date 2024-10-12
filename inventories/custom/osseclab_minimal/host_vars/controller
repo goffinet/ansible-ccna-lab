@@ -1,0 +1,7 @@
+---
+hostname: srv1
+interfaces:
+  - id: "System eth0"
+    ipv4_address: "11.12.13.1/24"
+    ipv4_dns: "11.12.13.1"
+login_prompt: "localhost login:"

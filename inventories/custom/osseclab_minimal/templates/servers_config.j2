@@ -1,0 +1,12 @@
+rm -f /etc/machine-id
+systemd-machine-id-setup
+hostnamectl set-hostname {{ hostname }}
+echo {{ hostname }} > /etc/hostname
+sed -i 's/^#PermitRootLogin .*/PermitRootLogin yes/g' /etc/ssh/sshd_config
+{% for interface in interfaces %}
+nmcli c mod "{{ interface['id'] }}" ipv4.method manual ipv4.addresses {{ interface['ipv4_address'] }}
+nmcli c mod "{{ interface['id'] }}" ipv4.gateway {{ interface['ipv4_gateway'] }}
+nmcli c mod "{{ interface['id'] }}" ipv4.dns {{ interface['ipv4_dns'] }}
+nmcli c up  "{{ interface['id'] }}"
+{% endfor %}
+echo "" > /etc/motd

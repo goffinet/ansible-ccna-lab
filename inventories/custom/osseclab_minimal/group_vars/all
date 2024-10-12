@@ -1,0 +1,54 @@
+---
+template: "{{ inventory_dir }}/templates/default_config.j2"
+gns3_url: "http://172.16.253.1"
+gns3_lab_user: "{{ ansible_user }}"
+gns3_lab_pass: "{{ ansible_ssh_pass }}"
+project_name: "osseclab"
+gns3_nodes_spec:
+  - name: "NAT"
+    template: "NAT"
+    x: 100
+    y: -200
+  - name: "gateway"
+    template: "gateway"
+    x: 0
+    y: -200
+  - name: "lan1"
+    template: "Ethernet switch"
+    x: -200
+    y: -50
+  - name: "srv1"
+    template: "linux-server"
+    x: -100
+    y: 50
+  - name: "lan2"
+    template: "Ethernet switch"
+    x: 200
+    y: -50
+  - name: "srv2"
+    template: "linux-server"
+    x: 300
+    y: 50
+  - name: "management"
+    template: "Ethernet switch"
+    x: 0
+    y: 200
+  - name: "controller"
+    template: "controller"
+    x: -100
+    y: 250
+  - name: "natctrl"
+    template: "NAT"
+    x: -350
+    y: 250
+gns3_links_spec:
+  - ["gateway", "Ethernet1", "NAT", "nat0"]
+  - ["gateway", "Ethernet0", "lan1", "Ethernet0"]
+  - ["gateway", "Ethernet2", "lan2", "Ethernet0"]
+  - ["lan1", "Ethernet2", "srv1", "Ethernet0"]
+  - ["lan2", "Ethernet2", "srv2", "Ethernet0"]
+  - ["natctrl", "nat0", "controller", "Ethernet1"]
+  - ["management", "Ethernet0", "controller", "Ethernet0"]
+  - ["management", "Ethernet2", "srv1", "Ethernet1"]
+  - ["management", "Ethernet4", "srv2", "Ethernet1"]
+  - ["management", "Ethernet5", "gateway", "Ethernet3"]

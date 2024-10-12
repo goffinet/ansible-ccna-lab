@@ -1,0 +1,6 @@
+rm -f /etc/machine-id
+systemd-machine-id-setup
+hostnamectl set-hostname {{ hostname }}
+echo {{ hostname }} > /etc/hostname
+echo "" > /etc/motd
+sed -i 's/^#PermitRootLogin .*/PermitRootLogin yes/g' /etc/ssh/sshd_config 
