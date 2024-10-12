@@ -1,6 +1,3 @@
-{% if inventory_hostname in groups['clients'] and image_style == "centos" %}
-{% include 'clients_config.j2' %}
-{% endif %}
 {% if inventory_hostname in groups['servers'] and image_style == "centos" %}
 {% include 'servers_config.j2' %}
 {% endif %}
