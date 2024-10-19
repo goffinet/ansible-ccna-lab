@@ -7,4 +7,4 @@ interfaces:
     ipv4_dns: "192.168.1.1"
 #    ipv6_address: "2001:db8:acad:1060::50/64"
 #    ipv6_gateway: "fe80::d1:3"
-login_prompt: "localhost login:"
+login_prompt: "almalinux9 login:"
