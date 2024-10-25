@@ -16,6 +16,16 @@ interface=eth0
 dhcp-range=11.12.13.100,11.12.13.150,255.255.255.0,512h
 dhcp-option=3
 EOF
+cat << EOF > /etc/sysconfig/network-scripts/ifcfg-eth0
+DEVICE=eth0
+BOOTPROTO=none
+ONBOOT=yes
+TYPE=Ethernet
+IPADDR=11.12.13.1
+PREFIX=24
+IPV4_FAILURE_FATAL=no
+DNS1=127.0.0.1
+EOF
 sed -i 's/^#\$ModLoad imudp/$ModLoad imudp/g' /etc/rsyslog.conf
 sed -i 's/^#\$UDPServerRun 514/$UDPServerRun 514/g' /etc/rsyslog.conf
 sed -i 's/^#\$ModLoad imtcp/$ModLoad imtcp/g' /etc/rsyslog.conf
